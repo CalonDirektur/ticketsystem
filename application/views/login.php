@@ -24,7 +24,7 @@
             
             <!-- Email Address/Username -->
               <div class="form-group">
-                <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
+                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
               </div>
 
             <!-- Password -->
@@ -37,7 +37,7 @@
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div> -->
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <button name="login" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
               <hr class="my-4">
               <p>Belum daftar? <a href="<?= base_url('auth/daftar_akun') ?>">Register</a></p>
               <p>Lupa Password? <a href="<?= base_url('auth/lupa_password') ?>">Reset Password</a></p>

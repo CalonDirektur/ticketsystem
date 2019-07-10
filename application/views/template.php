@@ -28,6 +28,8 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- DataTable css -->
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -90,7 +92,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <!-- <span class="hidden-xs">ucfirst($this->fungsi->user_login()->username) </span> -->
+              <span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->username) ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -98,24 +100,8 @@
                 <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <!-- $this->fungsi->user_login()->name
-                  <small> $this->fungsi->user_login()->address</small> -->
+                  <?= $this->fungsi->user_login()->name ?>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -170,13 +156,47 @@
         <li>
           <a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
         </li>
+        <!-- Menu untuk User -->
+        <?php if($this->session->userdata('level') == 1){ ?>
         <li>
-          <a href=""><i class="fa fa-truck"></i><span>Supplier</span></a>
+          <a href="<?= site_url('ticket_register/daftar') ?>"><i class="fa fa-users"></i><span>Daftar Ticket</span></a>
         </li>
-        <li>
-          <a href=""><i class="fa fa-users"></i><span>Customers</span></a>
-        </li>      
         <li class="treeview">
+          <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= site_url('ticket_register/pending') ?>"><i class="fa fa-list"></i>Pending</a></li>
+            <li><a href="<?= site_url('ticket_register/approved') ?>"><i class="fa fa-check-square"></i>Approved</a></li>
+            <li><a href="<?= site_url('ticket_register/rejected') ?>"><i class="fa fa-user-times"></i>Rejected</a></li>
+          </ul>
+        </li>
+        <?php } ?>
+        <!-- Menu untuk Admin 1 -->
+        <?php if($this->session->userdata('level') == 2){ ?>
+        <li>
+          <a href="<?= site_url('admin_1') ?>"><i class="fa fa-users"></i><span>Review Ticket Admin 1</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= site_url('admin_1/rejected') ?>"><i class="fa fa-user-times"></i>Rejected</a></li>
+            <li><a href="<?= site_url('admin_1/approved') ?>"><i class="fa fa-check-square"></i>Approved</a></li>
+          </ul>
+        </li>
+        <?php } ?>
+       <!-- Menu untuk Admin 2 -->
+        <?php if($this->session->userdata('level') == 3){ ?>
+        <li>
+          <a href="<?= site_url('admin_2') ?>"><i class="fa fa-users"></i><span>Review Ticket Admin 2</span></a>
+        </li>
+         <li>
+          <a href="<?= site_url('admin_2/completed') ?>"><i class="fa fa-check-square"></i><span>Completed Review</span></a>
+        </li>
+        <?php } ?>
+          <!-- <li class="treeview">
           <a href="#"><i class="fa fa-archive"></i> <span>Products</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
@@ -185,17 +205,7 @@
             <li><a href="#"><i class="fa fa-circle-o"></i>Stock In</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i>Stock Out</a></li>
           </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i><span>Reports</span>
-            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Sales</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Stocks</a></li>
-          </ul>
-        </li>
+        </li> -->
         <!-- if($this->session->userdata('level') == 1){ -->
         <li class="header">LABELS</li>
         <li><a href="<?= site_url('user') ?>"><i class="fa fa-circle-o text-aqua"></i> <span>User</span></a></li>
@@ -237,11 +247,14 @@
 <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+<!-- DataTable -->
+<script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
 <script>
   $(document).ready(function () {
-    $('.sidebar-menu').tree()
+    $('.sidebar-menu').tree();
+    $('#table-admin1').DataTable();
   })
 </script>
 </body>

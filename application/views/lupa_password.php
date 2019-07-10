@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman Login</title>
+    <title>Lupa Password</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -20,14 +20,13 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Lupa Password</h5>
-            <form class="form-signin">
+            <form action="<?= site_url('Auth/lupa_password') ?>" method="post" class="form-signin">
             
             <!-- Email Address/Username -->
               <div class="form-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
+                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
               </div>
-
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kirim</button>
+              <button name="reset_password" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >Kirim</button>
               <hr class="my-4">
             </form>
           </div>

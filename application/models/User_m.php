@@ -21,22 +21,16 @@ class User_m extends CI_Model
     {
         $this->db->from('user');
         if ($id != null) {
-            $this->db->where('user_id', $id);
+            $this->db->where('username', $id);
         }
         $query = $this->db->get();
 
         return $query;
     }
 
-    public function add($post)
+    public function add($data)
     {
-        $params['name'] = $post['fullname'];
-        $params['username'] = $post['username'];
-        $params['password'] = sha1($post['username']);
-        $params['address'] = $post['address'] != "" ? $post['address'] : "-";
-        $params['level'] = $post['level'];
-
-        $this->db->insert('user', $params);
+        $this->db->insert('user', $data);
     }
 
     public function del($id)
