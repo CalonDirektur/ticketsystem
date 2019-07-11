@@ -16,26 +16,25 @@
           <thead>
             <th>No.</th>
             <th>Nama</th>
-            <th>Alamat</th>
-            <th>Hobi</th>
-            <th>Id Approval</th>
-            <th></th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Level</th>
+            <th>ID Cabang</th>
           </thead>
         <tbody>
           <form method="post" action="<?= site_url('Admin_1/aksi') ?>">
           <?php 
           $no = 1;
-          foreach($records as $r) {  ?>
+          foreach($list_user as $list) {  ?>
             <tr>
-              <td>#<?= $r['id_data'] ?></td>
-              <td><?= $r['nama'] ?></td>
-              <td><?= $r['alamat'] ?></td>
-              <td><?= $r['hobi'] ?></td>
-              <td><?= $r['id_approval'] == 0 ? '<span class="badge"> Belum direview</span>' : ''  ?></td>
-              <td>
-                <a name="approve" href="<?= site_url('Admin_1/approve/'.$r['id_data']) ?>" class="btn-sm btn-primary">Approve</a>
-                <a name="reject" href="<?= site_url('Admin_1/reject/'.$r['id_data']) ?>" class="btn-sm btn-danger">Reject</a>
-              </td>
+              <td>#<?= $list['id_user'] ?></td>
+              <td><?= $list['name'] ?></td>
+              <td><?= $list['username'] ?></td>
+              <td><?= $list['email'] ?></td>
+              <td><?= $list['password'] ?></td>             
+              <td><?= $list['level'] ?></td>             
+              <td><?= $list['id_cabang'] ?></td>             
             </tr>
           <?php 
           $no++;

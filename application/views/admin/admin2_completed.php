@@ -3,20 +3,15 @@
         Completed Review
         <!-- <small>it all starts here</small> -->
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-2">
   
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <table id="table-admin1" class="table">
           <thead>
             <th>No.</th>
@@ -30,7 +25,7 @@
           $no = 1;
           foreach($records as $r) {  ?>
             <tr>
-              <td><?= $no; ?></td>
+              <td>#<?= $r['id_data'] ?></td>
               <td><?= $r['nama'] ?></td>
               <td><?= $r['alamat'] ?></td>
               <td><?= $r['hobi'] ?></td>
@@ -42,7 +37,7 @@
           </tbody>
         </table>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-2">
 
       </div>
     </div>

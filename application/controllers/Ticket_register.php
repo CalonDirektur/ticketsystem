@@ -15,18 +15,29 @@ class Ticket_register extends CI_Controller {
 	}
 
 	public function daftar()
-	{
-		
+	{		
 		$this->template->load('template', 'user/ticket_register');
 	}
 
+	public function form_my_hajat()
+	{
+		$this->template->load('template', 'my_hajat/form_my_hajat');
+
+	}
+
+	public function form_my_talim()
+	{
+		$this->template->load('template', 'my_talim/form_my_talim');
+
+	}
+	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 	public function pending(){
 		$data['records'] = $this->data_m->get('pending_review')->result_array();		
 		$this->template->load('template', 'user/ticket_pending', $data);
 	}
 
 	public function approved(){
-		$data['records'] = $this->data_m->get('approved_review')->result_array();		
+		$data['records'] = $this->data_m->get('status_admin2')->result_array();		
 		$this->template->load('template', 'user/ticket_approved', $data);
 	}
 	

@@ -24,7 +24,7 @@
             
             <!-- Email Address/Username -->
               <div class="form-group">
-                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
+                <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Masukkan Email/Username" required autofocus>
               </div>
 
             <!-- Password -->

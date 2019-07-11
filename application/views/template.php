@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>BFI HELPDESK</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -18,6 +18,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
+  <link rel="icon" href="<?= base_url('assets/img/bfi.jpg') ?>">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,9 +40,9 @@
     <!-- Logo -->
     <a href="<?= base_url('dashboard') ?>assets/index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>P</b>LT</span>
+      <span class="logo-mini"><b>BFI</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Pos</b></span>
+      <span class="logo-lg"><b>BFI Finance</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -59,10 +60,13 @@
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <!-- Angka Notif -->
+              <span class="label label-danger count"></span>
             </a>
+            <!-- Data baru masuk -->
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <!-- <li class="header">You have 9 tasks</li> -->
+
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -98,10 +102,24 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
                   <?= $this->fungsi->user_login()->name ?>
                 </p>
+                <small>
+                Access Level: 
+                <?php 
+                if($this->fungsi->user_login()->level == 1)
+                {
+                  echo "user";
+                } else if($this->fungsi->user_login()->level == 2)
+                {
+                  echo "Admin level 1";
+                } else if($this->fungsi->user_login()->level == 3)
+                {
+                  echo "Admin level 2";
+                }
+                 ?> 
+                </small>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -135,22 +153,23 @@
           <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p> <?= $this->fungsi->user_login()->name ?></p>
+          <a href="#"></i> 
+          <?php 
+                if($this->fungsi->user_login()->level == 1)
+                {
+                  echo "User";
+                } else if($this->fungsi->user_login()->level == 2)
+                {
+                  echo "Admin level 1";
+                } else if($this->fungsi->user_login()->level == 3)
+                {
+                  echo "Admin level 2";
+                }
+                 ?> </a>
         </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
+      </div>     
+
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
@@ -158,17 +177,33 @@
         </li>
         <!-- Menu untuk User -->
         <?php if($this->session->userdata('level') == 1){ ?>
-        <li>
-          <a href="<?= site_url('ticket_register/daftar') ?>"><i class="fa fa-users"></i><span>Daftar Ticket</span></a>
+        <li class="treeview active">
+          <a href="#"><i class="fa fa-th-list"></i><span>Daftar Ticket</span>
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= site_url('ticket_register/form_my_hajat') ?>"><i class="fa fa-users"></i><span>My Hajat</span></a></li>
+            <li><a href="<?= site_url('ticket_register/form_my_talim') ?>"><i class="fa fa-users"></i><span>My Talim</span></a></li>
+          </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview active">
           <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
             <li><a href="<?= site_url('ticket_register/pending') ?>"><i class="fa fa-list"></i>Pending</a></li>
-            <li><a href="<?= site_url('ticket_register/approved') ?>"><i class="fa fa-check-square"></i>Approved</a></li>
+            <li><a href="<?= site_url('ticket_register/approved') ?>"><i class="fa fa-check-square"></i>Approved/Completed</a></li>
             <li><a href="<?= site_url('ticket_register/rejected') ?>"><i class="fa fa-user-times"></i>Rejected</a></li>
+          </ul>
+        </li>
+        <li class="header">LABELS</li>
+        <li class="treeview active">
+          <a href="#"><i class="fa fa-th-list"></i> <span>User</span>
+          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?= base_url('auth/daftar_akun') ?>"><i class="fa fa-circle-o"></i> <span>Pendaftaran User</span></a></li>
+            <li><a href="<?= site_url('auth/list_user') ?>"><i class="fa fa-check-square"></i>List User</a></li>
           </ul>
         </li>
         <?php } ?>
@@ -196,20 +231,6 @@
           <a href="<?= site_url('admin_2/completed') ?>"><i class="fa fa-check-square"></i><span>Completed Review</span></a>
         </li>
         <?php } ?>
-          <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-archive"></i> <span>Products</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Sales</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Stock In</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Stock Out</a></li>
-          </ul>
-        </li> -->
-        <!-- if($this->session->userdata('level') == 1){ -->
-        <li class="header">LABELS</li>
-        <li><a href="<?= site_url('user') ?>"><i class="fa fa-circle-o text-aqua"></i> <span>User</span></a></li>
-        <!-- }  -->
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -254,6 +275,7 @@
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree();
+    // DataTable
     $('#table-admin1').DataTable();
   })
 </script>

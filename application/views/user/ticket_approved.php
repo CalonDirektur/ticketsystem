@@ -3,11 +3,6 @@
         Approved Tickets
         <!-- <small>it all starts here</small> -->
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
     </section>
 
     <!-- Main content -->
@@ -34,7 +29,7 @@
               <td><?= $r['nama'] ?></td>
               <td><?= $r['alamat'] ?></td>
               <td><?= $r['hobi'] ?></td>
-              <td><?= $r['id_approval'] == 2 ? '<small class="label bg-yellow"> Disetujui</small>' : ''  ?></td>
+              <td><?= $r['id_approval'] == 2 ? '<small class="label bg-yellow"> Disetujui</small>' : '<small class="label bg-green">Completed</small>'  ?></td>
             </tr>
           <?php 
           $no++;

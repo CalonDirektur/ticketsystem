@@ -34,4 +34,6 @@ class Data_m extends CI_Model
 
         return $query;
     }
+
+   
 }

@@ -4,7 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class User_m extends CI_Model
 {
 
-    public function login($table, $where)
+    //Method Proses Login
+    public function login($username, $password)
     {
         // $this->db->select('*');
         // $this->db->from('user');
@@ -12,7 +13,11 @@ class User_m extends CI_Model
         // $this->db->where('password', $post['password']);
         // $query = $this->db->get();
 
-        $query = $this->db->get_where($table, $where);
+        // $query = $this->db->query("SELECT * FROM user WHERE (email = '".$email."' or username = '".$username."') AND password = '".$password."'' ");
+
+        $this->db->where("email = '$username' OR username = '$username'");
+        $this->db->where('password', $password);
+        $query = $this->db->get('user');
 
         return $query;
     }
@@ -38,4 +43,4 @@ class User_m extends CI_Model
         $this->db->where('user_id', $id);
         $this->db->delete('user');
     }
-}
+    }

@@ -14,13 +14,13 @@ class Admin_2 extends CI_Controller {
 	{
 		check_not_login(); check_access_level_admin2();
 
-		//Ambil Data
+		//Ambil Data ticket yang sudah disetujui admin 1
 		$data['records'] = $this->data_m->get('approved_review')->result_array();
 
 		$this->template->load('template', 'admin/admin2', $data);
 	}
 
-	//halaman completed ticket
+	//halaman completed ticket (halaman data ticket yang sudah diselesaikan)
 	public function completed(){
 		$data['records'] = $this->data_m->get('completed_review')->result_array();
 
@@ -28,8 +28,9 @@ class Admin_2 extends CI_Controller {
 
 	}
 
+	//menyelesaikan support ticket
 	public function approve($id_data){
 		$this->Aksi_Admin2_m->approve($id_data);	
-		redirect('dashboard');
+		redirect('Admin_2/completed');
 	}
 }
