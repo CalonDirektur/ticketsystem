@@ -177,7 +177,7 @@
         </li>
         <!-- Menu untuk User -->
         <?php if($this->session->userdata('level') == 1){ ?>
-        <li class="treeview active">
+        <li class="treeview">
           <a href="#"><i class="fa fa-th-list"></i><span>Daftar Ticket</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
@@ -186,18 +186,48 @@
             <li><a href="<?= site_url('ticket_register/form_my_talim') ?>"><i class="fa fa-users"></i><span>My Talim</span></a></li>
           </ul>
         </li>
-        <li class="treeview active">
+        <li class="treeview">
           <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?= site_url('ticket_register/pending') ?>"><i class="fa fa-list"></i>Pending</a></li>
-            <li><a href="<?= site_url('ticket_register/approved') ?>"><i class="fa fa-check-square"></i>Approved/Completed</a></li>
-            <li><a href="<?= site_url('ticket_register/rejected') ?>"><i class="fa fa-user-times"></i>Rejected</a></li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-list"></i>Pending
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('status/pending/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                <li><a href="<?= site_url('status/pending/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-check-square"></i>Approved
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('status/approved/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                <li><a href="<?= site_url('status/approved/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-user-times"></i>Rejected
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left"></i>
+              </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('status/rejected/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                <li><a href="<?= site_url('status/rejected/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li class="header">LABELS</li>
-        <li class="treeview active">
+        <li class="treeview">
           <a href="#"><i class="fa fa-th-list"></i> <span>User</span>
           <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
@@ -207,6 +237,7 @@
           </ul>
         </li>
         <?php } ?>
+
         <!-- Menu untuk Admin 1 -->
         <?php if($this->session->userdata('level') == 2){ ?>
         <li>
@@ -277,6 +308,27 @@
     $('.sidebar-menu').tree();
     // DataTable
     $('#table-admin1').DataTable();
+
+    // Script Halaman Formulir My Hajat
+    $(".box.pertanyaan").hide();
+    $('.kategori').click(function(){
+      if($("#renovasi").is(':checked')) {
+        $("#box-renovasi").fadeIn();
+        $("#box-sewa, #box-franchise, #box-wedding").fadeOut();
+      }
+      if($("#sewa").is(':checked')) {
+        $("#box-sewa").fadeIn();
+         $("#box-renovasi, #box-franchise, #box-wedding").fadeOut();
+      }
+      if($("#wedding").is(':checked')) {
+        $("#box-wedding").fadeIn();
+        $("#box-renovasi, #box-sewa, #box-franchise").fadeOut();
+      }
+      if($("#franchise").is(':checked')) {
+        $("#box-franchise").fadeIn();
+        $("#box-renovasi, #box-wedding, #box-sewa").fadeOut();
+      }
+    })
   })
 </script>
 </body>

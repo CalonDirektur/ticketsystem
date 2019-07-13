@@ -3,13 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Data_m extends CI_Model
 {
-    public function add($data)
+    public function add($table, $data)
     {
-        $this->db->insert('data', $data);
+        $this->db->insert($table, $data);
     }
 
-    public function get($where = NULL){
-        $this->db->from('data');
+    public function get($table, $where = NULL){
+        $this->db->from($table);
         if ($where == 'status_admin1') {
             $this->db->where('id_approval', 0);
             $this->db->or_where('id_approval', 1);
@@ -35,5 +35,9 @@ class Data_m extends CI_Model
         return $query;
     }
 
-   
+   public function get_by_id($table, $where)
+   {
+       $query = $this->db->get_where($table, $where);
+        return $query;
+   }
 }
