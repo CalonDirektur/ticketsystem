@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BFI HELPDESK</title>
+  <title>BFI SYARI'AH HELPDESK</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,304 +32,356 @@
   <!-- DataTable css -->
   <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+  <!-- Site wrapper -->
+  <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="<?= base_url('dashboard') ?>assets/index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>BFI</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>BFI Finance</b></span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="<?= base_url('dashboard') ?>assets/index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>BFI</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>BFI Syari'ah</b></span>
       </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <!-- Angka Notif -->
-              <span class="label label-danger count"></span>
-            </a>
-            <!-- Data baru masuk -->
-            <ul class="dropdown-menu">
-              <!-- <li class="header">You have 9 tasks</li> -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Tasks: style can be found in dropdown.less -->
+            <li class="dropdown tasks-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-flag-o"></i>
+                <!-- Angka Notif -->
+                <span class="label label-danger count"></span>
+              </a>
+              <!-- Data baru masuk -->
+              <ul class="dropdown-menu">
+                <!-- <li class="header">You have 9 tasks</li> -->
 
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <li>
+                      <!-- Task item -->
+                      <a href="#">
+                        <h3>
+                          Design some buttons
+                          <small class="pull-right">20%</small>
+                        </h3>
+                        <div class="progress xs">
+                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">20% Complete</span>
+                          </div>
                         </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->username) ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                <p>
-                  <?= $this->fungsi->user_login()->name ?>
-                </p>
-                <small>
-                Access Level: 
-                <?php 
-                if($this->fungsi->user_login()->level == 1)
-                {
-                  echo "user";
-                } else if($this->fungsi->user_login()->level == 2)
-                {
-                  echo "Admin level 1";
-                } else if($this->fungsi->user_login()->level == 3)
-                {
-                  echo "Admin level 2";
-                }
-                 ?> 
-                </small>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
+                      </a>
+                    </li>
+                    <!-- end task item -->
+                  </ul>
+                </li>
+                <li class="footer">
+                  <a href="#">View all tasks</a>
+                </li>
+              </ul>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->username) ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <p>
+                    <?= $this->fungsi->user_login()->name ?>
+                  </p>
+                  <small>
+                    Access Level:
+                    <?php
+                    if ($this->fungsi->user_login()->level == 1) {
+                      echo "user";
+                    } else if ($this->fungsi->user_login()->level == 2) {
+                      echo "Admin level 1";
+                    } else if ($this->fungsi->user_login()->level == 3) {
+                      echo "Admin level 2";
+                    }
+                    ?>
+                  </small>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+              <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p> <?= $this->fungsi->user_login()->name ?></p>
+            <a href="#"></i>
+              <?php
+              if ($this->fungsi->user_login()->level == 1) {
+                echo "User";
+              } else if ($this->fungsi->user_login()->level == 2) {
+                echo "Admin level 1";
+              } else if ($this->fungsi->user_login()->level == 3) {
+                echo "Admin level 2";
+              }
+              ?> </a>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">MAIN NAVIGATION</li>
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
           </li>
+          <!-- Menu untuk User -->
+          <?php if ($this->session->userdata('level') == 1) { ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-th-list"></i><span>Daftar Ticket</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('ticket_register/form_my_hajat') ?>"><i class="fa fa-users"></i><span>My Hajat</span></a></li>
+                <li><a href="<?= site_url('ticket_register/form_my_talim') ?>"><i class="fa fa-users"></i><span>My Talim</span></a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-list"></i>Pending
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= site_url('status/pending/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                    <li><a href="<?= site_url('status/pending/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+                  </ul>
+                </li>
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-check-square"></i>Approved
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= site_url('status/approved/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                    <li><a href="<?= site_url('status/approved/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+                  </ul>
+                </li>
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-user-times"></i>Rejected
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= site_url('status/rejected/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                    <li><a href="<?= site_url('status/rejected/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="header">LABELS</li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-th-list"></i> <span>User</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= base_url('auth/daftar_akun') ?>"><i class="fa fa-circle-o"></i> <span>Pendaftaran User</span></a></li>
+                <li><a href="<?= site_url('auth/list_user') ?>"><i class="fa fa-check-square"></i>List User</a></li>
+              </ul>
+            </li>
+          <?php } ?>
+
+          <!-- Menu untuk Admin 1 -->
+          <?php if ($this->session->userdata('level') == 2) { ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-users"></i>
+                <span>Review Ticket Admin 1</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('admin1/review/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                <li><a href="<?= site_url('admin1/review/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-check-square"></i>Approved
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= site_url('status/approved/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                    <li><a href="<?= site_url('status/approved/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+                  </ul>
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-user-times"></i>Rejected
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= site_url('status/rejected/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                    <li><a href="<?= site_url('status/rejected/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          <?php } ?>
+          <!-- Menu untuk Admin 2 -->
+          <?php if ($this->session->userdata('level') == 3) { ?>
+            <li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i>Admin 2 Review
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('admin2/review/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                <li><a href="<?= site_url('admin2/review/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+              </ul>
+            </li>
+            </li>
+            <li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i>Completed Tickets
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?= site_url('admin2/completed/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
+                <li><a href="<?= site_url('admin2/completed/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
+              </ul>
+            </li>
+            </li>
+          <?php } ?>
         </ul>
-      </div>
-    </nav>
-  </header>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
 
-  <!-- =============================================== -->
+    <!-- =============================================== -->
 
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p> <?= $this->fungsi->user_login()->name ?></p>
-          <a href="#"></i> 
-          <?php 
-                if($this->fungsi->user_login()->level == 1)
-                {
-                  echo "User";
-                } else if($this->fungsi->user_login()->level == 2)
-                {
-                  echo "Admin level 1";
-                } else if($this->fungsi->user_login()->level == 3)
-                {
-                  echo "Admin level 2";
-                }
-                 ?> </a>
-        </div>
-      </div>     
-
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li>
-          <a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-        </li>
-        <!-- Menu untuk User -->
-        <?php if($this->session->userdata('level') == 1){ ?>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-th-list"></i><span>Daftar Ticket</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?= site_url('ticket_register/form_my_hajat') ?>"><i class="fa fa-users"></i><span>My Hajat</span></a></li>
-            <li><a href="<?= site_url('ticket_register/form_my_talim') ?>"><i class="fa fa-users"></i><span>My Talim</span></a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="treeview">
-              <a href="#"><i class="fa fa-list"></i>Pending
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?= site_url('status/pending/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
-                <li><a href="<?= site_url('status/pending/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-check-square"></i>Approved
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?= site_url('status/approved/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
-                <li><a href="<?= site_url('status/approved/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-user-times"></i>Rejected
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left"></i>
-              </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?= site_url('status/rejected/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
-                <li><a href="<?= site_url('status/rejected/myhajat') ?>"><i class="fa fa-circle-o"></i>My Hajat</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="header">LABELS</li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-th-list"></i> <span>User</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?= base_url('auth/daftar_akun') ?>"><i class="fa fa-circle-o"></i> <span>Pendaftaran User</span></a></li>
-            <li><a href="<?= site_url('auth/list_user') ?>"><i class="fa fa-check-square"></i>List User</a></li>
-          </ul>
-        </li>
-        <?php } ?>
-
-        <!-- Menu untuk Admin 1 -->
-        <?php if($this->session->userdata('level') == 2){ ?>
-        <li>
-          <a href="<?= site_url('admin_1') ?>"><i class="fa fa-users"></i><span>Review Ticket Admin 1</span></a>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-th-list"></i> <span>Reviewed Tickets</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?= site_url('admin_1/rejected') ?>"><i class="fa fa-user-times"></i>Rejected</a></li>
-            <li><a href="<?= site_url('admin_1/approved') ?>"><i class="fa fa-check-square"></i>Approved</a></li>
-          </ul>
-        </li>
-        <?php } ?>
-       <!-- Menu untuk Admin 2 -->
-        <?php if($this->session->userdata('level') == 3){ ?>
-        <li>
-          <a href="<?= site_url('admin_2') ?>"><i class="fa fa-users"></i><span>Review Ticket Admin 2</span></a>
-        </li>
-         <li>
-          <a href="<?= site_url('admin_2/completed') ?>"><i class="fa fa-check-square"></i><span>Completed Review</span></a>
-        </li>
-        <?php } ?>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <?= $contents ?>
-  </div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <?= $contents ?>
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+    <!-- /.content-wrapper -->
 
-  <!-- Add the sidebar's background. This div must be placed
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 2.4.0
+      </div>
+      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+      reserved.
+    </footer>
+
+    <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
+    <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-<!-- DataTable -->
-<script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree();
-    // DataTable
-    $('#table-admin1').DataTable();
+  <!-- jQuery 3 -->
+  <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+  <!-- DataTable -->
+  <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.sidebar-menu').tree();
+      // DataTable
+      $('#table-admin1').DataTable();
 
-    // Script Halaman Formulir My Hajat
-    $(".box.pertanyaan").hide();
-    $('.kategori').click(function(){
-      if($("#renovasi").is(':checked')) {
-        $("#box-renovasi").fadeIn();
-        $("#box-sewa, #box-franchise, #box-wedding").fadeOut();
-      }
-      if($("#sewa").is(':checked')) {
-        $("#box-sewa").fadeIn();
-         $("#box-renovasi, #box-franchise, #box-wedding").fadeOut();
-      }
-      if($("#wedding").is(':checked')) {
-        $("#box-wedding").fadeIn();
-        $("#box-renovasi, #box-sewa, #box-franchise").fadeOut();
-      }
-      if($("#franchise").is(':checked')) {
-        $("#box-franchise").fadeIn();
-        $("#box-renovasi, #box-wedding, #box-sewa").fadeOut();
-      }
+      // Script Halaman Formulir Pendaftaran Tiket My Hajat
+      $(".box.pertanyaan").hide();
+      $('.kategori').click(function() {
+        if ($("#renovasi").is(':checked')) {
+          $("#box-renovasi").fadeIn();
+          $("#box-sewa, #box-franchise, #box-wedding").fadeOut();
+        }
+        if ($("#sewa").is(':checked')) {
+          $("#box-sewa").fadeIn();
+          $("#box-renovasi, #box-franchise, #box-wedding").fadeOut();
+        }
+        if ($("#wedding").is(':checked')) {
+          $("#box-wedding").fadeIn();
+          $("#box-renovasi, #box-sewa, #box-franchise").fadeOut();
+        }
+        if ($("#franchise").is(':checked')) {
+          $("#box-franchise").fadeIn();
+          $("#box-renovasi, #box-wedding, #box-sewa").fadeOut();
+        }
+      })
+
+      //Halaman detail status tiket bagian gambar
+      $('.thumb').on('click', function() {
+        var gambar = $(this).attr('src');
+        // alert(gambar);
+        $('#gambar').attr('src', gambar);
+      })
+
     })
-  })
-</script>
+  </script>
 </body>
+
 </html>

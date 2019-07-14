@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Approved My Ta'lim Tickets
+    Review Ticket Admin 1
     <!-- <small>it all starts here</small> -->
   </h1>
 </section>
@@ -14,24 +14,24 @@
     <div class="col-lg-6">
       <table id="table-admin1" class="table">
         <thead>
-          <th>ID Ticket</th>
+          <th>No.</th>
           <th>Nama Konsumen</th>
           <th>Jenis Konsumen</th>
           <th>Pendidikan</th>
-          <th>Ticket Status</th>
+          <th>Id Approval</th>
           <th></th>
         </thead>
         <tbody>
           <?php
           $no = 1;
-          foreach ($data as $d) {  ?>
+          foreach ($pending as $d) {  ?>
             <tr>
-              <td>#<?= $d['id_mytalim'] ?></td>
-              <td><?= $d['nama_konsumen'] ?></td>
-              <td><?= $d['jenis_konsumen'] ?></td>
-              <td><?= ucfirst($d['pendidikan']) ?></td>
-              <td><span class="label label-success">Disetujui</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/approved/mytalim/' . $d['id_mytalim']) ?>">Detail</a></td>
+              <td>#<?= $d->id_mytalim ?></td>
+              <td><?= $d->nama_konsumen ?></td>
+              <td><?= $d->jenis_konsumen ?></td>
+              <td><?= $d->pendidikan ?></td>
+              <td><?= $d->id_approval == 3 ? '<span class="label label-success">Completed</span>' : ''  ?></td>
+              <td><a class="btn btn-default" href="<?= base_url('Admin2/completed/mytalim/' . $d->id_mytalim) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;
@@ -39,7 +39,6 @@
         </tbody>
       </table>
     </div>
-
     <div class="col-lg-2">
 
     </div>
