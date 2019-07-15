@@ -17,7 +17,7 @@
             <div class="col-lg-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Isilah form dibawah wkwkwkwk</h3>
+                        <h3 class="box-title">Daftar Akun User Cabang</h3>
                     </div>
                     <form method="post" action="<?= base_url('Auth/process_daftar') ?>">
                     <div class="box-body">
@@ -39,7 +39,14 @@
                         </div>
                         <div class="form-group">
                             <label for="id_cabang">Cabang</label>
-                            <input name="id_cabang" type="text" class="form-control" id="id_cabang" placeholder="Cabang" readonly>
+                            <select name="id_cabang" id="id_cabang" class="form-control">
+                                <option disabled selected value="">- Pilih Cabang -</option>
+                                <?php 
+                                foreach($pertanyaan as $p){
+                                    ?>
+                                    <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                                <?php }  ?>
+                            </select>
                         </div>
                     </div>
                     <div class="box-footer">

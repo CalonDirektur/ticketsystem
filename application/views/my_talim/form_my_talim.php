@@ -29,11 +29,22 @@
                     <option value="Eksternal">Eksternal</option>
                   </select>
                 </div>
-              </div>
+                  <div class="form-group">
+                    <label for="cabang">Cabang</label>
+                      <select name="cabang" id="cabang" class="form-control">
+                    <option disabled selected value="">- Pilih Cabang -</option>
+                    <?php 
+                      foreach($pertanyaan as $p){
+                        ?>
+                        <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                     <?php }  ?>
+                  </select>
+                </div>
              <div class="box-footer">
  
             </div>
           </div>
+        </div>
 
           <!-- Box Pertanyaan form My'Talim -->
             <div class="box box-primary">

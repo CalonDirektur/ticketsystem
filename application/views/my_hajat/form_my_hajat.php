@@ -29,6 +29,17 @@
                     <option value="Eksternal">Eksternal</option>
                   </select>
                 </div>
+                <div class="form-group">
+                    <label for="cabang">Cabang</label>
+                      <select name="cabang" id="cabang" class="form-control">
+                    <option disabled selected value="">- Pilih Cabang -</option>
+                    <?php 
+                      foreach($pertanyaan as $p){
+                        ?>
+                        <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                     <?php }  ?>
+                  </select>
+                </div>
               </div>
              <div class="box-footer">
  
@@ -99,7 +110,7 @@
                 </div>
               </div>
              <div class="box-footer">
- 
+                <button name="submit_renovasi" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
@@ -111,8 +122,16 @@
               <div class="box-body">
                   <!-- Nama Pemilik -->
                   <div class="form-group">
-                  <label for="nama_pemilik">Nama Pemilik</label>
-                  <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control" placeholder="Nama Pemilik">                
+                    <label for="nama_pemilik">Nama Pemilik</label>
+                    <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control" placeholder="Nama Konsumen">              
+                  </div>
+                <!-- Jenis Pemilik -->
+                <div class="form-group">
+                   <label for="jenis_pemilik">Jenis Calon Konsumen</label>
+                  <select name="jenis_pemilik" id="jenis_pemilik" class="form-control">
+                    <option value="Perorangan">Perorangan</option>
+                    <option value="Perusahaan">Perusahaan/Badan Usaha</option>
+                  </select>
                 </div>
                 <!-- Hubungan dengan pemohon -->
                 <div class="form-group">
@@ -131,7 +150,7 @@
                 </div>
               </div>
              <div class="box-footer">
- 
+                <button name="submit_sewa" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
@@ -143,8 +162,8 @@
               <div class="box-body">
                   <!-- Nama WO -->
                   <div class="form-group">
-                  <label for="nama_pemilik">Nama WO</label>
-                  <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control" placeholder="Nama WO">                
+                  <label for="nama_wo">Nama WO</label>
+                  <input name="nama_wo" id="nama_wo" type="text" class="form-control" placeholder="Nama WO">                
                 </div>
                 <!-- Jenis WO -->
                 <div class="form-group">
@@ -158,8 +177,8 @@
                 </div>
                 <!-- Jumlah Biaya -->
                 <div class="form-group">
-                  <label for="biaya_pertahun">Jumlah Biaya</label>
-                  <input name="biaya_pertahun" id="biaya_pertahun" type="text" class="form-control" placeholder="Jumlah Biaya">
+                  <label for="jumlah_biaya">Jumlah Biaya</label>
+                  <input name="jumlah_biaya" id="jumlah_biaya" type="text" class="form-control" placeholder="Jumlah Biaya">
                 </div>
                 <!-- Jumlah Undangan -->
                 <div class="form-group">
@@ -173,7 +192,7 @@
                 </div>
               </div>
              <div class="box-footer">
- 
+                <button name="submit_wedding" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
@@ -191,11 +210,11 @@
                 <!-- Jumlah Cabang -->
                 <div class="form-group">
                   <label for="jumlah_cabang">Jumlah Cabang</label>
-                  <input name="jumlah_cabang" id="jumlah_cabang" type="text" class="form-control" placeholder="Jumlah Cabang">
+                  <input name="jumlah_cabang" id="jumlah_cabang" type="number" class="form-control" placeholder="Jumlah Cabang">
                 </div>
                 <!-- Jenis Franchise -->
                 <div class="form-group">
-                  <label for="jenis_franchise"></label>
+                  <label for="jenis_franchise">Jenis Franchise</label>
                   <select name="jenis_franchise" id="jenis_franchise" class="form-control">
                     <option value="Makanan dan Minuman">Makanan dan Minuman</option>
                     <option value="otomotif">Otomotif</option>
@@ -209,18 +228,18 @@
                 </div>
                 <!-- Tahun Berdiri -->
                 <div class="form-group">
-                  <label for="tahun_berdiri">Tahun Berdiri</label>
-                  <input name="tahun_berdiri" id="tahun_berdiri" type="text" class="form-control" placeholder="Tahun Berdiri">
+                  <label for="tahun_berdiri_franchise">Tahun Berdiri Franchise</label>
+                  <input name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" type="text" class="form-control" placeholder="Tahun Berdiri">
                 </div>
                 <!-- Harga -->
                 <div class="form-group">
-                  <label for="harga">Harga</label>
-                  <input name="harga" id="harga" type="text" class="form-control" placeholder="Harga">
+                  <label for="harga_franchise">Harga Franchise</label>
+                  <input name="harga_franchise" id="harga_franchise" type="text" class="form-control" placeholder="Harga">
                 </div>
                 <!-- Jangka Waktu Kepemilikan -->
                 <div class="form-group">
-                  <label for="jangka_kepemilikan">Jangka Waktu Kepemilikan</label>
-                  <select name="jangka_kepemilikan" id="jangka_kepemilikan" class="form-control">
+                  <label for="jangka_waktu_franchise">Jangka Waktu Franchise</label>
+                  <select name="jangka_waktu_franchise" id="jangka_waktu_franchise" class="form-control">
                     <option value="Selamanya">Selamanya</option>
                     <option value="Jangka Tertentu">Jangka Tertentu</option>
                   </select>
@@ -230,12 +249,11 @@
                   <label for="akun_sosmed_website">Akun Sosial Media/Website</label>
                   <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control" placeholder="Akun Sosial Media">
                 </div>
-                <button class="btn btn-primary" name="submit">Kirim Data!</button>
+                <button name="submit_franchise" class="btn btn-primary" name="submit">Kirim Data!</button>
               </div>
              <div class="box-footer">
  
             </div>
-          </form>
           </div>
 
           <!-- Box Penyedia Jasa -->
@@ -259,9 +277,10 @@
                 </div>
               </div>
              <div class="box-footer">
- 
+                <button name="submit_penyedia_jasa" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
+          </form>
         </div>
     </div>
     </div>

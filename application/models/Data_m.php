@@ -5,7 +5,8 @@ class Data_m extends CI_Model
 {
     public function add($table, $data)
     {
-        $this->db->insert($table, $data);
+        $query = $this->db->insert($table, $data);
+        return $this->db->affected_rows();
     }
 
     public function get($table, $where = NULL){
@@ -39,5 +40,13 @@ class Data_m extends CI_Model
    {
        $query = $this->db->get_where($table, $where);
         return $query;
+   }
+
+   public function get_cabang(){
+       $this->db->select('*');
+       $this->db->from('tb_cabang');
+    
+       $query = $this->db->get();
+       return $query;
    }
 }

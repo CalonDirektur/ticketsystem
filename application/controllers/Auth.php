@@ -16,7 +16,9 @@ class Auth extends CI_Controller {
 	// Halaman Daftar Akun
     public function daftar_akun()
     {
-		$this->template->load('template','user/daftar_akun');
+		$this->load->model('data_m');		
+		$data['pertanyaan'] = $this->data_m->get_cabang()->result();
+		$this->template->load('template','user/daftar_akun', $data);
 	}
 	
 	//method proses pendaftaran akun user
@@ -27,7 +29,7 @@ class Auth extends CI_Controller {
 			'username' => $this->input->post('username'),
 			'email' => $this->input->post('email'),
 			'password' => $this->input->post('password'),
-			'id_cabang' => 1,
+			'id_cabang' => $this->input->post('id_cabang'),
 			'level' => 1
 		];
 
