@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Pending My Ta'lim Tickets
+    Rejected My Hajat Renovasi Tickets
     <!-- <small>it all starts here</small> -->
   </h1>
 </section>
@@ -9,6 +9,7 @@
 <section class="content">
   <div class="row">
     <div class="col-lg-2">
+
     </div>
     <div class="col-lg-6">
       <table id="table-admin1" class="table">
@@ -29,8 +30,8 @@
               <td><?= $d['nama_konsumen'] ?></td>
               <td><?= $d['jenis_konsumen'] ?></td>
               <td><?= ucfirst($d['pendidikan']) ?></td>
-              <td><span class="label label-default">Belum direview</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/pending/mytalim/id/' . $d['id_mytalim']) ?>">Detail</a></td>
+              <td><span class="label label-danger">Ditolak</span></td>
+              <td><a class="btn btn-default" href="<?= base_url('status/rejected/mytalim/' . $d['id_mytalim']) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;

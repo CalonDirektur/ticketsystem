@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Approved My Ta'lim Tickets
+    Approved My Hajat Tickets
     <!-- <small>it all starts here</small> -->
   </h1>
 </section>
@@ -17,7 +17,7 @@
           <th>ID Ticket</th>
           <th>Nama Konsumen</th>
           <th>Jenis Konsumen</th>
-          <th>Pendidikan</th>
+          <th>Nama Vendor</th>
           <th>Ticket Status</th>
           <th></th>
         </thead>
@@ -29,9 +29,8 @@
               <td>#<?= $d['id_mytalim'] ?></td>
               <td><?= $d['nama_konsumen'] ?></td>
               <td><?= $d['jenis_konsumen'] ?></td>
-              <td><?= ucfirst($d['pendidikan']) ?></td>
               <td><span class="label label-success">Disetujui</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/approved/mytalim/' . $d['id_mytalim']) ?>">Detail</a></td>
+              <td><a class="btn btn-default" href="<?= base_url('status/approved/myhajat/renovasi/' . $d['id_mytalim']) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;

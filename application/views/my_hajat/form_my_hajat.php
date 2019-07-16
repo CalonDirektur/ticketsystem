@@ -97,8 +97,8 @@
                   <input name="luas_bangunan" id="luas_bangunan" type="text" class="form-control" placeholder="Luas Bangunan">
                 </div>
                 <div class="form-group">
-                  <label for="jumlah_tukang">Jumlah Tukang/Pekerja</label>
-                  <input name="jumlah_tukang" id="jumlah_tukang" type="text" class="form-control" placeholder="jumlah_tukang">
+                  <label for="jumlah_pekerja">Jumlah Tukang/Pekerja</label>
+                  <input name="jumlah_pekerja" id="jumlah_pekerja" type="text" class="form-control" placeholder="Jumlah Tukang / Pekerja">
                 </div>
                 <div class="form-group">
                   <label for="estimasi_waktu">Estimasi Waktu Pelaksanaan</label>
@@ -107,6 +107,10 @@
                 <div class="form-group">
                   <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
                   <input name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pembiayaan">
+                </div>
+                <div class="form-group">
+                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
              <div class="box-footer">
@@ -147,6 +151,11 @@
                 <div class="form-group">
                   <label for="biaya_pertahun">Biaya Sewa per Tahun</label>
                   <input name="biaya_pertahun" id="biaya_pertahun" type="text" class="form-control" placeholder="Biaya Sewa per Tahun">
+                </div>
+                <!-- Informasi Tambahan -->
+                <div class="form-group">
+                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
              <div class="box-footer">
@@ -189,6 +198,11 @@
                 <div class="form-group">
                   <label for="akun_sosmed">Akun Sosial Media</label>
                   <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control" placeholder="Akun Sosial Media">
+                </div>
+                <!-- Informasi Tambahan -->
+                <div class="form-group">
+                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
              <div class="box-footer">
@@ -249,6 +263,11 @@
                   <label for="akun_sosmed_website">Akun Sosial Media/Website</label>
                   <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control" placeholder="Akun Sosial Media">
                 </div>
+                <!-- Informasi Tambahan -->
+                <div class="form-group">
+                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
+                </div>
                 <button name="submit_franchise" class="btn btn-primary" name="submit">Kirim Data!</button>
               </div>
              <div class="box-footer">
@@ -274,6 +293,11 @@
                     <option value="Perorangan">Perorangan</option>
                     <option value="Badan Usaha">Badan Usaha</option>
                   </select>
+                </div>
+                <!-- Informasi Tambahan -->
+                <div class="form-group">
+                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
              <div class="box-footer">

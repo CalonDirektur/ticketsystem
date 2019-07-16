@@ -16,7 +16,7 @@
           <th>ID Ticket</th>
           <th>Nama Konsumen</th>
           <th>Jenis Konsumen</th>
-          <th>Pendidikan</th>
+          <th>Nama WO</th>
           <th>Ticket Status</th>
           <th></th>
         </thead>
@@ -25,12 +25,12 @@
           $no = 1;
           foreach ($data as $d) {  ?>
             <tr>
-              <td>#<?= $d['id_mytalim'] ?></td>
-              <td><?= $d['nama_konsumen'] ?></td>
-              <td><?= $d['jenis_konsumen'] ?></td>
-              <td><?= ucfirst($d['pendidikan']) ?></td>
+              <td>#<?= $d->id_wedding ?></td>
+              <td><?= $d->nama_konsumen ?></td>
+              <td><?= $d->jenis_konsumen?></td>
+              <td><?= $d->nama_wo ?></td>
               <td><span class="label label-default">Belum direview</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/pending/mytalim/id/' . $d['id_mytalim']) ?>">Detail</a></td>
+              <td><a class="btn btn-default" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;

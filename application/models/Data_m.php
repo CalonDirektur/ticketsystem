@@ -42,11 +42,11 @@ class Data_m extends CI_Model
         return $query;
    }
 
-   public function get_cabang(){
-       $this->db->select('*');
-       $this->db->from('tb_cabang');
+//    public function get_cabang(){
+//        $this->db->select('*');
+//        $this->db->from('tb_cabang');
     
-       $query = $this->db->get();
-       return $query;
-   }
+//        $query = $this->db->get();
+//        return $query;
+//    }
 }

@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Pending My Ta'lim Tickets
+    Rejected My Hajat Wedding Tickets
     <!-- <small>it all starts here</small> -->
   </h1>
 </section>
@@ -16,7 +16,7 @@
           <th>ID Ticket</th>
           <th>Nama Konsumen</th>
           <th>Jenis Konsumen</th>
-          <th>Pendidikan</th>
+          <th>Nama Pemilik</th>
           <th>Ticket Status</th>
           <th></th>
         </thead>
@@ -25,12 +25,12 @@
           $no = 1;
           foreach ($data as $d) {  ?>
             <tr>
-              <td>#<?= $d['id_mytalim'] ?></td>
-              <td><?= $d['nama_konsumen'] ?></td>
-              <td><?= $d['jenis_konsumen'] ?></td>
-              <td><?= ucfirst($d['pendidikan']) ?></td>
-              <td><span class="label label-default">Belum direview</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/pending/mytalim/id/' . $d['id_mytalim']) ?>">Detail</a></td>
+              <td>#<?= $d->id_sewa ?></td>
+              <td><?= $d->nama_konsumen ?></td>
+              <td><?= $d->jenis_konsumen?></td>
+              <td><?= $d->nama_pemilik ?></td>
+              <td><span class="label label-danger">Ditolak</span></td>
+              <td><a class="btn btn-default" href="<?= base_url('status/approved/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;

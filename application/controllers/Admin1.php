@@ -12,9 +12,9 @@ class Admin1 extends CI_Controller
 	}
 
 	// Method untuk menampilkan data yang ingin direview tiketnya
-	public function review($produk = NULL, $id = NULL)
+	public function review($produk = NULL, $kategori = NULL, $id = NULL)
 	{
-		//Produk My Ta'lim
+		////////////////////////// Produk My Ta'lim ///////////////////////////////////////////////
 		if ($produk == 'mytalim' && $id == NULL) {
 			$data['pending'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
 			$this->template->load('template', 'admin/my_talim/admin1_pending_mytalim', $data);
@@ -23,6 +23,15 @@ class Admin1 extends CI_Controller
 			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 0])->row();
 			$this->template->load('template', 'my_talim/detail_status_my_talim', $data);
 		}
+		////////////////////////// Produk My Hajat ///////////////////////////////////////////////
+		/////////////// Renovasi
+		if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
+			$data['pending'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
+			$this->template->load('template', 'admin/my_talim/admin1_pending_mytalim', $data);
+		}
+		if ($produk == 'hajat' && $kategori == 'renovasi' && $id != NULL) {
+			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 0])->row();
+		}		
 	}
 
 	//Method untuk menampilkan tiket yang sudah direview
@@ -37,8 +46,6 @@ class Admin1 extends CI_Controller
 			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 0])->row();
 			$this->template->load('template', 'my_talim/detail_status_my_talim', $data);
 		}
-
-		//
 
 	}
 

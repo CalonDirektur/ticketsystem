@@ -14,20 +14,17 @@ class Ticket_register extends CI_Controller {
 		redirect('dashboard');
 	}
 
-	public function daftar()
-	{	
-		$this->template->load('template', 'user/ticket_register', $data);
-	}
-
 	public function form_my_hajat()
 	{
-		$data['pertanyaan'] = $this->data_m->get_cabang()->result();
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$this->template->load('template', 'my_hajat/form_my_hajat', $data);
 	}
 
 	public function form_my_talim()
 	{
-		$data['pertanyaan'] = $this->data_m->get_cabang()->result();
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$this->template->load('template', 'my_talim/form_my_talim', $data);
 	}
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
@@ -138,13 +135,14 @@ class Ticket_register extends CI_Controller {
 				'jenis_vendor' => $post['jenis_vendor'],
 				'bagian_bangunan' => $post['bagian_bangunan'],
 				'luas_bangunan' => $post['luas_bangunan'],
-				'jumlah_pekerja' => $post['jumlah_tukang'],
+				'jumlah_pekerja' => $post['jumlah_pekerja'],
 				'estimasi_waktu' => $post['estimasi_waktu'],
 				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
 				'id_approval' => 0
 			];
 			
-			$id = $this->data_m->add('tb_my_hajat',$data);
+			$id = $this->data_m->add('tb_my_hajat_renovasi',$data);
 
 			if($id > 0){
 				echo "Data berhasil disimpan";
@@ -164,10 +162,11 @@ class Ticket_register extends CI_Controller {
 			'hubungan_pemohon' => $post['hubungan_pemohon'],
 			'luas_panjang' => $post['luas_panjang'],
 			'biaya_tahunan' => $post['biaya_pertahun'],
+			'informasi_tambahan' => $post['informasi_tambahan'],
 			'id_approval' => 0
 		];
 		
-		$id = $this->data_m->add('tb_my_hajat',$data);
+		$id = $this->data_m->add('tb_my_hajat_sewa',$data);
 
 		if($id){
 			echo "Data berhasil disimpan";
@@ -190,11 +189,12 @@ class Ticket_register extends CI_Controller {
 			'lama_berdiri' => $post['lama_berdiri'],
 			'jumlah_biaya' => $post['jumlah_biaya'],
 			'jumlah_undangan' => $post['jumlah_undangan'],
+			'informasi_tambahan' => $post['informasi_tambahan'],
 			'akun_sosmed' => $post['akun_sosmed'],
 			'id_approval' => 0
 		];
 		
-		$id = $this->data_m->add('tb_my_hajat',$data);
+		$id = $this->data_m->add('tb_my_hajat_wedding',$data);
 
 		if($id){
 			echo "Data berhasil disimpan";
@@ -219,10 +219,11 @@ class Ticket_register extends CI_Controller {
 			'harga_franchise' => $post['harga_franchise'],
 			'jangka_waktu_franchise' => $post['jangka_waktu_franchise'],
 			'akun_sosmed_website' => $post['akun_sosmed_website'],
+			'informasi_tambahan' => $post['informasi_tambahan'],
 			'id_approval' => 0
 		];
 		
-		$id = $this->data_m->add('tb_my_hajat',$data);
+		$id = $this->data_m->add('tb_my_hajat_franchise',$data);
 
 		if($id){
 			echo "Data berhasil disimpan";
@@ -242,6 +243,7 @@ class Ticket_register extends CI_Controller {
 			'id_cabang' => $post['cabang'],
 			'nama_penyedia_jasa' => $post['nama_penyedia_jasa'],
 			'jenis_penyedia_jasa' => $post['jenis_penyedia_jasa'],
+			'informasi_tambahan' => $post['informasi_tambahan'],
 			'id_approval' => 0
 		];
 		
