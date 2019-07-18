@@ -10,7 +10,6 @@
     <div class="col-lg-6">
       <div class="row">
         <img id="gambar" class="img-fluid" src="<?= base_url('uploads/mytalim/' . $data->ktp) ?>" alt="no photo" width="550" height="400">
-
       </div>
       <div class="row">
         <img class="thumb" id="ktp" src="<?= base_url('uploads/mytalim/' . $data->ktp) ?>" alt="no photo" width="50" height="50">
@@ -113,4 +112,72 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Post Komentar -->
+  <div class="row">
+    <div class="col-lg-12 col-md-6">
+      <form method="post" action="<?= base_url('comment/post_comment') ?>">
+        <div class="box">
+          <div class="box-header with-border">
+            <b>Post Komentar</b>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  </div>
+
+
+  <?php foreach ($komentar as $komen) { ?>
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+
+        <div class="box box-widget">
+          <div class="box-header with-border">
+            <div class="user-block"> <span class="username"><a href="#">Administrator 1</a></span>
+              <span class="description">Diposting: <?= $komen->date ?></span>
+            </div>
+            <div class="box-tools">
+              <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+                <i class="fa fa-circle-o"></i></button>
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+            <p><?= $komen->comment ?></p>
+          </div>
+          <!-- Reply Box Comment -->
+          <div class="box-footer box-comments">
+            <div class="box-comment">
+              <div class="comment-text">
+                <span class="username">
+                  User
+                  <span class="text-muted pull-right">8:03 PM Today</span>
+                </span>
+                Reply Comment
+              </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <form action="<?= base_url('comment/post_reply'); ?>" method="post">
+              <div class="img-push">
+                <input name="parent_comment" type="hidden" value="<?= $komen->id_comment ?>">
+                <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 </section>
