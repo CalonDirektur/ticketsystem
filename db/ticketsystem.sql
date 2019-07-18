@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-07-17 17:07:35
+# Date: 2019-07-18 16:54:46
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -91,13 +91,13 @@ CREATE TABLE `tb_my_hajat_renovasi` (
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `keterangan_tiket` text DEFAULT NULL,
   PRIMARY KEY (`id_renovasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_renovasi"
 #
 
-INSERT INTO `tb_my_hajat_renovasi` VALUES (1,'Mas Gede','Internal','Tukang.com','Jasa Kuli Bangunan','Atap','50 m2',90,'1 Bulan',2147483647,'',3,11,NULL),(2,'Ariija Illona Rusydahu','Eksternal','Tukangku','Arsitektur','Tembok','90 m2',125,'90 hari',90000000,'',2,42,NULL);
+INSERT INTO `tb_my_hajat_renovasi` VALUES (1,'Mas Gede','Internal','Tukang.com','Jasa Kuli Bangunan','Atap','50 m2',90,'1 Bulan',2147483647,'',3,11,NULL),(2,'Ariija Illona Rusydahu','Eksternal','Tukangku','Arsitektur','Tembok','90 m2',125,'90 hari',90000000,'',2,42,NULL),(3,'asdasd','Internal','asd','asd','asd','asd',13,'123',0,'',1,1,NULL);
 
 #
 # Structure for table "tb_my_hajat_sewa"
@@ -118,13 +118,13 @@ CREATE TABLE `tb_my_hajat_sewa` (
   `informasi_tambahan` text DEFAULT NULL,
   `keterangan_tiket` text DEFAULT NULL,
   PRIMARY KEY (`id_sewa`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_sewa"
 #
 
-INSERT INTO `tb_my_hajat_sewa` VALUES (1,'Mas Okky','Internal','Ibra Jabar','Perorangan','Keluarga','90 x 80',2147483647,2,7,NULL,NULL);
+INSERT INTO `tb_my_hajat_sewa` VALUES (1,'Mas Okky','Internal','Ibra Jabar','Perorangan','Keluarga','90 x 80',2147483647,2,7,NULL,NULL),(2,'asdasd','Eksternal','asdasd','Perorangan','asdasd','asd',0,1,1,'',NULL);
 
 #
 # Structure for table "tb_my_hajat_wedding"
@@ -161,31 +161,31 @@ INSERT INTO `tb_my_hajat_wedding` VALUES (1,'Mas reki','Internal','Wedding Abadi
 DROP TABLE IF EXISTS `tb_my_talim`;
 CREATE TABLE `tb_my_talim` (
   `id_mytalim` int(11) NOT NULL AUTO_INCREMENT,
-  `nama_konsumen` varchar(40) DEFAULT NULL,
-  `jenis_konsumen` varchar(40) DEFAULT NULL,
-  `pendidikan` varchar(50) DEFAULT NULL,
-  `nama_lembaga` varchar(50) DEFAULT NULL,
-  `tahun_berdiri` varchar(20) DEFAULT NULL,
-  `akreditasi` varchar(40) DEFAULT NULL,
-  `periode` varchar(255) DEFAULT NULL,
-  `tujuan_pembiayaan` varchar(255) DEFAULT NULL,
-  `nilai_pembiayaan` varchar(40) DEFAULT NULL,
+  `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
+  `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
+  `pendidikan` varchar(50) NOT NULL DEFAULT '',
+  `nama_lembaga` varchar(50) NOT NULL DEFAULT '',
+  `tahun_berdiri` varchar(20) NOT NULL DEFAULT '',
+  `akreditasi` varchar(40) NOT NULL DEFAULT '',
+  `periode` varchar(255) NOT NULL DEFAULT '',
+  `tujuan_pembiayaan` varchar(255) NOT NULL DEFAULT '',
+  `nilai_pembiayaan` varchar(40) NOT NULL DEFAULT '',
   `ktp` varchar(255) DEFAULT NULL,
   `kk` varchar(255) DEFAULT NULL,
   `npwp` varchar(255) DEFAULT NULL,
   `bukti_penghasilan` varchar(255) DEFAULT NULL,
   `tambahan` varchar(255) DEFAULT NULL,
-  `id_approval` int(2) DEFAULT NULL COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
-  `keterangan` text DEFAULT NULL,
-  `id_cabang` int(11) DEFAULT NULL,
+  `id_approval` int(2) NOT NULL DEFAULT 0 COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
+  `keterangan_tiket` text DEFAULT NULL,
+  `id_cabang` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_mytalim`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_talim"
 #
 
-INSERT INTO `tb_my_talim` VALUES (1,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000',NULL,NULL,NULL,NULL,NULL,1,NULL,1),(2,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000','rahayu2.jpg',NULL,NULL,NULL,NULL,3,NULL,1),(3,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000','rahayu2.jpg','timthumb.jpg','timthumb1.jpg','rahayu21.jpg','timthumb2.jpg',2,NULL,1),(4,'Ahmad Jabar','Eksternal','sekolah','Islamic Village','2019','A++','2017 -2018','Kuliah','1200000','presentasi-al-balad-al-ameen-1-638.jpg','Patuna_20180130113723.png','panorama.jpg','download_(4).jpg','Untitled.png',2,NULL,1),(5,'Don Aria Sabda','Eksternal','universitas','Universitas Indonesia','1998','B+','2017 - 2018','Keuangan','6000000','presentasi-al-balad-al-ameen-1-6381.jpg','panorama2.png','Logo_Abhinaya.jpg','xpanoramajtb-03-editt-711x409_jpg_pagespeed_ic_YVTLAuED9f.jpg','Patuna_201801301137231.png',2,NULL,1);
+INSERT INTO `tb_my_talim` VALUES (1,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000',NULL,NULL,NULL,NULL,'',1,NULL,1),(2,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000','rahayu2.jpg',NULL,NULL,NULL,'',3,NULL,1),(3,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000','rahayu2.jpg','timthumb.jpg','timthumb1.jpg','rahayu21.jpg','timthumb2.jpg',2,NULL,1),(4,'Ahmad Jabar','Eksternal','sekolah','Islamic Village','2019','A++','2017 -2018','Kuliah','1200000','presentasi-al-balad-al-ameen-1-638.jpg','Patuna_20180130113723.png','panorama.jpg','download_(4).jpg','Untitled.png',2,NULL,1),(5,'Don Aria Sabda','Eksternal','universitas','Universitas Indonesia','1998','B+','2017 - 2018','Keuangan','6000000','presentasi-al-balad-al-ameen-1-6381.jpg','panorama2.png','Logo_Abhinaya.jpg','xpanoramajtb-03-editt-711x409_jpg_pagespeed_ic_YVTLAuED9f.jpg','Patuna_201801301137231.png',2,NULL,1),(6,'Mas Gede','Internal','Kursus','Hacktiv8','2019','A','2017 - 2018','Pekerjaan Cerah','672487623846782',NULL,NULL,NULL,NULL,'',1,NULL,0),(7,'Ibrahim','Internal','sekolah','asdasd','1990','asd','asd','asd','500000000000',NULL,NULL,NULL,NULL,'',1,NULL,0),(8,'Ibrahim','Internal','sekolah','asdasd','1990','asd','asd','asd','500000000000',NULL,NULL,NULL,NULL,NULL,1,NULL,1),(9,'Ibrahim','Eksternal','universitas','Universitas Budi Luhur','1990','A','2017 -2018','Kuliah','1200000',NULL,NULL,NULL,NULL,NULL,1,NULL,1);
 
 #
 # Structure for table "user"
@@ -200,8 +200,10 @@ CREATE TABLE `user` (
   `password` varchar(25) NOT NULL DEFAULT '',
   `level` int(2) NOT NULL DEFAULT 0,
   `id_cabang` int(3) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "user"
