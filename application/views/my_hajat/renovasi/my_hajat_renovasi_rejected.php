@@ -26,12 +26,12 @@
           $no = 1;
           foreach ($data as $d) {  ?>
             <tr>
-              <td>#<?= $d['id_mytalim'] ?></td>
-              <td><?= $d['nama_konsumen'] ?></td>
-              <td><?= $d['jenis_konsumen'] ?></td>
-              <td><?= ucfirst($d['pendidikan']) ?></td>
+              <td>#<?= $d->id_renovasi ?></td>
+              <td><?= $d->nama_konsumen ?></td>
+              <td><?= $d->jenis_konsumen?></td>
+              <td><?= $d->nama_vendor ?></td>
               <td><span class="label label-danger">Ditolak</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/rejected/mytalim/' . $d['id_mytalim']) ?>">Detail</a></td>
+              <td><a class="btn btn-default" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;

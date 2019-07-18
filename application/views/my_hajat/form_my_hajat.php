@@ -10,6 +10,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">     
+
             <!-- Box Data Konsumen -->
             <div id="box-konsumen" class="box box-primary">
               <div class="box-header with-border">
@@ -19,11 +20,13 @@
                   <!-- Nama Konsumen -->
                   <div class="form-group">
                   <label for="nama_konsumen">Nama Konsumen</label>
-                  <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen">                
+                  <?= form_error('nama_konsumen'); ?>
+                  <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" value="<?= set_value('nama_konsumen') ?>">                
                 </div>
                 <!-- Jenis Calon Konsumen -->
                 <div class="form-group">
                    <label for="jenis_konsumen">Jenis Calon Konsumen</label>
+                  <?= form_error('jenis_konsumen'); ?>
                   <select name="jenis_konsumen" id="jenis_konsumen" class="form-control">
                     <option value="Internal">Internal</option>
                     <option value="Eksternal">Eksternal</option>
@@ -31,25 +34,26 @@
                 </div>
                 <div class="form-group">
                     <label for="cabang">Cabang</label>
+                  <?= form_error('cabang'); ?>
                       <select name="cabang" id="cabang" class="form-control">
                     <option disabled selected value="">- Pilih Cabang -</option>
                     <?php 
                       foreach($pertanyaan as $p){
                         ?>
-                        <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                        <option value="<?= $p->id_cabang ?>"<?= $this->fungsi->user_login()->id_cabang == $p->id_cabang ? 'selected' : '' ?>><?= $p->nama_cabang ?></option>
                      <?php }  ?>
                   </select>
                 </div>
               </div>
-             <div class="box-footer">
+              <div class="box-footer">
  
+              </div>
             </div>
-          </div>
 
-          <!-- Box Kategori My Hajat -->
-           <div id="box-kategori-myhajat" class="box box-primary">
-             <div class="box-header with-border">
-               <h3 class="box-title">Kategori My Hajat</h3>
+            <!-- Box Kategori My Hajat -->
+          <div id="box-kategori-myhajat" class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Kategori My Hajat</h3>
              </div>
              <div class="box-body">
                  <div class="form-group">
@@ -69,52 +73,66 @@
              </div>
             <div class="box-footer">
 
-           </div>
-         </div> 
+            </div>
+          </div> 
 
           <!-- Box Renovasi -->
-            <div id="box-renovasi" class="box box-primary pertanyaan">
-              <div class="box-header with-border">
-                <h3 class="box-title">Renovasi</h3>
+          <div id="box-renovasi" class="box box-primary pertanyaan">
+            <div class="box-header with-border">
+              <h3 class="box-title">Renovasi</h3>
+            </div>
+            <div class="box-body">
+                <!-- Nama Vendor -->
+                <div class="form-group">
+                <label for="nama_vendor">Nama Vendor</label>
+                <?= form_error('nama_vendor'); ?>
+                <input name="nama_vendor" id="nama_vendor" type="text" class="form-control" placeholder="Nama Vendor" value="<?= set_value('nama_vendor') ?>">                
               </div>
-              <div class="box-body">
-                  <!-- Nama Vendor -->
-                  <div class="form-group">
-                  <label for="nama_vendor">Nama Vendor</label>
-                  <input name="nama_vendor" id="nama_vendor" type="text" class="form-control" placeholder="Nama Vendor">                
-                </div>
-                <!-- Jenis Vendor -->
-                <div class="form-group">
-                  <label for="jenis_vendor">Jenis Vendor</label>
-                  <input name="jenis_vendor" id="jenis_vendor" type="text" class="form-control" placeholder="Jenis Vendor">
-                </div>
-                <div class="form-group">
-                  <label for="bagian_bangunan">Bagian Bangunan Yang Direnovasi</label>
-                  <input name="bagian_bangunan" id="bagian_bangunan" type="text" class="form-control" placeholder="Bagian Bangunan Yang Direnovasi">
-                </div>
-                <div class="form-group">
-                  <label for="luas_bangunan">Luas Bangunan</label>
-                  <input name="luas_bangunan" id="luas_bangunan" type="text" class="form-control" placeholder="Luas Bangunan">
-                </div>
-                <div class="form-group">
-                  <label for="jumlah_pekerja">Jumlah Tukang/Pekerja</label>
-                  <input name="jumlah_pekerja" id="jumlah_pekerja" type="text" class="form-control" placeholder="Jumlah Tukang / Pekerja">
-                </div>
-                <div class="form-group">
-                  <label for="estimasi_waktu">Estimasi Waktu Pelaksanaan</label>
-                  <input name="estimasi_waktu" id="estimasi_waktu" type="text" class="form-control" placeholder="Estimasi Waktu Pelaksanaan">
-                </div>
-                <div class="form-group">
-                  <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
-                  <input name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pembiayaan">
-                </div>
-                <div class="form-group">
-                  <label for="informasi_tambahan">Informasi Tambahan</label>
-                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
-                </div>
+              <!-- Jenis Vendor -->
+              <div class="form-group">
+                <?= form_error('jenis_vendor'); ?>
+                
+              <label for="jenis_vendor">Jenis Vendor</label>
+                <?= form_error('jenis_vendor'); ?>
+                <input name="jenis_vendor" id="jenis_vendor" type="text" class="form-control" placeholder="Jenis Vendor" value="<?= set_value('jenis_vendor') ?>">
               </div>
-             <div class="box-footer">
-                <button name="submit_renovasi" class="btn btn-primary" name="submit">Kirim Data!</button> 
+              <div class="form-group">
+                <?= form_error('bagian_bangunan'); ?>
+                
+              <label for="bagian_bangunan">Bagian Bangunan Yang Direnovasi</label>
+                <input name="bagian_bangunan" id="bagian_bangunan" type="text" class="form-control" placeholder="Bagian Bangunan Yang Direnovasi" value="<?= set_value('bagian_bangunan') ?>">
+              </div>
+              <div class="form-group">
+                <?= form_error('luas_bangunan'); ?>
+                
+              <label for="luas_bangunan">Luas Bangunan</label>
+                <input name="luas_bangunan" id="luas_bangunan" type="text" class="form-control" placeholder="Luas Bangunan" value="<?= set_value('luas_bangunan') ?>">
+              </div>
+              <div class="form-group">
+                <?= form_error('jumlah_pekerja'); ?>
+                
+              <label for="jumlah_pekerja">Jumlah Tukang/Pekerja</label>
+                <input name="jumlah_pekerja" id="jumlah_pekerja" type="text" class="form-control" placeholder="Jumlah Tukang / Pekerja" value="<?= set_value('jumlah_pekerja') ?>">
+              </div>
+              <div class="form-group">
+                <?= form_error('estimasi_waktu'); ?>
+                
+              <label for="estimasi_waktu">Estimasi Waktu Pelaksanaan</label>
+                <input name="estimasi_waktu" id="estimasi_waktu" type="text" class="form-control" placeholder="Estimasi Waktu Pelaksanaan" value="<?= set_value('estimasi_waktu') ?>">
+              </div>
+              <div class="form-group">
+                <?= form_error('nilai_pembiayaan'); ?>
+                
+              <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
+                <input name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pembiayaan" value="<?= set_value('nilai_pembiayaan') ?>">
+              </div>
+              <div class="form-group">
+              <label for="informasi_tambahan">Informasi Tambahan</label>
+                  <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="box-footer">
+              <button name="submit_renovasi" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
@@ -127,11 +145,13 @@
                   <!-- Nama Pemilik -->
                   <div class="form-group">
                     <label for="nama_pemilik">Nama Pemilik</label>
-                    <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control" placeholder="Nama Konsumen">              
+                    <?= form_error('nama_pemilik'); ?>
+                    <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control" placeholder="Nama Konsumen" value="<?= set_value('nama_pemilik') ?>">              
                   </div>
                 <!-- Jenis Pemilik -->
-                <div class="form-group">
-                   <label for="jenis_pemilik">Jenis Calon Konsumen</label>
+                <div class="form-group">                  
+                  <label for="jenis_pemilik">Jenis Calon Konsumen</label>
+                  <?= form_error('jenis_pemilik'); ?>
                   <select name="jenis_pemilik" id="jenis_pemilik" class="form-control">
                     <option value="Perorangan">Perorangan</option>
                     <option value="Perusahaan">Perusahaan/Badan Usaha</option>
@@ -140,20 +160,23 @@
                 <!-- Hubungan dengan pemohon -->
                 <div class="form-group">
                   <label for="hubungan_pemohon">Hubungan dengan pemohon</label>
-                  <input name="hubungan_pemohon" id="hubungan_pemohon" type="text" class="form-control" placeholder="Jenis Pemilik">
+                  <?= form_error('hubungan_pemohon'); ?>
+                  <input name="hubungan_pemohon" id="hubungan_pemohon" type="text" class="form-control" placeholder="Jenis Pemilik" value="<?= set_value('hubungan_pemohon') ?>">
                 </div>
                 <!-- Luas x Panjang -->
-                <div class="form-group">
+                <div class="form-group">                  
                   <label for="luas_panjang">Luas x Panjang</label>
-                  <input name="luas_panjang" id="luas_panjang" type="text" class="form-control" placeholder="Luas x Panjang">
+                  <?= form_error('luas_panjang'); ?>
+                  <input name="luas_panjang" id="luas_panjang" type="text" class="form-control" placeholder="Luas x Panjang" value="<?= set_value('luas_panjang') ?>">
                 </div>
                 <!-- Biaya sewa per tahun -->
                 <div class="form-group">
                   <label for="biaya_pertahun">Biaya Sewa per Tahun</label>
-                  <input name="biaya_pertahun" id="biaya_pertahun" type="text" class="form-control" placeholder="Biaya Sewa per Tahun">
+                  <?= form_error('biaya_pertahun'); ?>
+                  <input name="biaya_pertahun" id="biaya_pertahun" type="text" class="form-control" placeholder="Biaya Sewa per Tahun" value="<?= set_value('biaya_pertahun') ?>">
                 </div>
                 <!-- Informasi Tambahan -->
-                <div class="form-group">
+                <div class="form-group">                  
                   <label for="informasi_tambahan">Informasi Tambahan</label>
                     <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
@@ -171,37 +194,44 @@
               <div class="box-body">
                   <!-- Nama WO -->
                   <div class="form-group">
-                  <label for="nama_wo">Nama WO</label>
-                  <input name="nama_wo" id="nama_wo" type="text" class="form-control" placeholder="Nama WO">                
+                  
+                    <label for="nama_wo">Nama WO</label>
+                    <?= form_error('nama_wo'); ?>
+                  <input name="nama_wo" id="nama_wo" type="text" class="form-control" placeholder="Nama WO" value="<?= set_value('nama_wo') ?>">                
                 </div>
                 <!-- Jenis WO -->
                 <div class="form-group">
                   <label for="jenis_wo">Jenis WO</label>
-                  <input name="jenis_wo" id="jenis_wo" type="text" class="form-control" placeholder="Jenis WO">
+                  <?= form_error('jenis_wo'); ?>
+                  <input name="jenis_wo" id="jenis_wo" type="text" class="form-control" placeholder="Jenis WO" value="<?= set_value('jenis_wo') ?>">
                 </div>
                 <!-- Lama Usaha Berdiri -->
-                <div class="form-group">
+                <div class="form-group">                  
                   <label for="lama_berdiri">Lama Usaha Berdiri</label>
-                  <input name="lama_berdiri" id="lama_berdiri" type="text" class="form-control" placeholder="Lama Usaha Berdiri">
+                  <?= form_error('lama_berdiri'); ?>
+                  <input name="lama_berdiri" id="lama_berdiri" type="text" class="form-control" placeholder="Lama Usaha Berdiri" value="<?= set_value('lama_berdiri') ?>">
                 </div>
                 <!-- Jumlah Biaya -->
                 <div class="form-group">
                   <label for="jumlah_biaya">Jumlah Biaya</label>
-                  <input name="jumlah_biaya" id="jumlah_biaya" type="text" class="form-control" placeholder="Jumlah Biaya">
+                  <?= form_error('jumlah_biaya'); ?>
+                  <input name="jumlah_biaya" id="jumlah_biaya" type="text" class="form-control" placeholder="Jumlah Biaya" value="<?= set_value('jumlah_biaya') ?>">
                 </div>
                 <!-- Jumlah Undangan -->
-                <div class="form-group">
+                <div class="form-group">                  
                   <label for="jumlah_undangan">Jumlah Undangan</label>
-                  <input name="jumlah_undangan" id="jumlah_undangan" type="text" class="form-control" placeholder="Jumlah Undangan">
+                  <?= form_error('jumlah_undangan'); ?>
+                  <input name="jumlah_undangan" id="jumlah_undangan" type="text" class="form-control" placeholder="Jumlah Undangan" value="<?= set_value('jumlah_undangan') ?>">
                 </div>
                 <!-- Akun Sosial Media -->
                 <div class="form-group">
                   <label for="akun_sosmed">Akun Sosial Media</label>
-                  <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control" placeholder="Akun Sosial Media">
+                  <?= form_error('akun_sosmed'); ?>
+                  <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control" placeholder="Akun Sosial Media" value="<?= set_value('akun_sosmed') ?>">
                 </div>
                 <!-- Informasi Tambahan -->
                 <div class="form-group">
-                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                <label for="informasi_tambahan">Informasi Tambahan</label>
                     <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
@@ -218,17 +248,20 @@
               <div class="box-body">
                   <!-- Nama Franchise -->
                   <div class="form-group">
-                  <label for="nama_franchise">Nama Franchise</label>
-                  <input name="nama_franchise" id="nama_franchise" type="text" class="form-control" placeholder="Nama Franchise">                
+                    <label for="nama_franchise">Nama Franchise</label>
+                    <?= form_error('nama_franchise'); ?>
+                  <input name="nama_franchise" id="nama_franchise" type="text" class="form-control" placeholder="Nama Franchise" value="<?= set_value('nama_franchise') ?>">                 
                 </div>
                 <!-- Jumlah Cabang -->
-                <div class="form-group">
+                <div class="form-group">                  
                   <label for="jumlah_cabang">Jumlah Cabang</label>
-                  <input name="jumlah_cabang" id="jumlah_cabang" type="number" class="form-control" placeholder="Jumlah Cabang">
+                  <?= form_error('jumlah_cabang'); ?>
+                  <input name="jumlah_cabang" id="jumlah_cabang" type="number" class="form-control" placeholder="Jumlah Cabang" value="<?= set_value('jumlah_cabang') ?>">
                 </div>
                 <!-- Jenis Franchise -->
                 <div class="form-group">
                   <label for="jenis_franchise">Jenis Franchise</label>
+                  <?= form_error('jenis_franchise'); ?>
                   <select name="jenis_franchise" id="jenis_franchise" class="form-control">
                     <option value="Makanan dan Minuman">Makanan dan Minuman</option>
                     <option value="otomotif">Otomotif</option>
@@ -243,16 +276,19 @@
                 <!-- Tahun Berdiri -->
                 <div class="form-group">
                   <label for="tahun_berdiri_franchise">Tahun Berdiri Franchise</label>
-                  <input name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" type="text" class="form-control" placeholder="Tahun Berdiri">
+                  <?= form_error('tahun_berdiri_franchise'); ?>
+                  <input name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" type="text" class="form-control" placeholder="Tahun Berdiri" value="<?= set_value('tahun_berdiri_franchise') ?>">
                 </div>
                 <!-- Harga -->
                 <div class="form-group">
                   <label for="harga_franchise">Harga Franchise</label>
-                  <input name="harga_franchise" id="harga_franchise" type="text" class="form-control" placeholder="Harga">
+                  <?= form_error('harga_franchise'); ?>
+                  <input name="harga_franchise" id="harga_franchise" type="text" class="form-control" placeholder="Harga" value="<?= set_value('harga_franchise') ?>">
                 </div>
                 <!-- Jangka Waktu Kepemilikan -->
-                <div class="form-group">
+                <div class="form-group">                  
                   <label for="jangka_waktu_franchise">Jangka Waktu Franchise</label>
+                  <?= form_error('jangka_waktu_franchise'); ?>
                   <select name="jangka_waktu_franchise" id="jangka_waktu_franchise" class="form-control">
                     <option value="Selamanya">Selamanya</option>
                     <option value="Jangka Tertentu">Jangka Tertentu</option>
@@ -261,11 +297,12 @@
                 <!-- Akun Sosial Media -->
                 <div class="form-group">
                   <label for="akun_sosmed_website">Akun Sosial Media/Website</label>
-                  <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control" placeholder="Akun Sosial Media">
+                  <?= form_error('akun_sosmed_website'); ?>
+                  <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control" placeholder="Akun Sosial Media" value="<?= set_value('akun_sosmed_website') ?>">
                 </div>
                 <!-- Informasi Tambahan -->
-                <div class="form-group">
-                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                <div class="form-group">      
+                <label for="informasi_tambahan">Informasi Tambahan</label>
                     <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
                 <button name="submit_franchise" class="btn btn-primary" name="submit">Kirim Data!</button>
@@ -283,20 +320,24 @@
               <div class="box-body">
                   <!-- Nama Penyedia Jasa -->
                   <div class="form-group">
-                  <label for="nama_penyedia_jasa">Nama Penyedia Jasa</label>
-                  <input name="nama_penyedia_jasa" id="nama_penyedia_jasa" type="text" class="form-control" placeholder="Nama Penyedia Jasa">                
+                  
+                    <label for="nama_penyedia_jasa">Nama Penyedia Jasa</label>
+                    <?= form_error('nama_penyedia_jasa'); ?>
+                  <input name="nama_penyedia_jasa" id="nama_penyedia_jasa" type="text" class="form-control" placeholder="Nama Penyedia Jasa" value="<?= set_value('nama_vendor') ?>">                
                 </div>
                 <!-- Jenis Penyedia Jasa -->
                 <div class="form-group">
-                   <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa</label>
-                  <select name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" class="form-control">
+                  
+                  <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa</label>
+                  <?= form_error('jenis_penyedia_jasa'); ?>
+                  <select name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" class="form-control" value="<?= set_value('nama_vendor') ?>">
                     <option value="Perorangan">Perorangan</option>
                     <option value="Badan Usaha">Badan Usaha</option>
                   </select>
                 </div>
                 <!-- Informasi Tambahan -->
-                <div class="form-group">
-                  <label for="informasi_tambahan">Informasi Tambahan</label>
+                <div class="form-group">               
+                <label for="informasi_tambahan">Informasi Tambahan</label>
                     <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>

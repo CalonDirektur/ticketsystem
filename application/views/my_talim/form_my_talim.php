@@ -19,24 +19,24 @@
                   <!-- Nama Konsumen -->
                   <div class="form-group">
                   <label for="nama_konsumen">Nama Konsumen</label>
-                  <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen">                
+                  <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen">                
                 </div>
                 <!-- Jenis Calon Konsumen -->
                 <div class="form-group">
                    <label for="jenis_konsumen">Jenis Calon Konsumen</label>
-                  <select name="jenis_konsumen" id="jenis_konsumen" class="form-control">
+                  <select required name="jenis_konsumen" id="jenis_konsumen" class="form-control">
                     <option value="Internal">Internal</option>
                     <option value="Eksternal">Eksternal</option>
                   </select>
                 </div>
                   <div class="form-group">
                     <label for="cabang">Cabang</label>
-                      <select name="cabang" id="cabang" class="form-control">
+                      <select required name="cabang" id="cabang" class="form-control">
                     <option disabled selected value="">- Pilih Cabang -</option>
                     <?php 
                       foreach($pertanyaan as $p){
                         ?>
-                        <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                        <option value="<?= $p->id_cabang ?>" <?= $this->fungsi->user_login()->id_cabang == $p->id_cabang ? 'selected' : '' ?>><?= $p->nama_cabang ?></option>
                      <?php }  ?>
                   </select>
                 </div>
@@ -55,7 +55,7 @@
                 <!-- Pendidikan -->
                 <div class="form-group">
                   <label for="pendidikan">Pendidikan</label>
-                  <select name="pendidikan" id="pendidikan" class="form-control">
+                  <select required name="pendidikan" id="pendidikan" class="form-control">
                     <option value="sekolah">Sekolah</option>
                     <option value="universitas">Universitas</option>
                     <option value="Kursus">Kursus</option>
@@ -65,32 +65,32 @@
                 <!-- Nama Lembaga -->
                 <div class="form-group">
                   <label for="nama_lembaga">Nama Lembaga</label>
-                  <input name="nama_lembaga" id="nama_lembaga" type="text" class="form-control" placeholder="Nama Lembaga">
+                  <input required name="nama_lembaga" id="nama_lembaga" type="text" class="form-control" placeholder="Nama Lembaga">
                 </div>
                 <!-- Tahun Berdiri -->
                 <div class="form-group">
                   <label for="tahun_berdiri">Tahun Berdiri</label>
-                  <input name="tahun_berdiri" id="tahun_berdiri" type="number" class="form-control" placeholder="Tahun Berdiri">
+                  <input required name="tahun_berdiri" id="tahun_berdiri" type="number" class="form-control" placeholder="Tahun Berdiri">
                 </div>
                 <!-- Akreditasi -->
                 <div class="form-group">
                   <label for="akreditasi">Akreditasi</label>
-                  <input name="akreditasi" id="akreditasi" type="text" class="form-control" placeholder="Akreditasi">
+                  <input required name="akreditasi" id="akreditasi" type="text" class="form-control" placeholder="Akreditasi">
                 </div>
                 <!-- Tahun Periode Pendidikan -->
                 <div class="form-group">
                   <label for="periode">Tahun Periode Pendidikan</label>
-                  <input name="periode" id="periode" type="text" class="form-control" placeholder="periode">
+                  <input required name="periode" id="periode" type="text" class="form-control" placeholder="periode">
                 </div>
                 <!-- Tujuan Pembiayaan -->
                 <div class="form-group">
                   <label for="tujuan_pembiayaan">Tujuan Pembiayaan</label>
-                  <input name="tujuan_pembiayaan" id="tujuan_pembiayaan" type="text" class="form-control" placeholder="Tujuan Pembiayaan">
+                  <input required name="tujuan_pembiayaan" id="tujuan_pembiayaan" type="text" class="form-control" placeholder="Tujuan Pembiayaan">
                 </div>
                 <!-- Nilai Pembiayaan -->
                 <div class="form-group">
                   <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
-                  <input name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pembiayaan">
+                  <input required name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pembiayaan">
                 </div>
               </div>
              <div class="box-footer">

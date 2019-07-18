@@ -17,7 +17,7 @@ class Auth extends CI_Controller {
     public function daftar_akun()
     {
 		$this->load->model('data_m');		
-		$data['pertanyaan'] = $this->data_m->get_cabang()->result();
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$this->template->load('template','user/daftar_akun', $data);
 	}
 	
@@ -106,7 +106,8 @@ class Auth extends CI_Controller {
 				$row = $query->row();
 				$params = [
 					'userid' => $row->username,
-					'level' => $row->level
+					'level' => $row->level,
+					'id_cabang' => $row->id_cabang
 				];
 				$this->session->set_userdata($params);
 				echo "<script>alert('Selamat, login berhasil'); window.location='" . site_url("dashboard") . "'</script>";
@@ -119,7 +120,7 @@ class Auth extends CI_Controller {
 	// Proses Logout
 	public function logout()
 	{
-		$params = ['userid', 'level'];
+		$params = ['userid', 'level', 'id_cabang'];
 		$this->session->unset_userdata($params);
 		redirect('auth');
 	}

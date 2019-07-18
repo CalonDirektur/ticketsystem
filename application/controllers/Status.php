@@ -13,7 +13,7 @@ class Status extends CI_Controller {
         ////////////////////////////// MY TA'LIM /////////////////////////////////////////
         //Menampilkan semua ticket pending pada produk my ta'lim jika $id tidak diisi
         if($produk == 'mytalim' && $id == NULL){
-            $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review')->result_array();
+            $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
             $this->template->load('template', 'my_talim/my_talim_pending', $data);
         }
         //Menampilkan ticket pending pada produk my ta'lim dengan $id tertentu
@@ -79,7 +79,7 @@ class Status extends CI_Controller {
 
         //menampilkan status tiket produk mytalim yang telah diapprove oleh admin 1 dan admin 2
         if($produk == 'mytalim' && $kategori == NULL && $id == NULL){
-            $data['data'] = $this->data_m->get('tb_my_talim', 'status_admin2')->result();
+            $data['data'] = $this->data_m->get('tb_my_talim', 'approved_review')->result();
             $this->template->load('template', 'my_talim/my_talim_approved', $data);
         }
         //Menampilkan ticket apprvoed pada produk my ta'lim dengan $id tertentu
@@ -197,6 +197,70 @@ class Status extends CI_Controller {
             $this->template->load('template', 'my_hajat/franchise/my_hajat_franchise_rejected', $data);
         }
          //Menampilkan ticket yang ditolak pada produk my hajat kategori franchise dengan $id tertentu
+        if($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL){
+            $data['data'] = $this->data_m->get_by_id('tb_my_hajat_franchise', ['id_franchise' => $id])->row();
+            $this->template->load('template', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
+        }
+    }
+
+    public function completed($produk = NULL, $kategori = NULL,$id = NULL){
+        ////////////////////////////// MY TA'LIM /////////////////////////////////////////
+        //menampilkan status tiket produk mytalim yang telah diselesaikan oleh dan admin 2
+        if($produk == 'mytalim' && $id == NULL){
+            $data['data'] = $this->data_m->get('tb_my_talim', 'completed_review')->result();
+            $this->template->load('template', 'my_talim/my_talim_completed', $data);
+        }
+        //Menampilkan ticket rejected pada produk my ta'lim dengan $id tertentu
+        if($produk == 'mytalim' && $id != NULL){
+            $data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_mytalim' => $id, 'id_approval' => 3])->row();
+            $this->template->load('template', 'my_talim/detail_status_my_talim', $data);
+        }
+
+        ////////////////////////////// MY HAJAT /////////////////////////////////////////
+
+        ///////////////// RENOVASI //////////////////
+        //Menampilkan semua ticket yang diselesaikan pada produk my hajat kategori renovasi jika $id tidak diisi
+        if($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL){
+            $data['data'] = $this->data_m->get('tb_my_hajat_renovasi', 'completed_review')->result();
+            $this->template->load('template', 'my_hajat/renovasi/my_hajat_renovasi_completed', $data);
+        }
+         //Menampilkan ticket yang diselesaikan pada produk my hajat dengan $id tertentu
+        if($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL){
+            $data['data'] = $this->data_m->get_by_id('tb_my_hajat_renovasi', ['id_renovasi' => $id])->row();
+            $this->template->load('template', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
+        }
+
+        ///////////////// SEWA //////////////////
+        //Menampilkan semua ticket yang diselesaikan pada produk my hajat kategori sewa jika $id tidak diisi
+        if($produk == 'myhajat' && $kategori == 'sewa' && $id == NULL){
+            $data['data'] = $this->data_m->get('tb_my_hajat_sewa', 'completed_review')->result();
+            $this->template->load('template', 'my_hajat/sewa/my_hajat_sewa_completed', $data);
+        }
+         //Menampilkan halaman ticket yang diselesaikan pada produk my hajat kategori sewa dengan $id tertentu
+        if($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL){
+            $data['data'] = $this->data_m->get_by_id('tb_my_hajat_sewa', ['id_sewa' => $id])->row();
+            $this->template->load('template', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
+        }
+
+        ///////////////// WEDDING //////////////////
+        //Menampilkan semua ticket yang diselesaikan pada produk my hajat kategori wedding jika $id tidak diisi
+        if($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL){
+            $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'completed_review')->result();
+            $this->template->load('template', 'my_hajat/wedding/my_hajat_wedding_completed', $data);
+        }
+         //Menampilkan ticket yang diselesaikan pada produk my hajat kategori wedding dengan $id tertentu
+        if($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL){
+            $data['data'] = $this->data_m->get_by_id('tb_my_hajat_wedding', ['id_wedding' => $id])->row();
+            $this->template->load('template', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
+        }
+
+        ///////////////// FRANCHISE //////////////////
+        //Menampilkan semua ticket yang diselesaikan pada produk my hajat kategori franchise jika $id tidak diisi
+        if($produk == 'myhajat' && $kategori == 'franchise' && $id == NULL){
+            $data['data'] = $this->data_m->get('tb_my_hajat_franchise', 'completed_review')->result();
+            $this->template->load('template', 'my_hajat/franchise/my_hajat_franchise_completed', $data);
+        }
+         //Menampilkan ticket yang diselesaikan pada produk my hajat kategori franchise dengan $id tertentu
         if($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL){
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_franchise', ['id_franchise' => $id])->row();
             $this->template->load('template', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);

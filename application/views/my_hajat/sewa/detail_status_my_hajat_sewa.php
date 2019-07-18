@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Detail My Ta'lim Tickets
+    Detail My Hajat Sewa Tickets
   </h1>
 </section>
 
@@ -15,7 +15,7 @@
     <div class="col-lg-6">
       <div class="box">
         <div class="box-header text-center">
-          <h3 class="box-title">Data Ticket My Hajat Renovasi</h3>
+          <h3 class="box-title">Data Ticket My Hajat Sewa</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
@@ -66,10 +66,10 @@
                   echo '<span class="label label-danger">Ditolak</span>';
                 }
                 if ($data->id_approval == 2) {
-                  echo '<span class="label label-primary">Disetujui</span>';
+                  echo '<span class="label label-success">Disetujui Admin 1</span>';
                 }
                 if ($data->id_approval == 3) {
-                  echo '<span class="label label-success">Selesai</span>';
+                  echo '<span class="label label-primary">Selesai</span>';
                 }
                 ?>
               </td>
@@ -79,8 +79,8 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/sewa/' . $data->id_myhajat) ?>">Approve</a>
-                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/sewa/' . $data->id_myhajat) ?>">Reject</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
+                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/sewa/' . $data->id_sewa) ?>">Reject</a>
                 </td>
               </tr>
             <?php } ?>
@@ -88,7 +88,7 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/approve/myhajat/sewa/' . $data->id_myhajat) ?>">Approve</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin2/completed/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
                 </td>
               </tr>
             <?php } ?>

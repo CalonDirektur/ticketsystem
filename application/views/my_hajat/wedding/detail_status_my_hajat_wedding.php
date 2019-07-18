@@ -74,10 +74,10 @@
                   echo '<span class="label label-danger">Ditolak</span>';
                 }
                 if ($data->id_approval == 2) {
-                  echo '<span class="label label-primary">Disetujui</span>';
+                  echo '<span class="label label-success">Disetujui Admin 1</span>';
                 }
                 if ($data->id_approval == 3) {
-                  echo '<span class="label label-success">Selesai</span>';
+                  echo '<span class="label label-primary">Selesai</span>';
                 }
                 ?>
               </td>
@@ -92,11 +92,12 @@
                 </td>
               </tr>
             <?php } ?>
+            <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
             <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/approve/myhajat/wedding/' . $data->id_wedding) ?>">Approve</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/wedding/' . $data->id_wedding) ?>">Approve</a>
                 </td>
               </tr>
             <?php } ?>

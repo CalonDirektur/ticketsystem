@@ -49,19 +49,51 @@ class Admin1 extends CI_Controller
 
 	}
 
-	public function approve($produk = NULL, $id)
+	public function approve($produk = NULL, $kategori, $id)
 	{
 		if ($produk == 'mytalim') {
 			$this->Aksi_Admin1_m->approve('tb_my_talim', ['id_mytalim' => $id]);
-			redirect('admin1/review/mytalim');
+			redirect('status/pending/mytalim');
+		}
+		if ($produk == 'myhajat' && $kategori == 'renovasi') {
+			$this->Aksi_Admin1_m->approve('tb_my_hajat_renovasi', ['id_renovasi' => $id]);
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'sewa') {
+			$this->Aksi_Admin1_m->approve('tb_my_hajat_sewa', ['id_sewa' => $id]);
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'wedding') {
+			$this->Aksi_Admin1_m->approve('tb_my_hajat_wedding', ['id_wedding' => $id]);
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'franchise') {
+			$this->Aksi_Admin1_m->approve('tb_my_hajat_franchise', ['id_franchise' => $id]);
+			redirect('/');
 		}
 	}
 
-	public function reject($produk = NULL, $id)
+	public function reject($produk = NULL, $kategori, $id)
 	{
 		if ($produk == 'mytalim') {
 			$this->Aksi_Admin1_m->reject('tb_my_talim', ['id_mytalim' => $id]);
-			redirect('admin1/review/mytalim');
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'renovasi') {
+			$this->Aksi_Admin1_m->reject('tb_my_hajat_renovasi', ['id_renovasi' => $id]);
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'sewa') {
+			$this->Aksi_Admin1_m->reject('tb_my_hajat_sewa', ['id_sewa' => $id]);
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'wedding') {
+			$this->Aksi_Admin1_m->reject('tb_my_hajat_wedding', ['id_wedding' => $id]);
+			redirect('/');
+		}
+		if ($produk == 'myhajat' && $kategori == 'franchise') {
+			$this->Aksi_Admin1_m->reject('tb_my_hajat_franchise', ['id_franchise' => $id]);
+			redirect('/');
 		}
 	}
 }

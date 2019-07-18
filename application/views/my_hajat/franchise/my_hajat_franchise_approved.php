@@ -29,7 +29,7 @@
               <td><?= $d->nama_konsumen ?></td>
               <td><?= $d->jenis_konsumen?></td>
               <td><?= $d->nama_franchise ?></td>
-              <td><span class="label label-success">Disetujui</span></td>
+              <td><span class="label label-success">Disetujui Admin 1</span></td>
               <td><a class="btn btn-default" href="<?= base_url('status/approved/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
             </tr>
             <?php

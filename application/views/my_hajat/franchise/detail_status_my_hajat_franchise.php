@@ -79,7 +79,7 @@
                   echo '<span class="label label-danger">Ditolak</span>';
                 }
                 if ($data->id_approval == 2) {
-                  echo '<span class="label label-primary">Disetujui</span>';
+                  echo '<span class="label label-success">Disetujui Admin 1</span>';
                 }
                 if ($data->id_approval == 3) {
                   echo '<span class="label label-success">Selesai</span>';
@@ -92,8 +92,8 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/renovasi/' . $data->id_myhajat) ?>">Approve</a>
-                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/renovasi/' . $data->id_myhajat) ?>">Reject</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/franchise/' . $data->id_franchise) ?>">Approve</a>
+                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/franchise/' . $data->id_franchise) ?>">Reject</a>
                 </td>
               </tr>
             <?php } ?>
@@ -101,7 +101,7 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/approve/myhajat/renovasi/' . $data->id_myhajat) ?>">Approve</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/franchise/' . $data->id_franchise) ?>">Approve</a>
                 </td>
               </tr>
             <?php } ?>

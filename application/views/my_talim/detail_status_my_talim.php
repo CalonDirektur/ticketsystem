@@ -83,10 +83,10 @@
                   echo '<span class="label label-danger">Ditolak</span>';
                 }
                 if ($data->id_approval == 2) {
-                  echo '<span class="label label-primary">Disetujui</span>';
+                  echo '<span class="label label-success">Disetujui Admin 1</span>';
                 }
                 if ($data->id_approval == 3) {
-                  echo '<span class="label label-success">Selesai</span>';
+                  echo '<span class="label label-primary">Selesai</span>';
                 }
                 ?>
               </td>
@@ -96,8 +96,8 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/mytalim/' . $data->id_mytalim) ?>">Approve</a>
-                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/mytalim/' . $data->id_mytalim) ?>">Reject</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/mytalim/id/' . $data->id_mytalim) ?>">Approve</a>
+                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/mytalim/id/' . $data->id_mytalim) ?>">Reject</a>
                 </td>
               </tr>
             <?php } ?>
@@ -105,7 +105,7 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/approve/mytalim/' . $data->id_mytalim) ?>">Approve</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin2/approve/mytalim/id/' . $data->id_mytalim) ?>">Approve</a>
                 </td>
               </tr>
             <?php } ?>

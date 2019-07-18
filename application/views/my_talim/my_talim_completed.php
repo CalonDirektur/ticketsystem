@@ -30,8 +30,8 @@
               <td><?= $d->nama_konsumen ?></td>
               <td><?= $d->jenis_konsumen ?></td>
               <td><?= ucfirst($d->pendidikan) ?></td>
-              <td><span class="label label-success">Disetujui Admin 1</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/approved/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
+              <td><span class="label label-primary">Selesai</span></td>
+              <td><a class="btn btn-default" href="<?= base_url('status/completed/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
             </tr>
             <?php
             $no++;
