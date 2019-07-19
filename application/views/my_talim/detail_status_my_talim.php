@@ -104,7 +104,7 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/approve/mytalim/id/' . $data->id_mytalim) ?>">Approve</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/mytalim/id/' . $data->id_mytalim) ?>">Approve</a>
                 </td>
               </tr>
             <?php } ?>
@@ -125,6 +125,7 @@
           <div class="box-body">
             <div class="form-group">
               <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
+              <input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
             </div>
           </div>
           <div class="box-footer">
@@ -158,20 +159,28 @@
           </div>
           <!-- Reply Box Comment -->
           <div class="box-footer box-comments">
+          <?php 
+          $this->db->from('tb_comment');
+          $this->db->where('parent_comment_id = '. $komen->id);
+          $reply = $this->db->get();
+           ?>
+      <?php foreach ($reply->result() as $balasan) { ?>
             <div class="box-comment">
               <div class="comment-text">
                 <span class="username">
                   User
-                  <span class="text-muted pull-right">8:03 PM Today</span>
+                  <span class="text-muted pull-right"><?= $komen->date ?></span>
                 </span>
-                Reply Comment
+                <?= $balasan->comment ?>
               </div>
             </div>
+      <?php } ?>
           </div>
           <div class="box-footer">
             <form action="<?= base_url('comment/post_reply'); ?>" method="post">
               <div class="img-push">
-                <input name="parent_comment" type="hidden" value="<?= $komen->id_comment ?>">
+                <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
+                <input name="id_komentar" type="hidden" value="<?= $data->id_mytalim ?>">
                 <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
               </div>
             </form>
@@ -179,5 +188,6 @@
         </div>
       </div>
     </div>
+    
   <?php } ?>
 </section>

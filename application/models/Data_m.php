@@ -38,7 +38,9 @@ class Data_m extends CI_Model
 
    public function get_by_id($table, $where)
    {
-       $query = $this->db->get_where($table, $where);
+        // $this->db->from($table1);
+        // $this->db->join($table2, '$table1.')
+        $query = $this->db->get_where($table, $where);
         return $query;
    }
 

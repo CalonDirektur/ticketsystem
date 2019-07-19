@@ -33,8 +33,8 @@ class Admin2 extends CI_Controller
 	{
 		//Produk My Ta'lim
 		if ($produk == 'mytalim' && $id == NULL) {
-			$data['pending'] = $this->data_m->get('tb_my_talim', 'completed_review')->result();
-			$this->template->load('template', 'admin/my_talim/admin2_completed_mytalim', $data);
+			$data['data'] = $this->data_m->get('tb_my_talim', 'completed_review')->result();
+			$this->template->load('template', 'my_talim/my_talim_completed', $data);
 		}
 		if ($produk == 'mytalim' && $id != NULL) {
 			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 3])->row();

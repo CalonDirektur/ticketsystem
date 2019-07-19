@@ -15,6 +15,7 @@ class Comment extends CI_Controller
         $post = $this->input->post(NULL, TRUE);
         $data = [
             'parent_comment_id' => 0,
+            'id_comment' => $post['id_komentar'],
             'comment' => $post['post_comment'],
             'date' => date('Y-m-d H:i:s')
         ];
@@ -27,6 +28,7 @@ class Comment extends CI_Controller
         $post = $this->input->post(NULL, TRUE);
         $data = [
             'parent_comment_id' => $post['parent_comment'],
+            'id_comment' => $post['id_komentar'],
             'comment' => $post['post_reply'],
             'date' => date('Y-m-d H:i:s')
         ];

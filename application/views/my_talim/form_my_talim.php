@@ -40,6 +40,10 @@
                      <?php }  ?>
                   </select>
                 </div>
+                <div class="form-group">
+                   <label for="id_ticket">ID Ticket</label>
+                   <input required name="id_ticket" id="id_ticket" type="text" class="form-control" value="<?= hexdec(uniqid()); ?>" readonly>                
+                </div>
              <div class="box-footer">
  
             </div>
