@@ -24,9 +24,9 @@ class User_m extends CI_Model
 
     public function get($id = null)
     {
-        $this->db->from('user');
+        $this->db->from('user, tb_cabang');
         if ($id != null) {
-            $this->db->where('username', $id);
+            $this->db->where(['username' => $id, 'user.id_cabang = tb_cabang.id_cabang']);
         }
         $query = $this->db->get();
 
@@ -43,4 +43,4 @@ class User_m extends CI_Model
         $this->db->where('user_id', $id);
         $this->db->delete('user');
     }
-    }
+}

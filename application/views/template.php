@@ -155,13 +155,12 @@
             <a href="#"></i>
               <?php
               if ($this->fungsi->user_login()->level == 1) {
-                echo "User Cabang";
+                echo "Cabang " . ucfirst($this->fungsi->user_login()->nama_cabang);
               } else if ($this->fungsi->user_login()->level == 2) {
-                echo "Admin level 1";
-              } else if ($this->fungsi->user_login()->level == 3) {
-                echo "Admin level 2";
+                echo ucfirst($this->fungsi->user_login()->nama_cabang);
               }
-              ?> </a>
+              ?>
+            </a>
           </div>
         </div>
 
@@ -281,18 +280,18 @@
               <ul class="treeview-menu">
                 <li><a href="<?= site_url('status/pending/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
                 <li class="treeview">
-                      <a href="#"><i class="fa fa-circle-o"></i> My Hajat
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="<?= base_url('status/pending/myhajat/renovasi') ?>"><i class="fa fa-circle-o"></i> Renovasi</a></li>
-                        <li><a href="<?= base_url('status/pending/myhajat/sewa') ?>"><i class="fa fa-circle-o"></i>Sewa</a></li>
-                        <li><a href="<?= base_url('status/pending/myhajat/wedding') ?>"><i class="fa fa-circle-o"></i>Wedding</a></li>
-                        <li><a href="<?= base_url('status/pending/myhajat/franchise') ?>"><i class="fa fa-circle-o"></i>Franchise</a></li>
-                      </ul>
-                    </li>
+                  <a href="#"><i class="fa fa-circle-o"></i> My Hajat
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= base_url('status/pending/myhajat/renovasi') ?>"><i class="fa fa-circle-o"></i> Renovasi</a></li>
+                    <li><a href="<?= base_url('status/pending/myhajat/sewa') ?>"><i class="fa fa-circle-o"></i>Sewa</a></li>
+                    <li><a href="<?= base_url('status/pending/myhajat/wedding') ?>"><i class="fa fa-circle-o"></i>Wedding</a></li>
+                    <li><a href="<?= base_url('status/pending/myhajat/franchise') ?>"><i class="fa fa-circle-o"></i>Franchise</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li class="treeview">
@@ -308,7 +307,7 @@
                   </a>
                   <ul class="treeview-menu">
                     <li><a href="<?= site_url('status/approved/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
-                   <li class="treeview">
+                    <li class="treeview">
                       <a href="#"><i class="fa fa-circle-o"></i> My Hajat
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
@@ -360,18 +359,18 @@
               <ul class="treeview-menu">
                 <li><a href="<?= site_url('status/approved/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
                 <li class="treeview">
-                      <a href="#"><i class="fa fa-circle-o"></i> My Hajat
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="<?= base_url('status/approved/myhajat/renovasi') ?>"><i class="fa fa-circle-o"></i> Renovasi</a></li>
-                        <li><a href="<?= base_url('status/approved/myhajat/sewa') ?>"><i class="fa fa-circle-o"></i>Sewa</a></li>
-                        <li><a href="<?= base_url('status/approved/myhajat/wedding') ?>"><i class="fa fa-circle-o"></i>Wedding</a></li>
-                        <li><a href="<?= base_url('status/approved/myhajat/franchise') ?>"><i class="fa fa-circle-o"></i>Franchise</a></li>
-                      </ul>
-                    </li>
+                  <a href="#"><i class="fa fa-circle-o"></i> My Hajat
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= base_url('status/approved/myhajat/renovasi') ?>"><i class="fa fa-circle-o"></i> Renovasi</a></li>
+                    <li><a href="<?= base_url('status/approved/myhajat/sewa') ?>"><i class="fa fa-circle-o"></i>Sewa</a></li>
+                    <li><a href="<?= base_url('status/approved/myhajat/wedding') ?>"><i class="fa fa-circle-o"></i>Wedding</a></li>
+                    <li><a href="<?= base_url('status/approved/myhajat/franchise') ?>"><i class="fa fa-circle-o"></i>Franchise</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
             </li>
@@ -385,18 +384,18 @@
               <ul class="treeview-menu">
                 <li><a href="<?= site_url('admin2/completed/mytalim') ?>"><i class="fa fa-circle-o"></i>My Ta'lim</a></li>
                 <li class="treeview">
-                      <a href="#"><i class="fa fa-circle-o"></i> My Hajat
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="<?= base_url('status/completed/myhajat/renovasi') ?>"><i class="fa fa-circle-o"></i> Renovasi</a></li>
-                        <li><a href="<?= base_url('status/completed/myhajat/sewa') ?>"><i class="fa fa-circle-o"></i>Sewa</a></li>
-                        <li><a href="<?= base_url('status/completed/myhajat/wedding') ?>"><i class="fa fa-circle-o"></i>Wedding</a></li>
-                        <li><a href="<?= base_url('status/completed/myhajat/franchise') ?>"><i class="fa fa-circle-o"></i>Franchise</a></li>
-                      </ul>
-                    </li>
+                  <a href="#"><i class="fa fa-circle-o"></i> My Hajat
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?= base_url('status/completed/myhajat/renovasi') ?>"><i class="fa fa-circle-o"></i> Renovasi</a></li>
+                    <li><a href="<?= base_url('status/completed/myhajat/sewa') ?>"><i class="fa fa-circle-o"></i>Sewa</a></li>
+                    <li><a href="<?= base_url('status/completed/myhajat/wedding') ?>"><i class="fa fa-circle-o"></i>Wedding</a></li>
+                    <li><a href="<?= base_url('status/completed/myhajat/franchise') ?>"><i class="fa fa-circle-o"></i>Franchise</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
             </li>

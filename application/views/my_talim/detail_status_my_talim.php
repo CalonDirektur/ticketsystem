@@ -117,7 +117,7 @@
   <!-- Post Komentar -->
   <div class="row">
     <div class="col-lg-12 col-md-6">
-      <form method="post" action="<?= base_url('comment/post_comment') ?>">
+      <form method="post" action="<?= base_url('comment/post_comment/id_mytalim') ?>">
         <div class="box">
           <div class="box-header with-border">
             <b>Post Komentar</b>
@@ -126,6 +126,7 @@
             <div class="form-group">
               <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
               <input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
+              <input readonly type="text" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
             </div>
           </div>
           <div class="box-footer">
@@ -136,50 +137,47 @@
   </div>
   </div>
 
-
+  <!-- Menampilkan Komentar -->
   <?php foreach ($komentar as $komen) { ?>
     <div class="row">
       <div class="col-lg-12 col-md-12">
 
         <div class="box box-widget">
           <div class="box-header with-border">
-            <div class="user-block"> <span class="username"><a href="#">Administrator 1</a></span>
+            <div class="user-block"> <span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span>
               <span class="description">Diposting: <?= $komen->date ?></span>
-            </div>
-            <div class="box-tools">
-              <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
-                <i class="fa fa-circle-o"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
           </div>
           <div class="box-body">
             <p><?= $komen->comment ?></p>
           </div>
+
           <!-- Reply Box Comment -->
           <div class="box-footer box-comments">
-          <?php 
-          $this->db->from('tb_comment');
-          $this->db->where('parent_comment_id = '. $komen->id);
-          $reply = $this->db->get();
-           ?>
-      <?php foreach ($reply->result() as $balasan) { ?>
-            <div class="box-comment">
-              <div class="comment-text">
-                <span class="username">
-                  User
-                  <span class="text-muted pull-right"><?= $komen->date ?></span>
-                </span>
-                <?= $balasan->comment ?>
+            <?php
+            $this->db->from('tb_comment, user, tb_cabang');
+            $this->db->where('parent_comment_id = ' . $komen->id . ' AND
+                              user.id_user = tb_comment.id_user AND
+                              user.id_cabang = tb_cabang.id_cabang');
+            $reply = $this->db->get();
+            ?>
+            <?php foreach ($reply->result() as $balasan) { ?>
+              <div class="box-comment">
+                <div class="comment-text">
+                  <span class="username">
+                    <?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)
+                    <span class="text-muted pull-right"><?= $komen->date ?></span>
+                  </span>
+                  <?= $balasan->comment ?>
+                </div>
               </div>
-            </div>
-      <?php } ?>
+            <?php } ?>
           </div>
           <div class="box-footer">
-            <form action="<?= base_url('comment/post_reply'); ?>" method="post">
+            <form action="<?= base_url('comment/post_reply/id_mytalim'); ?>" method="post">
               <div class="img-push">
                 <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
+                <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
                 <input name="id_komentar" type="hidden" value="<?= $data->id_mytalim ?>">
                 <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
               </div>
@@ -188,6 +186,6 @@
         </div>
       </div>
     </div>
-    
+
   <?php } ?>
 </section>

@@ -24,7 +24,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_mytalim' => $id, 'id_approval' => 0])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_talim.id_mytalim AND id_mytalim = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
+                                                                tb_my_talim.id_mytalim = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -39,7 +43,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_renovasi', ['id_renovasi' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_renovasi.id_renovasi AND id_renovasi = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
+                                                                tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -52,7 +60,11 @@ class Status extends CI_Controller
         //Menampilkan halaman ticket pending pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_sewa', ['id_sewa' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_sewa.id_sewa AND id_sewa = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
+                                                                tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -65,7 +77,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_wedding', ['id_wedding' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_wedding.id_wedding AND id_wedding = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
+                                                                tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -78,7 +94,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_franchise', ['id_franchise' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_franchise.id_franchise AND id_franchise = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
+                                                                tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
     }
@@ -95,7 +115,12 @@ class Status extends CI_Controller
         //Menampilkan ticket apprvoed pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $kategori != NULL && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_mytalim' => $id, 'id_approval' => 2])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim', 'parent_comment_id = 0 AND tb_comment.id_comment = tb_my_talim.id_mytalim AND id_mytalim = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
+                                                                tb_my_talim.id_mytalim = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+
             $this->template->load('template', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -110,7 +135,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_renovasi', ['id_renovasi' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_renovasi.id_renovasi AND id_renovasi = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
+                                                                tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -123,7 +152,11 @@ class Status extends CI_Controller
         //Menampilkan halaman ticket pending pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_sewa', ['id_sewa' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_sewa.id_sewa AND id_sewa = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
+                                                                tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -136,7 +169,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_wedding', ['id_wedding' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_wedding.id_wedding AND id_wedding = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
+                                                                tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -149,7 +186,11 @@ class Status extends CI_Controller
         //Menampilkan ticket pending pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_franchise', ['id_franchise' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_franchise.id_franchise AND id_franchise = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
+                                                                tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
     }
@@ -166,7 +207,11 @@ class Status extends CI_Controller
         //Menampilkan ticket rejected pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_mytalim' => $id, 'id_approval' => 1])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_talim.id_mytalim AND id_mytalim = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
+                                                                tb_my_talim.id_mytalim = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -181,7 +226,11 @@ class Status extends CI_Controller
         //Menampilkan ticket yang ditolak pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_renovasi', ['id_renovasi' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_renovasi.id_renovasi AND id_renovasi = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
+                                                                tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -194,7 +243,11 @@ class Status extends CI_Controller
         //Menampilkan halaman ticket yang ditolak pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_sewa', ['id_sewa' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_sewa.id_sewa AND id_sewa = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
+                                                                tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -202,12 +255,16 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang ditolak pada produk my hajat kategori wedding jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'rejected_review')->result();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_wedding.id_wedding AND id_wedding = '.$id)->result();
             $this->template->load('template', 'my_hajat/wedding/my_hajat_wedding_rejected', $data);
         }
         //Menampilkan ticket yang ditolak pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_wedding', ['id_wedding' => $id])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
+                                                                tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -220,7 +277,11 @@ class Status extends CI_Controller
         //Menampilkan ticket yang ditolak pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_franchise', ['id_franchise' => $id])->row();
-            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise','parent_comment_id = 0 AND tb_comment.id_comment = tb_my_hajat_franchise.id_franchise AND id_franchise = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
+                                                                tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
     }
@@ -236,7 +297,11 @@ class Status extends CI_Controller
         //Menampilkan ticket yang telah diselesaikan pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_mytalim' => $id, 'id_approval' => 3])->row();
-            $data['komentar'] = $this->comment_m->get_comment('parent_comment_id = 0 AND tb_comment.id_comment = tb_my_talim.id_mytalim AND id_mytalim = '.$id)->result();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_talim', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
+                                                                tb_my_talim.id_mytalim = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -251,6 +316,11 @@ class Status extends CI_Controller
         //Menampilkan ticket yang diselesaikan pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_renovasi', ['id_renovasi' => $id])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_renovasi', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
+                                                                tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -263,6 +333,11 @@ class Status extends CI_Controller
         //Menampilkan halaman ticket yang diselesaikan pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_sewa', ['id_sewa' => $id])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
+                                                                tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -275,6 +350,11 @@ class Status extends CI_Controller
         //Menampilkan ticket yang diselesaikan pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_wedding', ['id_wedding' => $id])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_wedding', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
+                                                                tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -287,6 +367,11 @@ class Status extends CI_Controller
         //Menampilkan ticket yang diselesaikan pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
             $data['data'] = $this->data_m->get_by_id('tb_my_hajat_franchise', ['id_franchise' => $id])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_franchise', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
+                                                                tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
     }

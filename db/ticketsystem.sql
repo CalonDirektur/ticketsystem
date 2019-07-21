@@ -1,28 +1,7 @@
-﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-07-19 16:37:08
+﻿# Host: localhost  (Version 5.5.5-10.1.38-MariaDB)
+# Date: 2019-07-21 22:22:02
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
-
-#
-# Structure for table "data"
-#
-
-DROP TABLE IF EXISTS `data`;
-CREATE TABLE `data` (
-  `id_data` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `hobi` varchar(255) DEFAULT NULL,
-  `id_approval` int(2) DEFAULT NULL COMMENT '0 = belum review, 1 = gagal review, 2 = disetujui admin 1, 3 = disetujui admin 2',
-  `notif_status` int(2) DEFAULT NULL,
-  PRIMARY KEY (`id_data`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
-#
-# Data for table "data"
-#
-
-INSERT INTO `data` VALUES (1,'Ibrahim','puspitek','futsal',3,NULL),(2,'Ibrahim','puspitek','futsal',3,NULL),(3,'Achmad Baehaqi','Jl. Denpasar 1','Badminton',3,NULL),(4,'Lingga Asa Prabowo','BSD Square','tennis',1,NULL),(5,'Lulu Mujadidah','BPA Sektor 2','Photografi',3,NULL),(6,'Achmad Zaky','Jakarta Timur','Travelling',0,NULL),(7,'William Tanuwijaya','Tokopedia Tower','Bisnis',3,NULL);
 
 #
 # Structure for table "tb_cabang"
@@ -33,13 +12,13 @@ CREATE TABLE `tb_cabang` (
   `id_cabang` int(3) NOT NULL AUTO_INCREMENT,
   `nama_cabang` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id_cabang`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_cabang"
 #
 
-INSERT INTO `tb_cabang` VALUES (1,'Balikpapan Syariah'),(2,'Bandung Syariah'),(3,'Banjarmasin Syariah'),(4,'Batam Syariah'),(5,'Bekasi Syariah'),(6,'Bogor Syariah'),(7,'BSD Syariah'),(8,'Bukit Tinggi Syariah'),(9,'Cawang Syariah'),(10,'Cirebon Syariah'),(11,'Depok Syariah'),(12,'Gorontalo Syariah'),(13,'Gresik Syariah'),(14,'Jakarta Selatan Syariah'),(15,'Jakarta Utara Syariah'),(16,'Jambi Syariah'),(17,'Karawang Syariah'),(18,'Kediri Syariah'),(19,'Kendari Syariah'),(20,'Kudus Syariah'),(21,'Lampung Syariah'),(22,'Makassar Syariah'),(23,'Malang Syariah'),(24,'Mataram Syariah'),(25,'Medan Syariah'),(26,'Meruya Syariah'),(27,'Mojokerto Syariah'),(28,'Padang Syariah'),(29,'Palangkaraya Syariah'),(30,'Palembang Syariah'),(31,'Pekanbaru Syariah'),(32,'Pontianak Syariah'),(33,'Purwokerto Syariah'),(34,'Samarinda Syariah'),(35,'Semarang Syariah'),(36,'Sidoarjo Syariah'),(37,'Solo Syariah'),(38,'Sorong Syariah'),(39,'Sukabumi Syariah'),(40,'Sunter Syariah'),(41,'Surabaya Syariah'),(42,'Tangerang Syariah'),(43,'Tasikmalaya Syariah'),(44,'Ternate Syariah'),(45,'Yogyakarta Syariah');
+INSERT INTO `tb_cabang` VALUES (1,'Balikpapan Syariah'),(2,'Bandung Syariah'),(3,'Banjarmasin Syariah'),(4,'Batam Syariah'),(5,'Bekasi Syariah'),(6,'Bogor Syariah'),(7,'BSD Syariah'),(8,'Bukit Tinggi Syariah'),(9,'Cawang Syariah'),(10,'Cirebon Syariah'),(11,'Depok Syariah'),(12,'Gorontalo Syariah'),(13,'Gresik Syariah'),(14,'Jakarta Selatan Syariah'),(15,'Jakarta Utara Syariah'),(16,'Jambi Syariah'),(17,'Karawang Syariah'),(18,'Kediri Syariah'),(19,'Kendari Syariah'),(20,'Kudus Syariah'),(21,'Lampung Syariah'),(22,'Makassar Syariah'),(23,'Malang Syariah'),(24,'Mataram Syariah'),(25,'Medan Syariah'),(26,'Meruya Syariah'),(27,'Mojokerto Syariah'),(28,'Padang Syariah'),(29,'Palangkaraya Syariah'),(30,'Palembang Syariah'),(31,'Pekanbaru Syariah'),(32,'Pontianak Syariah'),(33,'Purwokerto Syariah'),(34,'Samarinda Syariah'),(35,'Semarang Syariah'),(36,'Sidoarjo Syariah'),(37,'Solo Syariah'),(38,'Sorong Syariah'),(39,'Sukabumi Syariah'),(40,'Sunter Syariah'),(41,'Surabaya Syariah'),(42,'Tangerang Syariah'),(43,'Tasikmalaya Syariah'),(44,'Ternate Syariah'),(45,'Yogyakarta Syariah'),(46,'Head Office Administrator');
 
 #
 # Structure for table "tb_comment"
@@ -48,19 +27,23 @@ INSERT INTO `tb_cabang` VALUES (1,'Balikpapan Syariah'),(2,'Bandung Syariah'),(3
 DROP TABLE IF EXISTS `tb_comment`;
 CREATE TABLE `tb_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_comment` int(11) NOT NULL DEFAULT 0,
-  `parent_comment_id` int(11) NOT NULL DEFAULT 0,
+  `parent_comment_id` int(11) NOT NULL DEFAULT '0',
   `comment` varchar(255) NOT NULL DEFAULT '',
   `id_user` int(6) DEFAULT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_mytalim` int(11) DEFAULT NULL,
+  `id_renovasi` int(11) DEFAULT NULL,
+  `id_sewa` int(11) DEFAULT NULL,
+  `id_wedding` int(11) DEFAULT NULL,
+  `id_franchise` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_comment"
 #
 
-INSERT INTO `tb_comment` VALUES (13,9,0,'Bismillahirrohmanirrohim',NULL,'2019-07-19 10:16:10'),(14,0,13,'Arrohmanirrohim',NULL,'2019-07-19 10:16:20'),(15,0,13,'Maliki yaumiddin',NULL,'2019-07-19 10:16:34'),(16,8,0,'Iyya kana\'budu iya kanasta\'in',NULL,'2019-07-19 10:16:49'),(17,0,16,'ih dinisshirotolmustaqim',NULL,'2019-07-19 10:17:05'),(18,8,0,'asadasd',NULL,'2019-07-19 10:20:19'),(20,8,18,'lebay amat dah ah',NULL,'2019-07-19 10:21:10'),(21,1,0,'Tolong jangan keseringan di reject ah!',NULL,'2019-07-19 10:38:28'),(22,1,1,'iya maaf mas wkwkwk',NULL,'2019-07-19 10:38:38'),(23,10,0,'Tolong mas urgent nih',NULL,'2019-07-19 10:48:30'),(24,10,23,'oke data terlihat lengkap akan saya approve mas!',NULL,'2019-07-19 10:48:58'),(25,3,0,'Tiket diisi dengan data yg tidak serius, pecat aja!!!',NULL,'2019-07-19 14:25:00'),(26,3,25,'Yah jangan dipecat dong om kasian istri saya!!!!!!!!!!!!!!!',NULL,'2019-07-19 14:25:41'),(27,4,0,'Data udah sip mantep!',NULL,'2019-07-19 14:26:59'),(28,4,27,'terima kasih bos',NULL,'2019-07-19 14:27:20'),(29,1,21,'nanti saya sampaikan ke admin',NULL,'2019-07-19 15:17:55'),(30,1,21,'mas reki',NULL,'2019-07-19 15:47:01'),(31,1,0,'My Hajat Sewa Approved Mas Okky',NULL,'2019-07-19 15:56:10'),(32,9,0,'asdasd',NULL,'2019-07-19 15:58:43');
+INSERT INTO `tb_comment` VALUES (53,52,'data asal asalan',NULL,'2019-07-21 21:04:27',NULL,NULL,NULL,9,NULL),(54,52,'asdad',NULL,'2019-07-21 21:06:57',NULL,NULL,NULL,9,NULL),(55,52,'haha',3,'2019-07-21 21:07:53',NULL,NULL,NULL,9,NULL),(56,0,'Overseas',3,'2019-07-21 21:11:19',NULL,NULL,NULL,9,NULL),(57,56,'Foreign',3,'2019-07-21 21:11:27',NULL,NULL,NULL,9,NULL),(58,0,'Data lengkap mantep!',1,'2019-07-21 21:31:12',NULL,5,NULL,NULL,NULL);
 
 #
 # Structure for table "tb_my_hajat_franchise"
@@ -69,21 +52,21 @@ INSERT INTO `tb_comment` VALUES (13,9,0,'Bismillahirrohmanirrohim',NULL,'2019-07
 DROP TABLE IF EXISTS `tb_my_hajat_franchise`;
 CREATE TABLE `tb_my_hajat_franchise` (
   `id_franchise` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
+  `id_ticket` int(5) NOT NULL DEFAULT '0',
   `nama_konsumen` varchar(255) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(255) NOT NULL DEFAULT '',
   `nama_franchise` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nama Franchise',
-  `jumlah_cabang` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Cabang Yang Dimiliki',
+  `jumlah_cabang` int(11) NOT NULL DEFAULT '0' COMMENT 'Jumlah Cabang Yang Dimiliki',
   `jenis_franchise` varchar(50) NOT NULL DEFAULT '' COMMENT 'Jenis Franchise',
   `tahun_berdiri_franchise` varchar(255) NOT NULL DEFAULT '' COMMENT 'Tahun Berdiri Franchise',
-  `harga_franchise` int(11) NOT NULL DEFAULT 0 COMMENT 'Harga Franchise',
+  `harga_franchise` int(11) NOT NULL DEFAULT '0' COMMENT 'Harga Franchise',
   `jangka_waktu_franchise` varchar(255) NOT NULL DEFAULT '' COMMENT 'Jangka Waktu Franchise',
   `akun_sosmed_website` varchar(255) NOT NULL DEFAULT '' COMMENT 'Akun Media Sosial / Website Franchise',
-  `informasi_tambahan` text DEFAULT NULL,
+  `informasi_tambahan` text,
   `id_approval` int(2) DEFAULT NULL,
-  `id_cabang` int(11) NOT NULL DEFAULT 0,
-  `keterangan_tiket` text DEFAULT NULL,
-  `id_comment` int(11) NOT NULL DEFAULT 0,
+  `id_cabang` int(11) NOT NULL DEFAULT '0',
+  `keterangan_tiket` text,
+  `id_comment` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_franchise`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -91,7 +74,6 @@ CREATE TABLE `tb_my_hajat_franchise` (
 # Data for table "tb_my_hajat_franchise"
 #
 
-INSERT INTO `tb_my_hajat_franchise` VALUES (1,0,'Mas Reki','Internal','Jamur Crispy',90,'Makanan dan Minuman','1990',2000000000,'Selamanya','www.jamurcrispy.com','',2,4,NULL,0);
 
 #
 # Structure for table "tb_my_hajat_renovasi"
@@ -106,23 +88,23 @@ CREATE TABLE `tb_my_hajat_renovasi` (
   `jenis_vendor` varchar(255) NOT NULL DEFAULT '',
   `bagian_bangunan` varchar(255) NOT NULL DEFAULT '',
   `luas_bangunan` varchar(255) NOT NULL DEFAULT '',
-  `jumlah_pekerja` int(11) NOT NULL DEFAULT 0,
+  `jumlah_pekerja` int(11) NOT NULL DEFAULT '0',
   `estimasi_waktu` varchar(255) NOT NULL DEFAULT '',
-  `nilai_pembiayaan` int(11) NOT NULL DEFAULT 0,
-  `informasi_tambahan` text DEFAULT NULL,
-  `id_approval` int(11) NOT NULL DEFAULT 0,
-  `id_cabang` int(11) NOT NULL DEFAULT 0,
-  `keterangan_tiket` text DEFAULT NULL,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
-  `id_comment` int(11) NOT NULL DEFAULT 0,
+  `nilai_pembiayaan` int(11) NOT NULL DEFAULT '0',
+  `informasi_tambahan` text,
+  `id_approval` int(11) NOT NULL DEFAULT '0',
+  `id_cabang` int(11) NOT NULL DEFAULT '0',
+  `keterangan_tiket` text,
+  `id_ticket` int(5) NOT NULL DEFAULT '0',
+  `id_comment` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_renovasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_renovasi"
 #
 
-INSERT INTO `tb_my_hajat_renovasi` VALUES (1,'Mas Gede','Internal','Tukang.com','Jasa Kuli Bangunan','Atap','50 m2',90,'1 Bulan',2147483647,'',3,11,NULL,0,0),(2,'Ariija Illona Rusydahu','Eksternal','Tukangku','Arsitektur','Tembok','90 m2',125,'90 hari',90000000,'',2,42,NULL,0,0),(3,'asdasd','Internal','asd','asd','asd','asd',13,'123',0,'',1,1,NULL,0,0),(4,'Ramdan Darmawan','Internal','Tukangku','Kuli Bangunan','Kantor','250 m2',213,'9 bulan',2147483647,'',3,7,NULL,0,0);
+INSERT INTO `tb_my_hajat_renovasi` VALUES (5,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Tukang.com','Renovasi Bangunan','Atap, tembok','150 m2',50,'3 bulan',9000000,'',3,4,NULL,0,0);
 
 #
 # Structure for table "tb_my_hajat_sewa"
@@ -131,19 +113,19 @@ INSERT INTO `tb_my_hajat_renovasi` VALUES (1,'Mas Gede','Internal','Tukang.com',
 DROP TABLE IF EXISTS `tb_my_hajat_sewa`;
 CREATE TABLE `tb_my_hajat_sewa` (
   `id_sewa` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
+  `id_ticket` int(5) NOT NULL DEFAULT '0',
   `nama_konsumen` varchar(255) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(255) NOT NULL DEFAULT '',
   `nama_pemilik` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nama Pemilik Rumah / Ruko',
   `jenis_pemilik` varchar(255) NOT NULL DEFAULT '' COMMENT 'Jenis Pemilik Rumah / Ruko',
   `hubungan_pemohon` varchar(255) NOT NULL DEFAULT '' COMMENT 'Hubungan Dengan Pemohon',
   `luas_panjang` varchar(255) DEFAULT NULL COMMENT 'Luas dan Panjang bangunan (panjang x lebar)',
-  `biaya_tahunan` int(11) NOT NULL DEFAULT 0 COMMENT 'Biaya Sewa per Tahun',
-  `id_approval` int(11) NOT NULL DEFAULT 0,
-  `id_cabang` int(11) NOT NULL DEFAULT 0,
-  `informasi_tambahan` text DEFAULT NULL,
-  `keterangan_tiket` text DEFAULT NULL,
-  `id_comment` int(11) NOT NULL DEFAULT 0,
+  `biaya_tahunan` int(11) NOT NULL DEFAULT '0' COMMENT 'Biaya Sewa per Tahun',
+  `id_approval` int(11) NOT NULL DEFAULT '0',
+  `id_cabang` int(11) NOT NULL DEFAULT '0',
+  `informasi_tambahan` text,
+  `keterangan_tiket` text,
+  `id_comment` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_sewa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -151,7 +133,6 @@ CREATE TABLE `tb_my_hajat_sewa` (
 # Data for table "tb_my_hajat_sewa"
 #
 
-INSERT INTO `tb_my_hajat_sewa` VALUES (1,0,'Mas Okky','Internal','Ibra Jabar','Perorangan','Keluarga','90 x 80',2147483647,2,7,NULL,NULL,0),(2,0,'asdasd','Eksternal','asdasd','Perorangan','asdasd','asd',0,1,1,'',NULL,0);
 
 #
 # Structure for table "tb_my_hajat_wedding"
@@ -160,28 +141,27 @@ INSERT INTO `tb_my_hajat_sewa` VALUES (1,0,'Mas Okky','Internal','Ibra Jabar','P
 DROP TABLE IF EXISTS `tb_my_hajat_wedding`;
 CREATE TABLE `tb_my_hajat_wedding` (
   `id_wedding` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
+  `id_ticket` int(5) NOT NULL DEFAULT '0',
   `nama_konsumen` varchar(255) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(255) NOT NULL DEFAULT '',
   `nama_wo` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nama Wedding Organizer',
   `jenis_wo` varchar(50) NOT NULL DEFAULT '' COMMENT 'Jenis Wedding Organizer',
   `lama_berdiri` varchar(255) NOT NULL DEFAULT '' COMMENT 'Lama Usaha Berdiri',
-  `jumlah_biaya` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Biaya Acara',
-  `jumlah_undangan` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Undangan',
+  `jumlah_biaya` int(11) NOT NULL DEFAULT '0' COMMENT 'Jumlah Biaya Acara',
+  `jumlah_undangan` int(11) NOT NULL DEFAULT '0' COMMENT 'Jumlah Undangan',
   `akun_sosmed` varchar(50) NOT NULL DEFAULT '' COMMENT 'Akun Media Sosial WO',
-  `id_cabang` int(11) NOT NULL DEFAULT 0 COMMENT 'Foreign Key dari tb_cabang',
-  `id_approval` int(11) NOT NULL DEFAULT 0 COMMENT 'ID status approval tiket',
-  `informasi_tambahan` text DEFAULT NULL,
-  `keterangan_tiket` text DEFAULT NULL,
-  `id_comment` int(11) NOT NULL DEFAULT 0,
+  `id_cabang` int(11) NOT NULL DEFAULT '0' COMMENT 'Foreign Key dari tb_cabang',
+  `id_approval` int(11) NOT NULL DEFAULT '0' COMMENT 'ID status approval tiket',
+  `informasi_tambahan` text,
+  `keterangan_tiket` text,
+  `id_comment` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_wedding`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_wedding"
 #
 
-INSERT INTO `tb_my_hajat_wedding` VALUES (1,0,'Mas reki','Internal','Wedding Abadi','Prewedding shootout','10 tahun',8000000,90000,'@wedding_wkwk',3,2,'asdasd',NULL,0),(9,0,'ads','asd','sd','asd','12',123,213123,'#sfas',3,1,NULL,'asd',0);
 
 #
 # Structure for table "tb_my_talim"
@@ -190,7 +170,7 @@ INSERT INTO `tb_my_hajat_wedding` VALUES (1,0,'Mas reki','Internal','Wedding Aba
 DROP TABLE IF EXISTS `tb_my_talim`;
 CREATE TABLE `tb_my_talim` (
   `id_mytalim` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
+  `id_ticket` int(5) NOT NULL DEFAULT '0',
   `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
   `pendidikan` varchar(50) NOT NULL DEFAULT '',
@@ -205,18 +185,18 @@ CREATE TABLE `tb_my_talim` (
   `npwp` varchar(255) DEFAULT NULL,
   `bukti_penghasilan` varchar(255) DEFAULT NULL,
   `tambahan` varchar(255) DEFAULT NULL,
-  `id_approval` int(2) NOT NULL DEFAULT 0 COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
-  `keterangan_tiket` text DEFAULT NULL,
-  `id_cabang` int(11) NOT NULL DEFAULT 0,
+  `id_approval` int(2) NOT NULL DEFAULT '0' COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
+  `keterangan_tiket` text,
+  `id_cabang` int(11) NOT NULL DEFAULT '0',
   `id_comment` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_mytalim`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_talim"
 #
 
-INSERT INTO `tb_my_talim` VALUES (1,0,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000',NULL,NULL,NULL,NULL,'',1,NULL,1,NULL),(2,0,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000','rahayu2.jpg',NULL,NULL,NULL,'',3,NULL,1,NULL),(3,0,'Ibrahim','Internal','universitas','Universitas Budi Luhur','1231','A','2017 -2018','Nikah','500000000000','rahayu2.jpg','timthumb.jpg','timthumb1.jpg','rahayu21.jpg','timthumb2.jpg',2,NULL,1,NULL),(4,0,'Ahmad Jabar','Eksternal','sekolah','Islamic Village','2019','A++','2017 -2018','Kuliah','1200000','presentasi-al-balad-al-ameen-1-638.jpg','Patuna_20180130113723.png','panorama.jpg','download_(4).jpg','Untitled.png',2,NULL,1,NULL),(5,0,'Don Aria Sabda','Eksternal','universitas','Universitas Indonesia','1998','B+','2017 - 2018','Keuangan','6000000','presentasi-al-balad-al-ameen-1-6381.jpg','panorama2.png','Logo_Abhinaya.jpg','xpanoramajtb-03-editt-711x409_jpg_pagespeed_ic_YVTLAuED9f.jpg','Patuna_201801301137231.png',2,NULL,1,1),(6,0,'Mas Gede','Internal','Kursus','Hacktiv8','2019','A','2017 - 2018','Pekerjaan Cerah','672487623846782',NULL,NULL,NULL,NULL,'',1,NULL,0,NULL),(7,0,'Ibrahim','Internal','sekolah','asdasd','1990','asd','asd','asd','500000000000',NULL,NULL,NULL,NULL,'',1,NULL,0,NULL),(8,0,'Ibrahim','Internal','sekolah','asdasd','1990','asd','asd','asd','500000000000',NULL,NULL,NULL,NULL,NULL,1,NULL,1,NULL),(9,0,'Ibrahim','Eksternal','universitas','Universitas Budi Luhur','1990','A','2017 -2018','Kuliah','1200000',NULL,NULL,NULL,NULL,NULL,1,NULL,1,NULL),(10,0,'Ahmad Jabar','Internal','sekolah','Islamic Village','1990','A','2017 - 2018','Pekerjaan Cerah','500000000000','Granada.png','Logo_Abhinaya1.jpg','panorama21.png','Untitled1.png','Cheria.jpg',3,NULL,6,NULL);
+INSERT INTO `tb_my_talim` VALUES (11,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','universitas','Universitas Budi Luhur','1996','A','2018 - 2019','Supaya Bisa Kuliah','15000000',NULL,'1525352065377_scanner_20180219_211527.jpg','Ijazah_Belakang.jpg',NULL,NULL,0,NULL,7,NULL);
 
 #
 # Structure for table "tb_ticket"
@@ -225,7 +205,7 @@ INSERT INTO `tb_my_talim` VALUES (1,0,'Ibrahim','Internal','universitas','Univer
 DROP TABLE IF EXISTS `tb_ticket`;
 CREATE TABLE `tb_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(11) NOT NULL DEFAULT 0,
+  `id_ticket` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -245,15 +225,15 @@ CREATE TABLE `user` (
   `username` varchar(40) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(25) NOT NULL DEFAULT '',
-  `level` int(2) NOT NULL DEFAULT 0,
-  `id_cabang` int(3) NOT NULL DEFAULT 0,
+  `level` int(2) NOT NULL DEFAULT '0',
+  `id_cabang` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "user"
 #
 
-INSERT INTO `user` VALUES (1,'Lia','admin1','admin1@admin.com','admin1',2,1),(2,'Gede Laroiba','admin2','admin2@admin.com','admin2',3,1),(3,'User','user','user@user.com','user',1,1),(4,'Ibrahim Ahmad','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim',1,4),(5,'Titus Bonai','papua','papua@bfi.co.id','papua',1,2),(7,'Okky Aditya','ternate','ternate@bfi.co.id','ternate',1,3),(8,'Yan Herman','padangsumbar','padang@bfi.co.id','padang',1,28),(9,'Okky Aditya','okkyaditya','okky.aditya@bfi.co.id','Tralala1',1,1),(10,'Salman Al Farisi','salman','salman@bfi.co.id','salman',1,40);
+INSERT INTO `user` VALUES (1,'Lia','admin1','admin1@admin.com','admin1',2,46),(2,'Gede Laroiba','admin2','admin2@admin.com','admin2',3,46),(4,'Ibrahim Ahmad','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim',1,7),(11,'Okky Aditya','okky','okky@user.com','okky',1,7);

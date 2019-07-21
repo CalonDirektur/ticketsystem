@@ -10,12 +10,15 @@ class Comment extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
     }
 
-    public function post_comment()
+    public function post_comment($produk)
     {
+
         $post = $this->input->post(NULL, TRUE);
+
         $data = [
             'parent_comment_id' => 0,
-            'id_comment' => $post['id_komentar'],
+            'id_user' => $post['id_user'],
+            $produk => $post['id_komentar'],
             'comment' => $post['post_comment'],
             'date' => date('Y-m-d H:i:s')
         ];
@@ -23,12 +26,13 @@ class Comment extends CI_Controller
         redirect('');
     }
 
-    public function post_reply()
+    public function post_reply($produk)
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
             'parent_comment_id' => $post['parent_comment'],
-            'id_comment' => $post['id_komentar'],
+            'id_user' => $post['id_user'],
+            $produk => $post['id_komentar'],
             'comment' => $post['post_reply'],
             'date' => date('Y-m-d H:i:s')
         ];
