@@ -11,32 +11,34 @@
     <div class="col-lg-2">
     </div>
     <div class="col-lg-6">
-      <table id="table-admin1" class="table">
-        <thead>
-          <th>ID Ticket</th>
-          <th>Nama Konsumen</th>
-          <th>Jenis Konsumen</th>
-          <th>Pendidikan</th>
-          <th>Ticket Status</th>
-          <th></th>
-        </thead>
-        <tbody>
-          <?php
-          $no = 1;
-          foreach ($data as $d) {  ?>
-            <tr>
-              <td>#<?= $d->id_mytalim ?></td>
-              <td><?= $d->nama_konsumen ?></td>
-              <td><?= $d->jenis_konsumen ?></td>
-              <td><?= ucfirst($d->pendidikan) ?></td>
-              <td><span class="label label-default">Belum direview</span></td>
-              <td><a class="btn btn-default" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
-            </tr>
+      <div class="table-responsive">
+        <table id="table-admin1" class="table">
+          <thead>
+            <th>ID Ticket</th>
+            <th>Nama Konsumen</th>
+            <th>Jenis Konsumen</th>
+            <th>Pendidikan</th>
+            <th>Ticket Status</th>
+            <th></th>
+          </thead>
+          <tbody>
             <?php
-            $no++;
-          } ?>
-        </tbody>
-      </table>
+            $no = 1;
+            foreach ($data as $d) {  ?>
+              <tr>
+                <td>#<?= $d->id_mytalim ?></td>
+                <td><?= $d->nama_konsumen ?></td>
+                <td><?= $d->jenis_konsumen ?></td>
+                <td><?= ucfirst($d->pendidikan) ?></td>
+                <td><span class="label label-default">Belum direview</span></td>
+                <td><a class="btn btn-default" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
+              </tr>
+              <?php
+              $no++;
+            } ?>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-lg-2">
 

@@ -24,9 +24,11 @@ class User_m extends CI_Model
 
     public function get($id = null)
     {
-        $this->db->from('user, tb_cabang');
+        $this->db->from('user');
         if ($id != null) {
-            $this->db->where(['username' => $id, 'user.id_cabang = tb_cabang.id_cabang']);
+            // $this->db->where(['username' => $id, 'user.id_cabang = tb_cabang.id_cabang']);
+            $this->db->join('tb_cabang', 'user.id_cabang = tb_cabang.id_cabang', 'inner');
+            $this->db->where('username', $id);
         }
         $query = $this->db->get();
 

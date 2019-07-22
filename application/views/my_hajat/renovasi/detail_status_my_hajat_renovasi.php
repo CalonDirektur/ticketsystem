@@ -123,7 +123,7 @@
             <div class="form-group">
               <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
               <input type="hidden" name="id_komentar" value="<?= $data->id_renovasi ?>">
-              <input readonly type="text" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+              <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
             </div>
           </div>
           <div class="box-footer">

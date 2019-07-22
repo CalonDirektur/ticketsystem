@@ -33,43 +33,43 @@
             </thead>
             <tr>
               <td><b>ID Ticket</b></td>
-              <td>#<?= $data->id_mytalim ?></td>
+              <td><input type="text" class="form-control" name="id_mytalim" id="id_mytalim" value="<?= $data->id_mytalim ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Nama Konsumen</b></td>
-              <td><?= $data->nama_konsumen ?></td>
+              <td><input type="text" class="form-control" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Jenis Konsumen</b></td>
-              <td><?= $data->jenis_konsumen ?></td>
+              <td><input type="text" class="form-control" name="jenis_konsumen" id="jenis_konsumen" value="<?= $data->jenis_konsumen ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Pendidikan</b></td>
-              <td><?= $data->pendidikan ?></td>
+              <td><input type="text" class="form-control" name="pendidikan" id="pendidikan" value="<?= $data->pendidikan ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Nama Lembaga</b></td>
-              <td><?= $data->nama_lembaga ?></td>
+              <td><input type="text" class="form-control" name="nama_lembaga" id="nama_lembaga" value="<?= $data->nama_lembaga ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Tahun Berdiri</b></td>
-              <td><?= $data->tahun_berdiri ?></td>
+              <td><input type="text" class="form-control" name="tahun_berdiri" id="tahun_berdiri" value="<?= $data->tahun_berdiri ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Akreditasi</b></td>
-              <td><?= $data->akreditasi ?></td>
+              <td><input type="text" class="form-control" name="akreditasi" id="akreditasi" value="<?= $data->akreditasi ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Tahun Periode</b></td>
-              <td><?= $data->periode ?></td>
+              <td><input type="text" class="form-control" name="periode" id="periode" value="<?= $data->periode ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Tujuan Pembiayaan</b></td>
-              <td><?= $data->tujuan_pembiayaan ?></td>
+              <td><input type="text" class="form-control" name="tujuan_pembiayaan" id="tujuan_pembiayaan" value="<?= $data->tujuan_pembiayaan ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Nilai Pembiayaan</b></td>
-              <td><?= $data->nilai_pembiayaan ?></td>
+              <td><input type="text" class="form-control" name="nilai_pembiayaan" id="nilai_pembiayaan" value="<?= $data->nilai_pembiayaan ?>" readonly></td>
             </tr>
             <tr>
               <td><b>Status:</b></td>
@@ -89,6 +89,12 @@
                 }
                 ?>
               </td>
+            </tr>
+            <tr>
+                <td>
+                  <button id="ubah" class="btn btn-secondary">Ubah Data</button>
+                  <a class="btn btn-primary" href="<?= base_url('ticket_register/edit/mytalim/id/' . $data->id_mytalim) ?>">Approve</a>
+                </td>
             </tr>
             <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
             <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
@@ -126,7 +132,7 @@
             <div class="form-group">
               <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
               <input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
-              <input readonly type="text" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+              <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
             </div>
           </div>
           <div class="box-footer">

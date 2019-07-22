@@ -56,7 +56,6 @@ class Ticket_register extends CI_Controller {
 
 		//add form my ta'lim
 		if(isset($_POST['submit_mytalim'])){
-
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -307,27 +306,112 @@ class Ticket_register extends CI_Controller {
 		}
 
 		// FORMULIR PENYEDIA JASA
-		if(isset($_POST['submit_penyedia_jasa'])){
-		$data = [
-			'nama_konsumen' => $post['nama_konsumen'],
-			'jenis_konsumen' => $post['jenis_konsumen'],
-			'id_cabang' => $post['cabang'],
-			'nama_penyedia_jasa' => $post['nama_penyedia_jasa'],
-			'jenis_penyedia_jasa' => $post['jenis_penyedia_jasa'],
-			'informasi_tambahan' => $post['informasi_tambahan'],
-			'id_approval' => 0
-		];
-		
-		$id = $this->data_m->add('tb_my_hajat',$data);
+		if(isset($_POST['submit_lainnya'])){
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+				'nama_penyedia_jasa' => $post['nama_penyedia_jasa'],
+				'jenis_penyedia_jasa' => $post['jenis_penyedia_jasa'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
+				'id_approval' => 0
+			];
+			
+			$id = $this->data_m->add('tb_my_hajat',$data);
 
-		if($id){
-			echo "Data berhasil disimpan";
-			redirect('/');
-		}else{
-				echo "Data gagal disimpan";
-		
-		}
-			redirect('dashboard');
-		}
+			if($id){
+				echo "Data berhasil disimpan";
+				redirect('/');
+			}else{
+					echo "Data gagal disimpan";
+			
+			}
+				redirect('dashboard');
+			}
+	}
+
+	public function edit()
+	{
+		if(isset($_POST['edit_mytalim'])){
+
+			$post = $this->input->post(NULL, TRUE);
+			
+			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');			
+			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
+			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
+			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
+			$this->form_validation->set_rules('pendidikan', 'Nama Vendor', 'required');
+			$this->form_validation->set_rules('nama_lembaga', 'Jenis Vendor', 'required');
+			$this->form_validation->set_rules('tahun_berdiri', 'Bagian Bangunan', 'required');
+			$this->form_validation->set_rules('akreditasi', 'Luas Bangunan', 'required');
+			$this->form_validation->set_rules('periode', 'Jumlah Pekerja', 'required');
+			$this->form_validation->set_rules('tujuan_pembiayaan', 'Estimasi Waktu', 'required');
+			$this->form_validation->set_rules('nilai_pembiayaan', 'Nilai Pembiayaan', 'required');
+
+			if($this->form_validation->run() != FALSE){
+				$data = [
+					'nama_konsumen' => $post['nama_konsumen'],
+					'jenis_konsumen' => $post['jenis_konsumen'],
+					'id_cabang' => $post['cabang'],
+					'pendidikan' => $post['pendidikan'],
+					'nama_lembaga' => $post['nama_lembaga'],
+					'tahun_berdiri' => $post['tahun_berdiri'],
+					'akreditasi' => $post['akreditasi'],
+					'periode' => $post['periode'],
+					'tujuan_pembiayaan' => $post['tujuan_pembiayaan'],
+					'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+					'id_approval' => 0
+				];
+	
+				//Konfigurasi Upload
+				$config['upload_path']         = './uploads/mytalim';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 1000;
+				$config['max_width']            = 2000;
+				$config['max_height']           = 1600;
+				$this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload('ktp')){
+				echo $this->upload->display_errors();
+				}else{
+					$data['ktp'] = $this->upload->data('file_name');
+				}
+	
+				if (!$this->upload->do_upload('kk')){
+				echo $this->upload->display_errors();
+				}else{
+					$data['kk'] = $this->upload->data('file_name');
+				}
+	
+				if (!$this->upload->do_upload('bukti_penghasilan')){
+				echo $this->upload->display_errors();
+				}else{
+					$data['bukti_penghasilan'] = $this->upload->data('file_name');
+				}
+	
+				if (!$this->upload->do_upload('npwp')){
+				echo $this->upload->display_errors();
+				}else{
+					$data['npwp'] = $this->upload->data('file_name');
+				}
+	
+				if (!$this->upload->do_upload('tambahan')){
+				echo $this->upload->display_errors();
+				}else{
+					$data['tambahan'] = $this->upload->data('file_name');
+				}
+	
+				$id = $this->data_m->update('tb_my_talim', $data, );
+	
+				if($id){
+					echo "Data berhasil disimpan";
+					redirect('/');
+				}else{
+						echo "Data gagal disimpan";
+				}
+			}else{
+				$this->form_my_hajat();
+			}
 		}
 	}
+}
