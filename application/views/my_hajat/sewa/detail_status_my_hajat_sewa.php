@@ -1,4 +1,4 @@
-<section class="content-header">
+as<section class="content-header">
   <h1>
     Detail My Hajat Sewa Tickets
   </h1>
@@ -19,6 +19,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
+						<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
           <table class="table table-striped">
             <thead>
               <th>Kolom</th>
@@ -26,35 +27,60 @@
             </thead>
             <tr>
               <td><b>ID Ticket</b></td>
-              <td>#<?= $data->id_sewa ?></td>
+              <td><input type="text" class="form-control enable" name="id_sewa" id="id_sewa" value="<?= $data->id_sewa ?>"readonly required></td>
             </tr>
             <tr>
               <td><b>Nama Konsumen</b></td>
-              <td><?= $data->nama_konsumen ?></td>
+              <td><input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>"readonly required></td>
             </tr>
             <tr>
               <td><b>Jenis Konsumen</b></td>
-              <td><?= $data->jenis_konsumen ?></td>
+              <td>
+                <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                    Internal</option>
+                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><b>Nama Pemilik</b></td>
-              <td><?= $data->nama_pemilik ?></td>
+              <td><input type="text" class="form-control enable" name="nama_pemilik" id="nama_pemilik" value="<?= $data->nama_pemilik ?>"readonly required></td>
             </tr>
             <tr>
               <td><b>Jenis Pemilik</b></td>
-              <td><?= $data->jenis_pemilik ?></td>
+              <td><select class="form-control enable" name="jenis_pemilik" id="jenis_pemilik" disabled required>
+                  <option value="Perorangan" <?= $data->jenis_pemilik == 'Perorangan' ? 'selected' : ''  ?>>
+                    Perorangan</option>
+                  <option value="Perusahaan" <?= $data->jenis_pemilik == 'Perusahaan' ? 'selected' : ''  ?>>Perusahaan/Badan Usaha</option>
+                </select></td>
             </tr>
             <tr>
               <td><b>Hubungan dengan Pemohon</b></td>
-              <td><?= $data->hubungan_pemohon ?></td>
+              <td><input type="text" class="form-control enable" name="hubungan_pemohon" id="hubungan_pemohon" value="<?= $data->hubungan_pemohon ?>"readonly required></td>
             </tr>
             <tr>
               <td><b>Luas Panjang</b></td>
-              <td><?= $data->luas_panjang ?></td>
+              <td><input type="text" class="form-control enable" name="luas_panjang" id="luas_panjang" value="<?= $data->luas_panjang ?>"readonly required></td>
+            </tr>
+            <tr>
+              <td><b>Biaya per Tahun</b></td>
+              <td><input type="number" class="form-control enable" name="biaya_pertahun" id="biaya_pertahun" value="<?= $data->biaya_tahunan ?>"readonly required></td>
             </tr>
             <td><b>Informasi Tambahan</b></td>
-            <td><?= $data->informasi_tambahan ?></td>
+              <td><textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea></td>
             </tr>
+            <tr>
+              <td></td>
+            <!-- Tombol ini muncul khusus untuk user -->
+            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+              <td>
+                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                <button type="submit" id="edit_sewa" class="btn btn-primary enable" name="edit_sewa" disabled>Kirim Data!</button>
+              </form>
+              </td>
+						</tr>
+            <?php } ?>
             <tr>
               <td><b>Status:</b></td>
               <td>
@@ -88,7 +114,7 @@
               <tr>
                 <td><b>Aksi:</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/completed/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
+                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
                 </td>
               </tr>
             <?php } ?>

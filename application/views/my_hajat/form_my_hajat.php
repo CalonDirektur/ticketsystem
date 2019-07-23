@@ -69,6 +69,9 @@
                    <div class="radio">
                      <label><input class="kategori" id="franchise" type="radio" name="kategori_myhajat">Franchise</label>
                    </div>
+                   <div class="radio">
+                     <label><input class="kategori" id="lainnya" type="radio" name="kategori_myhajat">Lainnya</label>
+                   </div>
                  </div>
              </div>
             <div class="box-footer">
@@ -313,7 +316,7 @@
           </div>
 
           <!-- Box Penyedia Jasa -->
-            <div id="box-penyedia-jasa" class="box box-primary pertanyaan">
+            <div id="box-lainnya" class="box box-primary pertanyaan">
               <div class="box-header with-border">
                 <h3 class="box-title">Penyedia Jasa</h3>
               </div>

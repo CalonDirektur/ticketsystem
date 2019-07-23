@@ -12,7 +12,7 @@ class Data_m extends CI_Model
     public function update($table, $data, $where)
     {
         $query = $this->db->update($table, $data, $where);
-        return $this->db->affected_rows();   
+        return $query;   
     }
 
     public function get($table, $where = NULL, $id_cabang = NULL){

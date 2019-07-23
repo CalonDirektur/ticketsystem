@@ -19,50 +19,87 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
+						<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
           <table class="table table-striped">
             <thead>
               <th>Kolom</th>
               <th>Isi</th>
             </thead>
             <tr>
-              <td><b>ID Ticket</b></td>
-              <td>#<?= $data->id_wedding ?></td>
+              <td><b>ID Wedding</b></td>
+              <td>
+                <input type="text" class="form-control" name="id_wedding" id="id_wedding" value="<?= $data->id_wedding ?>"  readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Nama Konsumen</b></td>
-              <td><?= $data->nama_konsumen ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>"  readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Jenis Konsumen</b></td>
-              <td><?= $data->jenis_konsumen ?></td>
+              <td>
+                <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                    Internal</option>
+                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><b>Nama Wedding Organizer</b></td>
-              <td><?= $data->nama_wo ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="nama_wo" id="nama_wo" value="<?= $data->nama_wo ?>" readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Jenis Wedding Organizer</b></td>
-              <td><?= $data->jenis_wo ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="jenis_wo" id="jenis_wo" value="<?= $data->jenis_wo ?>" readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Lama Usaha Berdiri</b></td>
-              <td><?= $data->lama_berdiri ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="lama_berdiri" id="lama_berdiri" value="<?= $data->lama_berdiri ?>" readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Jumlah Biaya Acara</b></td>
-              <td><?= $data->jumlah_biaya ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="jumlah_biaya" id="jumlah_biaya" value="<?= $data->jumlah_biaya ?>" readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Jumlah Undangan</b></td>
-              <td><?= $data->jumlah_undangan ?></td>
+              <td>
+                <input type="number" class="form-control enable" name="jumlah_undangan" id="jumlah_undangan" value="<?= $data->jumlah_undangan ?>" readonly required >
+            </td>
             </tr>
             <tr>
               <td><b>Akun Media Sosial Wedding Organizer</b></td>
-              <td><?= $data->akun_sosmed ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="akun_sosmed" id="akun_sosmed" value="<?= $data->akun_sosmed ?>" readonly required >
+            </td>
             </tr>
+            <tr>
             <td><b>Informasi Tambahan</b></td>
-            <td><?= $data->informasi_tambahan ?></td>
+              <td>
+                <textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea>
+              </td>
             </tr>
+            <!-- Tombol ini muncul khusus untuk user -->
+            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+            <tr>
+              <td></td>
+              <td>
+                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                <button type="submit" id="edit_wedding" class="btn btn-primary enable" name="edit_wedding" disabled>Kirim Data!</button>
+              </form>
+              </td>
+						</tr>
+            <?php } ?>
             <tr>
               <td><b>Status:</b></td>
               <td>

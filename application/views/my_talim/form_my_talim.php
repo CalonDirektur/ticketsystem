@@ -60,10 +60,10 @@
                 <div class="form-group">
                   <label for="pendidikan">Pendidikan</label>
                   <select required name="pendidikan" id="pendidikan" class="form-control">
-                    <option value="sekolah">Sekolah</option>
-                    <option value="universitas">Universitas</option>
+                    <option value="Sekolah">Sekolah</option>
+                    <option value="Universitas">Universitas</option>
                     <option value="Kursus">Kursus</option>
-                    <option value="lainnya">Lainnya</option>
+                    <option value="Lainnya">Lainnya</option>
                   </select>
                 </div>
                 <!-- Nama Lembaga -->
@@ -135,7 +135,7 @@
               </form>
               </div>
              <div class="box-footer text-center">
-                  <button class="btn btn-primary" name="submit_mytalim">Kirim Data!</button> 
+                <button class="btn btn-primary" name="submit_mytalim">Kirim Data!</button> 
             </div>
           </div>
         </div>

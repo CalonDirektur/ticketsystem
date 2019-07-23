@@ -19,6 +19,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
+						<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
           <table class="table table-striped">
             <thead>
               <th>Kolom</th>
@@ -26,48 +27,94 @@
             </thead>
             <tr>
               <td><b>ID Ticket</b></td>
-              <td>#<?= $data->id_renovasi ?></td>
+              <td>
+                <input type="text" class="form-control" name="id_renovasi" id="id_mytalim"
+											value="<?= $data->id_renovasi ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Nama Konsumen</b></td>
-              <td><?= $data->nama_konsumen ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen"
+											value="<?= $data->nama_konsumen ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Jenis Konsumen</b></td>
-              <td><?= $data->jenis_konsumen ?></td>
+              <td>
+                <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                    Internal</option>
+                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><b>Nama Vendor</b></td>
-              <td><?= $data->nama_vendor ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="nama_vendor" id="nama_vendor"
+											value="<?= $data->nama_vendor ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Jenis Vendor</b></td>
-              <td><?= $data->jenis_vendor ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="jenis_vendor" id="jenis_vendor"
+											value="<?= $data->jenis_vendor ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Bagian Bangunan</b></td>
-              <td><?= $data->bagian_bangunan ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="bagian_bangunan" id="bagian_bangunan"
+											value="<?= $data->bagian_bangunan ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Luas Bangunan</b></td>
-              <td><?= $data->luas_bangunan ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="luas_bangunan" id="luas_bangunan"
+											value="<?= $data->luas_bangunan ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Jumlah Pekerja</b></td>
-              <td><?= $data->jumlah_pekerja ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="jumlah_pekerja" id="jumlah_pekerja"
+											value="<?= $data->jumlah_pekerja ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Estimasi Waktu</b></td>
-              <td><?= $data->estimasi_waktu ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="estimasi_waktu" id="estimasi_waktu"
+											value="<?= $data->estimasi_waktu ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Nilai Pembiayaan</b></td>
-              <td><?= $data->nilai_pembiayaan ?></td>
+              <td>
+                <input type="text" class="form-control enable" name="nilai_pembiayaan" id="nilai_pembiayaan"
+											value="<?= $data->nilai_pembiayaan ?>" readonly required>
+              </td>
             </tr>
             <tr>
               <td><b>Informasi Tambahan</b></td>
-              <td><?= $data->informasi_tambahan ?></td>
+              <td>
+                <textarea name="informasi_tambahan" class="form-control enable" id="informasi_tambahan" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
+              </td>
             </tr>
+            <!-- Tombol ini muncul khusus untuk user -->
+            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+            <tr>
+              <td></td>
+              <td>
+                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                <button type="submit" id="edit_renovasi" class="btn btn-primary enable" name="edit_renovasi" disabled>Kirim Data!</button>
+              </form>
+              </td>
+						</tr>
+            <?php } ?>
             <tr>
               <td><b>Status:</b></td>
               <td>
