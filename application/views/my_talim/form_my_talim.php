@@ -10,12 +10,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-          <!-- Box Data Konsumen -->
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Konsumen</h3>
+          <!-- card Data Konsumen -->
+            <div class="card card-primary mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Konsumen</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                   <!-- Nama Konsumen -->
                   <div class="form-group">
                   <label for="nama_konsumen">Nama Konsumen</label>
@@ -44,18 +44,15 @@
                    <label for="id_ticket">ID Ticket</label>
                    <input required name="id_ticket" id="id_ticket" type="text" class="form-control" value="<?= hexdec(uniqid()); ?>" readonly>                
                 </div>
-             <div class="box-footer">
- 
-            </div>
           </div>
         </div>
 
-          <!-- Box Pertanyaan form My'Talim -->
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Form My Ta'lim</h3>
+          <!-- card Pertanyaan form My'Talim -->
+            <div class="card card-primary mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Form My Ta'lim</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                 <!-- Pendidikan -->
                 <div class="form-group">
                   <label for="pendidikan">Pendidikan</label>
@@ -97,17 +94,14 @@
                   <input required name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pembiayaan">
                 </div>
               </div>
-             <div class="box-footer">
- 
-            </div>
           </div>
 
-          <!-- Box Upload File -->
-          <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Upload File</h3>
+          <!-- card Upload File -->
+          <div class="card card-primary mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Upload File</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                 <div class="col-lg-6">
                    <div class="form-group">
                     <label for="ktp">KTP</label>
@@ -134,7 +128,7 @@
                 </div>
               </form>
               </div>
-             <div class="box-footer text-center">
+             <div class="card-footer text-center">
                 <button class="btn btn-primary" name="submit_mytalim">Kirim Data!</button> 
             </div>
           </div>

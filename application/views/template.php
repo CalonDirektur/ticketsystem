@@ -437,55 +437,6 @@
   <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('.sidebar-menu').tree();
-      // DataTable
-      $('#table-admin1').DataTable();
-
-      //Menyembunyikan tombol submit di halaman tiket yang direject
-      // $('#edit_mytalim').hide();
-
-      // Script Halaman Formulir Pendaftaran Tiket My Hajat
-      $(".box.pertanyaan").hide();
-      $('.kategori').click(function() {
-        if ($("#renovasi").is(':checked')) {
-          $("#box-renovasi").fadeIn();
-          $("#box-sewa, #box-franchise, #box-wedding, #box-lainnya").fadeOut();
-        }
-        if ($("#sewa").is(':checked')) {
-          $("#box-sewa").fadeIn();
-          $("#box-renovasi, #box-franchise, #box-wedding, #box-lainnya").fadeOut();
-        }
-        if ($("#wedding").is(':checked')) {
-          $("#box-wedding").fadeIn();
-          $("#box-renovasi, #box-sewa, #box-franchise, #box-lainnya").fadeOut();
-        }
-        if ($("#franchise").is(':checked')) {
-          $("#box-franchise").fadeIn();
-          $("#box-renovasi, #box-wedding, #box-sewa, #box-lainnya").fadeOut();
-        }
-        if ($("#lainnya").is(':checked')) {
-          $("#box-lainnya").fadeIn();
-          $("#box-renovasi, #box-wedding, #box-sewa").fadeOut();
-        }
-      })
-
-      //Halaman detail status tiket bagian gambar
-      $('.thumb').on('click', function() {
-        var gambar = $(this).attr('src');
-        // alert(gambar);
-        $('#gambar').attr('src', gambar);
-      })
-
-      //Halaman detail ticket status, tombol untuk ubah data
-      $('#ubah').on('click', function(){
-        $('.enable').removeAttr('readonly disabled');
-        $(this).fadeOut(); 
-      })
-
-    })
-  </script>
 </body>
 
 </html>

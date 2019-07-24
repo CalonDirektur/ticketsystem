@@ -40,10 +40,10 @@ class Data_m extends CI_Model
             } 
         }
         if($where == 'rejected_review'){
-        $this->db->where('id_approval', 1);
-        if($id_cabang != NULL){
-            $this->db->where('id_cabang', $id_cabang);
-        } 
+            $this->db->where('id_approval', 1);
+            if($id_cabang != NULL){
+                $this->db->where('id_cabang', $id_cabang);
+            } 
         }
         if($where == 'approved_review'){
             $this->db->where('id_approval', 2);
@@ -57,6 +57,7 @@ class Data_m extends CI_Model
                 $this->db->where('id_cabang', $id_cabang);
             } 
         }
+        
         $query = $this->db->get();
 
         return $query;
@@ -64,17 +65,24 @@ class Data_m extends CI_Model
 
    public function get_by_id($table, $where)
    {
-        // $this->db->from($table1);
-        // $this->db->join($table2, '$table1.')
         $query = $this->db->get_where($table, $where);
         return $query;
+   }
+
+   public function get_product($table, $where, $order_by)
+   {
+       $this->db->from($table);
+       $this->db->where($where);
+       $this->db->order_by($order_by);
+
+       $query = $this->db->get();
+       return $query;
    }
 
    public function count_data($table, $where)
    {
         $this->db->from($table);
         $this->db->where($where);
-
         $query = $this->db->count_all_results();
         return $query;
    }    

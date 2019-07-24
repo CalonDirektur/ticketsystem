@@ -20,32 +20,18 @@ class Ticket_register extends CI_Controller {
 	{
 		// Mengambil list cabang2 
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
-		$this->template->load('template', 'my_hajat/form_my_hajat', $data);
+		$this->template->load('template2', 'my_hajat/form_my_hajat', $data);
 	}
 
 	public function form_my_talim()
 	{
 		// Mengambil list cabang2 
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
-		$this->template->load('template', 'my_talim/form_my_talim', $data);
+		$this->template->load('template2', 'my_talim/form_my_talim', $data);
 	}
 	
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
-	public function pending(){
-		$data['records'] = $this->data_m->get('pending_review')->result_array();		
-		$this->template->load('template', 'user/ticket_pending', $data);
-	}
 
-	public function approved(){
-		$data['records'] = $this->data_m->get('status_admin2')->result_array();		
-		$this->template->load('template', 'user/ticket_approved', $data);
-	}
-	
-	public function rejected(){
-		
-		$data['records'] = $this->data_m->get('rejected_review')->result_array();
-		$this->template->load('template', 'user/ticket_rejected', $data);
-	}
 
 	public function add()
 	{
@@ -308,17 +294,26 @@ class Ticket_register extends CI_Controller {
 
 		// FORMULIR PENYEDIA JASA
 		if(isset($_POST['submit_lainnya'])){
+			
+			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
+			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
+			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
+			$this->form_validation->set_rules('nama_penyedia_jasa', 'Nama Penyedia Jasa', 'required');
+			$this->form_validation->set_rules('jenis_penyedia_jasa', 'Jenis Penyedia Jasa', 'required');
+			$this->form_validation->set_rules('nilai_pembiayaan', 'Nilai Pengajuan Pembiayaan', 'required');
+
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
 				'id_cabang' => $post['cabang'],
 				'nama_penyedia_jasa' => $post['nama_penyedia_jasa'],
 				'jenis_penyedia_jasa' => $post['jenis_penyedia_jasa'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
 				'informasi_tambahan' => $post['informasi_tambahan'],
 				'id_approval' => 0
 			];
 			
-			$id = $this->data_m->add('tb_my_hajat',$data);
+			$id = $this->data_m->add('tb_my_hajat_lainnya',$data);
 
 			if($id){
 				echo "Data berhasil disimpan";
@@ -329,7 +324,7 @@ class Ticket_register extends CI_Controller {
 			}
 				redirect('dashboard');
 			}
-	}
+		}
 
 	public function edit()
 	{ 
@@ -347,7 +342,8 @@ class Ticket_register extends CI_Controller {
 				'akreditasi' => $post['akreditasi'],
 				'periode' => $post['periode'],
 				'tujuan_pembiayaan' => $post['tujuan_pembiayaan'],
-				'nilai_pembiayaan' => $post['nilai_pembiayaan']
+				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+				'id_approval' => 0
 			];
 
 			//Konfigurasi Upload
@@ -447,6 +443,7 @@ class Ticket_register extends CI_Controller {
 			}
 		}
 
+		//FORMULIR WEDDING
 		if(isset($_POST['edit_wedding'])){
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
@@ -471,6 +468,7 @@ class Ticket_register extends CI_Controller {
 			}
 		}
 
+		//FORMULIR FRANCHISE
 		if(isset($_POST['edit_franchise'])){
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
@@ -487,6 +485,29 @@ class Ticket_register extends CI_Controller {
 			];
 			
 			$id = $this->data_m->update('tb_my_hajat_franchise', $data, ['id_franchise' => $post['id_franchise']]);
+
+			if($id){
+				echo "Data berhasil disimpan";
+				redirect('/');
+			}else{
+					echo "Data gagal disimpan";
+			}
+		}
+
+		//FORMULIR LAINNYA
+		if(isset($_POST['edit_lainnya'])){
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				// 'id_cabang' => $post['cabang'],
+				'nama_penyedia_jasa' => $post['nama_penyedia_jasa'],
+				'jenis_penyedia_jasa' => $post['jenis_penyedia_jasa'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
+				'id_approval' => 0
+			];
+			
+			$id = $this->data_m->update('tb_my_hajat_lainnya', $data, ['id_myhajat_lainnya' => $post['id_myhajat_lainnya']]);
 
 			if($id){
 				echo "Data berhasil disimpan";

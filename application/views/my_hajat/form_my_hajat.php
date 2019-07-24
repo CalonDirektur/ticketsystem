@@ -11,12 +11,12 @@
         <div class="row">
           <div class="col-lg-12">     
 
-            <!-- Box Data Konsumen -->
-            <div id="box-konsumen" class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Konsumen</h3>
+            <!-- card Data Konsumen -->
+            <div id="card-konsumen" class="card card-primary">
+              <div class="card-header with-border">
+                <h3 class="card-title">Konsumen</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                   <!-- Nama Konsumen -->
                   <div class="form-group">
                   <label for="nama_konsumen">Nama Konsumen</label>
@@ -45,46 +45,46 @@
                   </select>
                 </div>
               </div>
-              <div class="box-footer">
+              <div class="card-footer">
  
               </div>
             </div>
 
-            <!-- Box Kategori My Hajat -->
-          <div id="box-kategori-myhajat" class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Kategori My Hajat</h3>
+            <!-- card Kategori My Hajat -->
+          <div id="card-kategori-myhajat" class="card card-primary">
+            <div class="card-header with-border">
+                <h3 class="card-title">Kategori My Hajat</h3>
              </div>
-             <div class="box-body">
+             <div class="card-body">
                  <div class="form-group">
-                   <div class="radio">
-                     <label><input class="kategori" id="renovasi" type="radio" name="kategori_myhajat">Renovasi</label>
+                   <div class="form-check">
+                     <label class="form-check-label"><input class="kategori form-check-input" id="renovasi" type="radio" name="kategori_myhajat">Renovasi</label>
                    </div>
-                   <div class="radio">
-                     <label><input class="kategori" id="sewa" type="radio" name="kategori_myhajat">Sewa</label>
+                   <div class="form-check">
+                     <label class="form-check-label"><input class="kategori form-check-input" id="sewa" type="radio" name="kategori_myhajat">Sewa</label>
                    </div>
-                   <div class="radio">
-                     <label><input class="kategori" id="wedding" type="radio" name="kategori_myhajat">Wedding</label>
+                   <div class="form-check">
+                     <label class="form-check-label"><input class="kategori form-check-input" id="wedding" type="radio" name="kategori_myhajat">Wedding</label>
                    </div>
-                   <div class="radio">
-                     <label><input class="kategori" id="franchise" type="radio" name="kategori_myhajat">Franchise</label>
+                   <div class="form-check">
+                     <label class="form-check-label"><input class="kategori form-check-input" id="franchise" type="radio" name="kategori_myhajat">Franchise</label>
                    </div>
-                   <div class="radio">
-                     <label><input class="kategori" id="lainnya" type="radio" name="kategori_myhajat">Lainnya</label>
+                   <div class="form-check">
+                     <label class="form-check-label"><input class="kategori form-check-input" id="lainnya" type="radio" name="kategori_myhajat">Lainnya</label>
                    </div>
                  </div>
              </div>
-            <div class="box-footer">
+            <div class="card-footer">
 
             </div>
           </div> 
 
-          <!-- Box Renovasi -->
-          <div id="box-renovasi" class="box box-primary pertanyaan">
-            <div class="box-header with-border">
-              <h3 class="box-title">Renovasi</h3>
+          <!-- card Renovasi -->
+          <div id="card-renovasi" class="card card-primary pertanyaan mt-4">
+            <div class="card-header with-border">
+              <h3 class="card-title">Renovasi</h3>
             </div>
-            <div class="box-body">
+            <div class="card-body">
                 <!-- Nama Vendor -->
                 <div class="form-group">
                 <label for="nama_vendor">Nama Vendor</label>
@@ -134,17 +134,17 @@
                   <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
               </div>
             </div>
-            <div class="box-footer">
+            <div class="card-footer">
               <button name="submit_renovasi" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
-          <!-- Box Sewa -->
-          <div id="box-sewa" class="box box-primary pertanyaan">
-              <div class="box-header with-border">
-                <h3 class="box-title">Sewa</h3>
+          <!-- card Sewa -->
+          <div id="card-sewa" class="card card-primary pertanyaan mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Sewa</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                   <!-- Nama Pemilik -->
                   <div class="form-group">
                     <label for="nama_pemilik">Nama Pemilik</label>
@@ -184,17 +184,17 @@
                     <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
-             <div class="box-footer">
+             <div class="card-footer">
                 <button name="submit_sewa" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
-          <!-- Box Wedding -->
-          <div id="box-wedding" class="box box-primary pertanyaan">
-              <div class="box-header with-border">
-                <h3 class="box-title">Wedding</h3>
+          <!-- card Wedding -->
+          <div id="card-wedding" class="card card-primary pertanyaan mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Wedding</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                   <!-- Nama WO -->
                   <div class="form-group">
                   
@@ -238,17 +238,17 @@
                     <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
-             <div class="box-footer">
+             <div class="card-footer">
                 <button name="submit_wedding" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
 
-          <!-- Box Franchise -->
-          <div id="box-franchise" class="box box-primary pertanyaan">
-              <div class="box-header with-border">
-                <h3 class="box-title">Franchise</h3>
+          <!-- card Franchise -->
+          <div id="card-franchise" class="card card-primary pertanyaan mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Franchise</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                   <!-- Nama Franchise -->
                   <div class="form-group">
                     <label for="nama_franchise">Nama Franchise</label>
@@ -310,42 +310,46 @@
                 </div>
                 <button name="submit_franchise" class="btn btn-primary" name="submit">Kirim Data!</button>
               </div>
-             <div class="box-footer">
+             <div class="card-footer">
  
             </div>
           </div>
 
-          <!-- Box Penyedia Jasa -->
-            <div id="box-lainnya" class="box box-primary pertanyaan">
-              <div class="box-header with-border">
-                <h3 class="box-title">Penyedia Jasa</h3>
+          <!-- card Penyedia Jasa -->
+          <div id="card-lainnya" class="card card-primary pertanyaan mt-4">
+              <div class="card-header with-border">
+                <h3 class="card-title">Penyedia Jasa</h3>
               </div>
-              <div class="box-body">
+              <div class="card-body">
                   <!-- Nama Penyedia Jasa -->
-                  <div class="form-group">
-                  
+                  <div class="form-group">                 
                     <label for="nama_penyedia_jasa">Nama Penyedia Jasa</label>
                     <?= form_error('nama_penyedia_jasa'); ?>
-                  <input name="nama_penyedia_jasa" id="nama_penyedia_jasa" type="text" class="form-control" placeholder="Nama Penyedia Jasa" value="<?= set_value('nama_vendor') ?>">                
-                </div>
+                    <input name="nama_penyedia_jasa" id="nama_penyedia_jasa" type="text" class="form-control" placeholder="Nama Penyedia Jasa" value="<?= set_value('nama_penyedia_jasa') ?>">                
+                  </div>
                 <!-- Jenis Penyedia Jasa -->
-                <div class="form-group">
-                  
+                <div class="form-group">                 
                   <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa</label>
                   <?= form_error('jenis_penyedia_jasa'); ?>
-                  <select name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" class="form-control" value="<?= set_value('nama_vendor') ?>">
+                  <select name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" class="form-control" value="<?= set_value('jenis_penyedia_jasa') ?>">
                     <option value="Perorangan">Perorangan</option>
                     <option value="Badan Usaha">Badan Usaha</option>
                   </select>
                 </div>
+                <!-- Nilai Pengajuan Pembiayaan -->
+                <div class="form-group">                 
+                    <label for="nilai_pembiayaan">Nilai Pengajuan Pembiayaan</label>
+                    <?= form_error('nilai_pembiayaan'); ?>
+                    <input name="nilai_pembiayaan" id="nilai_pembiayaan" type="text" class="form-control" placeholder="Nilai Pengajuan Pembiayaan" value="<?= set_value('nilai_pembiayaan') ?>">                
+                  </div>
                 <!-- Informasi Tambahan -->
                 <div class="form-group">               
                 <label for="informasi_tambahan">Informasi Tambahan</label>
-                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"><?= set_value('informasi_tambahan') ?></textarea>
                 </div>
               </div>
-             <div class="box-footer">
-                <button name="submit_penyedia_jasa" class="btn btn-primary" name="submit">Kirim Data!</button> 
+             <div class="card-footer">
+                <button name="submit_lainnya" class="btn btn-primary" name="submit">Kirim Data!</button> 
             </div>
           </div>
           </form>

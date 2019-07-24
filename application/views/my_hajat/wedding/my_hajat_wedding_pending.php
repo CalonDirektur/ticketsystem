@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Pending My Ta'lim Tickets
+    Pending My Hajat Wedding Tickets
     <!-- <small>it all starts here</small> -->
   </h1>
 </section>
@@ -11,6 +11,7 @@
     <div class="col-lg-2">
     </div>
     <div class="col-lg-6">
+      <div class="table-responsive card">
       <table id="table-admin1" class="table">
         <thead>
           <th>ID Ticket</th>
@@ -38,6 +39,7 @@
         </tbody>
       </table>
     </div>
+        </div>
     <div class="col-lg-2">
 
     </div>

@@ -12,7 +12,7 @@
 
     </div>
     <div class="col-lg-6">
-      <div class="table-responsive">
+      <div class="table-responsive card">
         <table id="table-admin1" class="table">
           <thead>
             <th>ID Ticket</th>

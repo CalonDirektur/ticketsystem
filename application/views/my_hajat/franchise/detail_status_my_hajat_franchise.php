@@ -13,12 +13,12 @@
     </div>
 
     <div class="col-lg-6">
-      <div class="box">
-        <div class="box-header text-center">
-          <h3 class="box-title">Data Ticket My Hajat Franchise</h3>
+      <div class="card">
+        <div class="card-header text-center">
+          <h3 class="card-title">Data Ticket My Hajat Franchise</h3>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body no-padding">
+        <!-- /.card-header -->
+        <div class="card-body no-padding">
           <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
           <table class="table table-striped">
             <thead>
@@ -156,18 +156,18 @@
   <div class="row">
     <div class="col-lg-12 col-md-6">
       <form method="post" action="<?= base_url('comment/post_comment/id_franchise') ?>">
-        <div class="box">
-          <div class="box-header with-border">
+        <div class="card">
+          <div class="card-header with-border">
             <b>Post Komentar</b>
           </div>
-          <div class="box-body">
+          <div class="card-body">
             <div class="form-group">
               <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
               <input type="hidden" name="id_komentar" value="<?= $data->id_franchise ?>">
               <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
             </div>
           </div>
-          <div class="box-footer">
+          <div class="card-footer">
             <button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
           </div>
       </form>
@@ -180,24 +180,24 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
 
-        <div class="box box-widget">
-          <div class="box-header with-border">
+        <div class="card card-widget">
+          <div class="card-header with-border">
             <div class="user-block"> <span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span>
               <span class="description">Diposting: <?= $komen->date ?></span>
             </div>
-            <div class="box-tools">
-              <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+            <div class="card-tools">
+              <button type="button" class="btn btn-card-tool" data-toggle="tooltip" title="Mark as read">
                 <i class="fa fa-circle-o"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              <button type="button" class="btn btn-card-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              <button type="button" class="btn btn-card-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
           </div>
-          <div class="box-body">
+          <div class="card-body">
             <p><?= $komen->comment ?></p>
           </div>
-          <!-- Reply Box Comment -->
-          <div class="box-footer box-comments">
+          <!-- Reply card Comment -->
+          <div class="card-footer card-comments">
             <?php
             $this->db->from('tb_comment, user, tb_cabang');
             $this->db->where('parent_comment_id = ' . $komen->id . ' AND
@@ -206,7 +206,7 @@
             $reply = $this->db->get();
             ?>
             <?php foreach ($reply->result() as $balasan) { ?>
-              <div class="box-comment">
+              <div class="card-comment">
                 <div class="comment-text">
                   <span class="username">
                     <?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)
@@ -217,7 +217,7 @@
               </div>
             <?php } ?>
           </div>
-          <div class="box-footer">
+          <div class="card-footer">
             <form action="<?= base_url('comment/post_reply/id_franchise'); ?>" method="post">
               <div class="img-push">
                 <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">

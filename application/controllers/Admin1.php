@@ -71,6 +71,10 @@ class Admin1 extends CI_Controller
 			$this->Aksi_Admin1_m->approve('tb_my_hajat_franchise', ['id_franchise' => $id]);
 			redirect('/');
 		}
+		if ($produk == 'myhajat' && $kategori == 'lainnya') {
+			$this->Aksi_Admin1_m->approve('tb_my_hajat_lainnya', ['id_myhajat_lainnya' => $id]);
+			redirect('/');
+		}
 	}
 
 	public function reject($produk = NULL, $kategori, $id)

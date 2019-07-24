@@ -11,6 +11,7 @@
     <div class="col-lg-2">
     </div>
     <div class="col-lg-6">
+      <div class="table-responsive card" >
       <table id="table-admin1" class="table">
         <thead>
           <th>ID Ticket</th>
@@ -37,6 +38,7 @@
           } ?>
         </tbody>
       </table>
+    </div>
     </div>
     <div class="col-lg-2">
 
