@@ -19,105 +19,105 @@ as<section class="content-header">
         </div>
         <!-- /.card-header -->
         <div class="card-body no-padding">
-						<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
-          <table class="table table-striped">
-            <thead>
-              <th>Kolom</th>
-              <th>Isi</th>
-            </thead>
-            <tr>
-              <td><b>ID Ticket</b></td>
-              <td><input type="text" class="form-control enable" name="id_sewa" id="id_sewa" value="<?= $data->id_sewa ?>"readonly required></td>
-            </tr>
-            <tr>
-              <td><b>Nama Konsumen</b></td>
-              <td><input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>"readonly required></td>
-            </tr>
-            <tr>
-              <td><b>Jenis Konsumen</b></td>
-              <td>
-                <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
-                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
-                    Internal</option>
-                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Nama Pemilik</b></td>
-              <td><input type="text" class="form-control enable" name="nama_pemilik" id="nama_pemilik" value="<?= $data->nama_pemilik ?>"readonly required></td>
-            </tr>
-            <tr>
-              <td><b>Jenis Pemilik</b></td>
-              <td><select class="form-control enable" name="jenis_pemilik" id="jenis_pemilik" disabled required>
-                  <option value="Perorangan" <?= $data->jenis_pemilik == 'Perorangan' ? 'selected' : ''  ?>>
-                    Perorangan</option>
-                  <option value="Perusahaan" <?= $data->jenis_pemilik == 'Perusahaan' ? 'selected' : ''  ?>>Perusahaan/Badan Usaha</option>
-                </select></td>
-            </tr>
-            <tr>
-              <td><b>Hubungan dengan Pemohon</b></td>
-              <td><input type="text" class="form-control enable" name="hubungan_pemohon" id="hubungan_pemohon" value="<?= $data->hubungan_pemohon ?>"readonly required></td>
-            </tr>
-            <tr>
-              <td><b>Luas Panjang</b></td>
-              <td><input type="text" class="form-control enable" name="luas_panjang" id="luas_panjang" value="<?= $data->luas_panjang ?>"readonly required></td>
-            </tr>
-            <tr>
-              <td><b>Biaya per Tahun</b></td>
-              <td><input type="number" class="form-control enable" name="biaya_pertahun" id="biaya_pertahun" value="<?= $data->biaya_tahunan ?>"readonly required></td>
-            </tr>
-            <td><b>Informasi Tambahan</b></td>
+          <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
+            <table class="table table-striped">
+              <thead>
+                <th>Kolom</th>
+                <th>Isi</th>
+              </thead>
+              <tr>
+                <td><b>ID Ticket</b></td>
+                <td><input type="text" class="form-control enable" name="id_sewa" id="id_sewa" value="<?= $data->id_sewa ?>" readonly required></td>
+              </tr>
+              <tr>
+                <td><b>Nama Konsumen</b></td>
+                <td><input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required></td>
+              </tr>
+              <tr>
+                <td><b>Jenis Konsumen</b></td>
+                <td>
+                  <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                    <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                      Internal</option>
+                    <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Nama Pemilik</b></td>
+                <td><input type="text" class="form-control enable" name="nama_pemilik" id="nama_pemilik" value="<?= $data->nama_pemilik ?>" readonly required></td>
+              </tr>
+              <tr>
+                <td><b>Jenis Pemilik</b></td>
+                <td><select class="form-control enable" name="jenis_pemilik" id="jenis_pemilik" disabled required>
+                    <option value="Perorangan" <?= $data->jenis_pemilik == 'Perorangan' ? 'selected' : ''  ?>>
+                      Perorangan</option>
+                    <option value="Perusahaan" <?= $data->jenis_pemilik == 'Perusahaan' ? 'selected' : ''  ?>>Perusahaan/Badan Usaha</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td><b>Hubungan dengan Pemohon</b></td>
+                <td><input type="text" class="form-control enable" name="hubungan_pemohon" id="hubungan_pemohon" value="<?= $data->hubungan_pemohon ?>" readonly required></td>
+              </tr>
+              <tr>
+                <td><b>Luas Panjang</b></td>
+                <td><input type="text" class="form-control enable" name="luas_panjang" id="luas_panjang" value="<?= $data->luas_panjang ?>" readonly required></td>
+              </tr>
+              <tr>
+                <td><b>Biaya per Tahun</b></td>
+                <td><input type="number" class="form-control enable" name="biaya_pertahun" id="biaya_pertahun" value="<?= $data->biaya_tahunan ?>" readonly required></td>
+              </tr>
+              <td><b>Informasi Tambahan</b></td>
               <td><textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea></td>
-            </tr>
-            <tr>
-              <td></td>
-            <!-- Tombol ini muncul khusus untuk user -->
-            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-              <td>
-                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
-                <button type="submit" id="edit_sewa" class="btn btn-primary enable" name="edit_sewa" disabled>Kirim Data!</button>
-              </form>
-              </td>
-						</tr>
-            <?php } ?>
-            <tr>
-              <td><b>Status:</b></td>
-              <td>
-                <?php
-                if ($data->id_approval == 0) {
-                  echo '<span class="label label-warning">Belum Direview</span>';
-                }
-                if ($data->id_approval == 1) {
-                  echo '<span class="label label-danger">Ditolak</span>';
-                }
-                if ($data->id_approval == 2) {
-                  echo '<span class="label label-success">Disetujui Admin 1</span>';
-                }
-                if ($data->id_approval == 3) {
-                  echo '<span class="label label-primary">Selesai</span>';
-                }
-                ?>
-              </td>
-            </tr>
-            <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-            <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
-              <tr>
-                <td><b>Aksi:</b></td>
-                <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
-                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/sewa/' . $data->id_sewa) ?>">Reject</a>
-                </td>
               </tr>
-            <?php } ?>
-            <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
               <tr>
-                <td><b>Aksi:</b></td>
-                <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
-                </td>
-              </tr>
-            <?php } ?>
+                <td></td>
+                <!-- Tombol ini muncul khusus untuk user -->
+                <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                  <td>
+                    <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                    <button type="submit" id="edit_sewa" class="btn btn-primary enable" name="edit_sewa" disabled>Kirim Data!</button>
+            </form>
+            </td>
+            </tr>
+          <?php } ?>
+          <tr>
+            <td><b>Status:</b></td>
+            <td>
+              <?php
+              if ($data->id_approval == 0) {
+                echo '<label class="badge badge-warning">Belum Direview</label>';
+              }
+              if ($data->id_approval == 1) {
+                echo '<label class="badge badge-danger">Ditolak</label>';
+              }
+              if ($data->id_approval == 2) {
+                echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+              }
+              if ($data->id_approval == 3) {
+                echo '<label class="badge badge-primary">Selesai</label>';
+              }
+              ?>
+            </td>
+          </tr>
+          <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
+          <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+            <tr>
+              <td><b>Aksi:</b></td>
+              <td>
+                <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
+                <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/sewa/' . $data->id_sewa) ?>">Reject</a>
+              </td>
+            </tr>
+          <?php } ?>
+          <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
+            <tr>
+              <td><b>Aksi:</b></td>
+              <td>
+                <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
+              </td>
+            </tr>
+          <?php } ?>
           </table>
         </div>
       </div>

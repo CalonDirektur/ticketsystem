@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Ticket_register extends CI_Controller {
+class Ticket_register extends CI_Controller
+{
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->model('Aksi_Admin2_m');
 		$this->load->model('data_m');
@@ -11,8 +13,10 @@ class Ticket_register extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 
-	public function index(){
-		check_not_login(); check_access_level_user();
+	public function index()
+	{
+		check_not_login();
+		check_access_level_user();
 		redirect('dashboard');
 	}
 
@@ -29,7 +33,7 @@ class Ticket_register extends CI_Controller {
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$this->template->load('template2', 'my_talim/form_my_talim', $data);
 	}
-	
+
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 
 
@@ -42,7 +46,7 @@ class Ticket_register extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" style="padding: 4px">', '</div>');
 
 		//add form my ta'lim
-		if(isset($_POST['submit_mytalim'])){
+		if (isset($_POST['submit_mytalim'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -54,7 +58,7 @@ class Ticket_register extends CI_Controller {
 			$this->form_validation->set_rules('tujuan_pembiayaan', 'Estimasi Waktu', 'required');
 			$this->form_validation->set_rules('nilai_pembiayaan', 'Nilai Pembiayaan', 'required');
 
-			if($this->form_validation->run() != FALSE){
+			if ($this->form_validation->run() != FALSE) {
 				$data = [
 					'nama_konsumen' => $post['nama_konsumen'],
 					'jenis_konsumen' => $post['jenis_konsumen'],
@@ -68,7 +72,7 @@ class Ticket_register extends CI_Controller {
 					'nilai_pembiayaan' => $post['nilai_pembiayaan'],
 					'id_approval' => 0
 				];
-	
+
 				//Konfigurasi Upload
 				$config['upload_path']         = './uploads/mytalim';
 				$config['allowed_types']        = 'gif|jpg|png';
@@ -76,54 +80,53 @@ class Ticket_register extends CI_Controller {
 				$config['max_width']            = 2000;
 				$config['max_height']           = 1600;
 				$this->load->library('upload', $config);
-				
-				if (!$this->upload->do_upload('ktp')){
-				echo $this->upload->display_errors();
-				}else{
+
+				if (!$this->upload->do_upload('ktp')) {
+					echo $this->upload->display_errors();
+				} else {
 					$data['ktp'] = $this->upload->data('file_name');
 				}
-	
-				if (!$this->upload->do_upload('kk')){
-				echo $this->upload->display_errors();
-				}else{
+
+				if (!$this->upload->do_upload('kk')) {
+					echo $this->upload->display_errors();
+				} else {
 					$data['kk'] = $this->upload->data('file_name');
 				}
-	
-				if (!$this->upload->do_upload('bukti_penghasilan')){
-				echo $this->upload->display_errors();
-				}else{
+
+				if (!$this->upload->do_upload('bukti_penghasilan')) {
+					echo $this->upload->display_errors();
+				} else {
 					$data['bukti_penghasilan'] = $this->upload->data('file_name');
 				}
-	
-				if (!$this->upload->do_upload('npwp')){
-				echo $this->upload->display_errors();
-				}else{
+
+				if (!$this->upload->do_upload('npwp')) {
+					echo $this->upload->display_errors();
+				} else {
 					$data['npwp'] = $this->upload->data('file_name');
 				}
-	
-				if (!$this->upload->do_upload('tambahan')){
-				echo $this->upload->display_errors();
-				}else{
+
+				if (!$this->upload->do_upload('tambahan')) {
+					echo $this->upload->display_errors();
+				} else {
 					$data['tambahan'] = $this->upload->data('file_name');
 				}
-	
-				$id = $this->data_m->add('tb_my_talim',$data);
-	
-				if($id){
+
+				$id = $this->data_m->add('tb_my_talim', $data);
+
+				if ($id) {
 					echo "Data berhasil disimpan";
 					redirect('/');
-				}else{
-						echo "Data gagal disimpan";
+				} else {
+					echo "Data gagal disimpan";
 				}
-			}else{
+			} else {
 				$this->form_my_hajat();
 			}
-
 		}
 
 		// PROSES SUBMIT FORM MY HAJAT //
 		// FORMULIR RENOVASI
-		if(isset($_POST['submit_renovasi'])){
+		if (isset($_POST['submit_renovasi'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -133,9 +136,9 @@ class Ticket_register extends CI_Controller {
 			$this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'required');
 			$this->form_validation->set_rules('jumlah_pekerja', 'Jumlah Pekerja', 'required');
 			$this->form_validation->set_rules('estimasi_waktu', 'Estimasi Waktu', 'required');
-			$this->form_validation->set_rules('nilai_pembiayaan', 'Nilai Pembiayaan', 'required');
-			
-			if($this->form_validation->run() != FALSE){
+			$this->form_validation->set_rules('nilai_biaya', 'Nilai Biaya', 'required|integer');
+
+			if ($this->form_validation->run() != FALSE) {
 				$data = [
 					'nama_konsumen' => $post['nama_konsumen'],
 					'jenis_konsumen' => $post['jenis_konsumen'],
@@ -146,27 +149,25 @@ class Ticket_register extends CI_Controller {
 					'luas_bangunan' => $post['luas_bangunan'],
 					'jumlah_pekerja' => $post['jumlah_pekerja'],
 					'estimasi_waktu' => $post['estimasi_waktu'],
-					'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+					'nilai_pembiayaan' => $post['nilai_biaya'],
 					'informasi_tambahan' => $post['informasi_tambahan'],
 					'id_approval' => 0
 				];
-				
-				$id = $this->data_m->add('tb_my_hajat_renovasi',$data);
-	
-				if($id > 0){
+
+				$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
+
+				if ($id > 0) {
 					echo "Data berhasil disimpan";
 					redirect('/');
-				}else{
-						echo "Data gagal disimpan";
+				} else {
+					echo "Data gagal disimpan";
 				}
 			} else {
-				// $this->template->load('template', 'my_hajat/form_my_hajat');
-				// redirect('ticket_register/form_my_talim');
 				$this->form_my_hajat();
 			}
 		}
 		// FORMULIR SEWA
-		if(isset($_POST['submit_sewa'])){			
+		if (isset($_POST['submit_sewa'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -176,7 +177,7 @@ class Ticket_register extends CI_Controller {
 			$this->form_validation->set_rules('luas_panjang', 'Luas Bangunan', 'required');
 			$this->form_validation->set_rules('biaya_pertahun', 'Jumlah Pekerja', 'required');
 
-			if($this->form_validation->run() != FALSE){
+			if ($this->form_validation->run() != FALSE) {
 				$data = [
 					'nama_konsumen' => $post['nama_konsumen'],
 					'jenis_konsumen' => $post['jenis_konsumen'],
@@ -189,23 +190,22 @@ class Ticket_register extends CI_Controller {
 					'informasi_tambahan' => $post['informasi_tambahan'],
 					'id_approval' => 0
 				];
-				
-				$id = $this->data_m->add('tb_my_hajat_sewa',$data);
-		
-				if($id){
+
+				$id = $this->data_m->add('tb_my_hajat_sewa', $data);
+
+				if ($id) {
 					echo "Data berhasil disimpan";
 					redirect('/');
-				}else{
-						echo "Data gagal disimpan";
-				
+				} else {
+					echo "Data gagal disimpan";
 				}
-			}else{
+			} else {
 				$this->form_my_hajat();
-			}		
+			}
 		}
 
 		// FORMULIR WEDDING
-		if(isset($_POST['submit_wedding'])){
+		if (isset($_POST['submit_wedding'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -215,8 +215,8 @@ class Ticket_register extends CI_Controller {
 			$this->form_validation->set_rules('jumlah_biaya', 'Jumlah Biaya', 'required');
 			$this->form_validation->set_rules('jumlah_undangan', 'Jumlah Undangan', 'required');
 			$this->form_validation->set_rules('akun_sosmed', 'Akun Sosial Media', 'required');
-			
-			if($this->form_validation->run() != FALSE){
+
+			if ($this->form_validation->run() != FALSE) {
 				$data = [
 					'nama_konsumen' => $post['nama_konsumen'],
 					'jenis_konsumen' => $post['jenis_konsumen'],
@@ -230,27 +230,25 @@ class Ticket_register extends CI_Controller {
 					'informasi_tambahan' => $post['informasi_tambahan'],
 					'id_approval' => 0
 				];
-				
-				$id = $this->data_m->add('tb_my_hajat_wedding',$data);
-	
-				if($id){
+
+				$id = $this->data_m->add('tb_my_hajat_wedding', $data);
+
+				if ($id) {
 					echo "Data berhasil disimpan";
 					redirect('/');
-				}else{
-						echo "Data gagal disimpan";
-				
+				} else {
+					echo "Data gagal disimpan";
 				}
 				redirect('dashboard');
-			}else{
+			} else {
 				$this->form_my_hajat();
 				// redirect('Ticket_register/form_my_hajat');
 				// echo '<script>window.location.href = "'.base_url('ticket_register/form_my_hajat').'";</script>';
 			}
-
 		}
 
 		// FORMULIR FRANCHISE
-		if(isset($_POST['submit_franchise'])){
+		if (isset($_POST['submit_franchise'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -261,7 +259,7 @@ class Ticket_register extends CI_Controller {
 			$this->form_validation->set_rules('jangka_waktu_franchise', 'Jumlah Undangan', 'required');
 			$this->form_validation->set_rules('akun_sosmed_website', 'Akun Sosial Media', 'required');
 
-			if($this->form_validation->run() != FALSE){
+			if ($this->form_validation->run() != FALSE) {
 				$data = [
 					'nama_konsumen' => $post['nama_konsumen'],
 					'jenis_konsumen' => $post['jenis_konsumen'],
@@ -276,25 +274,24 @@ class Ticket_register extends CI_Controller {
 					'informasi_tambahan' => $post['informasi_tambahan'],
 					'id_approval' => 0
 				];
-				
-				$id = $this->data_m->add('tb_my_hajat_franchise',$data);
-	
-				if($id){
+
+				$id = $this->data_m->add('tb_my_hajat_franchise', $data);
+
+				if ($id) {
 					echo "Data berhasil disimpan";
 					redirect('/');
-				}else{
-						echo "Data gagal disimpan";
-				
+				} else {
+					echo "Data gagal disimpan";
 				}
-					redirect('dashboard');
-			}else{	
+				redirect('dashboard');
+			} else {
 				$this->form_my_hajat();
 			}
 		}
 
 		// FORMULIR PENYEDIA JASA
-		if(isset($_POST['submit_lainnya'])){
-			
+		if (isset($_POST['submit_lainnya'])) {
+
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
@@ -312,26 +309,25 @@ class Ticket_register extends CI_Controller {
 				'informasi_tambahan' => $post['informasi_tambahan'],
 				'id_approval' => 0
 			];
-			
-			$id = $this->data_m->add('tb_my_hajat_lainnya',$data);
 
-			if($id){
+			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
+
+			if ($id) {
 				echo "Data berhasil disimpan";
 				redirect('/');
-			}else{
-					echo "Data gagal disimpan";
-			
+			} else {
+				echo "Data gagal disimpan";
 			}
-				redirect('dashboard');
-			}
+			redirect('dashboard');
 		}
+	}
 
 	public function edit()
-	{ 
+	{
 		$post = $this->input->post(NULL, TRUE);
 
 		//EDIT FORM MY'TALIM
-		if(isset($_POST['edit_mytalim'])){
+		if (isset($_POST['edit_mytalim'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
@@ -353,74 +349,74 @@ class Ticket_register extends CI_Controller {
 			$config['max_width']            = 2000;
 			$config['max_height']           = 1600;
 			$this->load->library('upload', $config);
-			
-			if (!$this->upload->do_upload('ktp')){
-			echo $this->upload->display_errors();
-			}else{
+
+			if (!$this->upload->do_upload('ktp')) {
+				echo $this->upload->display_errors();
+			} else {
 				$data['ktp'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('kk')){
-			echo $this->upload->display_errors();
-			}else{
+			if (!$this->upload->do_upload('kk')) {
+				echo $this->upload->display_errors();
+			} else {
 				$data['kk'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('bukti_penghasilan')){
-			echo $this->upload->display_errors();
-			}else{
+			if (!$this->upload->do_upload('bukti_penghasilan')) {
+				echo $this->upload->display_errors();
+			} else {
 				$data['bukti_penghasilan'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('npwp')){
-			echo $this->upload->display_errors();
-			}else{
+			if (!$this->upload->do_upload('npwp')) {
+				echo $this->upload->display_errors();
+			} else {
 				$data['npwp'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('tambahan')){
-			echo $this->upload->display_errors();
-			}else{
+			if (!$this->upload->do_upload('tambahan')) {
+				echo $this->upload->display_errors();
+			} else {
 				$data['tambahan'] = $this->upload->data('file_name');
 			}
-			
+
 			$id = $this->data_m->update('tb_my_talim', $data, ['id_mytalim' => $post['id_mytalim']]);
 
-			if($id){
+			if ($id) {
 				echo "Data berhasil disimpan";
 				redirect('/');
-			}else{
+			} else {
 				echo "Data gagal disimpan";
 			}
 		}
 
 		// EDIT FORM MY HAJAT //
 		// FORMULIR RENOVASI
-		if(isset($_POST['edit_renovasi'])){
-				$data = [
-					'nama_konsumen' => $post['nama_konsumen'],
-					'jenis_konsumen' => $post['jenis_konsumen'],
-					'nama_vendor' => $post['nama_vendor'],
-					'jenis_vendor' => $post['jenis_vendor'],
-					'bagian_bangunan' => $post['bagian_bangunan'],
-					'luas_bangunan' => $post['luas_bangunan'],
-					'jumlah_pekerja' => $post['jumlah_pekerja'],
-					'estimasi_waktu' => $post['estimasi_waktu'],
-					'nilai_pembiayaan' => $post['nilai_pembiayaan'],
-					'informasi_tambahan' => $post['informasi_tambahan']
-				];
-				
-				$id = $this->data_m->update('tb_my_hajat_renovasi', $data, ['id_renovasi' => $post['id_renovasi']]);
-	
-				if($id){
-					echo "Data berhasil disimpan";
-					redirect('/');
-				}else{
-						echo "Data gagal disimpan";
-				}
+		if (isset($_POST['edit_renovasi'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'nama_vendor' => $post['nama_vendor'],
+				'jenis_vendor' => $post['jenis_vendor'],
+				'bagian_bangunan' => $post['bagian_bangunan'],
+				'luas_bangunan' => $post['luas_bangunan'],
+				'jumlah_pekerja' => $post['jumlah_pekerja'],
+				'estimasi_waktu' => $post['estimasi_waktu'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+				'informasi_tambahan' => $post['informasi_tambahan']
+			];
+
+			$id = $this->data_m->update('tb_my_hajat_renovasi', $data, ['id_renovasi' => $post['id_renovasi']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
 		}
 		// FORMULIR SEWA
-		if(isset($_POST['edit_sewa'])){
+		if (isset($_POST['edit_sewa'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
@@ -432,19 +428,19 @@ class Ticket_register extends CI_Controller {
 				'biaya_tahunan' => $post['biaya_pertahun'],
 				'informasi_tambahan' => $post['informasi_tambahan']
 			];
-			
+
 			$id = $this->data_m->update('tb_my_hajat_sewa', $data, ['id_sewa' => $post['id_sewa']]);
 
-			if($id){
+			if ($id) {
 				echo "Data berhasil disimpan";
 				redirect('/');
-			}else{
-					echo "Data gagal disimpan";
+			} else {
+				echo "Data gagal disimpan";
 			}
 		}
 
 		//FORMULIR WEDDING
-		if(isset($_POST['edit_wedding'])){
+		if (isset($_POST['edit_wedding'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
@@ -457,19 +453,19 @@ class Ticket_register extends CI_Controller {
 				'akun_sosmed' => $post['akun_sosmed'],
 				'informasi_tambahan' => $post['informasi_tambahan']
 			];
-			
+
 			$id = $this->data_m->update('tb_my_hajat_wedding', $data, ['id_wedding' => $post['id_wedding']]);
 
-			if($id){
+			if ($id) {
 				echo "Data berhasil disimpan";
 				redirect('/');
-			}else{
-					echo "Data gagal disimpan";
+			} else {
+				echo "Data gagal disimpan";
 			}
 		}
 
 		//FORMULIR FRANCHISE
-		if(isset($_POST['edit_franchise'])){
+		if (isset($_POST['edit_franchise'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
@@ -483,19 +479,19 @@ class Ticket_register extends CI_Controller {
 				'akun_sosmed_website' => $post['akun_sosmed_website'],
 				'informasi_tambahan' => $post['informasi_tambahan']
 			];
-			
+
 			$id = $this->data_m->update('tb_my_hajat_franchise', $data, ['id_franchise' => $post['id_franchise']]);
 
-			if($id){
+			if ($id) {
 				echo "Data berhasil disimpan";
 				redirect('/');
-			}else{
-					echo "Data gagal disimpan";
+			} else {
+				echo "Data gagal disimpan";
 			}
 		}
 
 		//FORMULIR LAINNYA
-		if(isset($_POST['edit_lainnya'])){
+		if (isset($_POST['edit_lainnya'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
@@ -506,14 +502,14 @@ class Ticket_register extends CI_Controller {
 				'informasi_tambahan' => $post['informasi_tambahan'],
 				'id_approval' => 0
 			];
-			
+
 			$id = $this->data_m->update('tb_my_hajat_lainnya', $data, ['id_myhajat_lainnya' => $post['id_myhajat_lainnya']]);
 
-			if($id){
+			if ($id) {
 				echo "Data berhasil disimpan";
 				redirect('/');
-			}else{
-					echo "Data gagal disimpan";
+			} else {
+				echo "Data gagal disimpan";
 			}
 		}
 	}

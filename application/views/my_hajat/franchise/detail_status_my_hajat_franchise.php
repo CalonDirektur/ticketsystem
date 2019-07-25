@@ -20,132 +20,132 @@
         <!-- /.card-header -->
         <div class="card-body no-padding">
           <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
-          <table class="table table-striped">
-            <thead>
-              <th>Kolom</th>
-              <th>Isi</th>
-            </thead>
-            <tr>
-              <td><b>ID Ticket</b></td>
-              <td>
-                <input type="text" class="form-control" name="id_franchise" id="id_franchise" value="<?= $data->id_franchise ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Nama Konsumen</b></td>
-              <td>
-                <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Jenis Konsumen</b></td>
-              <td>
-              <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
-                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
-                    Internal</option>
-                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Nama Franchise</b></td>
-              <td>
-                <input type="text" class="form-control enable" name="nama_franchise" id="nama_franchise" value="<?= $data->nama_franchise ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Jumlah Cabang</b></td>
-              <td>
-                <input type="number" class="form-control enable" name="jumlah_cabang" id="jumlah_cabang" value="<?= $data->jumlah_cabang ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Jenis Franchise</b></td>
-              <td>
-                <input type="text" class="form-control enable" name="jenis_franchise" id="jenis_franchise" value="<?= $data->jenis_franchise ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Tahun Berdiri Franchise</b></td>
-              <td>
-                <input type="number" class="form-control enable" name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" value="<?= $data->tahun_berdiri_franchise ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Harga Franchise</b></td>
-              <td>
-                <input type="number" class="form-control enable" name="harga_franchise" id="harga_franchise" value="<?= $data->harga_franchise ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Jangka Waktu Franchise</b></td>
-              <td>
-              <select name="jangka_waktu_franchise" id="jangka_waktu_franchise" class="form-control enable" disabled>
-                <option value="Selamanya" <?= $data->jangka_waktu_franchise == 'Selamanya' ? 'selected' : ''  ?>>Selamanya</option>
-                <option value="Jangka Tertentu"  <?= $data->jangka_waktu_franchise == 'Jangka Tertentu' ? 'selected' : ''  ?>>Jangka Tertentu</option>
-              </select>               
-              </td>
-            </tr>
-            <tr>
-              <td><b>Akun Media Sosial / Website Franchise</b></td>
-              <td>
-                <input type="text" class="form-control enable" name="akun_sosmed_website" id="akun_sosmed_website" value="<?= $data->akun_sosmed_website ?>"  readonly required >
-              </td>
-            </tr>
-            <tr>
-              <td><b>Informasi Tambahan</b></td>
-              <td>
-              <textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-            <!-- Tombol ini muncul khusus untuk user -->
-            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-              <td>
-                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
-                <button type="submit" id="edit_franchise" class="btn btn-primary enable" name="edit_franchise" disabled>Kirim Data!</button>
-              </form>
-              </td>
-						</tr>
-            <?php } ?>
-            <tr>
-              <td><b>Status:</b></td>
-              <td>
-                <?php
-                if ($data->id_approval == 0) {
-                  echo '<span class="label label-warning">Belum Direview</span>';
-                }
-                if ($data->id_approval == 1) {
-                  echo '<span class="label label-danger">Ditolak</span>';
-                }
-                if ($data->id_approval == 2) {
-                  echo '<span class="label label-success">Disetujui Admin 1</span>';
-                }
-                if ($data->id_approval == 3) {
-                  echo '<span class="label label-success">Selesai</span>';
-                }
-                ?>
-              </td>
-            </tr>
-            <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-            <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+            <table class="table table-striped">
+              <thead>
+                <th>Kolom</th>
+                <th>Isi</th>
+              </thead>
               <tr>
-                <td><b>Aksi:</b></td>
+                <td><b>ID Ticket</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/franchise/' . $data->id_franchise) ?>">Approve</a>
-                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/franchise/' . $data->id_franchise) ?>">Reject</a>
+                  <input type="text" class="form-control" name="id_franchise" id="id_franchise" value="<?= $data->id_franchise ?>" readonly required>
                 </td>
               </tr>
-            <?php } ?>
-            <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
               <tr>
-                <td><b>Aksi:</b></td>
+                <td><b>Nama Konsumen</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/franchise/' . $data->id_franchise) ?>">Approve</a>
+                  <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
                 </td>
               </tr>
-            <?php } ?>
+              <tr>
+                <td><b>Jenis Konsumen</b></td>
+                <td>
+                  <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                    <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                      Internal</option>
+                    <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Nama Franchise</b></td>
+                <td>
+                  <input type="text" class="form-control enable" name="nama_franchise" id="nama_franchise" value="<?= $data->nama_franchise ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Jumlah Cabang</b></td>
+                <td>
+                  <input type="number" class="form-control enable" name="jumlah_cabang" id="jumlah_cabang" value="<?= $data->jumlah_cabang ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Jenis Franchise</b></td>
+                <td>
+                  <input type="text" class="form-control enable" name="jenis_franchise" id="jenis_franchise" value="<?= $data->jenis_franchise ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Tahun Berdiri Franchise</b></td>
+                <td>
+                  <input type="number" class="form-control enable" name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" value="<?= $data->tahun_berdiri_franchise ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Harga Franchise</b></td>
+                <td>
+                  <input type="number" class="form-control enable" name="harga_franchise" id="harga_franchise" value="<?= $data->harga_franchise ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Jangka Waktu Franchise</b></td>
+                <td>
+                  <select name="jangka_waktu_franchise" id="jangka_waktu_franchise" class="form-control enable" disabled>
+                    <option value="Selamanya" <?= $data->jangka_waktu_franchise == 'Selamanya' ? 'selected' : ''  ?>>Selamanya</option>
+                    <option value="Jangka Tertentu" <?= $data->jangka_waktu_franchise == 'Jangka Tertentu' ? 'selected' : ''  ?>>Jangka Tertentu</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Akun Media Sosial / Website Franchise</b></td>
+                <td>
+                  <input type="text" class="form-control enable" name="akun_sosmed_website" id="akun_sosmed_website" value="<?= $data->akun_sosmed_website ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Informasi Tambahan</b></td>
+                <td>
+                  <textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <!-- Tombol ini muncul khusus untuk user -->
+                <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                  <td>
+                    <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                    <button type="submit" id="edit_franchise" class="btn btn-primary enable" name="edit_franchise" disabled>Kirim Data!</button>
+            </form>
+            </td>
+            </tr>
+          <?php } ?>
+          <tr>
+            <td><b>Status:</b></td>
+            <td>
+              <?php
+              if ($data->id_approval == 0) {
+                echo '<label class="badge badge-warning">Belum Direview</label>';
+              }
+              if ($data->id_approval == 1) {
+                echo '<label class="badge badge-danger">Ditolak</label>';
+              }
+              if ($data->id_approval == 2) {
+                echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+              }
+              if ($data->id_approval == 3) {
+                echo '<label class="badge badge-success">Selesai</label>';
+              }
+              ?>
+            </td>
+          </tr>
+          <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
+          <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+            <tr>
+              <td><b>Aksi:</b></td>
+              <td>
+                <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/franchise/' . $data->id_franchise) ?>">Approve</a>
+                <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/franchise/' . $data->id_franchise) ?>">Reject</a>
+              </td>
+            </tr>
+          <?php } ?>
+          <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
+            <tr>
+              <td><b>Aksi:</b></td>
+              <td>
+                <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/franchise/' . $data->id_franchise) ?>">Approve</a>
+              </td>
+            </tr>
+          <?php } ?>
           </table>
         </div>
       </div>

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
-
+	// $('table').DataTable();
 	// Script Halaman Formulir Pendaftaran Tiket My Hajat
 	$(".card.pertanyaan").hide();
 	$('.kategori').click(function () {

@@ -19,113 +19,109 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body no-padding">
-						<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
-          <table class="table table-striped">
-            <thead>
-              <th>Kolom</th>
-              <th>Isi</th>
-            </thead>
-            <tr>
-              <td><b>ID Ticket</b></td>
-              <td>
-                <input type="text" class="form-control" name="id_myhajat_lainnya" id="id_mytalim"
-											value="<?= $data->id_myhajat_lainnya ?>" readonly required>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Nama Konsumen</b></td>
-              <td>
-                <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen"
-											value="<?= $data->nama_konsumen ?>" readonly required>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Jenis Konsumen</b></td>
-              <td>
-                <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
-                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
-                    Internal</option>
-                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Nama Penyedia Jasa</b></td>
-              <td>
-                <input type="text" class="form-control enable" name="nama_penyedia_jasa" id="nama_penyedia_jasa"
-											value="<?= $data->nama_penyedia_jasa ?>" readonly required>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Jenis Penyedia Jasa</b></Penyedia Jasa>
-              <td>
-                <select class="form-control enable" name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" required disabled>
-                  <option value="Perorangan" <?= $data->jenis_penyedia_jasa == 'Perorangan' ? 'selected' : '' ?>>Perorangan</option>
-                  <option value="Badan Usaha" <?= $data->jenis_penyedia_jasa == 'Badan Usaha' ? 'selected' : '' ?>>Badan Usaha</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Nilai Pengajuan Pembiayaan</b></td>
-              <td>
-                <input type="number" class="form-control enable" name="nilai_pembiayaan" id="nilai_pembiayaan"
-											value="<?= $data->nilai_pembiayaan ?>" readonly required>
-              </td>
-            </tr>
-            <tr>
-              <td><b>Informasi Tambahan</b></td>
-              <td>
-                <textarea name="informasi_tambahan" class="form-control enable" id="informasi_tambahan" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
-              </td>
-            </tr>
-            <!-- Tombol ini muncul khusus untuk user -->
-            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-            <tr>
-              <td></td>
-              <td>
-                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
-                <button type="submit" id="edit_lainnya" class="btn btn-primary enable" name="edit_lainnya" disabled>Kirim Data!</button>
-              </form>
-              </td>
-						</tr>
-            <?php } ?>
-            <tr>
-              <td><b>Status:</b></td>
-              <td>
-                <?php
-                if ($data->id_approval == 0) {
-                  echo '<span class="label label-warning">Belum Direview</span>';
-                }
-                if ($data->id_approval == 1) {
-                  echo '<span class="label label-danger">Ditolak</span>';
-                }
-                if ($data->id_approval == 2) {
-                  echo '<span class="label label-success">Disetujui Admin 1</span>';
-                }
-                if ($data->id_approval == 3) {
-                  echo '<span class="label label-primary">Selesai</span>';
-                }
-                ?>
-              </td>
-            </tr>
-            <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-            <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+          <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
+            <table class="table table-striped">
+              <thead>
+                <th>Kolom</th>
+                <th>Isi</th>
+              </thead>
               <tr>
-                <td><b>Aksi:</b></td>
+                <td><b>ID Ticket</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
-                  <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Reject</a>
+                  <input type="text" class="form-control" name="id_myhajat_lainnya" id="id_mytalim" value="<?= $data->id_myhajat_lainnya ?>" readonly required>
                 </td>
               </tr>
-            <?php } ?>
-            <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
               <tr>
-                <td><b>Aksi:</b></td>
+                <td><b>Nama Konsumen</b></td>
                 <td>
-                  <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
+                  <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
                 </td>
               </tr>
-            <?php } ?>
+              <tr>
+                <td><b>Jenis Konsumen</b></td>
+                <td>
+                  <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                    <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                      Internal</option>
+                    <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Nama Penyedia Jasa</b></td>
+                <td>
+                  <input type="text" class="form-control enable" name="nama_penyedia_jasa" id="nama_penyedia_jasa" value="<?= $data->nama_penyedia_jasa ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Jenis Penyedia Jasa</b></Penyedia Jasa>
+                <td>
+                  <select class="form-control enable" name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" required disabled>
+                    <option value="Perorangan" <?= $data->jenis_penyedia_jasa == 'Perorangan' ? 'selected' : '' ?>>Perorangan</option>
+                    <option value="Badan Usaha" <?= $data->jenis_penyedia_jasa == 'Badan Usaha' ? 'selected' : '' ?>>Badan Usaha</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Nilai Pengajuan Pembiayaan</b></td>
+                <td>
+                  <input type="number" class="form-control enable" name="nilai_pembiayaan" id="nilai_pembiayaan" value="<?= $data->nilai_pembiayaan ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Informasi Tambahan</b></td>
+                <td>
+                  <textarea name="informasi_tambahan" class="form-control enable" id="informasi_tambahan" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
+                </td>
+              </tr>
+              <!-- Tombol ini muncul khusus untuk user -->
+              <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                <tr>
+                  <td></td>
+                  <td>
+                    <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                    <button type="submit" id="edit_lainnya" class="btn btn-primary enable" name="edit_lainnya" disabled>Kirim Data!</button>
+            </form>
+            </td>
+            </tr>
+          <?php } ?>
+          <tr>
+            <td><b>Status:</b></td>
+            <td>
+              <?php
+              if ($data->id_approval == 0) {
+                echo '<label class="badge badge-warning">Belum Direview</label>';
+              }
+              if ($data->id_approval == 1) {
+                echo '<label class="badge badge-danger">Ditolak</label>';
+              }
+              if ($data->id_approval == 2) {
+                echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+              }
+              if ($data->id_approval == 3) {
+                echo '<label class="badge badge-primary">Selesai</label>';
+              }
+              ?>
+            </td>
+          </tr>
+          <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
+          <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+            <tr>
+              <td><b>Aksi:</b></td>
+              <td>
+                <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
+                <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Reject</a>
+              </td>
+            </tr>
+          <?php } ?>
+          <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
+            <tr>
+              <td><b>Aksi:</b></td>
+              <td>
+                <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
+              </td>
+            </tr>
+          <?php } ?>
           </table>
         </div>
       </div>
@@ -190,7 +186,7 @@
                 <div class="comment-text">
                   <span class="username">
                     <?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)
-                    <span class="text-muted pull-right"><?= $komen->date ?></span>
+                    <span class="pull-right"><?= $balasan->date ?></span>
                   </span>
                   <?= $balasan->comment ?>
                 </div>

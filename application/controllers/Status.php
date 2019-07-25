@@ -13,12 +13,12 @@ class Status extends CI_Controller
         $this->load->model('comment_m');
 
         $id_cabang = NULL;
-        if($this->fungsi->user_login()->id_cabang != 46){
-			$this->id_cabang = $this->fungsi->user_login()->id_cabang;
-		} else {
-			$this->id_cabang = NULL;
+        if ($this->fungsi->user_login()->id_cabang != 46) {
+            $this->id_cabang = $this->fungsi->user_login()->id_cabang;
+        } else {
+            $this->id_cabang = NULL;
         }
-        
+
         check_not_login();
     }
 
@@ -29,8 +29,8 @@ class Status extends CI_Controller
         //Menampilkan semua ticket pending pada produk my ta'lim jika $id tidak diisi
         if ($produk == 'mytalim' && $id == NULL) {
             // $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
-                $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_talim/my_talim_pending', $data);
+            $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review', $this->id_cabang)->result();
+            $this->template->load('template2', 'my_talim/my_talim_list', $data);
         }
         //Menampilkan ticket pending pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
@@ -49,7 +49,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket pending pada produk my hajat kategori renovasi jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_renovasi', 'pending_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_pending', $data);
+            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_list', $data);
         }
         //Menampilkan ticket pending pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
@@ -66,7 +66,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket pending pada produk my hajat kategori sewa jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_sewa', 'pending_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_pending', $data);
+            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_list', $data);
         }
         //Menampilkan halaman ticket pending pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
@@ -83,7 +83,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket pending pada produk my hajat kategori wedding jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'pending_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_pending', $data);
+            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_list', $data);
         }
         //Menampilkan ticket pending pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
@@ -100,7 +100,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket pending pada produk my hajat kategori franchise jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_franchise', 'pending_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_pending', $data);
+            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_list', $data);
         }
         //Menampilkan ticket pending pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
@@ -138,7 +138,7 @@ class Status extends CI_Controller
         //menampilkan status tiket produk mytalim yang telah diapprove oleh admin 1 dan admin 2
         if ($produk == 'mytalim' && $kategori == NULL && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_talim', 'approved_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_talim/my_talim_approved', $data);
+            $this->template->load('template2', 'my_talim/my_talim_list', $data);
         }
         //Menampilkan ticket apprvoed pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $kategori != NULL && $id != NULL) {
@@ -158,7 +158,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket APPROVED pada produk my hajat kategori renovasi jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_renovasi', 'approved_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_approved', $data);
+            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_list', $data);
         }
         //Menampilkan ticket APPROVED pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
@@ -175,7 +175,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket APPROVED pada produk my hajat kategori sewa jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_sewa', 'approved_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_approved', $data);
+            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_list', $data);
         }
         //Menampilkan halaman ticket APPROVED pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
@@ -192,7 +192,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket APPROVED pada produk my hajat kategori wedding jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'approved_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_approved', $data);
+            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_list', $data);
         }
         //Menampilkan ticket APPROVED pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
@@ -209,7 +209,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket APPROVED pada produk my hajat kategori franchise jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_franchise', 'approved_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_approved', $data);
+            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_list', $data);
         }
         //Menampilkan ticket APPROVED pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
@@ -247,7 +247,7 @@ class Status extends CI_Controller
         //menampilkan status tiket produk mytalim yang telah dtolak oleh admin 1 dan admin 2
         if ($produk == 'mytalim' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_talim', 'rejected_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_talim/my_talim_rejected', $data);
+            $this->template->load('template2', 'my_talim/my_talim_list', $data);
         }
         //Menampilkan ticket rejected pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
@@ -266,7 +266,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang REJECTED pada produk my hajat kategori renovasi jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_renovasi', 'rejected_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_rejected', $data);
+            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_list', $data);
         }
         //Menampilkan ticket yang REJECTED pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
@@ -283,7 +283,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang REJECTED pada produk my hajat kategori sewa jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_sewa', 'rejected_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_rejected', $data);
+            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_list', $data);
         }
         //Menampilkan halaman ticket yang REJECTED pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
@@ -300,7 +300,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang REJECTED pada produk my hajat kategori wedding jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'rejected_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_rejected', $data);
+            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_list', $data);
         }
         //Menampilkan ticket yang REJECTED pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
@@ -317,7 +317,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang REJECTED pada produk my hajat kategori franchise jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_franchise', 'rejected_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_rejected', $data);
+            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_list', $data);
         }
         //Menampilkan ticket yang REJECTED pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {
@@ -354,7 +354,7 @@ class Status extends CI_Controller
         //menampilkan status tiket produk mytalim yang telah COMPLETED oleh dan admin 2
         if ($produk == 'mytalim' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_talim', 'completed_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_talim/my_talim_completed', $data);
+            $this->template->load('template2', 'my_talim/my_talim_list', $data);
         }
         //Menampilkan ticket yang telah COMPLETED pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
@@ -373,7 +373,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori renovasi jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_renovasi', 'completed_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_completed', $data);
+            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_list', $data);
         }
         //Menampilkan ticket yang COMPLETED pada produk my hajat dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'renovasi' && $id != NULL) {
@@ -390,7 +390,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori sewa jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_sewa', 'completed_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_completed', $data);
+            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_list', $data);
         }
         //Menampilkan halaman ticket yang COMPLETED pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
@@ -407,7 +407,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori wedding jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'completed_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_completed', $data);
+            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_list', $data);
         }
         //Menampilkan ticket yang COMPLETED pada produk my hajat kategori wedding dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'wedding' && $id != NULL) {
@@ -424,7 +424,7 @@ class Status extends CI_Controller
         //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori franchise jika $id tidak diisi
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id == NULL) {
             $data['data'] = $this->data_m->get('tb_my_hajat_franchise', 'completed_review', $this->id_cabang)->result();
-            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_completed', $data);
+            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_list', $data);
         }
         //Menampilkan ticket yang COMPLETED pada produk my hajat kategori franchise dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'franchise' && $id != NULL) {

@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends CI_Controller
+{
 
 	public function __construct()
 	{
@@ -11,12 +12,24 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$id = $this->fungsi->user_login()->id_cabang;
 
-		if($this->fungsi->user_login()->id_cabang != 46){
-			$id_cabang = 'AND id_cabang = '. $this->fungsi->user_login()->id_cabang;
+		// Jika bukan admin maka tampilkan data sesuai dengan cabang masing-masing
+		if ($this->fungsi->user_login()->id_cabang != 46) {
+			$id = 'id_cabang = ' . $this->fungsi->user_login()->id_cabang;
+			$id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
 		} else {
+			if ($this->fungsi->user_login()->level == 2) {
+				$id = 'id_approval = 0';
+			} else if ($this->fungsi->user_login()->level == 3) {
+				$id = 'id_approval = 2';
+			}
 			$id_cabang = '';
+		}
+
+		if ($this->fungsi->user_login()->level == 2) {
+			$id = 'id_approval = 0';
+		} else if ($this->fungsi->user_login()->level == 3) {
+			$id = 'id_approval = 2';
 		}
 
 		check_not_login();
@@ -29,7 +42,7 @@ class Dashboard extends CI_Controller {
 		$total_pending_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 0 $id_cabang");
 		$total_approved_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 2 $id_cabang");
 		$total_rejected_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 1 $id_cabang");
-		
+
 		//Total Pending
 		$total_pending = $total_pending_myhajat + $total_pending_mytalim;
 		//Total Approved
@@ -69,13 +82,13 @@ class Dashboard extends CI_Controller {
 			'total_approved' => $total_approved,
 			'total_rejected' => $total_rejected
 		];
-		
-		$data['mytalim_records'] = $this->data_m->get_product('tb_my_talim', 'id_cabang ='. $id , 'id_mytalim DESC');
-		$data['myhajat_renovasi_records'] = $this->data_m->get_product('tb_my_hajat_renovasi', 'id_cabang ='. $id , 'id_renovasi DESC');
-		$data['myhajat_sewa_records'] = $this->data_m->get_product('tb_my_hajat_sewa', 'id_cabang ='. $id , 'id_sewa DESC');
-		$data['myhajat_wedding_records'] = $this->data_m->get_product('tb_my_hajat_wedding', 'id_cabang ='. $id , 'id_wedding DESC');
-		$data['myhajat_franchise_records'] = $this->data_m->get_product('tb_my_hajat_franchise', 'id_cabang ='. $id , 'id_franchise DESC');
-		$data['myhajat_lainnya_records'] = $this->data_m->get_product('tb_my_hajat_lainnya', 'id_cabang ='. $id , 'id_myhajat_lainnya DESC');
+
+		$data['mytalim_records'] = $this->data_m->get_product('tb_my_talim', $id, 'id_mytalim DESC');
+		$data['myhajat_renovasi_records'] = $this->data_m->get_product('tb_my_hajat_renovasi', $id, 'id_renovasi DESC');
+		$data['myhajat_sewa_records'] = $this->data_m->get_product('tb_my_hajat_sewa', $id, 'id_sewa DESC');
+		$data['myhajat_wedding_records'] = $this->data_m->get_product('tb_my_hajat_wedding', $id, 'id_wedding DESC');
+		$data['myhajat_franchise_records'] = $this->data_m->get_product('tb_my_hajat_franchise', $id, 'id_franchise DESC');
+		$data['myhajat_lainnya_records'] = $this->data_m->get_product('tb_my_hajat_lainnya', $id, 'id_myhajat_lainnya DESC');
 
 		$this->template->load('template2', 'dashboard', $data);
 	}
@@ -83,6 +96,5 @@ class Dashboard extends CI_Controller {
 	public function template()
 	{
 		$this->template->load('template2', 'dashboard');
-
 	}
 }

@@ -19,6 +19,7 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/img/bfi.jpg') ?>" />
 </head>
@@ -86,19 +87,34 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
-              <i class="icon-disc menu-icon"></i>
-              <span class="menu-title">Daftar Tiket</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="daftar-tiket">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_talim') ?>">My Talim</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_hajat') ?>">My Hajat</a></li>
-              </ul>
-            </div>
-          </li>
+          <?php if ($this->session->userdata('level') == 1) { ?>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
+                <i class="icon-disc menu-icon"></i>
+                <span class="menu-title">Daftar Tiket</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="daftar-tiket">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_talim') ?>">My Talim</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_hajat') ?>">My Hajat</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
+                <i class="icon-disc menu-icon"></i>
+                <span class="menu-title">Reviewed Tickets</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="daftar-tiket">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_talim') ?>">My Talim</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_hajat') ?>">My Hajat</a></li>
+                </ul>
+              </div>
+            </li>
+          <?php } ?>
         </ul>
       </nav>
       <!-- partial -->
@@ -121,26 +137,23 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-  <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
-  <!-- base:js -->
   <script src="<?= base_url('assets2/vendors/base/vendor.bundle.base.js') ?>"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
   <script src="<?= base_url('assets2/js/off-canvas.js') ?>"></script>
   <script src="<?= base_url('assets2/js/hoverable-collapse.js') ?>"></script>
   <script src="<?= base_url('assets2/js/template.js') ?>"></script>
-  <!-- endinject -->
-  <!-- plugin js for this page -->
   <script src="<?= base_url('assets2/vendors/chart.js/Chart.min.js') ?>"></script>
   <script src="<?= base_url('assets2/vendors/jquery-bar-rating/jquery.barrating.min.js') ?>"></script>
-  <!-- End plugin js for this page -->
-  <!-- Custom js for this page-->
   <script src="<?= base_url('assets2/js/dashboard.js') ?>"></script>
-  <!-- End custom js for this page-->
+
+  <!-- ANEKA JAVASCRIPT IBRAHIM -->
+  <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
+
+  <script>
+    $('#myTable').dataTable();
+    alert('asdsa');
+  </script>
 </body>
 
 </html>

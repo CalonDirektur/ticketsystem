@@ -1,7 +1,6 @@
 <section class="content-header">
   <h1>
-    List
-    My Hajat Tickets
+    <?= ucfirst($this->uri->segment(2)); ?> My Hajat Renovasi Tickets
     <!-- <small>it all starts here</small> -->
   </h1>
 </section>
@@ -28,22 +27,22 @@
             $no = 1;
             foreach ($data as $d) {  ?>
               <tr>
-                <td>#<?= $d->id_myhajat_lainnya ?></td>
+                <td>#<?= $d->id_renovasi ?></td>
                 <td><?= $d->nama_konsumen ?></td>
                 <td><?= $d->jenis_konsumen ?></td>
-                <td><?= $d->nama_penyedia_jasa ?></td>
+                <td><?= $d->nama_vendor ?></td>
                 <?php if ($d->id_approval == 0) { ?>
                   <td><label class="badge badge-secondary">Belum Direview</label></td>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/pending/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
+                  <td><a class="btn btn-secondary" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                 <?php } else if ($d->id_approval == 1) { ?>
                   <td><label class="badge badge-danger">Ditolak</label></td>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/rejected/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
+                  <td><a class="btn btn-secondary" href="<?= base_url('status/rejected/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                 <?php } else if ($d->id_approval == 2) { ?>
                   <td><label class="badge badge-success">Disetujui Admin 1</label></td>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/approved/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
+                  <td><a class="btn btn-secondary" href="<?= base_url('status/approved/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                 <?php } else if ($d->id_approval == 3) { ?>
                   <td><label class="badge badge-primary">Selesai</label></td>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/completed/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
+                  <td><a class="btn btn-secondary" href="<?= base_url('status/completed/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                 <?php } ?>
               </tr>
               <?php
