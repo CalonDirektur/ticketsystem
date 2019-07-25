@@ -31,7 +31,6 @@ class Status extends CI_Controller
             // $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
                 $data['data'] = $this->data_m->get('tb_my_talim', 'pending_review', $this->id_cabang)->result();
             $this->template->load('template2', 'my_talim/my_talim_pending', $data);
-            echo $this->fungsi->user_login()->id_cabang;
         }
         //Menampilkan ticket pending pada produk my ta'lim dengan $id tertentu
         if ($produk == 'mytalim' && $id != NULL) {
