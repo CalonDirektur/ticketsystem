@@ -32,6 +32,12 @@
                 </td>
               </tr>
               <tr>
+                <td><b>Nama Cabang</b></td>
+                <td>
+                  <input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
                 <td><b>Nama Konsumen</b></td>
                 <td>
                   <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>

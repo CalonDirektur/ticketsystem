@@ -10,18 +10,18 @@
 
 		<div class="row mt-4">
 			<div class="col-lg-6 col-md-6">
-				<!-- Gambar -->
+				<!-- Gambar
 				<div class="row">
-					<img id="gambar" class="img-fluid" src="<?= base_url('uploads/mytalim/' . $data->ktp) ?>" alt="no photo" width="550" height="400">
-				</div>
+					<img id="gambar" class="img-fluid" src="<?= base_url('uploads/mytalim/' . $data->ktp) ?>" alt="no photo" width="550" height="400"> -->
+				<!-- </div> -->
 				<!-- Deretan Gambar -->
-				<div class="row">
+				<!-- <div class="row">
 					<img class="thumb" id="ktp" src="<?= base_url('uploads/mytalim/' . $data->ktp) ?>" alt="no photo" width="50" height="50">
 					<img class="thumb" id="kk" src="<?= base_url('uploads/mytalim/' . $data->kk) ?>" alt="no photo" width="50" height="50">
 					<img class="thumb" id="bukti_penghasilan" src="<?= base_url('uploads/mytalim/' . $data->bukti_penghasilan) ?>" alt="no photo" width="50" height="50">
 					<img class="thumb" id="npwp" src="<?= base_url('uploads/mytalim/' . $data->npwp) ?>" alt="no photo" width="50" height="50">
-					<img class="thumb" id="tambahan" src="<?= base_url('uploads/mytalim/' . $data->tambahan) ?>" alt="no photo" width="50" height="50">
-				</div>
+					<div class="thumb" id="tambahan" src="<?= base_url('uploads/mytalim/' . $data->tambahan) ?>" alt="no photo" width="50" height="50">
+				</div> -->
 			</div>
 			<div class="col-lg-6 col-md-6">
 				<div class="row">
@@ -41,6 +41,12 @@
 									<tr>
 										<td><b>ID Ticket</b></td>
 										<td><input type="text" class="form-control" name="id_mytalim" id="id_mytalim" value="<?= $data->id_mytalim ?>" readonly required></td>
+									</tr>
+									<tr>
+										<td><b>Nama Cabang</b></td>
+										<td>
+											<input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
+										</td>
 									</tr>
 									<tr>
 										<td><b>Nama Konsumen</b></td>
@@ -142,68 +148,49 @@
 						</div>
 					</div>
 				</div>
-
-			</div>
-		</div>
-		<!-- Form Upload Lampiran -->
-		<div class="row mt-4">
-			<div class="card card-primary">
-				<div class="card-header with-border">
-					<h3 class="card-title">Upload File</h3>
-				</div>
-				<div class="card-body">
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="ktp">KTP</label>
-							<input name="ktp" id="ktp" type="file" class="form-control enable" disabled>
-						</div>
-						<div class="form-group">
-							<label for="kk">KK</label>
-							<input name="kk" id="kk" type="file" class="form-control enable" disabled>
-						</div>
-						<div class="form-group">
-							<label for="bukti_penghasilan">Bukti Penghasilan</label>
-							<input name="bukti_penghasilan" id="bukti_penghasilan" type="file" class="form-control enable" disabled>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="npwp">NPWP</label>
-							<input name="npwp" id="npwp" type="file" class="form-control enable" disabled>
-						</div>
-						<div class="form-group">
-							<label for="tambahan">Tambahan</label>
-							<input name="tambahan" id="tambahan" type="file" class="form-control enable" disabled>
-						</div>
-					</div>
-				</div>
-				<div class="card-footer text-center">
-					<button type="submit" id="edit_mytalim" class="btn btn-primary enable" name="edit_mytalim" disabled>Kirim Data!</button>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- Post Komentar -->
-		<div class="row mt-4">
-			<div class="col-lg-12 col-md-6">
-				<form method="post" action="<?= base_url('comment/post_comment/id_mytalim') ?>">
-					<div class="card">
+				<!-- Form Upload Lampiran -->
+				<div class="row mt-4">
+					<div class="card card-primary">
 						<div class="card-header with-border">
-							<b>Post Komentar</b>
+							<h3 class="card-title">Upload File</h3>
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
-								<input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
-								<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+								<label for="ktp">KTP</label>
+								<input name="ktp" id="ktp" type="file" class="form-control enable" disabled>
 							</div>
 						</div>
-						<div class="card-footer">
-							<button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
-						</div>
-				</form>
+					</div>
+					<div class="card-footer text-center">
+						<button type="submit" id="edit_mytalim" class="btn btn-primary enable" name="edit_mytalim" disabled>Kirim Data!</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
+
+	<!-- Post Komentar -->
+	<div class="row mt-4">
+		<div class="col-lg-12 col-md-6">
+			<form method="post" action="<?= base_url('comment/post_comment/id_mytalim') ?>">
+				<div class="card">
+					<div class="card-header with-border">
+						<b>Post Komentar</b>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
+							<input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
+							<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+						</div>
+					</div>
+					<div class="card-footer">
+						<button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
+					</div>
+			</form>
+		</div>
+	</div>
 	</div>
 
 	<!-- Menampilkan Komentar -->

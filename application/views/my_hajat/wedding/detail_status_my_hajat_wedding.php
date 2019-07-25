@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Detail My Ta'lim Tickets
+    Detail My Hajat Wedding Tickets
   </h1>
 </section>
 
@@ -15,7 +15,7 @@
     <div class="col-lg-6">
       <div class="card">
         <div class="card-header text-center">
-          <h3 class="card-title">Data Ticket My Hajat Renovasi</h3>
+          <h3 class="card-title">Data Ticket My Hajat Wedding</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body no-padding">
@@ -29,6 +29,12 @@
                 <td><b>ID Wedding</b></td>
                 <td>
                   <input type="text" class="form-control" name="id_wedding" id="id_wedding" value="<?= $data->id_wedding ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Nama Cabang</b></td>
+                <td>
+                  <input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
                 </td>
               </tr>
               <tr>

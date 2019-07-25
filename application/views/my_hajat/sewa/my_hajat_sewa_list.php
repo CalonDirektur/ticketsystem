@@ -15,6 +15,7 @@
         <table id="table-admin1" class="table">
           <thead>
             <th>ID Ticket</th>
+            <th>Nama Cabang</th>
             <th>Nama Konsumen</th>
             <th>Jenis Konsumen</th>
             <th>Nama Pemilik</th>
@@ -27,6 +28,7 @@
             foreach ($data as $d) {  ?>
               <tr>
                 <td>#<?= $d->id_sewa ?></td>
+                <td><?= $d->nama_cabang ?></td>
                 <td><?= $d->nama_konsumen ?></td>
                 <td><?= $d->jenis_konsumen ?></td>
                 <td><?= $d->nama_pemilik ?></td>

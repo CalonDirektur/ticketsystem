@@ -17,6 +17,7 @@
           <thead>
             <th>ID Ticket</th>
             <th>Nama Konsumen</th>
+            <th>Nama Cabang</th>
             <th>Jenis Konsumen</th>
             <th>Nama Vendor</th>
             <th>Ticket Status</th>
@@ -28,6 +29,7 @@
             foreach ($data as $d) {  ?>
               <tr>
                 <td>#<?= $d->id_renovasi ?></td>
+                <td><?= $d->nama_cabang ?></td>
                 <td><?= $d->nama_konsumen ?></td>
                 <td><?= $d->jenis_konsumen ?></td>
                 <td><?= $d->nama_vendor ?></td>

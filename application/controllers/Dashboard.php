@@ -83,12 +83,12 @@ class Dashboard extends CI_Controller
 			'total_rejected' => $total_rejected
 		];
 
-		$data['mytalim_records'] = $this->data_m->get_product('tb_my_talim', $id, 'id_mytalim DESC');
-		$data['myhajat_renovasi_records'] = $this->data_m->get_product('tb_my_hajat_renovasi', $id, 'id_renovasi DESC');
-		$data['myhajat_sewa_records'] = $this->data_m->get_product('tb_my_hajat_sewa', $id, 'id_sewa DESC');
-		$data['myhajat_wedding_records'] = $this->data_m->get_product('tb_my_hajat_wedding', $id, 'id_wedding DESC');
-		$data['myhajat_franchise_records'] = $this->data_m->get_product('tb_my_hajat_franchise', $id, 'id_franchise DESC');
-		$data['myhajat_lainnya_records'] = $this->data_m->get_product('tb_my_hajat_lainnya', $id, 'id_myhajat_lainnya DESC');
+		$data['mytalim_records'] = $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $id, 'id_mytalim DESC');
+		$data['myhajat_renovasi_records'] = $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $id, 'id_renovasi DESC');
+		$data['myhajat_sewa_records'] = $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $id, 'id_sewa DESC');
+		$data['myhajat_wedding_records'] = $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $id, 'id_wedding DESC');
+		$data['myhajat_franchise_records'] = $this->data_m->get_product('tb_my_hajat_franchise', 'tb_my_hajat_franchise.' . $id, 'id_franchise DESC');
+		$data['myhajat_lainnya_records'] = $this->data_m->get_product('tb_my_hajat_lainnya', 'tb_my_hajat_lainnya.' . $id, 'id_myhajat_lainnya DESC');
 
 		$this->template->load('template2', 'dashboard', $data);
 	}

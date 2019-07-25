@@ -21,41 +21,46 @@ class Data_m extends CI_Model
         $this->db->from($table);
 
         if ($where == 'status_admin1') {
+            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
             if ($id_cabang != NULL) {
-                $this->db->where('id_cabang', $id_cabang);
+                $this->db->where($table . '.id_cabang', $id_cabang);
             }
             $this->db->where('id_approval', 0);
             $this->db->or_where('id_approval', 1);
         }
         if ($where == 'status_admin2') {
             if ($id_cabang != NULL) {
-                $this->db->where('id_cabang', $id_cabang);
+                $this->db->where($table . '.id_cabang', $id_cabang);
             }
             $this->db->where('id_approval', 2);
             $this->db->or_where('id_approval', 3);
         }
         if ($where == 'pending_review') {
+            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
             $this->db->where('id_approval', 0);
             if ($id_cabang != NULL) {
-                $this->db->where('id_cabang', $id_cabang);
+                $this->db->where($table . '.id_cabang', $id_cabang);
             }
         }
         if ($where == 'rejected_review') {
+            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
             $this->db->where('id_approval', 1);
             if ($id_cabang != NULL) {
-                $this->db->where('id_cabang', $id_cabang);
+                $this->db->where($table . '.id_cabang', $id_cabang);
             }
         }
         if ($where == 'approved_review') {
+            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
             $this->db->where('id_approval', 2);
             if ($id_cabang != NULL) {
-                $this->db->where('id_cabang', $id_cabang);
+                $this->db->where($table . '.id_cabang', $id_cabang);
             }
         }
         if ($where == 'completed_review') {
+            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
             $this->db->where('id_approval', 3);
             if ($id_cabang != NULL) {
-                $this->db->where('id_cabang', $id_cabang);
+                $this->db->where($table . '.id_cabang', $id_cabang);
             }
         }
 
@@ -66,13 +71,18 @@ class Data_m extends CI_Model
 
     public function get_by_id($table, $where)
     {
-        $query = $this->db->get_where($table, $where);
+        $this->db->from($table);
+        $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
+        $this->db->where($where);
+
+        $query = $this->db->get();
         return $query;
     }
 
     public function get_product($table, $where = NULL, $order_by)
     {
         $this->db->from($table);
+        $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
         if ($where != NULL) {
             $this->db->where($where);
         }

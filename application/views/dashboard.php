@@ -721,6 +721,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Pendidikan</th>
@@ -734,6 +735,7 @@
                       foreach ($mytalim_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_mytalim ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->pendidikan) ?></td>
@@ -771,6 +773,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Vendor</th>
@@ -784,6 +787,7 @@
                       foreach ($myhajat_renovasi_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_renovasi ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_vendor) ?></td>
@@ -821,6 +825,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Pemilik</th>
@@ -834,6 +839,7 @@
                       foreach ($myhajat_sewa_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_sewa ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_pemilik) ?></td>
@@ -871,6 +877,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama WO</th>
@@ -884,6 +891,7 @@
                       foreach ($myhajat_wedding_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_wedding ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_wo) ?></td>
@@ -921,6 +929,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Franchise</th>
@@ -934,6 +943,7 @@
                       foreach ($myhajat_franchise_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_franchise ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_franchise) ?></td>
@@ -971,6 +981,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Penyedia Jasa</th>
@@ -984,6 +995,7 @@
                       foreach ($myhajat_lainnya_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_myhajat_lainnya ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
@@ -1151,6 +1163,8 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Pendidikan</th>
@@ -1164,6 +1178,7 @@
                       foreach ($mytalim_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_mytalim ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->pendidikan) ?></td>
@@ -1201,6 +1216,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Vendor</th>
@@ -1214,6 +1230,7 @@
                       foreach ($myhajat_renovasi_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_renovasi ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_vendor) ?></td>
@@ -1251,6 +1268,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Pemilik</th>
@@ -1264,6 +1282,7 @@
                       foreach ($myhajat_sewa_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_sewa ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_pemilik) ?></td>
@@ -1301,6 +1320,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama WO</th>
@@ -1314,6 +1334,7 @@
                       foreach ($myhajat_wedding_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_wedding ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_wo) ?></td>
@@ -1351,6 +1372,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Franchise</th>
@@ -1364,6 +1386,7 @@
                       foreach ($myhajat_franchise_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_franchise ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_franchise) ?></td>
@@ -1401,6 +1424,7 @@
                   <table class="table table-striped">
                     <thead>
                       <th>ID Ticket</th>
+                      <th>Cabang</th>
                       <th>Nama Konsumen</th>
                       <th>Jenis Konsumen</th>
                       <th>Nama Penyedia Jasa</th>
@@ -1414,6 +1438,7 @@
                       foreach ($myhajat_lainnya_records->result() as $d) {  ?>
                         <tr>
                           <td>#<?= $d->id_myhajat_lainnya ?></td>
+                          <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
