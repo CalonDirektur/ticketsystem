@@ -19,7 +19,9 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
-  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/jquery.dataTables.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/img/bfi.jpg') ?>" />
 </head>
@@ -101,19 +103,6 @@
                 </ul>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
-                <i class="icon-disc menu-icon"></i>
-                <span class="menu-title">Reviewed Tickets</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="daftar-tiket">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_talim') ?>">My Talim</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_hajat') ?>">My Hajat</a></li>
-                </ul>
-              </div>
-            </li>
           <?php } ?>
         </ul>
       </nav>
@@ -146,14 +135,12 @@
   <script src="<?= base_url('assets2/js/dashboard.js') ?>"></script>
 
   <!-- ANEKA JAVASCRIPT IBRAHIM -->
-  <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/jquery.dataTables.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/dataTables.rowReorder.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/dataTables.responsive.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
 
-  <script>
-    $('#myTable').dataTable();
-    alert('asdsa');
-  </script>
 </body>
 
 </html>

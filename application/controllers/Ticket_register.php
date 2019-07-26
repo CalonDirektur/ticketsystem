@@ -70,45 +70,37 @@ class Ticket_register extends CI_Controller
 					'periode' => $post['periode'],
 					'tujuan_pembiayaan' => $post['tujuan_pembiayaan'],
 					'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+					'informasi_tambahan' => $post['informasi_tambahan'],
+					'date_created' => date('Y-m-d H:i:s'),
 					'id_approval' => 0
 				];
 
 				//Konfigurasi Upload
 				$config['upload_path']         = './uploads/mytalim';
 				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 1000;
-				$config['max_width']            = 2000;
-				$config['max_height']           = 1600;
+				$config['max_size']             = 10000;
+				$config['max_width']            = 5000;
+				$config['max_height']           = 5000;
 				$this->load->library('upload', $config);
 
-				if (!$this->upload->do_upload('ktp')) {
-					echo $this->upload->display_errors();
-				} else {
-					$data['ktp'] = $this->upload->data('file_name');
+				if ($this->upload->do_upload('upload_file1')) {
+					$data['upload_file1'] = $this->upload->data('file_name');
 				}
 
-				if (!$this->upload->do_upload('kk')) {
-					echo $this->upload->display_errors();
-				} else {
-					$data['kk'] = $this->upload->data('file_name');
+				if ($this->upload->do_upload('upload_file2')) {
+					$data['upload_file2'] = $this->upload->data('file_name');
 				}
 
-				if (!$this->upload->do_upload('bukti_penghasilan')) {
-					echo $this->upload->display_errors();
-				} else {
-					$data['bukti_penghasilan'] = $this->upload->data('file_name');
+				if ($this->upload->do_upload('upload_file3')) {
+					$data['upload_file3'] = $this->upload->data('file_name');
 				}
 
-				if (!$this->upload->do_upload('npwp')) {
-					echo $this->upload->display_errors();
-				} else {
-					$data['npwp'] = $this->upload->data('file_name');
+				if ($this->upload->do_upload('upload_file4')) {
+					$data['upload_file4'] = $this->upload->data('file_name');
 				}
 
-				if (!$this->upload->do_upload('tambahan')) {
-					echo $this->upload->display_errors();
-				} else {
-					$data['tambahan'] = $this->upload->data('file_name');
+				if ($this->upload->do_upload('upload_file5')) {
+					$data['upload_file5'] = $this->upload->data('file_name');
 				}
 
 				$id = $this->data_m->add('tb_my_talim', $data);
@@ -132,6 +124,7 @@ class Ticket_register extends CI_Controller
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
 			$this->form_validation->set_rules('nama_vendor', 'Nama Vendor', 'required');
 			$this->form_validation->set_rules('jenis_vendor', 'Jenis Vendor', 'required');
+			$this->form_validation->set_rules('jenis_pekerjaan', 'Jenis Pekerjaan', 'required');
 			$this->form_validation->set_rules('bagian_bangunan', 'Bagian Bangunan', 'required');
 			$this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'required');
 			$this->form_validation->set_rules('jumlah_pekerja', 'Jumlah Pekerja', 'required');
@@ -145,6 +138,7 @@ class Ticket_register extends CI_Controller
 					'id_cabang' => $post['cabang'],
 					'nama_vendor' => $post['nama_vendor'],
 					'jenis_vendor' => $post['jenis_vendor'],
+					'jenis_pekerjaan' => $post['jenis_vendor'],
 					'bagian_bangunan' => $post['bagian_bangunan'],
 					'luas_bangunan' => $post['luas_bangunan'],
 					'jumlah_pekerja' => $post['jumlah_pekerja'],
@@ -339,45 +333,36 @@ class Ticket_register extends CI_Controller
 				'periode' => $post['periode'],
 				'tujuan_pembiayaan' => $post['tujuan_pembiayaan'],
 				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
+				'date_modified' => date('Y-m-d H:i:s'),
 				'id_approval' => 0
 			];
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mytalim';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 1000;
-			$config['max_width']            = 2000;
-			$config['max_height']           = 1600;
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['max_size']             = 100000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
 			$this->load->library('upload', $config);
 
-			if (!$this->upload->do_upload('ktp')) {
-				echo $this->upload->display_errors();
-			} else {
-				$data['ktp'] = $this->upload->data('file_name');
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('kk')) {
-				echo $this->upload->display_errors();
-			} else {
-				$data['kk'] = $this->upload->data('file_name');
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('bukti_penghasilan')) {
-				echo $this->upload->display_errors();
-			} else {
-				$data['bukti_penghasilan'] = $this->upload->data('file_name');
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('npwp')) {
-				echo $this->upload->display_errors();
-			} else {
-				$data['npwp'] = $this->upload->data('file_name');
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
 			}
 
-			if (!$this->upload->do_upload('tambahan')) {
-				echo $this->upload->display_errors();
-			} else {
-				$data['tambahan'] = $this->upload->data('file_name');
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
 			}
 
 			$id = $this->data_m->update('tb_my_talim', $data, ['id_mytalim' => $post['id_mytalim']]);

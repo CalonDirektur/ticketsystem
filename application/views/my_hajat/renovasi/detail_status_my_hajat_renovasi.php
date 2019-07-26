@@ -188,13 +188,6 @@
             <div class="user-block"> <span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span>
               <span class="description">Diposting: <?= $komen->date ?></span>
             </div>
-            <div class="card-tools">
-              <button type="button" class="btn btn-card-tool" data-toggle="tooltip" title="Mark as read">
-                <i class="fa fa-circle-o"></i></button>
-              <button type="button" class="btn btn-card-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-card-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div>
           <div class="card-body">
             <p><?= $komen->comment ?></p>

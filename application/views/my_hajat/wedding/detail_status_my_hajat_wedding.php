@@ -95,16 +95,6 @@
                   <textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea>
                 </td>
               </tr>
-              <!-- Tombol ini muncul khusus untuk user -->
-              <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-                <tr>
-                  <td></td>
-                  <td>
-                    <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
-                    <button type="submit" id="edit_wedding" class="btn btn-primary enable" name="edit_wedding" disabled>Kirim Data!</button>
-                  </td>
-                </tr>
-              <?php } ?>
           </form>
           <tr>
             <td><b>Status:</b></td>
@@ -147,7 +137,27 @@
           </table>
         </div>
       </div>
+      <div class="card card-primary">
+        <div class="card-header with-border">
+          <h3 class="card-title">Upload File</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="ktp">KTP</label>
+            <input name="ktp" id="ktp" type="file" class="form-control enable" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <!-- Tombol ini muncul khusus untuk user -->
+        <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+          <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+          <button type="submit" id="edit_mytalim" class="btn btn-primary enable" name="edit_mytalim" disabled>Kirim Data!</button>
+        <?php } ?>
+      </div>
     </div>
+
+  </div>
   </div>
 
   <!-- Post Komentar -->
@@ -180,7 +190,7 @@
 
         <div class="card card-widget">
           <div class="card-header with-border">
-            <div class="user-block"> <span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span>
+            <div class="user-block"><span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span>
               <span class="description">Diposting: <?= $komen->date ?></span>
             </div>
           </div>

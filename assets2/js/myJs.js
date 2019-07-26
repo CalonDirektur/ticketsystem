@@ -1,4 +1,11 @@
 $(document).ready(function () {
+	// alert(window.location.hash);
+	$('table.status').DataTable({
+		rowReorder: {
+			selector: 'td:nth-child(2)'
+		},
+		responsive: true
+	});
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();
@@ -40,4 +47,28 @@ $(document).ready(function () {
 		$(this).fadeOut();
 	})
 
+	var i = 1;
+	var field = 1;
+	//Script untuk menambah input upload file
+	// $('#add-input').on('click', function () {
+	// 	if (i == 1) {
+	// 		$('.btn_remove').hide()
+	// 	}
+	// 	i++;
+	// 	$('#dynamic-input').append('<div id="row' + i + '">' +
+	// 		'<label for="upload_file' + i + '">Upload File </label>' +
+	// 		'<div class="input-group">' +
+	// 		'<input name="upload_file[' + i + ']" id="upload_file' + i + '" type="file" class="form-control col-8">' +
+	// 		'<span class="input-group-btn">' +
+	// 		'</span>' +
+	// 		'</div>' +
+	// 		'</div>'
+	// 	);
+	// })
+
+	// //script untuk menghapus input upload file
+	// $('#dynamic-input').on('click', '.btn_remove', function () {
+	// 	var button_id = $(this).attr("data");
+	// 	$('#row' + button_id + '').remove();
+	// })
 })

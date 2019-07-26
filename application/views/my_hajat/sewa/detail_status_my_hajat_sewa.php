@@ -157,18 +157,10 @@ as<section class="content-header">
   <?php foreach ($komentar as $komen) { ?>
     <div class="row">
       <div class="col-lg-12 col-md-12">
-
         <div class="card card-widget">
           <div class="card-header with-border">
             <div class="user-block"> <span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span>
               <span class="description">Diposting: <?= $komen->date ?></span>
-            </div>
-            <div class="card-tools">
-              <button type="button" class="btn btn-card-tool" data-toggle="tooltip" title="Mark as read">
-                <i class="fa fa-circle-o"></i></button>
-              <button type="button" class="btn btn-card-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-card-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
           </div>
           <div class="card-body">

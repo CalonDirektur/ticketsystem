@@ -82,15 +82,17 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped" id="myTable">
+                  <table class="table display nowrap status" style="width:100%" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Pendidikan</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID My Ta'lim</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Pendidikan</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -132,15 +134,17 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Vendor</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Renovasi</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Vendor</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -182,15 +186,17 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Pemilik</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Sewa</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Pemilik</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -232,15 +238,17 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama WO</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Wedding</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama WO</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -282,15 +290,19 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Franchise</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Franchise</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -332,15 +344,17 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Penyedia Jasa</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Penyedia Jasa</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -401,7 +415,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Renovasi</span><br>
+                          <span>My Hajat Renovasi</span><br><br>
                           <label class="badge badge-secondary"><?= $pending_myhajat_renovasi ?></span>
                         </div>
                       </div>
@@ -416,7 +430,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Sewa</span><br>
+                          <span>My Hajat Sewa</span><br><br>
                           <label class="badge badge-secondary"><?= $pending_myhajat_sewa ?></span>
                         </div>
                       </div>
@@ -431,7 +445,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Wedding</span><br>
+                          <span>My Hajat Wedding</span><br><br>
                           <label class="badge badge-secondary"><?= $pending_myhajat_wedding ?></span>
                         </div>
                       </div>
@@ -445,7 +459,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Franchise</span><br>
+                          <span>My Hajat Franchise</span><br><br>
                           <label class="badge badge-secondary"><?= $pending_myhajat_franchise ?></span>
                         </div>
                       </div>
@@ -461,7 +475,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Lainnya</span><br>
+                          <span>My Hajat Lainnya</span><br><br>
                           <label class="badge badge-secondary"><?= $pending_myhajat_lainnya ?></span>
                         </div>
                       </div>
@@ -478,7 +492,7 @@
                           <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Talim</span><br>
+                          <span>My Talim</span><br><br>
                           <label class="badge badge-secondary"><?= $pending_mytalim ?></la>
                         </div>
                       </div>
@@ -498,7 +512,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Renovasi</span><br>
+                          <span>My Hajat Renovasi</span><br><br>
                           <label class="badge badge-success"><?= $approved_myhajat_renovasi ?></span>
                         </div>
                       </div>
@@ -513,7 +527,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Sewa</span><br>
+                          <span>My Hajat Sewa</span><br><br>
                           <label class="badge badge-success"><?= $approved_myhajat_sewa ?></span>
                         </div>
                       </div>
@@ -528,7 +542,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Wedding</span><br>
+                          <span>My Hajat Wedding</span><br><br>
                           <label class="badge badge-success"><?= $approved_myhajat_wedding ?></span>
                         </div>
                       </div>
@@ -542,7 +556,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Franchise</span><br>
+                          <span>My Hajat Franchise</span><br><br>
                           <label class="badge badge-success"><?= $approved_myhajat_franchise ?></span>
                         </div>
                       </div>
@@ -558,7 +572,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Lainnya</span><br>
+                          <span>My Hajat Lainnya</span><br><br>
                           <label class="badge badge-success"><?= $approved_myhajat_lainnya ?></span>
                         </div>
                       </div>
@@ -575,7 +589,7 @@
                           <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Talim</span><br>
+                          <span>My Talim</span><br><br>
                           <label class="badge badge-success"><?= $approved_mytalim ?></span>
                         </div>
                       </div>
@@ -595,7 +609,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Renovasi</span><br>
+                          <span>My Hajat Renovasi</span><br><br>
                           <label class="badge badge-danger"><?= $rejected_myhajat_renovasi ?></span>
                         </div>
                       </div>
@@ -610,7 +624,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Sewa</span><br>
+                          <span>My Hajat Sewa</span><br><br>
                           <label class="badge badge-danger"><?= $rejected_myhajat_sewa ?></span>
                         </div>
                       </div>
@@ -625,7 +639,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Wedding</span><br>
+                          <span>My Hajat Wedding</span><br><br>
                           <label class="badge badge-danger"><?= $rejected_myhajat_wedding ?></span>
                         </div>
                       </div>
@@ -639,7 +653,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Franchise</span><br>
+                          <span>My Hajat Franchise</span><br><br>
                           <label class="badge badge-danger"><?= $rejected_myhajat_franchise ?></span>
                         </div>
                       </div>
@@ -655,7 +669,7 @@
                           <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Hajat Lainnya</span><br>
+                          <span>My Hajat Lainnya</span><br><br>
                           <label class="badge badge-danger"><?= $rejected_myhajat_lainnya ?></span>
                         </div>
                       </div>
@@ -672,7 +686,7 @@
                           <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          <span>My Talim</span><br>
+                          <span>My Talim</span><br><br>
                           <label class="badge badge-danger"><?= $rejected_mytalim ?></span>
                         </div>
                       </div>
@@ -718,16 +732,18 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Pendidikan</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Pendidikan</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -770,16 +786,18 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Vendor</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Vendor</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -822,16 +840,18 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Pemilik</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Pemilik</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -874,16 +894,18 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama WO</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama WO</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -926,16 +948,18 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Franchise</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Franchise</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -978,16 +1002,18 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Penyedia Jasa</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Penyedia Jasa</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -1160,17 +1186,19 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Pendidikan</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Pendidikan</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -1213,16 +1241,18 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Vendor</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Vendor</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -1265,16 +1295,18 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Pemilik</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Pemilik</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -1317,16 +1349,18 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama WO</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama WO</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -1369,16 +1403,18 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Franchise</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Franchise</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -1421,16 +1457,18 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
-                      <th>ID Ticket</th>
-                      <th>Cabang</th>
-                      <th>Nama Konsumen</th>
-                      <th>Jenis Konsumen</th>
-                      <th>Nama Penyedia Jasa</th>
-                      <th>Produk</th>
-                      <th>Ticket Status</th>
-                      <th></th>
+                      <tr>
+                        <th>ID Ticket</th>
+                        <th>Cabang</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Penyedia Jasa</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php

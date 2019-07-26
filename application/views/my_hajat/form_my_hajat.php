@@ -93,11 +93,25 @@
               </div>
               <!-- Jenis Vendor -->
               <div class="form-group">
-                <?= form_error('jenis_vendor'); ?>
-
                 <label for="jenis_vendor">Jenis Vendor</label>
                 <?= form_error('jenis_vendor'); ?>
-                <input name="jenis_vendor" id="jenis_vendor" type="text" class="form-control" placeholder="Jenis Vendor" value="<?= set_value('jenis_vendor') ?>">
+                <div class="form-check">
+                  <label class="form-check-label"><input class="kategori form-check-input" id="perorangan" type="radio" name="jenis_vendor" value="Perorangan">Perorangan</label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label"><input class="kategori form-check-input" id="badan_usaha" type="radio" name="jenis_vendor" value="Badan Usaha">Badan Usaha</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="jenis_pekerjaan">Jenis Pekerjaan</label>
+                <?= form_error('jenis_pekerjaan'); ?>
+                <div class="form-check">
+                  <label class="form-check-label"><input class="kategori form-check-input" id="borongan" type="radio" name="jenis_pekerjaan" value="Borongan">Borongan</label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label"><input class="kategori form-check-input" id="harian" type="radio" name="jenis_pekerjaan" value="Harian">Harian</label>
+                </div>
+
               </div>
               <div class="form-group">
                 <?= form_error('bagian_bangunan'); ?>
