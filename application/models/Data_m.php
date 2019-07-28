@@ -15,52 +15,62 @@ class Data_m extends CI_Model
         return $query;
     }
 
-    public function get($table, $where = NULL, $id_cabang = NULL)
+    public function get($table, $where = NULL, $id_user = NULL)
     {
         $this->db->select('*');
         $this->db->from($table);
 
         if ($where == 'status_admin1') {
             $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
-            if ($id_cabang != NULL) {
-                $this->db->where($table . '.id_cabang', $id_cabang);
+            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
+
+            if ($id_user != NULL) {
+                $this->db->where($table . '.id_user', $id_user);
             }
             $this->db->where('id_approval', 0);
             $this->db->or_where('id_approval', 1);
         }
         if ($where == 'status_admin2') {
-            if ($id_cabang != NULL) {
-                $this->db->where($table . '.id_cabang', $id_cabang);
+            if ($id_user != NULL) {
+                $this->db->where($table . '.id_user', $id_user);
             }
             $this->db->where('id_approval', 2);
             $this->db->or_where('id_approval', 3);
         }
         if ($where == 'pending_review') {
             $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
+            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
+
             $this->db->where('id_approval', 0);
-            if ($id_cabang != NULL) {
-                $this->db->where($table . '.id_cabang', $id_cabang);
+            if ($id_user != NULL) {
+                $this->db->where($table . '.id_user', $id_user);
             }
         }
         if ($where == 'rejected_review') {
             $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
+            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
+
             $this->db->where('id_approval', 1);
-            if ($id_cabang != NULL) {
-                $this->db->where($table . '.id_cabang', $id_cabang);
+            if ($id_user != NULL) {
+                $this->db->where($table . '.id_user', $id_user);
             }
         }
         if ($where == 'approved_review') {
             $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
+            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
+
             $this->db->where('id_approval', 2);
-            if ($id_cabang != NULL) {
-                $this->db->where($table . '.id_cabang', $id_cabang);
+            if ($id_user != NULL) {
+                $this->db->where($table . '.id_user', $id_user);
             }
         }
         if ($where == 'completed_review') {
             $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
+            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
+
             $this->db->where('id_approval', 3);
-            if ($id_cabang != NULL) {
-                $this->db->where($table . '.id_cabang', $id_cabang);
+            if ($id_user != NULL) {
+                $this->db->where($table . '.id_user', $id_user);
             }
         }
 

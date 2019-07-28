@@ -41,6 +41,8 @@
                 </select>
                 <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
               </div>
+              <!-- Insert ID Usser -->
+              <input name="id_user" id="id_user" type="hidden" value="<?= $this->fungsi->user_login()->id_user ?>">
             </div>
           </div>
 
@@ -129,7 +131,7 @@
               <p><b>Note: </b> Wajib diisi (*)</p>
             </div>
             <div class="card-footer text-center">
-              <button class="btn btn-primary" name="submit_mytalim">Kirim Data!</button>
+              <button onclick="return confirm('Harap periksa kembali\n, Apakah Anda yakin data yang diisi sudah benar?');" class="btn btn-primary" name="submit_mytalim">Kirim Data!</button>
     </form>
 </div>
 </div>

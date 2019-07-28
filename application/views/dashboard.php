@@ -82,7 +82,7 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%" style="width:100%">
+                  <table class="table display nowrap status" style="width:100%">
                     <thead>
                       <tr>
                         <th>ID My Ta'lim</th>
@@ -99,7 +99,7 @@
                       $no = 1;
                       foreach ($mytalim_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_mytalim ?></td>
+                          <td width="1%">#<?= $d->id_mytalim ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->pendidikan) ?></td>
@@ -735,44 +735,39 @@
                   <table class="table display nowrap status" style="width:100%">
                     <thead>
                       <tr>
-                        <th>ID Ticket</th>
+                        <th>ID My Ta'lim</th>
+                        <th></th>
                         <th>Cabang</th>
                         <th>Nama Konsumen</th>
-                        <th>Jenis Konsumen</th>
-                        <th>Pendidikan</th>
-                        <th>Produk</th>
-                        <th>Ticket Status</th>
-                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      $no = 1;
                       foreach ($mytalim_records->result() as $d) {  ?>
-                        <tr>
-                          <td>#<?= $d->id_mytalim ?></td>
-                          <td><?= $d->nama_cabang ?></td>
-                          <td><?= $d->nama_konsumen ?></td>
-                          <td><?= $d->jenis_konsumen ?></td>
-                          <td><?= ucfirst($d->pendidikan) ?></td>
-                          <td>My Ta'lim</td>
-                          <?php if ($d->id_approval == 0) { ?>
+                        <?php if ($d->id_approval == 0) { ?>
+                          <tr class="clickable-row" data-href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>" style="cursor: pointer">
+                            <td class="id_ticket">#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-secondary">Belum Direview</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
+                            <td><?= $d->nama_cabang ?></td>
                           <?php } else if ($d->id_approval == 1) { ?>
+                          <tr class="clickable-row" data-href="<?= base_url('status/rejected/mytalim/id/' . $d->id_mytalim) ?>">
+                            <td>#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
+                            <td><?= $d->nama_cabang ?></td>
                           <?php } else if ($d->id_approval == 2) { ?>
+                          <tr class="clickable-row" data-href="<?= base_url('status/approved/mytalim/id/' . $d->id_mytalim) ?>">
+                            <td>#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
+                            <td><?= $d->nama_cabang ?></td>
                           <?php } else if ($d->id_approval == 3) { ?>
+                          <tr class="clickable-row" data-href="<?= base_url('status/completed/mytalim/id/' . $d->id_mytalim) ?>">
+                            <td>#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
+                            <td><?= $d->nama_cabang ?></td>
                           <?php } ?>
+                          <td><?= $d->nama_konsumen ?></td>
                         </tr>
-                        <?php
-                        $no++;
-                      } ?>
+                      <?php  } ?>
                     </tbody>
                   </table>
                 </div>
@@ -974,16 +969,16 @@
                           <td>My Hajat Franchise</td>
                           <?php if ($d->id_approval == 0) { ?>
                             <td><span class="badge badge-secondary">Belum Direview</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_franchise) ?>">Detail</a></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/wedding/' . $d->id_franchise) ?>">Detail</a></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 2) { ?>
                             <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $d->id_franchise) ?>">Detail</a></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 3) { ?>
                             <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $d->id_franchise) ?>">Detail</a></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } ?>
                         </tr>
                         <?php

@@ -135,6 +135,7 @@
   <script src="<?= base_url('assets2/js/dashboard.js') ?>"></script>
 
   <!-- ANEKA JAVASCRIPT IBRAHIM -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dataTables.rowReorder.min.js') ?>"></script>

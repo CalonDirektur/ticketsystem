@@ -15,6 +15,7 @@ class Comment extends CI_Controller
 
         $post = $this->input->post(NULL, TRUE);
 
+        $redirect = $post['redirect'];
         $data = [
             'parent_comment_id' => 0,
             'id_user' => $post['id_user'],
@@ -22,13 +23,18 @@ class Comment extends CI_Controller
             'comment' => $post['post_comment'],
             'date' => date('Y-m-d H:i:s')
         ];
-        $this->comment_m->add_comment($data);
-        redirect('');
+        $success = $this->comment_m->add_comment($data);
+        if ($success) {
+            redirect($redirect);
+        }
     }
 
     public function post_reply($produk)
     {
         $post = $this->input->post(NULL, TRUE);
+
+        $redirect = $post['redirect'];
+
         $data = [
             'parent_comment_id' => $post['parent_comment'],
             'id_user' => $post['id_user'],
@@ -36,6 +42,9 @@ class Comment extends CI_Controller
             'comment' => $post['post_reply'],
             'date' => date('Y-m-d H:i:s')
         ];
-        $this->comment_m->add_comment($data);
+        $success = $this->comment_m->add_comment($data);
+        if ($success) {
+            redirect($redirect);
+        }
     }
 }

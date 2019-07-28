@@ -15,8 +15,8 @@ class Dashboard extends CI_Controller
 
 		// Jika bukan admin maka tampilkan data sesuai dengan cabang masing-masing
 		if ($this->fungsi->user_login()->id_cabang != 46) {
-			$id = 'id_cabang = ' . $this->fungsi->user_login()->id_cabang;
-			$id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
+			$id = 'id_user = ' . $this->fungsi->user_login()->id_user;
+			$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
 		} else {
 			if ($this->fungsi->user_login()->level == 2) {
 				$id = 'id_approval = 0';

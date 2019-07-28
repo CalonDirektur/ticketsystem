@@ -13,23 +13,28 @@ $(document).ready(function () {
 	$(".card.pertanyaan").hide();
 	$('.kategori').click(function () {
 		if ($("#renovasi").is(':checked')) {
-			$("#card-renovasi").fadeIn();
+			$("#submit").attr('name', 'submit_renovasi')
+			$("#card-renovasi, .upload").fadeIn();
 			$("#card-sewa, #card-franchise, #card-wedding, #card-lainnya").fadeOut();
 		}
 		if ($("#sewa").is(':checked')) {
-			$("#card-sewa").fadeIn();
+			$("#submit").attr('name', 'submit_sewa')
+			$("#card-sewa, .upload").fadeIn();
 			$("#card-renovasi, #card-franchise, #card-wedding, #card-lainnya").fadeOut();
 		}
 		if ($("#wedding").is(':checked')) {
-			$("#card-wedding").fadeIn();
+			$("#submit").attr('name', 'submit_wedding')
+			$("#card-wedding, .upload").fadeIn();
 			$("#card-renovasi, #card-sewa, #card-franchise, #card-lainnya").fadeOut();
 		}
 		if ($("#franchise").is(':checked')) {
-			$("#card-franchise").fadeIn();
+			$("#submit").attr('name', 'submit_franchise')
+			$("#card-franchise, .upload").fadeIn();
 			$("#card-renovasi, #card-wedding, #card-sewa, #card-lainnya").fadeOut();
 		}
 		if ($("#lainnya").is(':checked')) {
-			$("#card-lainnya").fadeIn();
+			$("#submit").attr('name', 'submit_lainnya')
+			$("#card-lainnya, .upload").fadeIn();
 			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise").fadeOut();
 		}
 	})
@@ -39,6 +44,7 @@ $(document).ready(function () {
 		var gambar = $(this).attr('src');
 		// alert(gambar);
 		$('#gambar').attr('src', gambar);
+		$('#img-link').attr('href', gambar);
 	})
 
 	//Halaman detail ticket status, tombol untuk ubah data
@@ -47,8 +53,10 @@ $(document).ready(function () {
 		$(this).fadeOut();
 	})
 
-	var i = 1;
-	var field = 1;
+	$(".clickable-row").click(function () {
+		
+		window.location = $(this).data("href");
+	});
 	//Script untuk menambah input upload file
 	// $('#add-input').on('click', function () {
 	// 	if (i == 1) {

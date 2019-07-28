@@ -11,8 +11,10 @@ class Comment_m extends CI_Model
 
     public function get_comment($table, $where)
     {
+        $this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
         $this->db->from('tb_comment, user, tb_cabang, ' . $table);
         $this->db->where($where);
+        $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query;
     }

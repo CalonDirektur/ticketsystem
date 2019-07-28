@@ -2,10 +2,7 @@
   <h1>Form My Hajat</h1>
 </section>
 
-<form id="ticket_form" method="post" action="<?= site_url('Ticket_register/add') ?>">
-
-
-
+<form id="ticket_form" method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data">
   <section class="content">
     <div class="container">
       <div class="row">
@@ -35,7 +32,7 @@
               <div class="form-group">
                 <label for="cabang">Cabang</label>
                 <?= form_error('cabang'); ?>
-                <select name="cabang" id="cabang" class="form-control">
+                <select name="cabang" id="cabang" class="form-control" disabled>
                   <option disabled selected value="">- Pilih Cabang -</option>
                   <?php
                   foreach ($pertanyaan as $p) {
@@ -43,10 +40,10 @@
                     <option value="<?= $p->id_cabang ?>" <?= $this->fungsi->user_login()->id_cabang == $p->id_cabang ? 'selected' : '' ?>><?= $p->nama_cabang ?></option>
                   <?php }  ?>
                 </select>
+                <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
+                <!-- Insert ID User -->
+                <input name="id_user" id="id_user" type="hidden" value="<?= $this->fungsi->user_login()->id_user ?>">
               </div>
-            </div>
-            <div class="card-footer">
-
             </div>
           </div>
 
@@ -147,9 +144,6 @@
                 <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
               </div>
             </div>
-            <div class="card-footer">
-              <button name="submit_renovasi" class="btn btn-primary" name="submit">Kirim Data!</button>
-            </div>
           </div>
 
           <!-- card Sewa -->
@@ -196,9 +190,6 @@
                 <label for="informasi_tambahan">Informasi Tambahan</label>
                 <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
               </div>
-            </div>
-            <div class="card-footer">
-              <button name="submit_sewa" class="btn btn-primary" name="submit">Kirim Data!</button>
             </div>
           </div>
 
@@ -250,9 +241,6 @@
                 <label for="informasi_tambahan">Informasi Tambahan</label>
                 <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"></textarea>
               </div>
-            </div>
-            <div class="card-footer">
-              <button name="submit_wedding" class="btn btn-primary" name="submit">Kirim Data!</button>
             </div>
           </div>
 
@@ -323,9 +311,6 @@
               </div>
               <button name="submit_franchise" class="btn btn-primary" name="submit">Kirim Data!</button>
             </div>
-            <div class="card-footer">
-
-            </div>
           </div>
 
           <!-- card Penyedia Jasa -->
@@ -361,11 +346,42 @@
                 <textarea name="informasi_tambahan" id="informasi_tambahan" cols="30" rows="10" class="form-control"><?= set_value('informasi_tambahan') ?></textarea>
               </div>
             </div>
-            <div class="card-footer">
-              <button name="submit_lainnya" class="btn btn-primary" name="submit">Kirim Data!</button>
-            </div>
           </div>
+
+          <!-- card Upload File -->
+          <div class="card card-primary mt-4 pertanyaan upload">
+            <div class="card-header with-border">
+              <h3 class="card-title">Upload File</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <?= form_error('upload_file1'); ?>
+                <label for="upload_file1">Upload Berkas 1 *</label>
+                <input name="upload_file1" id="upload_file1" type="file" class="form-control col-8" required>
+              </div>
+              <div class="form-group">
+                <label for="upload_file2">Upload Berkas 2</label>
+                <input name="upload_file2" id="upload_file2" type="file" class="form-control col-8">
+              </div>
+              <div class="form-group">
+                <label for="upload_file3">Upload Berkas 3</label>
+                <input name="upload_file3" id="upload_file3" type="file" class="form-control col-8">
+              </div>
+              <div class="form-group">
+                <label for="upload_file4">Upload Berkas 4</label>
+                <input name="upload_file4" id="upload_file4" type="file" class="form-control col-8">
+              </div>
+              <div class="form-group">
+                <label for="upload_file5">Upload Berkas 5</label>
+                <input name="upload_file5" id="upload_file5" type="file" class="form-control col-8">
+              </div>
+              <p><b>Note: </b> Wajib diisi (*)</p>
+            </div>
+            <div class="card-footer text-center">
+              <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" id="submit" class="btn btn-primary" name="">Kirim Data!</button>
 </form>
+</div>
+</div>
 </div>
 </div>
 </div>
