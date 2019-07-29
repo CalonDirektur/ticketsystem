@@ -17,25 +17,25 @@
               <div class="card-header text-center">
                 <b>Lampiran</b>
               </div>
-              <img id="gambar" class="img-rounded" src="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>" alt="" width="400" height="400">
+              <img id="gambar" class="img-rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" width="400" height="400">
             </div>
           </div>
         </div>
         <div class="row mt-1">
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-            <img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/mytalim/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+            <img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/myhajat/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-            <img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/mytalim/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+            <img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/myhajat/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-            <img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/mytalim/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+            <img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/myhajat/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-            <img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/mytalim/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
+            <img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/myhajat/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-            <img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/mytalim/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
+            <img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/myhajat/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
 
@@ -59,7 +59,7 @@
                 <tr>
                   <td><b>ID Ticket</b></td>
                   <td>
-                    <input type="text" class="form-control" name="id_myhajat_lainnya" id="id_mytalim" value="<?= $data->id_myhajat_lainnya ?>" readonly required>
+                    <input type="text" class="form-control" name="id_myhajat_lainnya" id="id_myhajat" value="<?= $data->id_myhajat_lainnya ?>" readonly required>
                   </td>
                 </tr>
                 <tr>

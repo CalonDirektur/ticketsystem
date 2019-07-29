@@ -13,6 +13,7 @@
 <!-- Main content -->
 <section class="content">
   <?php if ($this->session->userdata('level') == 1) { ?>
+
     <!-- Daftar Support Tiket -->
     <div class="card">
       <div class="card-header">
@@ -21,6 +22,7 @@
       <div class="card-body">
         <div class="row">
 
+          <!-- Form My Hajat -->
           <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_my_hajat') ?>">
               <div class="card">
@@ -34,9 +36,11 @@
             </a>
           </div>
 
+
           <!-- fix for small devices only -->
           <div class="clearfix visible-sm-block"></div>
 
+          <!-- Form My Ta'lim -->
           <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_my_talim') ?>">
               <div class="card">
@@ -49,6 +53,61 @@
               </div>
             </a>
           </div>
+
+          <div class="col-md-2 col-sm-6 col-xs-12">
+            <a href="<?= base_url('ticket_register/form_lead_management') ?>">
+              <div class="card">
+                <div class="card-header text-center">
+                  <img src="" alt="">
+                </div>
+                <div class="card-body text-center">
+                  Form Lead Management
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-2 col-sm-6 col-xs-12">
+            <a href="<?= base_url('ticket_register/form_my_ihram') ?>">
+              <div class="card">
+                <div class="card-header text-center">
+                  <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                </div>
+                <div class="card-body text-center">
+                  Form My Ihram
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-2 col-sm-6 col-xs-12">
+            <a href="<?= base_url('ticket_register/form_my_safar') ?>">
+              <div class="card">
+                <div class="card-header text-center">
+                  <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                </div>
+                <div class="card-body text-center">
+                  Form My Safar
+                </div>
+              </div>
+            </a>
+          </div>
+
+
+          <!-- Form Aktivasi Agent -->
+          <div class="col-md-2 col-sm-6 col-xs-12">
+            <a href="<?= base_url('ticket_register/form_aktivasi_agent') ?>">
+              <div class="card">
+                <div class="card-header text-center">
+                  <img src="<?= base_url('assets/img/no-pict.png') ?>" alt="">
+                </div>
+                <div class="card-body text-center">
+                  Aktivasi Agent
+                </div>
+              </div>
+            </a>
+          </div>
+
           </a>
         </div>
       </div>
@@ -389,6 +448,154 @@
               </div>
             <?php } ?>
 
+            <!-- My Ihram Table -->
+            <?php if ($myihram_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel My Ihram</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID My Ihram</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Travel</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($myihram_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_myihram ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->jenis_konsumen ?></td>
+                          <td><?= ucfirst($d->nama_travel) ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- My safar Table -->
+            <?php if ($mysafar_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel My Safar</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID My Safar</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Travel</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($mysafar_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_mysafar ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->jenis_konsumen ?></td>
+                          <td><?= ucfirst($d->nama_travel) ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- Aktivasi Agent Table -->
+            <?php if ($aktivasi_agent_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel Aktivasi Agent</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Aktivasi Agent</th>
+                        <th>Nama Agent</th>
+                        <th>Jenis Agent</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($aktivasi_agent_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_agent ?></td>
+                          <td><?= ucfirst($d->nama_agent) ?></td>
+                          <td><?= $d->jenis_agent ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
           </div>
           <div class="tab-pane container-fluid fade" id="kategori-produk">
             <!-- Nav tabs -->
@@ -406,6 +613,7 @@
             <br>
             <!-- Tab panes -->
             <div class="tab-content">
+              <!-- Tab Pending -->
               <div class="tab-pane container-fluid active" id="pending">
                 <div class="row">
                   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -498,10 +706,55 @@
                       </div>
                     </a>
                   </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/myihram/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Ihram</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_myihram ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/mysafar/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Safar</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_mysafar ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/aktivasi_agent/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Aktivasi Agent</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_aktivasi_agent ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
 
               </div>
 
+              <!-- Tab Approved -->
               <div class="tab-pane container-fluid fade" id="approved">
 
                 <div class="row">
@@ -595,10 +848,55 @@
                       </div>
                     </a>
                   </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/approved/myihram/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Ihram</span><br><br>
+                          <label class="badge badge-success"><?= $approved_myihram ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/approved/mysafar/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Safar</span><br><br>
+                          <label class="badge badge-success"><?= $approved_mysafar ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
 
+                <div class="row mt-4">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/approved/aktivasi_agent/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Aktivasi Agent</span><br><br>
+                          <label class="badge badge-success"><?= $approved_aktivasi_agent ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
               </div>
 
+
+              <!-- Tab Rejected -->
               <div class="tab-pane container-fluid fade" id="rejected">
 
                 <div class="row">
@@ -692,13 +990,58 @@
                       </div>
                     </a>
                   </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/rejected/myihram/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Ihram</span><br><br>
+                          <label class="badge badge-danger"><?= $rejected_myihram ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/rejected/mysafar/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Safar</span><br><br>
+                          <label class="badge badge-danger"><?= $rejected_mysafar ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
 
+                <div class="row mt-4">
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/rejected/aktivasi_agent/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Aktivasi Agent</span><br><br>
+                          <label class="badge badge-danger"><?= $rejected_aktivasi_agent ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
               </div>
             </div>
+
           </div>
         </div>
-
       </div>
     </div>
 

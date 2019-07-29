@@ -39,7 +39,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -58,7 +58,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -75,7 +75,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -92,7 +92,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -109,7 +109,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -126,11 +126,63 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
         }
-    }
 
+        ////////////////////////////// MY IHRAM /////////////////////////////////////////
+
+        //menampilkan status tiket produk Ihram yang telah PENDIGN oleh admin 1 dan admin 2
+        if ($produk == 'myihram' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_ihram', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_ihram/my_ihram_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk Ihram dengan $id tertentu
+        if ($produk == 'myihram' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_ihram', ['id_myihram' => $id, 'id_approval' => 0])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_ihram', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
+                                                                tb_my_ihram.id_myihram = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+
+            $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
+        }
+
+        ////////////////////////////// MY Safar /////////////////////////////////////////
+
+        //menampilkan status tiket produk Safar yang telah PENDIGN oleh admin 1 dan admin 2
+        if ($produk == 'mysafar' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_safar', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_safar/my_safar_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
+        if ($produk == 'mysafar' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_safar', ['id_mysafar' => $id, 'id_approval' => 0])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_safar', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
+                                                                tb_my_safar.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
+        }
+
+        ////////////////////////////// Aktivasi Agent /////////////////////////////////////////
+        if ($produk == 'aktivasi_agent' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_aktivasi_agent', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'aktivasi_agent/aktivasi_agent_list', $data);
+        }
+
+        if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_agent' => $id, 'id_approval' => 0])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_aktivasi_agent', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_agent = tb_aktivasi_agent.id_agent AND 
+                                                                tb_aktivasi_agent.id_agent = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
+        }
+    }
     public function approved($produk = NULL, $kategori = NULL, $id = NULL)
     {
         ////////////////////////////// MY TA'LIM /////////////////////////////////////////
@@ -147,7 +199,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
 
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
@@ -167,7 +219,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -184,7 +236,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -201,7 +253,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -218,7 +270,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -235,8 +287,59 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
+        }
+
+        ////////////////////////////// MY IHRAM /////////////////////////////////////////
+
+        //menampilkan status tiket produk Ihram yang telah APPROVED oleh admin 1 dan admin 2
+        if ($produk == 'myihram' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_ihram', 'approved_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_ihram/my_ihram_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk Ihram dengan $id tertentu
+        if ($produk == 'myihram' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_ihram', ['id_myihram' => $id, 'id_approval' => 2])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_ihram', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
+                                                                tb_my_ihram.id_myihram = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
+        }
+
+        ////////////////////////////// MY Safar /////////////////////////////////////////
+
+        //menampilkan status tiket produk Safar yang telah APPROVED oleh admin 1 dan admin 2
+        if ($produk == 'mysafar' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_safar', 'approved_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_safar/my_safar_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
+        if ($produk == 'mysafar' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_safar', ['id_mysafar' => $id, 'id_approval' => 2])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_safar', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
+                                                                tb_my_safar.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
+        }
+
+        ////////////////////////////// Aktivasi Agent /////////////////////////////////////////
+        if ($produk == 'aktivasi_agent' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_aktivasi_agent', 'approved_review', $this->id_user)->result();
+            $this->template->load('template2', 'aktivasi_agent/aktivasi_agent_list', $data);
+        }
+        if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_mysafar' => $id, 'id_approval' => 2])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_aktivasi_agent', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_aktivasi_agent.id_mysafar AND 
+                                                                tb_aktivasi_agent.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
     }
 
@@ -256,7 +359,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -275,7 +378,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -292,7 +395,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -309,7 +412,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -326,7 +429,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -343,8 +446,60 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
+        }
+
+        ////////////////////////////// MY IHRAM /////////////////////////////////////////
+
+        //menampilkan status tiket produk Ihram yang telah REJECTED oleh admin 1 dan admin 2
+        if ($produk == 'myihram' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_ihram', 'rejected_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_ihram/my_ihram_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk Ihram dengan $id tertentu
+        if ($produk == 'myihram' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_ihram', ['id_myihram' => $id, 'id_approval' => 1])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_ihram', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
+                                                                tb_my_ihram.id_myihram = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+
+            $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
+        }
+
+        ////////////////////////////// MY Safar /////////////////////////////////////////
+
+        //menampilkan status tiket produk Safar yang telah REJECTED oleh admin 1 dan admin 2
+        if ($produk == 'mysafar' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_safar', 'rejected_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_safar/my_safar_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
+        if ($produk == 'mysafar' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_safar', ['id_mysafar' => $id, 'id_approval' => 1])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_safar', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
+                                                                tb_my_safar.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
+        }
+
+        ////////////////////////////// Aktivasi Agent /////////////////////////////////////////
+        if ($produk == 'aktivasi_agent' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_aktivasi_agent', 'rejected_review', $this->id_user)->result();
+            $this->template->load('template2', 'aktivasi_agent/aktivasi_agent_list', $data);
+        }
+        if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_mysafar' => $id, 'id_approval' => 1])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_aktivasi_agent', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_aktivasi_agent.id_mysafar AND 
+                                                                tb_aktivasi_agent.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
     }
 
@@ -363,7 +518,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -382,7 +537,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -399,7 +554,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -416,7 +571,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -433,7 +588,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -450,8 +605,60 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_user = tb_cabang.id_user')->result();
+                                                                user.id_user = user.id_user')->result();
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
+        }
+
+        ////////////////////////////// MY IHRAM /////////////////////////////////////////
+
+        //menampilkan status tiket produk Ihram yang telah diapprove oleh admin 1 dan admin 2
+        if ($produk == 'myihram' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_ihram', 'completed_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_ihram/my_ihram_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk Ihram dengan $id tertentu
+        if ($produk == 'myihram' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_ihram', ['id_myihram' => $id, 'id_approval' => 3])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_ihram', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
+                                                                tb_my_ihram.id_myihram = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+
+            $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
+        }
+
+        ////////////////////////////// MY Safar /////////////////////////////////////////
+
+        //menampilkan status tiket produk Safar yang telah diapprove oleh admin 1 dan admin 2
+        if ($produk == 'mysafar' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_safar', 'completed_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_safar/my_safar_list', $data);
+        }
+        //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
+        if ($produk == 'mysafar' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_my_safar', ['id_mysafar' => $id, 'id_approval' => 3])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_safar', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
+                                                                tb_my_safar.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
+        }
+
+        ////////////////////////////// Aktivasi Agent /////////////////////////////////////////
+        if ($produk == 'aktivasi_agent' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_aktivasi_agent', 'completed_review', $this->id_user)->result();
+            $this->template->load('template2', 'aktivasi_agent/aktivasi_agent_list', $data);
+        }
+        if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
+            $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_mysafar' => $id, 'id_approval' => 3])->row();
+            $data['komentar'] = $this->comment_m->get_comment('tb_aktivasi_agent', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mysafar = tb_aktivasi_agent.id_mysafar AND 
+                                                                tb_aktivasi_agent.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_user = user.id_user')->result();
+            $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
     }
 }
