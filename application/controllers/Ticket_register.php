@@ -62,6 +62,13 @@ class Ticket_register extends CI_Controller
 		$this->template->load('template2', 'aktivasi_agent/form_aktivasi_agent', $data);
 	}
 
+	public function form_nst()
+	{
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+		$this->template->load('template2', 'nst/form_nst', $data);
+	}
+
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 
 
@@ -667,17 +674,78 @@ class Ticket_register extends CI_Controller
 			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
 
 			$data = [
+				'lead_id' 				=> $post['lead_id'],
 				'nama_konsumen'			=> $post['nama_konsumen'],
 				'ktp_konsumen' 			=> $post['ktp_konsumen'],
 				'id_cabang' 			=> $post['cabang'],
-				'lead_id' 				=> $post['lead_id'],
 				'sumber_lead' 			=> $post['sumber_lead'],
 				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
 				'produk' 				=> $post['produk'],
+				'object_price' 			=> $post['object_price'],
 				'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified' 		=> date('Y-m-d H:i:s'),
 				'id_user' 				=> $post['id_user'],
 				'id_approval'			=> 0
 			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/lead_management';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->add('tb_lead_management', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 
 		// PROSES SUBMIT FORM AKTIVASI AGENT //
@@ -744,6 +812,81 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->add('tb_aktivasi_agent', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// PROSES SUBMIT FORM NST //
+		// FORMULIR NST
+		if (isset($_POST['submit_nst'])) {
+
+			$data = [
+				'lead_id' => $post['lead_id'],
+				'nama_konsumen' => $post['nama_konsumen'],
+				'produk' => $post['produk'],
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/nst';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->add('tb_nst', $data);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -1225,12 +1368,97 @@ class Ticket_register extends CI_Controller
 			}
 		}
 
+		// FORMULIR LEAD MANAGEMENT
+		/* BELUM SELESAI */
+		if (isset($_POST['edit_lead_management'])) {
+			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
+			$this->form_validation->set_rules('ktp_konsumen', 'Jenis Konsumen', 'required');
+			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
+			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
+			$this->form_validation->set_rules('sumber_lead', 'Jenis Penyedia Jasa', 'required');
+			$this->form_validation->set_rules('nama_pemberi_lead', 'Nilai Pengajuan Pembiayaan', 'required');
+			$this->form_validation->set_rules('produk', 'Nilai Pengajuan Pembiayaan', 'required');
+			$this->form_validation->set_rules('object_price', 'Nilai Pengajuan Pembiayaan', 'required');
+			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
+
+			$data = [
+				'lead_id' 				=> $post['lead_id'],
+				'nama_konsumen'			=> $post['nama_konsumen'],
+				'ktp_konsumen' 			=> $post['ktp_konsumen'],
+				'id_cabang' 			=> $post['cabang'],
+				'sumber_lead' 			=> $post['sumber_lead'],
+				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
+				'produk' 				=> $post['produk'],
+				'object_price' 			=> $post['object_price'],
+				'date_modified' 		=> date('Y-m-d H:i:s'),
+				'id_approval'			=> 0
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/lead_management';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead_management' => $post['id_lead_management']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
 		// EDIT FORM AKTIVASI AGENT //
 		if (isset($_POST['edit_aktivasi_agent'])) {
 			$data = [
-				'nama_konsumen' => $post['nama_konsumen'],
-				'jenis_konsumen' => $post['jenis_konsumen'],
 				// 'id_cabang' => $post['cabang'],
+				'lead_id' => $post['lead_id'],
 				'nama_agent' => $post['nama_agent'],
 				'jenis_agent' => $post['jenis_agent'],
 				'date_modified' => date('Y-m-d H:i:s'),
@@ -1285,7 +1513,7 @@ class Ticket_register extends CI_Controller
 				$data['upload_file10'] = $this->upload->data('file_name');
 			}
 
-			$id = $this->data_m->update('tb_my_safar', $data, ['id_mysafar' => $post['id_mysafar']]);
+			$id = $this->data_m->update('tb_aktivasi_agent', $data, ['id_agent' => $post['id_agent']]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -1293,6 +1521,80 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
+		}
+
+		// EDIT FORM NST //
+		if (isset($_POST['edit_nst'])) {
+
+			$data = [
+				'lead_id' => $post['lead_id'],
+				'nama_konsumen' => $post['nama_konsumen'],
+				'produk' => $post['produk'],
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_cabang' => $post['cabang'],
+				// 'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/nst';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->update('tb_nst', $data, ['id_nst' => $post['id_nst']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 	}
 }

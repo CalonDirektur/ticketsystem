@@ -12,7 +12,6 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-
 		// Jika bukan admin maka tampilkan data sesuai dengan cabang masing-masing
 		if ($this->fungsi->user_login()->id_cabang != 46) {
 			$id = 'id_user = ' . $this->fungsi->user_login()->id_user;
@@ -22,6 +21,8 @@ class Dashboard extends CI_Controller
 				$id = 'id_approval = 0';
 			} else if ($this->fungsi->user_login()->level == 3) {
 				$id = 'id_approval = 2';
+			} else if ($this->fungsi->user_login()->level == 4) {
+				$id = 'id_approval is not null ';
 			}
 			$id_cabang = '';
 		}
@@ -58,12 +59,23 @@ class Dashboard extends CI_Controller
 		$total_approved_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang");
 		$total_rejected_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 1 $id_cabang");
 
+		//Total Status NST
+		$total_pending_nst = $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang");
+		$total_approved_nst = $this->data_m->count_data("tb_nst", "id_approval = 2 $id_cabang");
+		$total_rejected_nst = $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang");
+
+		//Total Status Lead Management
+		$total_pending_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 0 $id_cabang");
+		$total_approved_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 2 $id_cabang");
+		$total_rejected_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 1 $id_cabang");
+
 		//Total Pending
-		$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent;
+		$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_lead_management;
 		//Total Approved
-		$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent;
+		$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_lead_management;
 		//Total Rejected
-		$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent;
+		$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_lead_management;
+
 		$data = [
 			//Pending Status
 			'pending_myhajat_renovasi' => $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 0 $id_cabang"),
@@ -75,6 +87,8 @@ class Dashboard extends CI_Controller
 			'pending_myihram' => $this->data_m->count_data("tb_my_ihram", "id_approval = 0 $id_cabang"),
 			'pending_mysafar' => $this->data_m->count_data("tb_my_safar", "id_approval = 0 $id_cabang"),
 			'pending_aktivasi_agent' => $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 0 $id_cabang"),
+			'pending_nst' => $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang"),
+			'pending_lead_management' => $this->data_m->count_data("tb_lead_management", "id_approval = 0 $id_cabang"),
 			'total_pending_myhajat' => $total_pending_myhajat,
 
 			//Approved Status
@@ -87,6 +101,8 @@ class Dashboard extends CI_Controller
 			'approved_myihram' => $this->data_m->count_data("tb_my_ihram", "id_approval = 2 $id_cabang"),
 			'approved_mysafar' => $this->data_m->count_data("tb_my_safar", "id_approval = 2 $id_cabang"),
 			'approved_aktivasi_agent' => $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang"),
+			'approved_nst' => $this->data_m->count_data("tb_nst", "id_approval = 2 $id_cabang"),
+			'approved_lead_management' => $this->data_m->count_data("tb_lead_management", "id_approval = 2 $id_cabang"),
 			'total_approved_myhajat' => $total_approved_myhajat,
 
 			//Rejected Status
@@ -99,6 +115,8 @@ class Dashboard extends CI_Controller
 			'rejected_myihram' => $this->data_m->count_data("tb_my_ihram", "id_approval = 1 $id_cabang"),
 			'rejected_mysafar' => $this->data_m->count_data("tb_my_safar", "id_approval = 1 $id_cabang"),
 			'rejected_aktivasi_agent' => $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 1 $id_cabang"),
+			'rejected_nst' => $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang"),
+			'rejected_lead_management' => $this->data_m->count_data("tb_lead_management", "id_approval = 1 $id_cabang"),
 			'total_rejected_myhajat' => $total_rejected_myhajat,
 
 			//Total Pending
@@ -116,6 +134,8 @@ class Dashboard extends CI_Controller
 		$data['myihram_records'] = $this->data_m->get_product('tb_my_ihram', 'tb_my_ihram.' . $id, 'id_myihram DESC');
 		$data['mysafar_records'] = $this->data_m->get_product('tb_my_safar', 'tb_my_safar.' . $id, 'id_mysafar DESC');
 		$data['aktivasi_agent_records'] = $this->data_m->get_product('tb_aktivasi_agent', 'tb_aktivasi_agent.' . $id, 'id_agent DESC');
+		$data['nst_records'] = $this->data_m->get_product('tb_nst', 'tb_nst.' . $id, 'id_nst DESC');
+		$data['lead_management_records'] = $this->data_m->get_product('tb_lead_management', 'tb_lead_management.' . $id, 'id_lead DESC');
 
 		$this->template->load('template2', 'dashboard', $data);
 	}

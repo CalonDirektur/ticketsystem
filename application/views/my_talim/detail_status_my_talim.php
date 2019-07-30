@@ -262,7 +262,7 @@
 							<div class="comment-text">
 								<span class="username">
 									<b><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</b><br>
-									<p class="text-muted pull-right"><?= $komen->date ?></p>
+									<p class="text-muted pull-right"><?= $balasan->date ?></p>
 								</span>
 								<?= $balasan->comment ?>
 							</div>

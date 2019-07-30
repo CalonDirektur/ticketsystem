@@ -55,19 +55,6 @@
           </div>
 
           <div class="col-md-2 col-sm-6 col-xs-12">
-            <a href="<?= base_url('ticket_register/form_lead_management') ?>">
-              <div class="card">
-                <div class="card-header text-center">
-                  <img src="" alt="">
-                </div>
-                <div class="card-body text-center">
-                  Form Lead Management
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_my_ihram') ?>">
               <div class="card">
                 <div class="card-header text-center">
@@ -93,16 +80,41 @@
             </a>
           </div>
 
-
+          <div class="col-md-2 col-sm-6 col-xs-12">
+            <a href="<?= base_url('ticket_register/form_lead_management') ?>">
+              <div class="card">
+                <div class="card-header text-center">
+                  <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="100" alt="">
+                </div>
+                <div class="card-body text-center">
+                  Form Lead Management
+                </div>
+              </div>
+            </a>
+          </div>
           <!-- Form Aktivasi Agent -->
           <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_aktivasi_agent') ?>">
               <div class="card">
                 <div class="card-header text-center">
-                  <img src="<?= base_url('assets/img/no-pict.png') ?>" alt="">
+                  <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="100" alt="">
                 </div>
                 <div class="card-body text-center">
                   Aktivasi Agent
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Form NST -->
+          <div class="col-md-2 col-sm-6 col-xs-12">
+            <a href="<?= base_url('ticket_register/form_nst') ?>">
+              <div class="card">
+                <div class="card-header text-center">
+                  <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="100" alt="">
+                </div>
+                <div class="card-body text-center">
+                  NST
                 </div>
               </div>
             </a>
@@ -585,6 +597,108 @@
                           <?php } else if ($d->id_approval == 3) { ?>
                             <td><span class="badge badge-primary">Selesai</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- NST Table -->
+            <?php if ($nst_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel NST</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID NST</th>
+                        <th>Lead ID</th>
+                        <th>Nama Konsumen</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($nst_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_nst ?></td>
+                          <td><?= ucfirst($d->lead_id) ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->produk ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- Lead Management Table -->
+            <?php if ($lead_management_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel Lead Management</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Lead</th>
+                        <th>Lead ID</th>
+                        <th>Nama Konsumen</th>
+                        <th>Sumber Lead</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($lead_management_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_lead ?></td>
+                          <td><?= ucfirst($d->lead_id) ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->sumber_lead ?></td>
+                          <td><?= $d->produk ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
                           <?php } ?>
                         </tr>
                         <?php
@@ -1387,6 +1501,154 @@
               </div>
             <?php } ?>
 
+            <!-- My Ihram Table -->
+            <?php if ($myihram_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel My Ihram</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID My Ihram</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Travel</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($myihram_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_myihram ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->jenis_konsumen ?></td>
+                          <td><?= ucfirst($d->nama_travel) ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- My safar Table -->
+            <?php if ($mysafar_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel My Safar</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID My Safar</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Travel</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($mysafar_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_mysafar ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->jenis_konsumen ?></td>
+                          <td><?= ucfirst($d->nama_travel) ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- Aktivasi Agent Table -->
+            <?php if ($aktivasi_agent_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel Aktivasi Agent</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Aktivasi Agent</th>
+                        <th>Nama Agent</th>
+                        <th>Jenis Agent</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($aktivasi_agent_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_agent ?></td>
+                          <td><?= ucfirst($d->nama_agent) ?></td>
+                          <td><?= $d->jenis_agent ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
           </div>
           <div class="tab-pane container-fluid fade" id="kategori-produk">
             <!-- Nav tabs -->
@@ -1842,6 +2104,154 @@
               </div>
             <?php } ?>
 
+            <!-- My Ihram Table -->
+            <?php if ($myihram_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel My Ihram</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID My Ihram</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Travel</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($myihram_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_myihram ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->jenis_konsumen ?></td>
+                          <td><?= ucfirst($d->nama_travel) ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- My safar Table -->
+            <?php if ($mysafar_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel My Safar</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID My Safar</th>
+                        <th>Nama Konsumen</th>
+                        <th>Jenis Konsumen</th>
+                        <th>Nama Travel</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($mysafar_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_mysafar ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->jenis_konsumen ?></td>
+                          <td><?= ucfirst($d->nama_travel) ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- Aktivasi Agent Table -->
+            <?php if ($aktivasi_agent_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel Aktivasi Agent</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Aktivasi Agent</th>
+                        <th>Nama Agent</th>
+                        <th>Jenis Agent</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($aktivasi_agent_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_agent ?></td>
+                          <td><?= ucfirst($d->nama_agent) ?></td>
+                          <td><?= $d->jenis_agent ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
           </div>
           <div class="tab-pane container-fluid" id="kategori-produk">
             <div class="row mt-4">
@@ -1941,7 +2351,252 @@
         </div>
       </div>
     </div>
+  <?php }  ?>
 
+  <?php if ($this->session->userdata('level') == 4) { ?>
+    <div class="card">
+      <div class="card-header">Review Ticket Support</div>
+      <div class="card-body">
+        <!-- Nav pills -->
+        <ul class="nav nav-pills" style="margin-bottom: 16px">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#list-all">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#kategori-produk">Kategori Produk</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane container-fluid active" id="list-all">
+
+            <!-- NST Table -->
+            <?php if ($nst_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel NST</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID NST</th>
+                        <th>Lead ID</th>
+                        <th>Nama Konsumen</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($nst_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_nst ?></td>
+                          <td><?= ucfirst($d->lead_id) ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->produk ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+            <!-- Lead Management Table -->
+            <?php if ($lead_management_records->num_rows() > 0) { ?>
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Tabel Lead Management</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table display nowrap status" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Lead</th>
+                        <th>Lead ID</th>
+                        <th>Nama Konsumen</th>
+                        <th>Sumber Lead</th>
+                        <th>Produk</th>
+                        <th>Ticket Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      foreach ($lead_management_records->result() as $d) {  ?>
+                        <tr>
+                          <td width="1%">#<?= $d->id_lead ?></td>
+                          <td><?= ucfirst($d->lead_id) ?></td>
+                          <td><?= $d->nama_konsumen ?></td>
+                          <td><?= $d->sumber_lead ?></td>
+                          <td><?= $d->produk ?></td>
+                          <?php if ($d->id_approval == 0) { ?>
+                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 1) { ?>
+                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 2) { ?>
+                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } else if ($d->id_approval == 3) { ?>
+                            <td><span class="badge badge-primary">Selesai</span></td>
+                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                          <?php } ?>
+                        </tr>
+                        <?php
+                        $no++;
+                      } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <?php } ?>
+
+          </div>
+
+          <div class="tab-pane container-fluid" id="kategori-produk">
+
+            <ul class="nav nav-tabs">
+              <li class="nav-item active">
+                <a class="nav-link active" data-toggle="tab" href="#pending">Pending <label class="badge badge-secondary"><?= $total_pending ?></label></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#approved">Approved <label class="badge badge-success"><?= $total_approved ?></label></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#rejected">Rejected <label class="badge badge-danger"><?= $total_rejected ?></label></a>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+
+              <div class="tab-pane container-fluid active" id="pending">
+
+                <div class="row mt-4">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/nst') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt=""></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>NST</span><br>
+                          <label class="badge badge-secondary"><?= $pending_nst ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/lead_management') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt=""></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Lead Management</span><br>
+                          <label class="badge badge-secondary"><?= $pending_lead_management ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="tab-pane container-fluid" id="approved">
+                <div class="row mt-4">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/approved/nst') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt=""></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>NST</span><br>
+                          <label class="badge badge-secondary"><?= $approved_nst ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/approved/lead_management') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt=""></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Lead Management</span><br>
+                          <label class="badge badge-secondary"><?= $approved_lead_management ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="tab-pane container-fluid" id="rejected">
+                <div class="row mt-4">
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/rejected/nst') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt=""></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>NST</span><br>
+                          <label class="badge badge-secondary"><?= $rejected_nst ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/rejected/lead_management') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt=""></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Lead Management</span><br>
+                          <label class="badge badge-secondary"><?= $rejected_lead_management ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
   <?php }  ?>
 
 </section>

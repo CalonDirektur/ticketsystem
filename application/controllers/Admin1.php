@@ -11,49 +11,11 @@ class Admin1 extends CI_Controller
 		$this->load->model('data_m');
 	}
 
-	// Method untuk menampilkan data yang ingin direview tiketnya
-	public function review($produk = NULL, $kategori = NULL, $id = NULL)
-	{
-		////////////////////////// Produk My Ta'lim ///////////////////////////////////////////////
-		if ($produk == 'mytalim' && $id == NULL) {
-			$data['pending'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
-			$this->template->load('template', 'admin/my_talim/admin1_pending_mytalim', $data);
-		}
-		if ($produk == 'mytalim' && $id != NULL) {
-			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 0])->row();
-			$this->template->load('template', 'my_talim/detail_status_my_talim', $data);
-		}
-		////////////////////////// Produk My Hajat ///////////////////////////////////////////////
-		/////////////// Renovasi
-		if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
-			$data['pending'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
-			$this->template->load('template', 'admin/my_talim/admin1_pending_mytalim', $data);
-		}
-		if ($produk == 'hajat' && $kategori == 'renovasi' && $id != NULL) {
-			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 0])->row();
-		}		
-	}
-
-	//Method untuk menampilkan tiket yang sudah direview
-	public function reviewed($produk = NULL, $id = NULL)
-	{
-		//Produk My Ta'lim
-		if ($produk == 'mytalim' && $id == NULL) {
-			$data['pending'] = $this->data_m->get('tb_my_talim', 'pending_review')->result();
-			$this->template->load('template', 'admin/my_talim/admin1_pending_mytalim', $data);
-		}
-		if ($produk == 'mytalim' && $id != NULL) {
-			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 0])->row();
-			$this->template->load('template', 'my_talim/detail_status_my_talim', $data);
-		}
-
-	}
-
 	public function approve($produk = NULL, $kategori, $id)
 	{
 		if ($produk == 'mytalim') {
 			$this->Aksi_Admin1_m->approve('tb_my_talim', ['id_mytalim' => $id]);
-			redirect('status/pending/mytalim');
+			redirect('/');
 		}
 		if ($produk == 'myhajat' && $kategori == 'renovasi') {
 			$this->Aksi_Admin1_m->approve('tb_my_hajat_renovasi', ['id_renovasi' => $id]);
@@ -73,6 +35,26 @@ class Admin1 extends CI_Controller
 		}
 		if ($produk == 'myhajat' && $kategori == 'lainnya') {
 			$this->Aksi_Admin1_m->approve('tb_my_hajat_lainnya', ['id_myhajat_lainnya' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'myihram') {
+			$this->Aksi_Admin1_m->approve('tb_my_ihram', ['id_myihram' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'mysafar') {
+			$this->Aksi_Admin1_m->approve('tb_my_safar', ['id_mysafar' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'nst') {
+			$this->Aksi_Admin1_m->approve('tb_nst', ['id_nst' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'aktivasi_agent') {
+			$this->Aksi_Admin1_m->approve('tb_aktivasi_agent', ['id_agent' => $id]);
 			redirect('/');
 		}
 	}
@@ -97,6 +79,31 @@ class Admin1 extends CI_Controller
 		}
 		if ($produk == 'myhajat' && $kategori == 'franchise') {
 			$this->Aksi_Admin1_m->reject('tb_my_hajat_franchise', ['id_franchise' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'myihram') {
+			$this->Aksi_Admin1_m->approve('tb_my_ihram', ['id_myihram' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'mysafar') {
+			$this->Aksi_Admin1_m->approve('tb_my_safar', ['id_mysafar' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'nst') {
+			$this->Aksi_Admin1_m->approve('tb_nst', ['id_nst' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'aktivasi_agent') {
+			$this->Aksi_Admin1_m->approve('tb_aktivasi_agent', ['id_agent' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'lead_management') {
+			$this->Aksi_Admin1_m->approve('tb_lead_management', ['id_lead' => $id]);
 			redirect('/');
 		}
 	}

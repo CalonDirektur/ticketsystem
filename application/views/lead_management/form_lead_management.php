@@ -93,10 +93,10 @@
                 <label for="nama_pemberi_lead">Nama Pemberi Lead *</label>
                 <input required name="nama_pemberi_lead" id="nama_pemberi_lead" type="text" class="form-control" placeholder="Nama Pemberi Lead" required>
               </div>
-              <!-- Product -->
+              <!-- produk -->
               <div class="form-group">
-                <label for="product">Produk *</label>
-                <select required name="product" id="product" class="form-control" required>
+                <label for="produk">Produk *</label>
+                <select required name="produk" id="produk" class="form-control" required>
                   <option disabled selected value="">- Pilih Produk -</option>
                   <option value="My Ihram">My Ihram</option>
                   <option value="My Safar">My Safar</option>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<section class="content-header">
 		<h1>
-			Detail My Ihram Tickets
+			Detail NST Tickets
 		</h1>
 	</section>
 
@@ -16,48 +16,33 @@
 								<div class="card-header text-center">
 									<b>Lampiran</b>
 								</div>
-								<a id="img-link" target="_blank" href="<?= base_url('uploads/myihram/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/myihram/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
+								<a id="img-link" target="_blank" href="<?= base_url('uploads/nst/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/nst/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
 							</div>
 						</div>
 					</div>
 					<div class="row mt-1">
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/myihram/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+							<img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/nst/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/myihram/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+							<img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/nst/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/myihram/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+							<img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/nst/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/myihram/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
+							<img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/nst/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/myihram/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
+							<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/nst/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file6 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file6 != NULL ? 'uploads/myihram/' . $data->upload_file6 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
-						</div>
-					</div>
 
-					<div class="row mt-1">
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file7 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file7 != NULL ? 'uploads/myihram/' . $data->upload_file7 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file8 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file8 != NULL ? 'uploads/myihram/' . $data->upload_file8 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file9 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file9 != NULL ? 'uploads/myihram/' . $data->upload_file9 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file10 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file10 != NULL ? 'uploads/myihram/' . $data->upload_file10 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
-					<!-- Form Pertanyaan My Ihram -->
+					<!-- Form Pertanyaan NST -->
 					<div class="card">
 						<div class="card-header text-center">
 							<h3 class="card-title">Data Ticket</h3>
@@ -70,8 +55,8 @@
 									<th>Isi</th>
 								</thead>
 								<tr>
-									<td><b>ID My Ihram</b></td>
-									<td><input type="text" class="form-control" name="id_myihram" id="id_myihram" value="<?= $data->id_myihram ?>" readonly required></td>
+									<td><b>ID NST</b></td>
+									<td><input type="text" class="form-control" name="id_nst" id="id_nst" value="<?= $data->id_nst ?>" readonly required></td>
 								</tr>
 								<tr>
 									<td><b>Nama Cabang</b></td>
@@ -81,22 +66,28 @@
 								</tr>
 								<tr>
 									<td><b>Nama Konsumen</b></td>
-									<td><input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required></td>
-								</tr>
-								<tr>
-									<td><b>Jenis Konsumen</b></td>
 									<td>
-										<select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
-											<option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
-												Internal</option>
-											<option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
-										</select>
+										<input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
 									</td>
 								</tr>
 								<tr>
-									<td><b>Nama Travel</b></td>
-									<td><input type="text" class="form-control enable" name="nama_travel" id="nama_travel" value="<?= $data->nama_travel ?>" readonly required></td>
+									<td><b>Lead ID</b></td>
+									<td><input type="number" class="form-control enable" name="lead_id" id="lead_id" value="<?= $data->lead_id ?>" readonly required></td>
 								</tr>
+								<tr>
+									<td><b>Produk</b></td>
+									<td>
+										<select class="form-control enable" name="produk" id="produk" disabled>
+											<option value="My Ihram" <?= $data->produk == 'My Ihram' ? 'selected' : ''  ?>> My Ihram</option>
+											<option value="My Hajat" <?= $data->produk == 'My Hajat' ? 'selected' : ''  ?>> My Hajat</option>
+											<option value="My Cars" <?= $data->produk == 'My Cars' ? 'selected' : ''  ?>> My Cars</option>
+											<option value="My Talim" <?= $data->produk == 'My Talim' ? 'selected' : ''  ?>> My Talim</option>
+											<option value="My Faedah" <?= $data->produk == 'My Faedah' ? 'selected' : ''  ?>> My Faedah</option>
+											<option value="My CarS" <?= $data->produk == 'My CarS' ? 'selected' : ''  ?>> My CarS</option>
+										</select>
+									</td>
+								</tr>
+
 								<tr>
 									<td><b>Status:</b></td>
 									<td>
@@ -127,12 +118,12 @@
 								<?php } ?>
 
 								<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-								<?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+								<?php if (($this->session->userdata('level') == 2 || $this->session->userdata('level') == 4) && ($data->id_approval == 0)) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-primary" href="<?= base_url('Admin1/approve/myihram/id/' . $data->id_myihram) ?>">Approve</a>
-											<a class="btn btn-danger" href="<?= base_url('Admin1/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
+											<a class="btn btn-primary" href="<?= base_url('Admin_nst/approve/nst/id/' . $data->id_nst) ?>">Approve</a>
+											<a class="btn btn-danger" href="<?= base_url('Admin_nst/reject/nst/id/' . $data->id_nst) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>
@@ -140,7 +131,7 @@
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-primary" href="<?= base_url('Admin2/complete/myihram/id/' . $data->id_myihram) ?>">Approve</a>
+											<a class="btn btn-primary" href="<?= base_url('Admin2/complete/nst/id/' . $data->id_nst) ?>">Approve</a>
 										</td>
 									</tr>
 								<?php } ?>
@@ -177,8 +168,7 @@
 						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
-								<!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-								<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_myihram" class="btn btn-primary enable" name="edit_myihram" disabled>Kirim Data!</button>
+								<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_nst" class="btn btn-primary enable" name="edit_nst" disabled>Kirim Data!</button>
 			</form>
 	</div>
 <?php } ?>
@@ -189,7 +179,7 @@
 <!-- Post Komentar -->
 <div class="row mt-4">
 	<div class="col-lg-12 col-md-12">
-		<form method="post" action="<?= base_url('comment/post_comment/id_myihram') ?>">
+		<form method="post" action="<?= base_url('comment/post_comment/id_nst') ?>">
 			<div class="card">
 				<div class="card-header with-border">
 					<b>Post Komentar</b>
@@ -197,7 +187,7 @@
 				<div class="card-body">
 					<div class="form-group">
 						<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
-						<input type="hidden" name="id_komentar" value="<?= $data->id_myihram ?>">
+						<input type="hidden" name="id_komentar" value="<?= $data->id_nst ?>">
 						<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
 						<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 					</div>
@@ -248,11 +238,11 @@
 					<?php } ?>
 				</div>
 				<div class="card-footer">
-					<form action="<?= base_url('comment/post_reply/id_mytalim'); ?>" method="post">
+					<form action="<?= base_url('comment/post_reply/id_nst'); ?>" method="post">
 						<div class="img-push">
 							<input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
 							<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-							<input name="id_komentar" type="hidden" value="<?= $data->id_mytalim ?>">
+							<input name="id_komentar" type="hidden" value="<?= $data->id_nst ?>">
 							<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 							<input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
 						</div>

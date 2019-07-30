@@ -11,40 +11,6 @@ class Admin2 extends CI_Controller
 		$this->load->model('data_m');
 	}
 
-	public function review($produk = NULL, $id = NULL)
-	{
-		check_not_login();
-		check_access_level_admin2();
-
-		//Produk My Ta'lim
-		if ($produk == 'mytalim' && $id == NULL) {
-			$data['pending'] = $this->data_m->get('tb_my_talim', 'approved_review')->result();
-			$this->template->load('template', 'admin/my_talim/admin2_pending_mytalim', $data);
-		}
-		if ($produk == 'mytalim' && $id != NULL) {
-			//Mengambil data tiket yang sudah disetujui oleh Admin 1
-			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 2])->row();
-			$this->template->load('template', 'my_talim/detail_status_my_talim', $data);
-		}
-	}
-
-	//halaman completed ticket (halaman data ticket yang sudah diselesaikan)
-	public function completed($produk = NULL, $id = NULL)
-	{
-		//Produk My Ta'lim
-		if ($produk == 'mytalim' && $id == NULL) {
-			$data['data'] = $this->data_m->get('tb_my_talim', 'completed_review')->result();
-			$this->template->load('template', 'my_talim/my_talim_completed', $data);
-		}
-		if ($produk == 'mytalim' && $id != NULL) {
-			$data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_approval' => 3])->row();
-			$this->template->load('template', 'my_talim/detail_status_my_talim', $data);
-		}
-
-		//
-
-	}
-
 	//menyelesaikan support ticket
 	public function complete($produk = NULL, $kategori = NULL, $id)
 	{
@@ -68,6 +34,31 @@ class Admin2 extends CI_Controller
 		}
 		if ($produk == 'myhajat' && $kategori == 'franchise') {
 			$this->Aksi_Admin2_m->complete('tb_my_hajat_franchise', ['id_franchise' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'myihram') {
+			$this->Aksi_Admin2_m->complete('tb_my_ihram', ['id_myihram' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'mysafar') {
+			$this->Aksi_Admin2_m->complete('tb_my_safar', ['id_mysafar' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'nst') {
+			$this->Aksi_Admin2_m->complete('tb_nst', ['id_nst' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'lead_management') {
+			$this->Aksi_Admin2_m->complete('tb_lead_management', ['id_lead' => $id]);
+			redirect('/');
+		}
+
+		if ($produk == 'aktivasi_agent') {
+			$this->Aksi_Admin2_m->complete('tb_aktivasi_agent', ['id_agent' => $id]);
 			redirect('/');
 		}
 	}
