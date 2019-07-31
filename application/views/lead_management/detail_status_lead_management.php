@@ -23,7 +23,7 @@
 									<th>Isi</th>
 								</thead>
 								<tr>
-									<td><b>ID lead_management</b></td>
+									<td><b>ID Lead Management</b></td>
 									<td><input type="text" class="form-control" name="id_lead" id="id_lead" value="<?= $data->id_lead ?>" readonly required></td>
 								</tr>
 								<tr>
@@ -49,6 +49,36 @@
 									</td>
 								</tr>
 								<tr>
+									<td><b>Sumber Lead</b></td>
+									<td>
+										<select required name="sumber_lead" id="sumber_lead" class="form-control enable" required disabled>
+											<option disabled selected value="">- Pilih Sumber Lead -</option>
+											<option value="Direct Selling" <?= $data->sumber_lead == 'Direct Selling' ? 'selected' : ''  ?>>Direct Selling</option>
+											<option value="Tour & Travel / Penyedia Jasa" <?= $data->sumber_lead == 'Tour & Travel / Penyedia Jasa' ? 'selected' : ''  ?>>Tour & Travel / Penyedia Jasa</option>
+											<option value="Agent" <?= $data->sumber_lead == 'Agent' ? 'selected' : ''  ?>>Agent</option>
+											<option value="EGC" <?= $data->sumber_lead == 'EGC' ? 'selected' : ''  ?>>EGC</option>
+											<option value="CGC" <?= $data->sumber_lead == 'CGC' ? 'selected' : ''  ?>>CGC</option>
+											<option value="Digital Marketing" <?= $data->sumber_lead == 'Digital Marketing' ? 'selected' : ''  ?>>Digital Marketing</option>
+											<option value="Digital Partner" <?= $data->sumber_lead == 'Digital Partner' ? 'selected' : ''  ?>>Digital Partner</option>
+											<option value="Website BFI Syariah" <?= $data->sumber_lead == 'Website BFI Syariah' ? 'selected' : ''  ?>>Website BFI Syariah</option>
+											<option value="Walk-in" <?= $data->sumber_lead == 'Walk-in' ? 'selected' : ''  ?>>Walk-in</option>
+											<option value="RO" <?= $data->sumber_lead == 'RO' ? 'selected' : ''  ?>>RO</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><b>Nama Pemberi Lead</b></td>
+									<td>
+										<input type="text" class="form-control enable" name="nama_pemberi_lead" id="nama_pemberi_lead" value="<?= $data->nama_pemberi_lead ?>" readonly required>
+									</td>
+								</tr>
+								<tr>
+									<td><b>Object Price</b></td>
+									<td>
+										<input type="number" class="form-control enable" name="object_price" id="object_price" value="<?= $data->object_price ?>" readonly required>
+									</td>
+								</tr>
+								<tr>
 									<td><b>Produk</b></td>
 									<td>
 										<select class="form-control enable" name="produk" id="produk" disabled>
@@ -61,31 +91,95 @@
 										</select>
 									</td>
 								</tr>
-
-								<tr>
+								<!-- Menu ini muncul khusus untuk Admin NST -->
+								<?php if ($this->session->userdata('level') == 4) { ?>
+									<tr>
+										<td><b>Tahap Reject</b></td>
+										<td>
+											<select class="form-control enable" name="tahap_reject" id="tahap_reject" disabled>
+												<option disabled selected value="">- Pilih Tahap Reject -</option>
+												<option value="Pefindo Checking" <?= $data->tahap_reject == 'Pefindo Checking' ? 'selected' : ''  ?>> Pefindo Checking</option>
+												<option value="Credit Scoring" <?= $data->tahap_reject == 'Credit Scoring' ? 'selected' : ''  ?>> Credit Scoring</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td><b>Tipe Pefindo</b></td>
+										<td>
+											<select class="form-control enable" name="tipe_pefindo" id="tipe_pefindo" disabled>
+												<option disabled selected value="">- Pilih Tipe Pefindo -</option>
+												<option value="Collectibility" <?= $data->tipe_pefindo == 'Collectibility' ? 'selected' : ''  ?>> Collectibility</option>
+												<option value="DRS>70%" <?= $data->tipe_pefindo == 'DRS>70%' ? 'selected' : ''  ?>> DRS>70%</option>
+												<option value="No Pefindo" <?= $data->tipe_pefindo == 'No Pefindo' ? 'selected' : ''  ?>> No Pefindo</option>
+												<option value="DSR>125%" <?= $data->tipe_pefindo == 'DSR>125%' ? 'selected' : ''  ?>> DSR>125%</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td><b>Max Past Due</b></td>
+										<td>
+											<input type="number" class="form-control enable" name="max_past_due" id="max_past_due" value="<?= $data->max_past_due ?>" readonly required>
+										</td>
+									</tr>
+									<tr>
+										<td><b>DSR</b></td>
+										<td>
+											<input type="text" class="form-control enable" name="dsr" id="dsr" value="<?= $data->dsr ?>" readonly required>
+										</td>
+									</tr>
+									<tr>
+										<td><b>Status</b></td>
+										<td>
+											<select class="form-control enable" name="status" id="status" disabled>
+												<option disabled selected value="">- Pilih Status -</option>
+												<option value="Reject" <?= $data->status == 'Reject' ? 'selected' : ''  ?>>Reject</option>
+												<option value="Approve" <?= $data->status == 'Approve' ? 'selected' : ''  ?>>Approve</option>
+												<option value="Return/Hold" <?= $data->status == 'Return/Hold' ? 'selected' : ''  ?>>Return/Hold</option>
+												<option value="Belum Appeal" <?= $data->status == 'Belum Appeal' ? 'selected' : ''  ?>>Belum Appeal</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+									<tr>
+										<td><b>SLA Branch</b></td>
+										<td>
+											<input type="text" class="form-control enable" name="sla_branch" id="sla_branch" value="<?= $data->sla_branch ?>" readonly required>
+										</td>
+									</tr>
+									<tr>
+										<td><b>Cabang Survey</b></td>
+										<td>
+											<input type="text" class="form-control enable" name="cabang_survey" id="cabang_survey" value="<?= $data->cabang_survey ?>" readonly required>
+										</td>
+									</tr>
+									<tr>
+										<td><b>Informasi Tambahan</b></td>
+										<td>
+											<textarea rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly><?= $data->informasi_tambahan ?></textarea>
+										</td>
+									</tr>
+									<tr>
+									<?php } ?>
 									<td><b>Status:</b></td>
 									<td>
 										<?php
 										if ($data->id_approval == 0) {
-											echo '<label class="badge badge-warning">Belum Direview</label>';
+											echo '<label class="badge badge-secondary">Pending</label>';
 										}
 										if ($data->id_approval == 1) {
 											echo '<label class="badge badge-danger">Ditolak</label>';
 										}
 										if ($data->id_approval == 2) {
-											echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+											echo '<label class="badge badge-success">Disetujui Admin NST</label>';
 										}
 										if ($data->id_approval == 3) {
 											echo '<label class="badge badge-primary">Selesai</label>';
-										}
-										if ($data->id_approval == 4) {
-											echo '<label class="badge badge-success">Disetujui Admin NST</label>';
 										}
 										?>
 									</td>
 								</tr>
 								<!-- Tombol ini muncul khusus untuk user -->
-								<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 4)) { ?>
 									<tr>
 										<td>
 											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -95,132 +189,102 @@
 								<?php } ?>
 
 								<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
-								<?php if ($this->session->userdata('level') == 4 && $data->id_approval == 0) { ?>
+								<?php if ($this->session->userdata('level') == 4 && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-primary" href="<?= base_url('Admin_nst/approve/lead_management/id/' . $data->id_lead) ?>">Approve</a>
-											<a class="btn btn-danger" href="<?= base_url('Admin_nst/reject/lead_management/id/' . $data->id_lead) ?>">Reject</a>
+											<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_lead_management" class="btn btn-primary enable" name="edit_lead_management" disabled>Kirim Data!</button>
 										</td>
 									</tr>
 								<?php } ?>
 							</table>
 						</div>
-					</div>
-					<!-- Form Upload Lampiran -->
-					<div class="card card-primary mt-4">
-						<div class="card-header with-border">
-							<h3 class="card-title">Upload File</h3>
-						</div>
-						<div class="card-body" id="dynamic-field">
-							<div class="form-group">
-								<label for="upload_file1">Upload Berkas 1</label>
-								<input name="upload_file1" id="upload_file1" type="file" class="form-control enable col-10" disabled>
-							</div>
-							<div class="form-group">
-								<label for="upload_file2">Upload Berkas 2</label>
-								<input name="upload_file2" id="upload_file2" type="file" class="form-control enable col-10" disabled>
-							</div>
-							<div class="form-group">
-								<label for="upload_file3">Upload Berkas 3</label>
-								<input name="upload_file3" id="upload_file3" type="file" class="form-control enable col-10" disabled>
-							</div>
-							<div class="form-group">
-								<label for="upload_file4">Upload Berkas 4</label>
-								<input name="upload_file4" id="upload_file4" type="file" class="form-control enable col-10" disabled>
-							</div>
-							<div class="form-group">
-								<label for="upload_file5">Upload Berkas 5</label>
-								<input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-10" disabled>
-							</div>
-						</div>
-						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-							<div class="card-footer text-center">
+						<?php if ($this->session->userdata('level') == 4) { ?>
+							<div class="card-footer">
 								<!-- Tombol ini muncul khusus untuk user -->
-								<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_lead_management" class="btn btn-primary enable" name="edit_lead_management" disabled>Kirim Data!</button>
-			</form>
-	</div>
-<?php } ?>
-</div>
-</div>
-</div>
-
-<!-- Post Komentar -->
-<div class="row mt-4">
-	<div class="col-lg-12 col-md-12">
-		<form method="post" action="<?= base_url('comment/post_comment/id_lead') ?>">
-			<div class="card">
-				<div class="card-header with-border">
-					<b>Post Komentar</b>
-				</div>
-				<div class="card-body">
-					<div class="form-group">
-						<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
-						<input type="hidden" name="id_komentar" value="<?= $data->id_lead ?>">
-						<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-						<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+							</div>
+						<?php } ?>
 					</div>
-				</div>
-				<div class="card-footer">
-					<button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
 				</div>
 			</div>
 		</form>
-	</div>
-</div>
 
-<!-- Menampilkan Komentar -->
-<?php foreach ($komentar as $komen) { ?>
-	<div class="row mt-4">
-		<div class="col-lg-12 col-md-12">
-
-			<div class="card card-widget">
-				<div class="card-header with-border">
-					<div class="user-block"> <b><span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></b><br>
-						<span class="description">Diposting: <?= $komen->date ?></span>
-					</div>
-				</div>
-				<div class="card-body">
-					<p><?= $komen->comment ?></p>
-				</div>
-
-				<!-- Reply card Comment -->
-				<div class="card-footer card-comments">
-					<?php
-					$this->db->from('tb_comment, user, tb_cabang');
-					$this->db->where('parent_comment_id = ' . $komen->id . ' AND
-                              user.id_user = tb_comment.id_user AND
-                              user.id_cabang = tb_cabang.id_cabang');
-					$reply = $this->db->get();
-					?>
-					<?php foreach ($reply->result() as $balasan) { ?>
-						<div class="card-comment">
-							<div class="comment-text">
-								<span class="username">
-									<b><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</b><br>
-									<p class="text-muted pull-right"><?= $komen->date ?></p>
-								</span>
-								<?= $balasan->comment ?>
+		<!-- Post Komentar -->
+		<div class="row mt-4">
+			<div class="col-lg-12 col-md-12">
+				<form method="post" action="<?= base_url('comment/post_comment/id_lead') ?>">
+					<div class="card">
+						<div class="card-header with-border">
+							<b>Post Komentar</b>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
+								<input type="hidden" name="id_komentar" value="<?= $data->id_lead ?>">
+								<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+								<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 							</div>
 						</div>
-						<hr>
-					<?php } ?>
-				</div>
-				<div class="card-footer">
-					<form action="<?= base_url('comment/post_reply/id_lead'); ?>" method="post">
-						<div class="img-push">
-							<input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
-							<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-							<input name="id_komentar" type="hidden" value="<?= $data->id_lead ?>">
-							<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
-							<input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
 						</div>
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
 		</div>
-	</div>
-<?php } ?>
 
-</section>
+		<!-- Menampilkan Komentar -->
+		<?php foreach ($komentar as $komen) { ?>
+			<div class="row mt-4">
+				<div class="col-lg-12 col-md-12">
+
+					<div class="card card-widget">
+						<div class="card-header with-border">
+							<div class="user-block"> <b><span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></b><br>
+								<span class="description">Diposting: <?= $komen->date ?></span>
+							</div>
+						</div>
+						<div class="card-body">
+							<p><?= $komen->comment ?></p>
+						</div>
+
+						<!-- Reply card Comment -->
+						<div class="card-footer card-comments">
+							<?php
+							$this->db->from('tb_comment, user, tb_cabang');
+							$this->db->where('parent_comment_id = ' . $komen->id . ' AND
+                              user.id_user = tb_comment.id_user AND
+                              user.id_cabang = tb_cabang.id_cabang');
+							$reply = $this->db->get();
+							?>
+							<?php foreach ($reply->result() as $balasan) { ?>
+								<div class="card-comment">
+									<div class="comment-text">
+										<span class="username">
+											<b><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</b><br>
+											<p class="text-muted pull-right"><?= $komen->date ?></p>
+										</span>
+										<?= $balasan->comment ?>
+									</div>
+								</div>
+								<hr>
+							<?php } ?>
+						</div>
+						<div class="card-footer">
+							<form action="<?= base_url('comment/post_reply/id_lead'); ?>" method="post">
+								<div class="img-push">
+									<input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
+									<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+									<input name="id_komentar" type="hidden" value="<?= $data->id_lead ?>">
+									<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+									<input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
+
+	</section>
 </div>

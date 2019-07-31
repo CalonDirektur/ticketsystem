@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
   <!-- endinject -->
-  <link rel="shortcut icon" href="<?= base_url('assets/img/bfi.jpg') ?>" />
+  <link rel="shortcut icon" href="<?= base_url('assets2/img/bfi.jpg') ?>" />
 </head>
 
 <body>

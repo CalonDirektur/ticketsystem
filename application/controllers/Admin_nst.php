@@ -35,4 +35,13 @@ class Admin_nst extends CI_Controller
             redirect('/');
         }
     }
+
+    public function complete($produk, $kategori = NULL, $id)
+    {
+
+        if ($produk == 'nst') {
+            $this->Aksi_Admin_nst->complete('tb_nst', ['id_nst' => $id]);
+            redirect('/');
+        }
+    }
 }

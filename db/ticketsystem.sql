@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-07-30 16:59:17
+# Date: 2019-07-31 17:23:50
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -77,13 +77,13 @@ CREATE TABLE `tb_comment` (
   `id_nst` int(11) NOT NULL,
   `id_lead` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_comment"
 #
 
-INSERT INTO `tb_comment` VALUES (88,0,'Renovasi rumah nenek',4,'2019-07-30 16:04:04',NULL,12,NULL,NULL,NULL,NULL,0,0,0,0,0),(89,0,'SADASASDASD',4,'2019-07-30 16:17:51',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(90,0,'qsaas',4,'2019-07-30 16:35:53',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(91,90,'telephone got disconnected',4,'2019-07-30 16:36:52',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(92,90,'I don\'t know what happen',4,'2019-07-30 16:38:12',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0);
+INSERT INTO `tb_comment` VALUES (88,0,'Renovasi rumah nenek',4,'2019-07-30 16:04:04',NULL,12,NULL,NULL,NULL,NULL,0,0,0,0,0),(89,0,'SADASASDASD',4,'2019-07-30 16:17:51',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(90,0,'qsaas',4,'2019-07-30 16:35:53',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(91,90,'telephone got disconnected',4,'2019-07-30 16:36:52',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(92,90,'I don\'t know what happen',4,'2019-07-30 16:38:12',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(93,0,'halo',4,'2019-07-31 08:16:36',26,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(94,93,'hai',4,'2019-07-31 08:16:43',26,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(95,88,'sadasd',4,'2019-07-31 08:17:00',NULL,12,NULL,NULL,NULL,NULL,0,0,0,0,0),(96,0,'komentar',4,'2019-07-31 08:42:14',27,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0);
 
 #
 # Structure for table "tb_lead_management"
@@ -99,19 +99,27 @@ CREATE TABLE `tb_lead_management` (
   `nama_pemberi_lead` varchar(255) NOT NULL DEFAULT '',
   `produk` varchar(255) NOT NULL DEFAULT '',
   `object_price` varchar(255) NOT NULL DEFAULT '',
+  `tahap_reject` varchar(255) NOT NULL DEFAULT '',
+  `tipe_pefindo` varchar(255) NOT NULL DEFAULT '',
+  `max_past_due` int(11) NOT NULL DEFAULT 0,
+  `dsr` varchar(255) NOT NULL DEFAULT '',
+  `status` varchar(255) DEFAULT '',
+  `sla_branch` varchar(255) NOT NULL DEFAULT '',
+  `cabang_survey` varchar(255) NOT NULL DEFAULT '',
+  `informasi_tambahan` text DEFAULT NULL,
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` timestamp NULL DEFAULT NULL,
   `id_approval` int(2) DEFAULT NULL,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_lead`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_lead_management"
 #
 
-INSERT INTO `tb_lead_management` VALUES (1,'26357462354762354','Ahmad Jabar','23423423','Digital Marketing','Leader','My Ihram','','2019-07-30 05:36:38',NULL,3,7,4),(2,'26357462354762354','Ahmad Jabar','323423432424','Digital Marketing','Leader','My Safar','2342423423','2019-07-30 05:40:26',NULL,3,7,4),(3,'26357462354762354132','Ibrahim','Ibrahim Ahmad Ja','Digital Partner','Leader','My Safar','2342423423','2019-07-30 10:08:55','2019-07-30 10:08:55',2,7,4);
+INSERT INTO `tb_lead_management` VALUES (1,'26357462354762354','Ahmad Jabar','23423423','Digital Marketing','Leader','My Ihram','7000000000','Pefindo Checking','Collectibility',32,'DSR','Return/Hold','branch git','CABANG','OKE','2019-07-30 05:36:38','2019-07-31 09:25:36',2,7,4),(2,'26357462354762354','Ahmad Jabar','323423432424','Digital Marketing','Leader','My CarS','9000000000','Credit Scoring','DRS>70%',20,'Whatever','Belum Appeal','Branch','CABANG','Up to you','2019-07-30 05:40:26','2019-07-31 09:31:42',2,7,4),(3,'26357462354762354132','Ibrahim','Ibrahim Ahmad Ja','Digital Partner','Leader','My Ihram','2342423423','Credit Scoring','DSR>125%',567,'DSR','Approve','Branch','Caabaang','helloooooooo','2019-07-30 10:08:55','2019-07-31 06:28:00',0,7,4);
 
 #
 # Structure for table "tb_my_hajat_franchise"
@@ -226,7 +234,7 @@ CREATE TABLE `tb_my_hajat_renovasi` (
   `upload_file9` varchar(255) DEFAULT '',
   `upload_file10` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_renovasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_renovasi"
@@ -340,13 +348,13 @@ CREATE TABLE `tb_my_ihram` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_myihram`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_ihram"
 #
 
-INSERT INTO `tb_my_ihram` VALUES (5,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Barahaya Travel','19_Agustus.png','11_Agustus.png',NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-07-29 13:53:37','2019-07-29 14:00:01');
+INSERT INTO `tb_my_ihram` VALUES (5,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Barahaya Travel','19_Agustus.png','11_Agustus.png',NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-07-29 13:53:37','2019-07-29 14:00:01'),(6,0,'Instagram','Eksternal','Barahaya Travel','1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png',0,7,4,'2019-07-31 11:29:34','2019-07-31 11:29:34');
 
 #
 # Structure for table "tb_my_safar"
@@ -412,7 +420,7 @@ CREATE TABLE `tb_my_talim` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mytalim`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_talim"
@@ -446,13 +454,13 @@ CREATE TABLE `tb_nst` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_nst`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_nst"
 #
 
-INSERT INTO `tb_nst` VALUES (1,2147483647,'Instagram','My CarS','18_Agustus1.png',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-07-30 04:21:09','2019-07-30 04:51:15'),(2,2147483647,'Ahmad Jabar Khaidir','My CarS','18_Agustus.png',NULL,NULL,NULL,NULL,NULL,NULL,'','','',0,0,0,'2019-07-30 04:26:28','2019-07-30 04:26:28'),(3,2147483647,'Youtube','My Ta\'lim','Content_Detail_2.png','Content_Detail_4.png',NULL,NULL,NULL,NULL,NULL,'','','',1,6,12,'2019-07-30 09:40:00','2019-07-30 09:40:00');
+INSERT INTO `tb_nst` VALUES (1,2000000,'Instagram punya Facebook','My Talim','18_Agustus1.png',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-07-30 04:21:09','2019-07-31 10:51:43'),(2,2147483647,'Ahmad Jabar Khaidir','My CarS','18_Agustus.png',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,12,'2019-07-30 04:26:28','2019-07-30 04:26:28'),(3,2147483647,'Youtube','My Ta\'lim','Content_Detail_2.png','Content_Detail_4.png',NULL,NULL,NULL,NULL,NULL,'','','',3,6,12,'2019-07-30 09:40:00','2019-07-30 09:40:00');
 
 #
 # Structure for table "tb_ticket"
@@ -488,10 +496,10 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nik` (`nik`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "user"
 #
 
-INSERT INTO `user` VALUES (1,'Lia','3603222007980010','admin1','admin1@admin.com','admin1',2,46),(2,'Gede Laroiba','3603222007980009','admin2','admin2@admin.com','admin2',3,46),(4,'Ibrahim Ahmad','3603222007980001','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim',1,7),(11,'Okky Aditya','3603222007980008','okky','okky@user.com','okky',1,7),(12,'Adit','3603222007980007','adit','adit@adit.com','adit',1,6),(13,'Saiful Bahri','3603222007980002','saiful','saiful@bfi.co.id','saiful',1,15),(14,'Salman Al Farisi','3603222007980006','salman','salman@bfi.co.id','salman',1,2),(15,'User','3603222007980005','user','user@app.com','user',1,39),(16,'Maulana Arif Kuncoro','3603222007980023','arif','arif@bfi.co.id','arif',4,46);
+INSERT INTO `user` VALUES (1,'Lia','3603222007980010','admin1','admin1@admin.com','admin1',2,46),(2,'Gede Laroiba','3603222007980009','admin2','admin2@admin.com','admin2',3,46),(4,'Ibrahim Ahmad','3603222007980001','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim',1,7),(11,'Okky Aditya','3603222007980008','okky','okky@user.com','okky',1,7),(12,'Adit','3603222007980007','adit','adit@adit.com','adit',1,6),(13,'Saiful Bahri','3603222007980002','saiful','saiful@bfi.co.id','saiful',1,15),(14,'Salman Al Farisi','3603222007980006','salman','salman@bfi.co.id','salman',1,2),(15,'User','3603222007980005','user','user@app.com','user',1,39),(16,'Maulana Arif Kuncoro','3603222007980023','arif','arif@bfi.co.id','arif',4,46),(17,'Atasan','72836472834747','atasan','atasan@bfi.co.id','atasan',5,46);

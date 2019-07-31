@@ -4,6 +4,7 @@ $(document).ready(function () {
 		rowReorder: {
 			selector: 'td:nth-child(2)'
 		},
+		fixedHeader: true,
 		responsive: true
 	});
 	//Menyembunyikan tombol submit di halaman tiket yang direject
@@ -54,7 +55,7 @@ $(document).ready(function () {
 	})
 
 	$(".clickable-row").click(function () {
-		
+
 		window.location = $(this).data("href");
 	});
 	//Script untuk menambah input upload file

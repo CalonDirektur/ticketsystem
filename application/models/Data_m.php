@@ -91,8 +91,10 @@ class Data_m extends CI_Model
 
     public function get_product($table, $where = NULL, $order_by)
     {
+        $this->db->select('*, DATE_FORMAT(date_created, "%d %M %Y %H:%i:%s") AS tanggal_dibuat, DATE_FORMAT(date_modified, "%d %M %Y %H:%i:%s") AS tanggal_diubah');
         $this->db->from($table);
         $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
+        $this->db->order_by('date_modified', 'DESC');
         if ($where != NULL) {
             $this->db->where($where);
         }

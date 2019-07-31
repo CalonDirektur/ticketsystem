@@ -14,4 +14,10 @@ class Aksi_Admin_nst extends CI_Model
         $query = $this->db->update($table, ['id_approval' => 1], $where);
         return $query;
     }
+
+    public function complete($table, $where)
+    {
+        $query = $this->db->update($table, ['id_approval' => 3], $where);
+        return $query;
+    }
 }

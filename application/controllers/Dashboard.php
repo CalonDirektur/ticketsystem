@@ -21,8 +21,8 @@ class Dashboard extends CI_Controller
 				$id = 'id_approval = 0';
 			} else if ($this->fungsi->user_login()->level == 3) {
 				$id = 'id_approval = 2';
-			} else if ($this->fungsi->user_login()->level == 4) {
-				$id = 'id_approval is not null ';
+			} else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5) {
+				$id = 'id_approval IS NOT NULL ';
 			}
 			$id_cabang = '';
 		}

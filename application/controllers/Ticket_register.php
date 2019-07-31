@@ -1385,65 +1385,24 @@ class Ticket_register extends CI_Controller
 				'lead_id' 				=> $post['lead_id'],
 				'nama_konsumen'			=> $post['nama_konsumen'],
 				'ktp_konsumen' 			=> $post['ktp_konsumen'],
-				'id_cabang' 			=> $post['cabang'],
+				// 'id_cabang' 			=> $post['cabang'],
 				'sumber_lead' 			=> $post['sumber_lead'],
 				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
 				'produk' 				=> $post['produk'],
 				'object_price' 			=> $post['object_price'],
+				'tahap_reject' 			=> $post['tahap_reject'],
+				'tipe_pefindo' 			=> $post['tipe_pefindo'],
+				'max_past_due' 			=> $post['max_past_due'],
+				'dsr' 					=> $post['dsr'],
+				'status' 				=> $post['status'],
+				'sla_branch' 			=> $post['sla_branch'],
+				'cabang_survey' 		=> $post['cabang_survey'],
+				'informasi_tambahan'	=> $post['informasi_tambahan'],
 				'date_modified' 		=> date('Y-m-d H:i:s'),
-				'id_approval'			=> 0
+				'id_approval'			=> 2
 			];
 
-			//Konfigurasi Upload
-			$config['upload_path']         = './uploads/lead_management';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
-			$this->load->library('upload', $config);
-
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
-			}
-
-
-			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead_management' => $post['id_lead_management']]);
+			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
