@@ -23,8 +23,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://172.16.24.50/ticketsystem/';
-// $config['base_url'] = 'http://localhost/ticketsystem/';
+// $config['base_url'] = 'http://172.16.24.50/ticketsystem/';
+$config['base_url'] = 'http://localhost/ticketsystem/';
 
 /*
 |--------------------------------------------------------------------------

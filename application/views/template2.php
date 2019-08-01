@@ -98,8 +98,10 @@
               </a>
               <div class="collapse" id="daftar-tiket">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_talim') ?>">My Talim</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="<?= site_url('ticket_register/form_my_hajat') ?>">My Hajat</a></li>
+                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Form Input Produk</a></li>
+                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Form Lead Management</a></li>
+                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Form Aktivasi Agent</a></li>
+                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">Form NST</a></li>
                 </ul>
               </div>
             </li>
@@ -108,7 +110,7 @@
       </nav>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper p-0">
           <?= $contents; ?>
         </div>
         <!-- content-wrapper ends -->
