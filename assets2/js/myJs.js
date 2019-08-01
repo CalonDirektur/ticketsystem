@@ -1,42 +1,49 @@
 $(document).ready(function () {
 	// alert(window.location.hash);
-	$('table.status').DataTable({
-		rowReorder: {
-			selector: 'td:nth-child(2)'
-		},
-		fixedHeader: true,
-		responsive: true
-	});
+	// $('table.status').DataTable({
+	// 	rowReorder: {
+	// 		selector: 'td:nth-child(2)'
+	// 	},
+	// 	fixedHeader: true,
+	// 	responsive: true
+	// });
+
+	$('table.status').DataTable();
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();
 	// Script Halaman Formulir Pendaftaran Tiket My Hajat
-	$(".card.pertanyaan").hide();
+	$(".card.pertanyaan, #upload").hide();
 	$('.kategori').click(function () {
 		if ($("#renovasi").is(':checked')) {
 			$("#submit").attr('name', 'submit_renovasi')
 			$("#card-renovasi, .upload").fadeIn();
 			$("#card-sewa, #card-franchise, #card-wedding, #card-lainnya").fadeOut();
+			validate_renovasi();
 		}
 		if ($("#sewa").is(':checked')) {
 			$("#submit").attr('name', 'submit_sewa')
 			$("#card-sewa, .upload").fadeIn();
 			$("#card-renovasi, #card-franchise, #card-wedding, #card-lainnya").fadeOut();
+			validate_sewa();
 		}
 		if ($("#wedding").is(':checked')) {
 			$("#submit").attr('name', 'submit_wedding')
 			$("#card-wedding, .upload").fadeIn();
 			$("#card-renovasi, #card-sewa, #card-franchise, #card-lainnya").fadeOut();
+			validate_wedding();
 		}
 		if ($("#franchise").is(':checked')) {
 			$("#submit").attr('name', 'submit_franchise')
 			$("#card-franchise, .upload").fadeIn();
 			$("#card-renovasi, #card-wedding, #card-sewa, #card-lainnya").fadeOut();
+			validate_franchise();
 		}
 		if ($("#lainnya").is(':checked')) {
 			$("#submit").attr('name', 'submit_lainnya')
 			$("#card-lainnya, .upload").fadeIn();
 			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise").fadeOut();
+			validate_lainnya();
 		}
 	})
 
@@ -51,33 +58,87 @@ $(document).ready(function () {
 	//Halaman detail ticket status, tombol untuk ubah data
 	$('#ubah').on('click', function () {
 		$('.enable').removeAttr('readonly disabled');
+		$('#upload').slideDown('slow');
 		$(this).fadeOut();
 	})
 
 	$(".clickable-row").click(function () {
-
 		window.location = $(this).data("href");
 	});
-	//Script untuk menambah input upload file
-	// $('#add-input').on('click', function () {
-	// 	if (i == 1) {
-	// 		$('.btn_remove').hide()
-	// 	}
-	// 	i++;
-	// 	$('#dynamic-input').append('<div id="row' + i + '">' +
-	// 		'<label for="upload_file' + i + '">Upload File </label>' +
-	// 		'<div class="input-group">' +
-	// 		'<input name="upload_file[' + i + ']" id="upload_file' + i + '" type="file" class="form-control col-8">' +
-	// 		'<span class="input-group-btn">' +
-	// 		'</span>' +
-	// 		'</div>' +
-	// 		'</div>'
-	// 	);
-	// })
 
-	// //script untuk menghapus input upload file
-	// $('#dynamic-input').on('click', '.btn_remove', function () {
-	// 	var button_id = $(this).attr("data");
-	// 	$('#row' + button_id + '').remove();
-	// })
+	$("#input_produk").change(function () {
+		var input = $(this).val();
+		// alert(input);
+		if (input == "My Ta'lim") {
+			$("#card-mytalim, .upload").fadeIn();
+			$(".kategori-myhajat, #card-kategori-myhajat, #card-myihram, #card-mysafar").fadeOut();
+			$("#submit").attr('name', 'submit_mytalim');
+			validate_mytalim();
+		} else if (input == "My Hajat") {
+			$("#card-kategori-myhajat").fadeIn();
+			$(".kategori-myhajat, #card-mytalim, #card-myihram, #card-mysafar").fadeOut();
+			$(".validasi").removeAttr("required");
+		} else if (input == "My Ihram") {
+			$("#card-myihram, .upload").fadeIn();
+			$(".kategori-myhajat, #card-kategori-myhajat, #card-mytalim, #card-mysafar").fadeOut();
+			$("#submit").attr('name', 'submit_myihram');
+			validate_myihram();
+		} else if (input == "My Safar") {
+			$("#card-mysafar, .upload").fadeIn();
+			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim").fadeOut();
+			$("#submit").attr('name', 'submit_mysafar');
+			validate_mysafar();
+		}
+	})
+
+	// Method untuk My Ta'lim 
+	function validate_mytalim() {
+		$(".validasi").removeAttr("required");
+		$(".mytalim-required").attr("required", "required");
+		alert('validate_mytalim activated!')
+	}
+
+	// Method untuk Kategori My Hajat 
+	function validate_renovasi() {
+		$(".validasi").removeAttr("required");
+		$(".renovasi-required").attr("required", "required");
+		alert('validate_renovasi activated!')
+	}
+
+	function validate_sewa() {
+		$(".validasi").removeAttr("required");
+		$(".sewa-required").attr("required", "required");
+		alert('validate_sewa activated!')
+	}
+
+	function validate_wedding() {
+		$(".validasi").removeAttr("required");
+		$(".wedding-required").attr("required", "required");
+		alert('validate_wedding activated!')
+	}
+
+	function validate_franchise() {
+		$(".validasi").removeAttr("required");
+		$(".franchise-required").attr("required", "required");
+		alert('validate_franchise activated!')
+	}
+
+	function validate_lainnya() {
+		$(".validasi").removeAttr("required");
+		$(".lainnya-required").attr("required", "required");
+		alert('validate_lainnya activated!')
+	}
+
+
+	function validate_myihram() {
+		$(".validasi").removeAttr("required");
+		$(".myihram-required").attr("required", "required");
+		alert('validate_myihram activated!')
+	}
+
+	function validate_mysafar() {
+		$(".validasi").removeAttr("required");
+		$(".mysafar-required").attr("required", "required");
+		alert('validate_mysafar activated!')
+	}
 })

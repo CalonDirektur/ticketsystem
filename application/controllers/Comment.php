@@ -26,6 +26,8 @@ class Comment extends CI_Controller
         $success = $this->comment_m->add_comment($data);
         if ($success) {
             redirect($redirect);
+        } else {
+            echo 'error';
         }
     }
 

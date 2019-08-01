@@ -179,7 +179,7 @@
 									</td>
 								</tr>
 								<!-- Tombol ini muncul khusus untuk user -->
-								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 4)) { ?>
+								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 4) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 									<tr>
 										<td>
 											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>

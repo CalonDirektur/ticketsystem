@@ -7,41 +7,56 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
-			<div class="row">
-				<div class="col-lg-6 col-md-6">
-					<div class="row">
-						<div class="col-lg-12 col-md-12">
-							<div class="card">
-								<div class="card-header text-center">
-									<b>Lampiran</b>
-								</div>
-								<a id="img-link" target="_blank" href="<?= base_url('uploads/nst/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/nst/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
+		<div class="row">
+			<div class="col-lg-6 col-md-6">
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-header text-center">
+								<b>Lampiran</b>
 							</div>
-						</div>
-					</div>
-					<div class="row mt-1">
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/nst/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/nst/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/nst/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/nst/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-							<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/nst/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-
+							<a id="img-link" target="_blank" href="<?= base_url('uploads/nst/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/nst/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6">
+				<div class="row mt-1">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/nst/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/nst/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/nst/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/nst/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/nst/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file6 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file6 != NULL ? 'uploads/nst/' . $data->upload_file6 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+					</div>
+				</div>
+
+				<div class="row mt-1">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file7 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file7 != NULL ? 'uploads/nst/' . $data->upload_file7 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file8 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file8 != NULL ? 'uploads/nst/' . $data->upload_file8 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file9 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file9 != NULL ? 'uploads/nst/' . $data->upload_file9 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+						<img class="img-thumbnail <?= $data->upload_file10 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file10 != NULL ? 'uploads/nst/' . $data->upload_file10 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6">
+				<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
 					<!-- Form Pertanyaan NST -->
 					<div class="card">
 						<div class="card-header text-center">
@@ -139,7 +154,7 @@
 						</div>
 					</div>
 					<!-- Form Upload Lampiran -->
-					<div class="card card-primary mt-4">
+					<div id="upload" class="card card-primary mt-4">
 						<div class="card-header with-border">
 							<h3 class="card-title">Upload File</h3>
 						</div>
@@ -164,6 +179,26 @@
 								<label for="upload_file5">Upload Berkas 5</label>
 								<input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-10" disabled>
 							</div>
+							<div class="form-group">
+								<label for="upload_file6">Upload Berkas 6</label>
+								<input name="upload_file6" id="upload_file6" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file7">Upload Berkas 7</label>
+								<input name="upload_file7" id="upload_file7" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file8">Upload Berkas 8</label>
+								<input name="upload_file8" id="upload_file8" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file9">Upload Berkas 9</label>
+								<input name="upload_file9" id="upload_file9" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file10">Upload Berkas 10</label>
+								<input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
+							</div>
 						</div>
 						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
 							<div class="card-footer text-center">
@@ -172,9 +207,9 @@
 							</div>
 						<?php } ?>
 					</div>
-				</div>
+				</form>
 			</div>
-		</form>
+		</div>
 
 		<!-- Post Komentar -->
 		<div class="row mt-4">

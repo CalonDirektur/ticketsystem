@@ -14,24 +14,24 @@ class Dashboard extends CI_Controller
 	{
 		// Jika bukan admin maka tampilkan data sesuai dengan cabang masing-masing
 		if ($this->fungsi->user_login()->id_cabang != 46) {
-			$id = 'id_user = ' . $this->fungsi->user_login()->id_user;
+			$where = 'id_user = ' . $this->fungsi->user_login()->id_user;
 			$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
 		} else {
 			if ($this->fungsi->user_login()->level == 2) {
-				$id = 'id_approval = 0';
+				$where = 'id_approval = 1 OR id_approval = 0';
 			} else if ($this->fungsi->user_login()->level == 3) {
-				$id = 'id_approval = 2';
+				$where = 'id_approval = 2';
 			} else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5) {
-				$id = 'id_approval IS NOT NULL ';
+				$where = 'id_approval IS NOT NULL ';
 			}
 			$id_cabang = '';
 		}
 
-		if ($this->fungsi->user_login()->level == 2) {
-			$id = 'id_approval = 0';
-		} else if ($this->fungsi->user_login()->level == 3) {
-			$id = 'id_approval = 2';
-		}
+		// if ($this->fungsi->user_login()->level == 2) {
+		// 	$where = 'id_approval = 0';
+		// } else if ($this->fungsi->user_login()->level == 3) {
+		// 	$where = 'id_approval = 2';
+		// }
 
 		check_not_login();
 		//Total Status My'Talim
@@ -125,17 +125,17 @@ class Dashboard extends CI_Controller
 			'total_rejected' => $total_rejected
 		];
 
-		$data['mytalim_records'] = $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $id, 'id_mytalim DESC');
-		$data['myhajat_renovasi_records'] = $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $id, 'id_renovasi DESC');
-		$data['myhajat_sewa_records'] = $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $id, 'id_sewa DESC');
-		$data['myhajat_wedding_records'] = $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $id, 'id_wedding DESC');
-		$data['myhajat_franchise_records'] = $this->data_m->get_product('tb_my_hajat_franchise', 'tb_my_hajat_franchise.' . $id, 'id_franchise DESC');
-		$data['myhajat_lainnya_records'] = $this->data_m->get_product('tb_my_hajat_lainnya', 'tb_my_hajat_lainnya.' . $id, 'id_myhajat_lainnya DESC');
-		$data['myihram_records'] = $this->data_m->get_product('tb_my_ihram', 'tb_my_ihram.' . $id, 'id_myihram DESC');
-		$data['mysafar_records'] = $this->data_m->get_product('tb_my_safar', 'tb_my_safar.' . $id, 'id_mysafar DESC');
-		$data['aktivasi_agent_records'] = $this->data_m->get_product('tb_aktivasi_agent', 'tb_aktivasi_agent.' . $id, 'id_agent DESC');
-		$data['nst_records'] = $this->data_m->get_product('tb_nst', 'tb_nst.' . $id, 'id_nst DESC');
-		$data['lead_management_records'] = $this->data_m->get_product('tb_lead_management', 'tb_lead_management.' . $id, 'id_lead DESC');
+		$data['mytalim_records'] = $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $where, 'id_mytalim DESC');
+		$data['myhajat_renovasi_records'] = $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $where, 'id_renovasi DESC');
+		$data['myhajat_sewa_records'] = $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $where, 'id_sewa DESC');
+		$data['myhajat_wedding_records'] = $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $where, 'id_wedding DESC');
+		$data['myhajat_franchise_records'] = $this->data_m->get_product('tb_my_hajat_franchise', 'tb_my_hajat_franchise.' . $where, 'id_franchise DESC');
+		$data['myhajat_lainnya_records'] = $this->data_m->get_product('tb_my_hajat_lainnya', 'tb_my_hajat_lainnya.' . $where, 'id_myhajat_lainnya DESC');
+		$data['myihram_records'] = $this->data_m->get_product('tb_my_ihram', 'tb_my_ihram.' . $where, 'id_myihram DESC');
+		$data['mysafar_records'] = $this->data_m->get_product('tb_my_safar', 'tb_my_safar.' . $where, 'id_mysafar DESC');
+		$data['aktivasi_agent_records'] = $this->data_m->get_product('tb_aktivasi_agent', 'tb_aktivasi_agent.' . $where, 'id_agent DESC');
+		$data['nst_records'] = $this->data_m->get_product('tb_nst', 'tb_nst.' . $where, 'id_nst DESC');
+		$data['lead_management_records'] = $this->data_m->get_product('tb_lead_management', 'tb_lead_management.' . $where, 'id_lead DESC');
 
 		$this->template->load('template2', 'dashboard', $data);
 	}

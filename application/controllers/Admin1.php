@@ -82,28 +82,33 @@ class Admin1 extends CI_Controller
 			redirect('/');
 		}
 
+		if ($produk == 'myhajat' && $kategori == 'lainnya') {
+			$this->Aksi_Admin1_m->reject('tb_my_hajat_lainnya', ['id_myhajat_lainnya' => $id]);
+			redirect('/');
+		}
+
 		if ($produk == 'myihram') {
-			$this->Aksi_Admin1_m->approve('tb_my_ihram', ['id_myihram' => $id]);
+			$this->Aksi_Admin1_m->reject('tb_my_ihram', ['id_myihram' => $id]);
 			redirect('/');
 		}
 
 		if ($produk == 'mysafar') {
-			$this->Aksi_Admin1_m->approve('tb_my_safar', ['id_mysafar' => $id]);
+			$this->Aksi_Admin1_m->reject('tb_my_safar', ['id_mysafar' => $id]);
 			redirect('/');
 		}
 
 		if ($produk == 'nst') {
-			$this->Aksi_Admin1_m->approve('tb_nst', ['id_nst' => $id]);
+			$this->Aksi_Admin1_m->reject('tb_nst', ['id_nst' => $id]);
 			redirect('/');
 		}
 
 		if ($produk == 'aktivasi_agent') {
-			$this->Aksi_Admin1_m->approve('tb_aktivasi_agent', ['id_agent' => $id]);
+			$this->Aksi_Admin1_m->reject('tb_aktivasi_agent', ['id_agent' => $id]);
 			redirect('/');
 		}
 
 		if ($produk == 'lead_management') {
-			$this->Aksi_Admin1_m->approve('tb_lead_management', ['id_lead' => $id]);
+			$this->Aksi_Admin1_m->reject('tb_lead_management', ['id_lead' => $id]);
 			redirect('/');
 		}
 	}

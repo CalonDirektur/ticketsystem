@@ -37,7 +37,22 @@
 							<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/aktivasi_agent/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+							<img class="img-thumbnail <?= $data->upload_file6 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file6 != NULL ? 'uploads/aktivasi_agent/' . $data->upload_file6 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+						</div>
+					</div>
 
+					<div class="row mt-1">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+							<img class="img-thumbnail <?= $data->upload_file7 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file7 != NULL ? 'uploads/aktivasi_agent/' . $data->upload_file7 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+							<img class="img-thumbnail <?= $data->upload_file8 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file8 != NULL ? 'uploads/aktivasi_agent/' . $data->upload_file8 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+							<img class="img-thumbnail <?= $data->upload_file9 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file9 != NULL ? 'uploads/aktivasi_agent/' . $data->upload_file9 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-2">
+							<img class="img-thumbnail <?= $data->upload_file10 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file10 != NULL ? 'uploads/aktivasi_agent/' . $data->upload_file10 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
 						</div>
 					</div>
 				</div>
@@ -223,7 +238,7 @@
 							<div class="comment-text">
 								<span class="username">
 									<b><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</b><br>
-									<p class="text-muted pull-right"><?= $komen->date ?></p>
+									<p class="text-muted pull-right"><?= $balasan->date ?></p>
 								</span>
 								<?= $balasan->comment ?>
 							</div>

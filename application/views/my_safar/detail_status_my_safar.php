@@ -147,7 +147,7 @@
 						</div>
 					</div>
 					<!-- Form Upload Lampiran -->
-					<div class="card card-primary mt-4">
+					<div id="upload" class="card card-primary mt-4">
 						<div class="card-header with-border">
 							<h3 class="card-title">Upload File</h3>
 						</div>
@@ -171,6 +171,26 @@
 							<div class="form-group">
 								<label for="upload_file5">Upload Berkas 5</label>
 								<input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file6">Upload Berkas 6</label>
+								<input name="upload_file6" id="upload_file6" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file7">Upload Berkas 7</label>
+								<input name="upload_file7" id="upload_file7" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file8">Upload Berkas 8</label>
+								<input name="upload_file8" id="upload_file8" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file9">Upload Berkas 9</label>
+								<input name="upload_file9" id="upload_file9" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file10">Upload Berkas 10</label>
+								<input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
 							</div>
 						</div>
 						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
@@ -247,11 +267,11 @@
 					<?php } ?>
 				</div>
 				<div class="card-footer">
-					<form action="<?= base_url('comment/post_reply/id_mytalim'); ?>" method="post">
+					<form action="<?= base_url('comment/post_reply/id_mysafar'); ?>" method="post">
 						<div class="img-push">
 							<input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
 							<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-							<input name="id_komentar" type="hidden" value="<?= $data->id_mytalim ?>">
+							<input name="id_komentar" type="hidden" value="<?= $data->id_mysafar ?>">
 							<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 							<input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
 						</div>

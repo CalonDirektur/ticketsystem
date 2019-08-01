@@ -111,7 +111,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button onclick="return confirm('Harap periksa kembali\n, Apakah Anda yakin data yang diisi sudah benar?');" class="btn btn-primary" name="submit_lead_management">Kirim Data!</button>
+              <button class="btn btn-primary" name="submit_lead_management">Kirim Data!</button>
     </form>
 </div>
 </div>

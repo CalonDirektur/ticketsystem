@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-07-31 17:23:50
+# Date: 2019-08-01 17:17:09
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -35,7 +35,7 @@ CREATE TABLE `tb_aktivasi_agent` (
 # Data for table "tb_aktivasi_agent"
 #
 
-INSERT INTO `tb_aktivasi_agent` VALUES (2,0,'KGB Agent','Syariah Ambassador','22_Agustus_a.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,7,4,'2019-07-29 14:03:50','2019-07-30 04:30:21');
+INSERT INTO `tb_aktivasi_agent` VALUES (3,0,'Mossad Agent','Syariah Agent','31589143_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,7,4,'2019-08-01 11:47:45','2019-08-01 11:47:45');
 
 #
 # Structure for table "tb_cabang"
@@ -83,7 +83,7 @@ CREATE TABLE `tb_comment` (
 # Data for table "tb_comment"
 #
 
-INSERT INTO `tb_comment` VALUES (88,0,'Renovasi rumah nenek',4,'2019-07-30 16:04:04',NULL,12,NULL,NULL,NULL,NULL,0,0,0,0,0),(89,0,'SADASASDASD',4,'2019-07-30 16:17:51',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(90,0,'qsaas',4,'2019-07-30 16:35:53',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(91,90,'telephone got disconnected',4,'2019-07-30 16:36:52',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(92,90,'I don\'t know what happen',4,'2019-07-30 16:38:12',25,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(93,0,'halo',4,'2019-07-31 08:16:36',26,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(94,93,'hai',4,'2019-07-31 08:16:43',26,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(95,88,'sadasd',4,'2019-07-31 08:17:00',NULL,12,NULL,NULL,NULL,NULL,0,0,0,0,0),(96,0,'komentar',4,'2019-07-31 08:42:14',27,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0);
+INSERT INTO `tb_comment` VALUES (104,0,'Komentar mytalim id 34',4,'2019-08-01 16:11:16',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(105,104,'Reply komentar mytalim id 34',4,'2019-08-01 16:11:29',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(106,0,'Komentar mytalim id 33',4,'2019-08-01 16:12:40',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(107,106,'reply keomentar mytalim id 33',4,'2019-08-01 16:12:50',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(108,0,'Komentar mytalim id 32',4,'2019-08-01 16:13:12',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(109,108,'Reply komentar mytalim id 32',4,'2019-08-01 16:13:25',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(110,0,'komentar my hajat renovasi id 14',4,'2019-08-01 16:18:51',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(111,110,'reply komentar my hajat renovasi id 14',4,'2019-08-01 16:18:59',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(112,0,'komentar my safar id 7',4,'2019-08-01 16:35:56',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(113,112,'reply komentar my safar id 7',4,'2019-08-01 16:36:02',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(114,0,'komentar my ihram id 7',4,'2019-08-01 16:36:20',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(115,114,'reply komentar my ihram id 7',4,'2019-08-01 16:36:59',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(116,0,'komentar aktivasi_agent id 3',4,'2019-08-01 16:48:24',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(117,116,'reply komentar aktivasi_agent id 3',4,'2019-08-01 16:48:32',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(118,116,'Komen admin 1',1,'2019-08-01 16:49:14',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0);
 
 #
 # Structure for table "tb_lead_management"
@@ -119,7 +119,7 @@ CREATE TABLE `tb_lead_management` (
 # Data for table "tb_lead_management"
 #
 
-INSERT INTO `tb_lead_management` VALUES (1,'26357462354762354','Ahmad Jabar','23423423','Digital Marketing','Leader','My Ihram','7000000000','Pefindo Checking','Collectibility',32,'DSR','Return/Hold','branch git','CABANG','OKE','2019-07-30 05:36:38','2019-07-31 09:25:36',2,7,4),(2,'26357462354762354','Ahmad Jabar','323423432424','Digital Marketing','Leader','My CarS','9000000000','Credit Scoring','DRS>70%',20,'Whatever','Belum Appeal','Branch','CABANG','Up to you','2019-07-30 05:40:26','2019-07-31 09:31:42',2,7,4),(3,'26357462354762354132','Ibrahim','Ibrahim Ahmad Ja','Digital Partner','Leader','My Ihram','2342423423','Credit Scoring','DSR>125%',567,'DSR','Approve','Branch','Caabaang','helloooooooo','2019-07-30 10:08:55','2019-07-31 06:28:00',0,7,4);
+INSERT INTO `tb_lead_management` VALUES (4,'089618819905','Ibrahim Ahmad Jabar Khaidiru Sobari','3603222007980001','Website BFI Syariah','Leeds United','My Hajat','780000000','','',0,'','','','',NULL,'2019-08-01 11:38:25','2019-08-01 11:38:25',0,7,4),(5,'089618819905','Ibrahim Ahmad Jabar Khaidiru Sobari','3603222007980001','Tour & Travel / Penyedia Jasa','Leeds United','My Ihram','9870000000','','',0,'','','','',NULL,'2019-08-01 11:40:41','2019-08-01 11:40:41',0,7,4);
 
 #
 # Structure for table "tb_my_hajat_franchise"
@@ -144,16 +144,16 @@ CREATE TABLE `tb_my_hajat_franchise` (
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
+  `upload_file6` varchar(255) DEFAULT NULL,
+  `upload_file7` varchar(255) DEFAULT NULL,
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` timestamp NULL DEFAULT NULL,
   `id_approval` int(2) DEFAULT NULL,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
-  `upload_file6` varchar(255) DEFAULT NULL,
-  `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file9` varchar(255) DEFAULT '',
-  `upload_file10` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_franchise`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -161,6 +161,7 @@ CREATE TABLE `tb_my_hajat_franchise` (
 # Data for table "tb_my_hajat_franchise"
 #
 
+INSERT INTO `tb_my_hajat_franchise` VALUES (5,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Teguk!',34,'Makanan dan Minuman','2010',2000000000,'Jangka Tertentu','teguk.com','','47132430_ML1.jpg','33483397_ML1.jpg','81269321_ML.jpg','80219613_ML1.jpg','83200817_ML1.jpg','22886363_ML1.jpg','13113112_ML.jpg','32054662_ML1.jpg','28085868_ML1.jpg','35783638_ML.jpg','2019-08-01 11:29:39','2019-08-01 11:29:39',1,7,4);
 
 #
 # Structure for table "tb_my_hajat_lainnya"
@@ -175,29 +176,30 @@ CREATE TABLE `tb_my_hajat_lainnya` (
   `jenis_penyedia_jasa` varchar(255) NOT NULL DEFAULT '',
   `nilai_pembiayaan` bigint(20) NOT NULL DEFAULT 0,
   `informasi_tambahan` text NOT NULL,
-  `upload_file1` varchar(255) DEFAULT NULL,
+  `upload_file1` varchar(255) NOT NULL DEFAULT '',
   `upload_file2` varchar(255) DEFAULT NULL,
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
+  `upload_file6` varchar(255) DEFAULT NULL,
+  `upload_file7` varchar(255) DEFAULT NULL,
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   `id_approval` int(11) NOT NULL DEFAULT 0,
   `id_ticket` int(11) DEFAULT 0,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
-  `upload_file6` varchar(255) DEFAULT NULL,
-  `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file9` varchar(255) DEFAULT '',
-  `upload_file10` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_myhajat_lainnya`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_lainnya"
 #
 
+INSERT INTO `tb_my_hajat_lainnya` VALUES (4,'Mark Freaking Zuckerberg','Eksternal','Warung Pintar Smart','Perorangan',95000000,'Warung pintar sudah smart','28085868_ML2.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'33483397_ML2.jpg','2019-08-01 11:33:20',NULL,2,0,7,4);
 
 #
 # Structure for table "tb_my_hajat_renovasi"
@@ -217,30 +219,30 @@ CREATE TABLE `tb_my_hajat_renovasi` (
   `estimasi_waktu` varchar(255) NOT NULL DEFAULT '',
   `nilai_pembiayaan` bigint(20) NOT NULL DEFAULT 0,
   `informasi_tambahan` text DEFAULT NULL,
-  `upload_file1` varchar(255) DEFAULT NULL,
+  `upload_file1` varchar(255) NOT NULL DEFAULT '',
   `upload_file2` varchar(255) DEFAULT NULL,
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
-  `date_modified` varchar(255) DEFAULT NULL,
-  `date_created` timestamp NULL DEFAULT NULL,
+  `upload_file6` varchar(255) DEFAULT NULL,
+  `upload_file7` varchar(255) DEFAULT NULL,
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
+  `date_created` timestamp NULL DEFAULT current_timestamp(),
+  `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_approval` int(11) NOT NULL DEFAULT 0,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_ticket` int(5) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
-  `upload_file6` varchar(255) DEFAULT NULL,
-  `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file9` varchar(255) DEFAULT '',
-  `upload_file10` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_renovasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_renovasi"
 #
 
-INSERT INTO `tb_my_hajat_renovasi` VALUES (12,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Vendor.com','Badan Usaha','Badan Usaha','Kantor','90 m2',213,'9 bulan',23424234,'','Content_Detail_7.png',NULL,NULL,NULL,NULL,'2019-07-30 11:03:46','2019-07-30 11:03:46',0,7,0,4,NULL,NULL,'','','');
+INSERT INTO `tb_my_hajat_renovasi` VALUES (14,'Muhammad Aditya Putratama','Eksternal','Renovasi.com','Badan Usaha','Badan Usaha','Ruang Tamu','90 m2',50,'3 bulan',5000000000,'','17298849_ML.jpg','19583854_ML.jpg','22886363_ML.jpg','23355853_ML.jpg','25256930_ML.jpg','25256930_ML1.jpg','26355048_ML.jpg','26355095_ML.jpg','27233357_ML.jpg','28085868_ML.jpg','2019-08-01 11:15:10','2019-08-01 16:55:31',1,7,0,4);
 
 #
 # Structure for table "tb_my_hajat_sewa"
@@ -265,15 +267,14 @@ CREATE TABLE `tb_my_hajat_sewa` (
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
-  `date_created` timestamp NULL DEFAULT NULL,
-  `date_modified` varchar(255) DEFAULT NULL,
-  `id_comment` int(11) NOT NULL DEFAULT 0,
-  `id_user` int(11) NOT NULL,
   `upload_file6` varchar(255) DEFAULT NULL,
   `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file9` varchar(255) DEFAULT '',
-  `upload_file10` varchar(255) DEFAULT '',
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
+  `date_created` timestamp NULL DEFAULT NULL,
+  `date_modified` varchar(255) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_sewa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -281,6 +282,7 @@ CREATE TABLE `tb_my_hajat_sewa` (
 # Data for table "tb_my_hajat_sewa"
 #
 
+INSERT INTO `tb_my_hajat_sewa` VALUES (7,0,'Mochamad Ifal Alfarizah','Eksternal','James Riyadi','Perorangan','Bos','100 x 100',2147483647,1,7,'','31589143_ML.jpg','8785205_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-01 11:22:23','2019-08-01 11:22:23',4);
 
 #
 # Structure for table "tb_my_hajat_wedding"
@@ -299,20 +301,21 @@ CREATE TABLE `tb_my_hajat_wedding` (
   `jumlah_undangan` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Undangan',
   `akun_sosmed` varchar(50) NOT NULL DEFAULT '' COMMENT 'Akun Media Sosial WO',
   `informasi_tambahan` text DEFAULT NULL,
-  `upload_file1` varchar(255) DEFAULT NULL,
+  `upload_file1` varchar(255) NOT NULL,
   `upload_file2` varchar(255) DEFAULT NULL,
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
+  `upload_file6` varchar(255) DEFAULT NULL,
+  `upload_file7` varchar(255) DEFAULT NULL,
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
   `date_created` timestamp NULL DEFAULT NULL,
-  `date_modified` varchar(255) DEFAULT NULL,
+  `date_modified` timestamp NULL DEFAULT NULL,
   `id_cabang` int(11) NOT NULL DEFAULT 0 COMMENT 'Foreign Key dari tb_cabang',
   `id_approval` int(11) NOT NULL DEFAULT 0 COMMENT 'ID status approval tiket',
   `id_user` int(11) NOT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file6` varchar(255) DEFAULT NULL,
-  `upload_file9` varchar(255) DEFAULT '',
   PRIMARY KEY (`id_wedding`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
@@ -320,6 +323,7 @@ CREATE TABLE `tb_my_hajat_wedding` (
 # Data for table "tb_my_hajat_wedding"
 #
 
+INSERT INTO `tb_my_hajat_wedding` VALUES (12,0,'Edward Asyrof Odek','Internal','Wedding Bahagia','Prewedding photo','5 tahun',800000000,1500,'@wedding_bahagia','','9469640_ML.jpg','32054662_ML.jpg','37244050_ML.jpg','47132430_ML.jpg','55942125_ML.jpg','80219613_ML.jpg','83200817_ML.jpg','33483397_ML.jpg','23355853_ML1.jpg','81562729_ML.jpg','2019-08-01 11:26:46','2019-08-01 11:26:46',7,1,4);
 
 #
 # Structure for table "tb_my_ihram"
@@ -332,21 +336,21 @@ CREATE TABLE `tb_my_ihram` (
   `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
   `nama_travel` varchar(255) NOT NULL DEFAULT '',
-  `upload_file1` varchar(255) DEFAULT NULL,
+  `upload_file1` varchar(255) NOT NULL DEFAULT '',
   `upload_file2` varchar(255) DEFAULT NULL,
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
   `upload_file6` varchar(255) DEFAULT NULL,
   `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file9` varchar(255) DEFAULT '',
-  `upload_file10` varchar(255) DEFAULT '',
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_modified` varchar(255) DEFAULT 'NULL',
   `id_approval` int(2) NOT NULL DEFAULT 0 COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
-  `date_created` timestamp NULL DEFAULT NULL,
-  `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_myihram`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
@@ -354,7 +358,7 @@ CREATE TABLE `tb_my_ihram` (
 # Data for table "tb_my_ihram"
 #
 
-INSERT INTO `tb_my_ihram` VALUES (5,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Barahaya Travel','19_Agustus.png','11_Agustus.png',NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-07-29 13:53:37','2019-07-29 14:00:01'),(6,0,'Instagram','Eksternal','Barahaya Travel','1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png',0,7,4,'2019-07-31 11:29:34','2019-07-31 11:29:34');
+INSERT INTO `tb_my_ihram` VALUES (7,0,'Ahmad Jabar','Internal','','22886363_ML.jpg','11861127_ML.jpg','13160727_ML.jpg','8785205_ML.jpg','28085868_ML.jpg','11913347_ML.jpg',NULL,NULL,NULL,NULL,'2019-08-01 16:56:30','2019-08-01 11:34:26',1,7,4);
 
 #
 # Structure for table "tb_my_safar"
@@ -367,21 +371,21 @@ CREATE TABLE `tb_my_safar` (
   `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
   `nama_travel` varchar(255) NOT NULL DEFAULT '',
-  `upload_file1` varchar(255) DEFAULT NULL,
+  `upload_file1` varchar(255) NOT NULL DEFAULT '',
   `upload_file2` varchar(255) DEFAULT NULL,
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
   `upload_file6` varchar(255) DEFAULT NULL,
   `upload_file7` varchar(255) DEFAULT NULL,
-  `upload_file8` varchar(255) DEFAULT '',
-  `upload_file9` varchar(255) DEFAULT '',
-  `upload_file10` varchar(255) DEFAULT '',
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_modified` varchar(255) DEFAULT 'NULL',
   `id_approval` int(2) NOT NULL DEFAULT 0 COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
-  `date_created` timestamp NULL DEFAULT NULL,
-  `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mysafar`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
@@ -389,7 +393,7 @@ CREATE TABLE `tb_my_safar` (
 # Data for table "tb_my_safar"
 #
 
-INSERT INTO `tb_my_safar` VALUES (5,0,'Sofiyatul Mahmudah','Eksternal','Astaghfirullah Company','18_Agustus.png','20_Agustus4.png','22_Agustus_a1.png','15_Agustus.png',NULL,NULL,NULL,'','','',3,7,4,'2019-07-29 14:02:46','2019-07-29 14:02:46');
+INSERT INTO `tb_my_safar` VALUES (7,0,'Ibrahim','Eksternal','Safar Travel','32620597_ML.jpg','32900260_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-01 16:56:39','2019-08-01 11:35:37',1,7,4);
 
 #
 # Structure for table "tb_my_talim"
@@ -407,12 +411,17 @@ CREATE TABLE `tb_my_talim` (
   `akreditasi` varchar(40) NOT NULL DEFAULT '',
   `periode` varchar(255) NOT NULL DEFAULT '',
   `tujuan_pembiayaan` varchar(255) NOT NULL DEFAULT '',
-  `nilai_pembiayaan` varchar(40) NOT NULL DEFAULT '',
-  `upload_file1` varchar(255) DEFAULT NULL,
+  `nilai_pembiayaan` bigint(20) NOT NULL DEFAULT 0,
+  `upload_file1` varchar(255) NOT NULL DEFAULT '',
   `upload_file2` varchar(255) DEFAULT NULL,
   `upload_file3` varchar(255) DEFAULT NULL,
   `upload_file4` varchar(255) DEFAULT NULL,
   `upload_file5` varchar(255) DEFAULT NULL,
+  `upload_file6` varchar(255) DEFAULT NULL,
+  `upload_file7` varchar(255) DEFAULT NULL,
+  `upload_file8` varchar(255) DEFAULT NULL,
+  `upload_file9` varchar(255) DEFAULT NULL,
+  `upload_file10` varchar(255) DEFAULT NULL,
   `id_approval` int(2) NOT NULL DEFAULT 0 COMMENT '0 = belum direview, 1 = ditolak, 2 = disetujui admin 1, 3 = disetujui admin 2',
   `informasi_tambahan` text DEFAULT NULL,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
@@ -420,13 +429,13 @@ CREATE TABLE `tb_my_talim` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mytalim`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_talim"
 #
 
-INSERT INTO `tb_my_talim` VALUES (25,0,'Ahmad Jabar','Internal','Kursus','Arkademy','2013','B','2017 -2018','Supaya Bisa Kuliah','15000000','101.png','102.png','103.png','104.png','105.png',0,'     ',7,4,'2019-07-30 11:17:37','2019-07-30 11:49:49'),(26,0,'Instagram','Eksternal','Sekolah','Hacktiv8','1996','A++','1990-1991','Pekerjaan Cerah','15000000','91.png','92.png','93.png','94.png','95.png',0,' hgghjghj',7,4,'2019-07-30 11:42:54','2019-07-30 11:50:17'),(27,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Eksternal','Universitas','Universitas Indonesia','2013','B','2018 - 2019','Pekerjaan Cerah','15000000','',NULL,NULL,NULL,NULL,0,'',7,4,'2019-07-30 11:45:50','2019-07-30 11:45:50');
+INSERT INTO `tb_my_talim` VALUES (28,0,'Ibrahim Ahmad','Internal','Universitas','Universitas Budi Luhur','1996','A','2016 - 2021','Supaya bisa kuliah',0,'8785205_ML.jpg','9469640_ML.jpg','11861127_ML.jpg','11913347_ML.jpg','12450825_ML.jpg','13113112_ML.jpg','13160727_ML.jpg','17298849_ML.jpg','19583854_ML.jpg','22886363_ML.jpg',2,'',7,4,'2019-08-01 10:46:52','2019-08-01 10:46:52'),(29,0,'Ramdan Darmawan','Eksternal','Universitas','Universitas Budi Luhur','1996','A','2016 - 2021','Supaya bisa mendapat pekerjaan',0,'91201975_ML.jpg','89480959_ML.jpg','89457932_ML.jpg','87901200_ML.jpg','86182968_ML.jpg','83200817_ML.jpg','82876449_ML.jpg','81562729_ML.jpg','81269321_ML.jpg','81269321_ML1.jpg',2,'',7,4,'2019-08-01 10:51:42','2019-08-01 10:51:42'),(30,0,'Don Aria Sabda','Eksternal','Universitas','Universitas Indonesia','1996','B','1990-1991','Pekerjaan Cerah',0,'81562729_ML1.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'',7,4,'2019-08-01 10:57:44','2019-08-01 10:57:44'),(31,0,'Meyraldi Rizky Saputra','Eksternal','Lainnya','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML.jpg','23355853_ML.jpg','11913347_ML1.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'',7,4,'2019-08-01 11:05:10','2019-08-01 11:05:10'),(32,0,'Meyraldi Rizky Saputra','Eksternal','Lainnya','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML1.jpg','23355853_ML1.jpg','11913347_ML2.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'',7,4,'2019-08-01 11:06:27','2019-08-01 11:06:27'),(33,0,'Meyraldi Rizky Saputra','Eksternal','Lainnya','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML2.jpg','23355853_ML2.jpg','11913347_ML3.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'',7,4,'2019-08-01 11:09:03','2019-08-01 11:09:03'),(34,0,'Ahmad Jabar','Eksternal','Lainnya','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML3.jpg','23355853_ML3.jpg','11913347_ML4.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'',7,4,'2019-08-01 11:10:33','2019-08-01 11:10:33');
 
 #
 # Structure for table "tb_nst"
@@ -460,7 +469,6 @@ CREATE TABLE `tb_nst` (
 # Data for table "tb_nst"
 #
 
-INSERT INTO `tb_nst` VALUES (1,2000000,'Instagram punya Facebook','My Talim','18_Agustus1.png',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-07-30 04:21:09','2019-07-31 10:51:43'),(2,2147483647,'Ahmad Jabar Khaidir','My CarS','18_Agustus.png',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,12,'2019-07-30 04:26:28','2019-07-30 04:26:28'),(3,2147483647,'Youtube','My Ta\'lim','Content_Detail_2.png','Content_Detail_4.png',NULL,NULL,NULL,NULL,NULL,'','','',3,6,12,'2019-07-30 09:40:00','2019-07-30 09:40:00');
 
 #
 # Structure for table "tb_ticket"

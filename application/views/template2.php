@@ -135,8 +135,9 @@
   <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dataTables.rowReorder.min.js') ?>"></script>
-  <script src="<?= base_url('assets2/js/dataTables.responsive.min.js') ?>"></script>
+  <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
   <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script> -->
 
 </body>
 

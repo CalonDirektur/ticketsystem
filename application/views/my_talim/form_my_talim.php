@@ -51,7 +51,6 @@
             <div class="card-header with-border">
               <h3 class="card-title">Form My Ta'lim</h3>
             </div>
-
             <div class="card-body">
               <!-- Pendidikan -->
               <div class="form-group">

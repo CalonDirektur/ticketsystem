@@ -69,6 +69,12 @@ class Ticket_register extends CI_Controller
 		$this->template->load('template2', 'nst/form_nst', $data);
 	}
 
+	public function form_input_produk()
+	{
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+		$this->template->load('template2', 'form_input_produk', $data);
+	}
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 
 
@@ -78,387 +84,402 @@ class Ticket_register extends CI_Controller
 
 		//add data
 		$post = $this->input->post(NULL, TRUE);
-		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" style="padding: 4px">', '</div>');
 
 		//add form my ta'lim
 		if (isset($_POST['submit_mytalim'])) {
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('pendidikan', 'Nama Vendor', 'required');
-			$this->form_validation->set_rules('nama_lembaga', 'Jenis Vendor', 'required');
-			$this->form_validation->set_rules('tahun_berdiri', 'Bagian Bangunan', 'required');
-			$this->form_validation->set_rules('akreditasi', 'Luas Bangunan', 'required');
-			$this->form_validation->set_rules('periode', 'Jumlah Pekerja', 'required');
-			$this->form_validation->set_rules('tujuan_pembiayaan', 'Estimasi Waktu', 'required');
-			$this->form_validation->set_rules('nilai_pembiayaan', 'Nilai Pembiayaan', 'required');
-			$this->form_validation->set_rules('id_user', 'ID User', 'required');
 
-			if ($this->form_validation->run() != FALSE) {
-				$data = [
-					'nama_konsumen' => $post['nama_konsumen'],
-					'jenis_konsumen' => $post['jenis_konsumen'],
-					'id_cabang' => $post['cabang'],
-					'pendidikan' => $post['pendidikan'],
-					'nama_lembaga' => $post['nama_lembaga'],
-					'tahun_berdiri' => $post['tahun_berdiri'],
-					'akreditasi' => $post['akreditasi'],
-					'periode' => $post['periode'],
-					'tujuan_pembiayaan' => $post['tujuan_pembiayaan'],
-					'nilai_pembiayaan' => $post['nilai_pembiayaan'],
-					'informasi_tambahan' => $post['informasi_tambahan'],
-					'date_created' => date('Y-m-d H:i:s'),
-					'date_modified' => date('Y-m-d H:i:s'),
-					'id_user' => $post['id_user'],
-					'id_approval' => 0
-				];
+			$data = [
+				'nama_konsumen' 		=> $post['nama_konsumen'],
+				'jenis_konsumen'	 	=> $post['jenis_konsumen'],
+				'id_cabang' 			=> $post['cabang'],
+				'pendidikan' 			=> $post['pendidikan'],
+				'nama_lembaga' 			=> $post['nama_lembaga'],
+				'tahun_berdiri'			=> $post['tahun_berdiri'],
+				'akreditasi'			=> $post['akreditasi'],
+				'periode' 				=> $post['periode'],
+				'tujuan_pembiayaan' 	=> $post['tujuan_pembiayaan'],
+				'nilai_pembiayaan' 		=> $post['nilai_pembiayaan'],
+				'informasi_tambahan'	=> $post['informasi_tambahan'],
+				'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified' 		=> date('Y-m-d H:i:s'),
+				'id_user' 				=> $post['id_user'],
+				'id_approval' 			=> 0
+			];
 
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/mytalim';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
-				$this->load->library('upload', $config);
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mytalim';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
 
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				}
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
 
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				}
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
 
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				}
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
 
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				}
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
 
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				}
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
 
-				$id = $this->data_m->add('tb_my_talim', $data);
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
 
-				if ($id) {
-					echo "Data berhasil disimpan";
-					redirect('/');
-				} else {
-					echo "Data gagal disimpan";
-				}
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_talim', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
 			} else {
-				$this->form_my_hajat();
+				echo "Data gagal disimpan";
 			}
 		}
 
 		// PROSES SUBMIT FORM MY HAJAT //
 		// FORMULIR RENOVASI
 		if (isset($_POST['submit_renovasi'])) {
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('nama_vendor', 'Nama Vendor', 'required');
-			$this->form_validation->set_rules('jenis_vendor', 'Jenis Vendor', 'required');
-			$this->form_validation->set_rules('jenis_pekerjaan', 'Jenis Pekerjaan', 'required');
-			$this->form_validation->set_rules('bagian_bangunan', 'Bagian Bangunan', 'required');
-			$this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'required');
-			$this->form_validation->set_rules('jumlah_pekerja', 'Jumlah Pekerja', 'required');
-			$this->form_validation->set_rules('estimasi_waktu', 'Estimasi Waktu', 'required');
-			$this->form_validation->set_rules('nilai_biaya', 'Nilai Biaya', 'required|integer');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+				'nama_vendor' => $post['nama_vendor'],
+				'jenis_vendor' => $post['jenis_vendor'],
+				'jenis_pekerjaan' => $post['jenis_vendor'],
+				'bagian_bangunan' => $post['bagian_bangunan'],
+				'luas_bangunan' => $post['luas_bangunan'],
+				'jumlah_pekerja' => $post['jumlah_pekerja'],
+				'estimasi_waktu' => $post['estimasi_waktu'],
+				'nilai_pembiayaan' => $post['nilai_biaya'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
 
-			if ($this->form_validation->run() != FALSE) {
-				$data = [
-					'nama_konsumen' => $post['nama_konsumen'],
-					'jenis_konsumen' => $post['jenis_konsumen'],
-					'id_cabang' => $post['cabang'],
-					'nama_vendor' => $post['nama_vendor'],
-					'jenis_vendor' => $post['jenis_vendor'],
-					'jenis_pekerjaan' => $post['jenis_vendor'],
-					'bagian_bangunan' => $post['bagian_bangunan'],
-					'luas_bangunan' => $post['luas_bangunan'],
-					'jumlah_pekerja' => $post['jumlah_pekerja'],
-					'estimasi_waktu' => $post['estimasi_waktu'],
-					'nilai_pembiayaan' => $post['nilai_biaya'],
-					'informasi_tambahan' => $post['informasi_tambahan'],
-					'date_created' => date('Y-m-d H:i:s'),
-					'date_modified' => date('Y-m-d H:i:s'),
-					'id_user' => $post['id_user'],
-					'id_approval' => 0
-				];
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myhajat';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
 
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/myhajat';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				}
-
-				$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
-
-				if ($id > 0) {
-					echo "Data berhasil disimpan";
-					redirect('/');
-				} else {
-					echo "Data gagal disimpan";
-				}
-			} else {
-				$this->form_my_hajat();
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
 			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
+
+			if ($id > 0) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 		// FORMULIR SEWA
 		if (isset($_POST['submit_sewa'])) {
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('nama_pemilik', 'Nama Vendor', 'required');
-			$this->form_validation->set_rules('jenis_pemilik', 'Jenis Vendor', 'required');
-			$this->form_validation->set_rules('hubungan_pemohon', 'Bagian Bangunan', 'required');
-			$this->form_validation->set_rules('luas_panjang', 'Luas Bangunan', 'required');
-			$this->form_validation->set_rules('biaya_pertahun', 'Jumlah Pekerja', 'required');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+				'nama_pemilik' => $post['nama_pemilik'],
+				'jenis_pemilik' => $post['jenis_pemilik'],
+				'hubungan_pemohon' => $post['hubungan_pemohon'],
+				'luas_panjang' => $post['luas_panjang'],
+				'biaya_tahunan' => $post['biaya_pertahun'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
 
-			if ($this->form_validation->run() != FALSE) {
-				$data = [
-					'nama_konsumen' => $post['nama_konsumen'],
-					'jenis_konsumen' => $post['jenis_konsumen'],
-					'id_cabang' => $post['cabang'],
-					'nama_pemilik' => $post['nama_pemilik'],
-					'jenis_pemilik' => $post['jenis_pemilik'],
-					'hubungan_pemohon' => $post['hubungan_pemohon'],
-					'luas_panjang' => $post['luas_panjang'],
-					'biaya_tahunan' => $post['biaya_pertahun'],
-					'informasi_tambahan' => $post['informasi_tambahan'],
-					'date_created' => date('Y-m-d H:i:s'),
-					'date_modified' => date('Y-m-d H:i:s'),
-					'id_user' => $post['id_user'],
-					'id_approval' => 0
-				];
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myhajat';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
 
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/myhajat';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				}
-
-				$id = $this->data_m->add('tb_my_hajat_sewa', $data);
-
-				if ($id) {
-					echo "Data berhasil disimpan";
-					redirect('/');
-				} else {
-					echo "Data gagal disimpan";
-				}
-			} else {
-				$this->form_my_hajat();
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
 			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_hajat_sewa', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 
 		// FORMULIR WEDDING
 		if (isset($_POST['submit_wedding'])) {
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('nama_wo', 'Nama WO', 'required');
-			$this->form_validation->set_rules('jenis_wo', 'Jenis WO', 'required');
-			$this->form_validation->set_rules('lama_berdiri', 'Lama Usaha berdiri', 'required');
-			$this->form_validation->set_rules('jumlah_biaya', 'Jumlah Biaya', 'required');
-			$this->form_validation->set_rules('jumlah_undangan', 'Jumlah Undangan', 'required');
-			$this->form_validation->set_rules('akun_sosmed', 'Akun Sosial Media', 'required');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+				'nama_wo' => $post['nama_wo'],
+				'jenis_wo' => $post['jenis_wo'],
+				'lama_berdiri' => $post['lama_berdiri'],
+				'jumlah_biaya' => $post['jumlah_biaya'],
+				'jumlah_undangan' => $post['jumlah_undangan'],
+				'akun_sosmed' => $post['akun_sosmed'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
 
-			if ($this->form_validation->run() != FALSE) {
-				$data = [
-					'nama_konsumen' => $post['nama_konsumen'],
-					'jenis_konsumen' => $post['jenis_konsumen'],
-					'id_cabang' => $post['cabang'],
-					'nama_wo' => $post['nama_wo'],
-					'jenis_wo' => $post['jenis_wo'],
-					'lama_berdiri' => $post['lama_berdiri'],
-					'jumlah_biaya' => $post['jumlah_biaya'],
-					'jumlah_undangan' => $post['jumlah_undangan'],
-					'akun_sosmed' => $post['akun_sosmed'],
-					'informasi_tambahan' => $post['informasi_tambahan'],
-					'date_created' => date('Y-m-d H:i:s'),
-					'date_modified' => date('Y-m-d H:i:s'),
-					'id_user' => $post['id_user'],
-					'id_approval' => 0
-				];
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myhajat';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
 
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/myhajat';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				}
-
-				$id = $this->data_m->add('tb_my_hajat_wedding', $data);
-
-				if ($id) {
-					echo "Data berhasil disimpan";
-					redirect('/');
-				} else {
-					echo "Data gagal disimpan";
-				}
-				redirect('dashboard');
-			} else {
-				$this->form_my_hajat();
-				// redirect('Ticket_register/form_my_hajat');
-				// echo '<script>window.location.href = "'.base_url('ticket_register/form_my_hajat').'";</script>';
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
 			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_hajat_wedding', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 
 		// FORMULIR FRANCHISE
 		if (isset($_POST['submit_franchise'])) {
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('nama_franchise', 'Nama Franchise', 'required');
-			$this->form_validation->set_rules('jenis_franchise', 'Jenis Franchise', 'required');
-			$this->form_validation->set_rules('tahun_berdiri_franchise', 'Lama Usaha berdiri', 'required');
-			$this->form_validation->set_rules('harga_franchise', 'Jumlah Biaya', 'required');
-			$this->form_validation->set_rules('jangka_waktu_franchise', 'Jumlah Undangan', 'required');
-			$this->form_validation->set_rules('akun_sosmed_website', 'Akun Sosial Media', 'required');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+				'nama_franchise' => $post['nama_franchise'],
+				'jumlah_cabang' => $post['jumlah_cabang'],
+				'jenis_franchise' => $post['jenis_franchise'],
+				'tahun_berdiri_franchise' => $post['tahun_berdiri_franchise'],
+				'harga_franchise' => $post['harga_franchise'],
+				'jangka_waktu_franchise' => $post['jangka_waktu_franchise'],
+				'akun_sosmed_website' => $post['akun_sosmed_website'],
+				'informasi_tambahan' => $post['informasi_tambahan'],
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
 
-			if ($this->form_validation->run() != FALSE) {
-				$data = [
-					'nama_konsumen' => $post['nama_konsumen'],
-					'jenis_konsumen' => $post['jenis_konsumen'],
-					'id_cabang' => $post['cabang'],
-					'nama_franchise' => $post['nama_franchise'],
-					'jumlah_cabang' => $post['jumlah_cabang'],
-					'jenis_franchise' => $post['jenis_franchise'],
-					'tahun_berdiri_franchise' => $post['tahun_berdiri_franchise'],
-					'harga_franchise' => $post['harga_franchise'],
-					'jangka_waktu_franchise' => $post['jangka_waktu_franchise'],
-					'akun_sosmed_website' => $post['akun_sosmed_website'],
-					'informasi_tambahan' => $post['informasi_tambahan'],
-					'date_created' => date('Y-m-d H:i:s'),
-					'date_modified' => date('Y-m-d H:i:s'),
-					'id_user' => $post['id_user'],
-					'id_approval' => 0
-				];
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myhajat';
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 5000;
+			$config['max_height']           = 5000;
+			$this->load->library('upload', $config);
 
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/myhajat';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				}
-
-				$id = $this->data_m->add('tb_my_hajat_franchise', $data);
-
-				if ($id) {
-					echo "Data berhasil disimpan";
-					redirect('/');
-				} else {
-					echo "Data gagal disimpan";
-				}
-				redirect('dashboard');
-			} else {
-				$this->form_my_hajat();
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
 			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_hajat_franchise', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 
 		// FORMULIR PENYEDIA JASA
 		if (isset($_POST['submit_lainnya'])) {
-
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('jenis_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('nama_penyedia_jasa', 'Nama Penyedia Jasa', 'required');
-			$this->form_validation->set_rules('jenis_penyedia_jasa', 'Jenis Penyedia Jasa', 'required');
-			$this->form_validation->set_rules('nilai_pembiayaan', 'Nilai Pengajuan Pembiayaan', 'required');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
 
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
@@ -499,6 +520,26 @@ class Ticket_register extends CI_Controller
 
 			if ($this->upload->do_upload('upload_file5')) {
 				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
@@ -663,15 +704,7 @@ class Ticket_register extends CI_Controller
 		}
 
 		// FORMULIR LEAD MANAGEMENT
-		/* BELUM SELESAI */
 		if (isset($_POST['submit_lead_management'])) {
-			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('ktp_konsumen', 'Jenis Konsumen', 'required');
-			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
-			$this->form_validation->set_rules('sumber_lead', 'Jenis Penyedia Jasa', 'required');
-			$this->form_validation->set_rules('nama_pemberi_lead', 'Nilai Pengajuan Pembiayaan', 'required');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
 
 			$data = [
 				'lead_id' 				=> $post['lead_id'],

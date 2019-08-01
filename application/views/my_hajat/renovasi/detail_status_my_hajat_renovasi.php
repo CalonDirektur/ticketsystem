@@ -17,7 +17,7 @@
               <div class="card-header text-center">
                 <b>Lampiran</b>
               </div>
-              <img id="gambar" class="img-rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" width="400" height="400">
+              <a id="img-link" target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
             </div>
           </div>
         </div>
@@ -38,19 +38,34 @@
             <img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/myhajat/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+            <img class="img-thumbnail <?= $data->upload_file6 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file6 != NULL ? 'uploads/myhajat/' . $data->upload_file6 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+          </div>
+        </div>
 
+        <div class="row mt-1">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+            <img class="img-thumbnail <?= $data->upload_file7 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file7 != NULL ? 'uploads/myhajat/' . $data->upload_file7 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+            <img class="img-thumbnail <?= $data->upload_file8 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file8 != NULL ? 'uploads/myhajat/' . $data->upload_file8 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+            <img class="img-thumbnail <?= $data->upload_file9 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file9 != NULL ? 'uploads/myhajat/' . $data->upload_file9 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+            <img class="img-thumbnail <?= $data->upload_file10 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file10 != NULL ? 'uploads/myhajat/' . $data->upload_file10 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
           </div>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header text-center">
-            <h3 class="card-title">Data Ticket My Hajat Renovasi</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body no-padding">
-            <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
+        <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
+          <div class="card">
+            <div class="card-header text-center">
+              <h3 class="card-title">Data Ticket My Hajat Renovasi</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body no-padding">
               <table class="table table-striped">
                 <thead>
                   <th>Kolom</th>
@@ -179,49 +194,69 @@
                   </tr>
                 <?php } ?>
               </table>
-          </div>
-        </div>
-        <!-- Form Upload Lampiran -->
-        <div class="card card-primary mt-4">
-          <div class="card-header with-border">
-            <h3 class="card-title">Upload File</h3>
-          </div>
-          <div class="card-body" id="dynamic-field">
-            <div class="form-group">
-              <label for="upload_file1">Upload Berkas 1</label>
-              <input name="upload_file1" id="upload_file1" type="file" class="form-control enable col-10" disabled>
-            </div>
-            <div class="form-group">
-              <label for="upload_file2">Upload Berkas 2</label>
-              <input name="upload_file2" id="upload_file2" type="file" class="form-control enable col-10" disabled>
-            </div>
-            <div class="form-group">
-              <label for="upload_file3">Upload Berkas 3</label>
-              <input name="upload_file3" id="upload_file3" type="file" class="form-control enable col-10" disabled>
-            </div>
-            <div class="form-group">
-              <label for="upload_file4">Upload Berkas 4</label>
-              <input name="upload_file4" id="upload_file4" type="file" class="form-control enable col-10" disabled>
-            </div>
-            <div class="form-group">
-              <label for="upload_file5">Upload Berkas 5</label>
-              <input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-10" disabled>
             </div>
           </div>
-          <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-            <div class="card-footer text-center">
-              <!-- Tombol ini muncul khusus untuk user -->
-              <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-              <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_renovasi" class="btn btn-primary enable" name="edit_renovasi" disabled>Kirim Data!</button>
-              </form>
+          <!-- Form Upload Lampiran -->
+          <div id="upload" class="card card-primary mt-4">
+            <div class="card-header with-border">
+              <h3 class="card-title">Upload File</h3>
             </div>
-          <?php } ?>
-        </div>
+            <div class="card-body" id="dynamic-field">
+              <div class="form-group">
+                <label for="upload_file1">Upload Berkas 1</label>
+                <input name="upload_file1" id="upload_file1" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file2">Upload Berkas 2</label>
+                <input name="upload_file2" id="upload_file2" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file3">Upload Berkas 3</label>
+                <input name="upload_file3" id="upload_file3" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file4">Upload Berkas 4</label>
+                <input name="upload_file4" id="upload_file4" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file5">Upload Berkas 5</label>
+                <input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file6">Upload Berkas 6</label>
+                <input name="upload_file6" id="upload_file6" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file7">Upload Berkas 7</label>
+                <input name="upload_file7" id="upload_file7" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file8">Upload Berkas 8</label>
+                <input name="upload_file8" id="upload_file8" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file9">Upload Berkas 9</label>
+                <input name="upload_file9" id="upload_file9" type="file" class="form-control enable col-10" disabled>
+              </div>
+              <div class="form-group">
+                <label for="upload_file10">Upload Berkas 10</label>
+                <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
+              </div>
+            </div>
+            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+              <div class="card-footer text-center">
+                <!-- Tombol ini muncul khusus untuk user -->
+                <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
+                <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_renovasi" class="btn btn-primary enable" name="edit_renovasi" disabled>Kirim Data!</button>
+              </div>
+            <?php } ?>
+          </div>
+        </form>
       </div>
     </div>
 
     <!-- Post Komentar -->
-    <div class="row">
+    <div class="row mt-4">
       <div class="col-lg-12 col-md-6">
         <form method="post" action="<?= base_url('comment/post_comment/id_renovasi') ?>">
           <div class="card">

@@ -108,7 +108,7 @@
               <p><b>Note: </b> Wajib diisi (*)</p>
             </div>
             <div class="card-footer text-center">
-              <button onclick="return confirm('Harap periksa kembali\n, Apakah Anda yakin data yang diisi sudah benar?');" class="btn btn-primary" name="submit_aktivasi_agent">Kirim Data!</button>
+              <button class="btn btn-primary" name="submit_aktivasi_agent">Kirim Data!</button>
     </form>
 </div>
 </div>

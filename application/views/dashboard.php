@@ -22,65 +22,21 @@
       </div>
       <div class="card-body">
         <div class="row">
-
-          <!-- Form My Hajat -->
+          <!-- Form Input Produk -->
           <div class="col-md-2 col-sm-6 col-xs-12">
-            <a href="<?= base_url('ticket_register/form_my_hajat') ?>">
+            <a href="<?= base_url('ticket_register/form_input_produk') ?>">
               <div class="card">
                 <div class="card-header text-center">
-                  <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                  <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                 </div>
                 <div class="card-body text-center">
-                  Form My Hajat
+                  Form Input Produk
                 </div>
               </div>
             </a>
           </div>
 
-
-          <!-- fix for small devices only -->
-          <div class="clearfix visible-sm-block"></div>
-
-          <!-- Form My Ta'lim -->
-          <div class="col-md-2 col-sm-6 col-xs-12">
-            <a href="<?= base_url('ticket_register/form_my_talim') ?>">
-              <div class="card">
-                <div class="card-header text-center">
-                  <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
-                </div>
-                <div class="card-body text-center">
-                  Form My Ta'lim
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-2 col-sm-6 col-xs-12">
-            <a href="<?= base_url('ticket_register/form_my_ihram') ?>">
-              <div class="card">
-                <div class="card-header text-center">
-                  <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
-                </div>
-                <div class="card-body text-center">
-                  Form My Ihram
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-2 col-sm-6 col-xs-12">
-            <a href="<?= base_url('ticket_register/form_my_safar') ?>">
-              <div class="card">
-                <div class="card-header text-center">
-                  <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
-                </div>
-                <div class="card-body text-center">
-                  Form My Safar
-                </div>
-              </div>
-            </a>
-          </div>
-
+          <!-- Form Lead Management -->
           <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_lead_management') ?>">
               <div class="card">
@@ -93,6 +49,7 @@
               </div>
             </a>
           </div>
+
           <!-- Form Aktivasi Agent -->
           <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_aktivasi_agent') ?>">
@@ -106,9 +63,7 @@
               </div>
             </a>
           </div>
-        </div>
 
-        <div class="row mt-2">
           <!-- Form NST -->
           <div class="col-md-2 col-sm-6 col-xs-12">
             <a href="<?= base_url('ticket_register/form_nst') ?>">
@@ -122,14 +77,13 @@
               </div>
             </a>
           </div>
+
         </div>
-
-
       </div>
     </div>
 
     <!-- Status Support Tiket -->
-    <div class="card mt-4" style="padding: 8px">
+    <div class="card mt-4">
       <div class="card-header">
         <h3 class="card-title">Status Support Ticket</h3>
       </div>
@@ -156,14 +110,14 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID My Ta'lim</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID My Ta'lim</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Pendidikan</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -177,7 +131,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->pendidikan) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -206,14 +160,14 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID Renovasi</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID Renovasi</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama Vendor</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -222,12 +176,12 @@
                       $no = 1;
                       foreach ($myhajat_renovasi_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_renovasi ?></td>
+                          <td width="1%">#<?= $d->id_renovasi ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_vendor) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -256,14 +210,14 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID Sewa</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID Sewa</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama Pemilik</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -272,12 +226,12 @@
                       $no = 1;
                       foreach ($myhajat_sewa_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_sewa ?></td>
+                          <td width="1%">#<?= $d->id_sewa ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_pemilik) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -306,14 +260,14 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID Wedding</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID Wedding</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama WO</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -322,12 +276,12 @@
                       $no = 1;
                       foreach ($myhajat_wedding_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_wedding ?></td>
+                          <td width="1%">#<?= $d->id_wedding ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_wo) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -356,15 +310,15 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                       <tr>
-                        <th>ID Ticket</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID Franchise</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama Franchise</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                       </tr>
@@ -374,12 +328,12 @@
                       $no = 1;
                       foreach ($myhajat_franchise_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_franchise ?></td>
+                          <td width="1%">#<?= $d->id_franchise ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_franchise) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -408,14 +362,14 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID Ticket</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID My Hajat Lainnya</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama Penyedia Jasa</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -424,12 +378,12 @@
                       $no = 1;
                       foreach ($myhajat_lainnya_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_myhajat_lainnya ?></td>
+                          <td width="1%">#<?= $d->id_myhajat_lainnya ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -458,14 +412,14 @@
                   <h3 class="card-title">Tabel My Ihram</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID My Ihram</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID My Ihram</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama Travel</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -479,7 +433,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -508,14 +462,14 @@
                   <h3 class="card-title">Tabel My Safar</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID My Safar</th>
-                        <th>Nama Konsumen</th>
+                        <th class="all">ID My Safar</th>
+                        <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
                         <th>Nama Travel</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -529,7 +483,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -558,13 +512,13 @@
                   <h3 class="card-title">Tabel Aktivasi Agent</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID Aktivasi Agent</th>
-                        <th>Nama Agent</th>
+                        <th class="all">ID Aktivasi Agent</th>
+                        <th class="all">Nama Agent</th>
                         <th>Jenis Agent</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -577,7 +531,7 @@
                           <td><?= ucfirst($d->nama_agent) ?></td>
                           <td><?= $d->jenis_agent ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -606,14 +560,14 @@
                   <h3 class="card-title">Tabel NST</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID NST</th>
-                        <th>Lead ID</th>
+                        <th class="all">ID NST</th>
+                        <th class="all">Lead ID</th>
                         <th>Nama Konsumen</th>
                         <th>Produk</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -627,7 +581,7 @@
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->produk ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -656,15 +610,15 @@
                   <h3 class="card-title">Tabel Lead Management</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th>ID Lead</th>
-                        <th>Lead ID</th>
+                        <th class="all">ID Lead</th>
+                        <th class="all">Lead ID</th>
                         <th>Nama Konsumen</th>
                         <th>Sumber Lead</th>
                         <th>Produk</th>
-                        <th>Ticket Status</th>
+                        <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -679,7 +633,7 @@
                           <td><?= $d->sumber_lead ?></td>
                           <td><?= $d->produk ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -727,7 +681,7 @@
                     <a href="<?= base_url('status/pending/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Renovasi</span><br><br>
@@ -742,7 +696,7 @@
                     <a href="<?= base_url('status/pending/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Sewa</span><br><br>
@@ -757,7 +711,7 @@
                     <a href="<?= base_url('status/pending/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Wedding</span><br><br>
@@ -771,7 +725,7 @@
                     <a href="<?= base_url('status/pending/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Franchise</span><br><br>
@@ -788,7 +742,7 @@
                     <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Lainnya</span><br><br>
@@ -805,7 +759,7 @@
                     <a href="<?= base_url('status/pending/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Talim</span><br><br>
@@ -819,7 +773,7 @@
                     <a href="<?= base_url('status/pending/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Ihram</span><br><br>
@@ -833,7 +787,7 @@
                     <a href="<?= base_url('status/pending/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Safar</span><br><br>
@@ -901,7 +855,7 @@
                     <a href="<?= base_url('status/approved/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Renovasi</span><br><br>
@@ -916,7 +870,7 @@
                     <a href="<?= base_url('status/approved/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Sewa</span><br><br>
@@ -931,7 +885,7 @@
                     <a href="<?= base_url('status/approved/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Wedding</span><br><br>
@@ -945,7 +899,7 @@
                     <a href="<?= base_url('status/approved/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Franchise</span><br><br>
@@ -961,7 +915,7 @@
                     <a href="<?= base_url('status/approved/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Lainnya</span><br><br>
@@ -978,7 +932,7 @@
                     <a href="<?= base_url('status/approved/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Talim</span><br><br>
@@ -992,7 +946,7 @@
                     <a href="<?= base_url('status/approved/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Ihram</span><br><br>
@@ -1006,7 +960,7 @@
                     <a href="<?= base_url('status/approved/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Safar</span><br><br>
@@ -1072,7 +1026,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Renovasi</span><br><br>
@@ -1086,7 +1040,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Sewa</span><br><br>
@@ -1101,7 +1055,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Wedding</span><br><br>
@@ -1115,7 +1069,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Franchise</span><br><br>
@@ -1131,7 +1085,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Lainnya</span><br><br>
@@ -1148,7 +1102,7 @@
                     <a href="<?= base_url('status/rejected/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Talim</span><br><br>
@@ -1162,7 +1116,7 @@
                     <a href="<?= base_url('status/rejected/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Ihram</span><br><br>
@@ -1176,7 +1130,7 @@
                     <a href="<?= base_url('status/rejected/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Safar</span><br><br>
@@ -1271,7 +1225,7 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Ta'lim</th>
@@ -1286,21 +1240,21 @@
                         <?php if ($d->id_approval == 0) { ?>
                           <tr class="clickable-row" data-href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>" style="cursor: pointer">
                             <td class="id_ticket">#<?= $d->id_mytalim ?></td>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><?= $d->nama_cabang ?></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                           <tr class="clickable-row" data-href="<?= base_url('status/rejected/mytalim/id/' . $d->id_mytalim) ?>">
-                            <td>#<?= $d->id_mytalim ?></td>
+                            <td width="1%">#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-danger">Ditolak</span></td>
                             <td><?= $d->nama_cabang ?></td>
                           <?php } else if ($d->id_approval == 2) { ?>
                           <tr class="clickable-row" data-href="<?= base_url('status/approved/mytalim/id/' . $d->id_mytalim) ?>">
-                            <td>#<?= $d->id_mytalim ?></td>
+                            <td width="1%">#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-success">Disetujui Admin 1</span></td>
                             <td><?= $d->nama_cabang ?></td>
                           <?php } else if ($d->id_approval == 3) { ?>
                           <tr class="clickable-row" data-href="<?= base_url('status/completed/mytalim/id/' . $d->id_mytalim) ?>">
-                            <td>#<?= $d->id_mytalim ?></td>
+                            <td width="1%">#<?= $d->id_mytalim ?></td>
                             <td><span class="badge badge-primary">Selesai</span></td>
                             <td><?= $d->nama_cabang ?></td>
                           <?php } ?>
@@ -1320,7 +1274,7 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1338,14 +1292,14 @@
                       $no = 1;
                       foreach ($myhajat_renovasi_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_renovasi ?></td>
+                          <td width="1%">#<?= $d->id_renovasi ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_vendor) ?></td>
                           <td>My Hajat Renovasi</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1374,7 +1328,7 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1392,14 +1346,14 @@
                       $no = 1;
                       foreach ($myhajat_sewa_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_sewa ?></td>
+                          <td width="1%">#<?= $d->id_sewa ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_pemilik) ?></td>
                           <td>My Hajat Sewa</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1428,7 +1382,7 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1446,14 +1400,14 @@
                       $no = 1;
                       foreach ($myhajat_wedding_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_wedding ?></td>
+                          <td width="1%">#<?= $d->id_wedding ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_wo) ?></td>
                           <td>My Hajat Wedding</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1482,7 +1436,7 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1500,14 +1454,14 @@
                       $no = 1;
                       foreach ($myhajat_franchise_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_franchise ?></td>
+                          <td width="1%">#<?= $d->id_franchise ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_franchise) ?></td>
                           <td>My Hajat Franchise</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1536,7 +1490,7 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1554,14 +1508,14 @@
                       $no = 1;
                       foreach ($myhajat_lainnya_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_myhajat_lainnya ?></td>
+                          <td width="1%">#<?= $d->id_myhajat_lainnya ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
                           <td>My Hajat Lainnya</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1590,7 +1544,7 @@
                   <h3 class="card-title">Tabel My Ihram</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Ihram</th>
@@ -1611,7 +1565,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1640,7 +1594,7 @@
                   <h3 class="card-title">Tabel My Safar</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Safar</th>
@@ -1661,7 +1615,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1690,7 +1644,7 @@
                   <h3 class="card-title">Tabel Aktivasi Agent</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Aktivasi Agent</th>
@@ -1709,7 +1663,7 @@
                           <td><?= ucfirst($d->nama_agent) ?></td>
                           <td><?= $d->jenis_agent ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1749,10 +1703,10 @@
                     <a href="<?= base_url('status/pending/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          My Hajat Renovasi<br>
+                          My Hajat Renovasi<br><br>
                           <span class="badge badge-secondary"><?= $pending_myhajat_renovasi ?></span>
                         </div>
                       </div>
@@ -1763,10 +1717,10 @@
                     <a href="<?= base_url('status/pending/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          My Hajat Sewa<br>
+                          My Hajat Sewa<br><br>
                           <span class="badge badge-secondary"><?= $pending_myhajat_sewa ?></span>
                         </div>
                       </div>
@@ -1777,10 +1731,10 @@
                     <a href="<?= base_url('status/pending/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          My Hajat Wedding<br>
+                          My Hajat Wedding<br><br>
                           <span class="badge badge-secondary"><?= $pending_myhajat_wedding ?></span>
                         </div>
                       </div>
@@ -1791,11 +1745,25 @@
                     <a href="<?= base_url('status/pending/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          My Hajat Franchise<br>
+                          My Hajat Franchise<br><br>
                           <span class="badge badge-secondary"><?= $pending_myhajat_franchise ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          My Hajat Lainnya<br><br>
+                          <span class="badge badge-secondary"><?= $pending_myhajat_lainnya ?></span>
                         </div>
                       </div>
                     </a>
@@ -1803,37 +1771,93 @@
 
                 </div>
                 <div class="row mt-4">
-                  <div class="col-md-2 col-sm-6 col-xs-12">
-                    <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center">
-                          My Hajat Lainnya<br>
-                          <span class="badge badge-secondary"><?= $pending_myhajat_lainnya ?></span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
-                  <!-- fix for small devices only -->
-                  <div class="clearfix visible-sm-block"></div>
 
                   <div class="col-md-2 col-sm-6 col-xs-12">
                     <a href="<?= base_url('status/pending/mytalim') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
-                          My Talim<br>
+                          My Talim<br><br>
                           <span class="badge badge-secondary"><?= $pending_mytalim ?></span>
                         </div>
                       </div>
                     </a>
                   </div>
+
+                  <div class="col-md-2 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/myihram/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Ihram</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_myihram ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/mysafar/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>My Safar</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_mysafar ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/aktivasi_agent/') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Aktivasi Agent</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_aktivasi_agent ?></la>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/nst') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>NST</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_nst ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-2 col-sm-6 col-xs-12">
+                    <a href="<?= base_url('status/pending/lead_management') ?>">
+                      <div class="card">
+                        <div class="card-header text-center">
+                          <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
+                        </div>
+                        <div class="card-body text-center">
+                          <span>Lead Management</span><br><br>
+                          <label class="badge badge-secondary"><?= $pending_lead_management ?></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
                 </div>
+
               </div>
             </div>
 
@@ -1869,7 +1893,7 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1888,14 +1912,14 @@
                       $no = 1;
                       foreach ($mytalim_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_mytalim ?></td>
+                          <td width="1%">#<?= $d->id_mytalim ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->pendidikan) ?></td>
                           <td>My Ta'lim</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1924,7 +1948,7 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1942,14 +1966,14 @@
                       $no = 1;
                       foreach ($myhajat_renovasi_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_renovasi ?></td>
+                          <td width="1%">#<?= $d->id_renovasi ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_vendor) ?></td>
                           <td>My Hajat Renovasi</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -1978,7 +2002,7 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -1996,14 +2020,14 @@
                       $no = 1;
                       foreach ($myhajat_sewa_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_sewa ?></td>
+                          <td width="1%">#<?= $d->id_sewa ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_pemilik) ?></td>
                           <td>My Hajat Sewa</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2032,7 +2056,7 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -2050,14 +2074,14 @@
                       $no = 1;
                       foreach ($myhajat_wedding_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_wedding ?></td>
+                          <td width="1%">#<?= $d->id_wedding ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_wo) ?></td>
                           <td>My Hajat Wedding</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2086,7 +2110,7 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -2104,14 +2128,14 @@
                       $no = 1;
                       foreach ($myhajat_franchise_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_franchise ?></td>
+                          <td width="1%">#<?= $d->id_franchise ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_franchise) ?></td>
                           <td>My Hajat Franchise</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2140,7 +2164,7 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -2158,14 +2182,14 @@
                       $no = 1;
                       foreach ($myhajat_lainnya_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_myhajat_lainnya ?></td>
+                          <td width="1%">#<?= $d->id_myhajat_lainnya ?></td>
                           <td><?= $d->nama_cabang ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
                           <td>My Hajat Lainnya</td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2194,7 +2218,7 @@
                   <h3 class="card-title">Tabel My Ihram</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Ihram</th>
@@ -2215,7 +2239,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2244,7 +2268,7 @@
                   <h3 class="card-title">Tabel My Safar</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Safar</th>
@@ -2265,7 +2289,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2294,7 +2318,7 @@
                   <h3 class="card-title">Tabel Aktivasi Agent</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Aktivasi Agent</th>
@@ -2313,7 +2337,7 @@
                           <td><?= ucfirst($d->nama_agent) ?></td>
                           <td><?= $d->jenis_agent ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2343,7 +2367,7 @@
                 <a href="<?= base_url('status/approved/myhajat/renovasi') ?>">
                   <div class="card">
                     <div class="card-header text-center">
-                      <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                      <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                     </div>
                     <div class="card-body text-center">
                       <span>My Hajat Renovasi</span><br>
@@ -2358,7 +2382,7 @@
                 <a href="<?= base_url('status/approved/myhajat/sewa') ?>">
                   <div class="card">
                     <div class="card-header text-center">
-                      <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                      <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                     </div>
                     <div class="card-body text-center">
                       <span>My Hajat Sewa</span><br>
@@ -2373,7 +2397,7 @@
                 <a href="<?= base_url('status/approved/myhajat/wedding') ?>">
                   <div class="card">
                     <div class="card-header text-center">
-                      <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                      <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                     </div>
                     <div class="card-body text-center">
                       <span>My Hajat Wedding</span><br>
@@ -2387,7 +2411,7 @@
                 <a href="<?= base_url('status/approved/myhajat/franchise') ?>">
                   <div class="card">
                     <div class="card-header text-center">
-                      <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                      <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                     </div>
                     <div class="card-body text-center">
                       <span>My Hajat Franchise</span><br>
@@ -2403,7 +2427,7 @@
                 <a href="<?= base_url('status/approved/myhajat/lainnya') ?>">
                   <div class="card">
                     <div class="card-header text-center">
-                      <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                      <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                     </div>
                     <div class="card-body text-center">
                       <span>My Hajat Lainnya</span><br>
@@ -2420,7 +2444,7 @@
                 <a href="<?= base_url('status/approved/mytalim/') ?>">
                   <div class="card">
                     <div class="card-header text-center">
-                      <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                      <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                     </div>
                     <div class="card-body text-center">
                       <span>My Talim</span><br>
@@ -2462,7 +2486,7 @@
                   <h3 class="card-title">Tabel NST</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID NST</th>
@@ -2514,7 +2538,7 @@
                   <h3 class="card-title">Tabel Lead Management</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Lead Mgt.</th>
@@ -2711,7 +2735,7 @@
                   <h3 class="card-title">Tabel My Talim</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Ta'lim</th>
@@ -2732,7 +2756,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->pendidikan) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2762,7 +2786,7 @@
                   <h3 class="card-title">Tabel My Hajat Renovasi</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Renovasi</th>
@@ -2778,12 +2802,12 @@
                       $no = 1;
                       foreach ($myhajat_renovasi_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_renovasi ?></td>
+                          <td width="1%">#<?= $d->id_renovasi ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_vendor) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2812,7 +2836,7 @@
                   <h3 class="card-title">Tabel My Hajat Sewa</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Sewa</th>
@@ -2828,12 +2852,12 @@
                       $no = 1;
                       foreach ($myhajat_sewa_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_sewa ?></td>
+                          <td width="1%">#<?= $d->id_sewa ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_pemilik) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2862,7 +2886,7 @@
                   <h3 class="card-title">Tabel My Hajat Wedding</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Wedding</th>
@@ -2878,12 +2902,12 @@
                       $no = 1;
                       foreach ($myhajat_wedding_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_wedding ?></td>
+                          <td width="1%">#<?= $d->id_wedding ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_wo) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2912,7 +2936,7 @@
                   <h3 class="card-title">Tabel My Hajat Franchise</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                       <tr>
@@ -2930,12 +2954,12 @@
                       $no = 1;
                       foreach ($myhajat_franchise_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_franchise ?></td>
+                          <td width="1%">#<?= $d->id_franchise ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_franchise) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -2964,7 +2988,7 @@
                   <h3 class="card-title">Tabel My Hajat Lainnya</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Ticket</th>
@@ -2980,12 +3004,12 @@
                       $no = 1;
                       foreach ($myhajat_lainnya_records->result() as $d) {  ?>
                         <tr>
-                          <td>#<?= $d->id_myhajat_lainnya ?></td>
+                          <td width="1%">#<?= $d->id_myhajat_lainnya ?></td>
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -3014,7 +3038,7 @@
                   <h3 class="card-title">Tabel My Ihram</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Ihram</th>
@@ -3035,7 +3059,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myihram/id/' . $d->id_myihram) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -3064,7 +3088,7 @@
                   <h3 class="card-title">Tabel My Safar</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID My Safar</th>
@@ -3085,7 +3109,7 @@
                           <td><?= $d->jenis_konsumen ?></td>
                           <td><?= ucfirst($d->nama_travel) ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/mysafar/id/' . $d->id_mysafar) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -3114,7 +3138,7 @@
                   <h3 class="card-title">Tabel Aktivasi Agent</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Aktivasi Agent</th>
@@ -3133,7 +3157,7 @@
                           <td><?= ucfirst($d->nama_agent) ?></td>
                           <td><?= $d->jenis_agent ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/aktivasi_agent/id/' . $d->id_agent) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -3162,7 +3186,7 @@
                   <h3 class="card-title">Tabel NST</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID NST</th>
@@ -3183,7 +3207,7 @@
                           <td><?= $d->nama_konsumen ?></td>
                           <td><?= $d->produk ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -3212,7 +3236,7 @@
                   <h3 class="card-title">Tabel Lead Management</h3>
                 </div>
                 <div class="card-body">
-                  <table class="table display nowrap status" style="width:100%">
+                  <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
                         <th>ID Lead</th>
@@ -3235,7 +3259,7 @@
                           <td><?= $d->sumber_lead ?></td>
                           <td><?= $d->produk ?></td>
                           <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Belum Direview</span></td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
                           <?php } else if ($d->id_approval == 1) { ?>
                             <td><span class="badge badge-danger">Ditolak</span></td>
@@ -3281,7 +3305,7 @@
                     <a href="<?= base_url('status/pending/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Renovasi</span><br><br>
@@ -3296,7 +3320,7 @@
                     <a href="<?= base_url('status/pending/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Sewa</span><br><br>
@@ -3311,7 +3335,7 @@
                     <a href="<?= base_url('status/pending/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Wedding</span><br><br>
@@ -3325,7 +3349,7 @@
                     <a href="<?= base_url('status/pending/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Franchise</span><br><br>
@@ -3342,7 +3366,7 @@
                     <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Lainnya</span><br><br>
@@ -3359,7 +3383,7 @@
                     <a href="<?= base_url('status/pending/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Talim</span><br><br>
@@ -3373,7 +3397,7 @@
                     <a href="<?= base_url('status/pending/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Ihram</span><br><br>
@@ -3387,7 +3411,7 @@
                     <a href="<?= base_url('status/pending/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Safar</span><br><br>
@@ -3453,7 +3477,7 @@
                     <a href="<?= base_url('status/approved/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Renovasi</span><br><br>
@@ -3468,7 +3492,7 @@
                     <a href="<?= base_url('status/approved/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Sewa</span><br><br>
@@ -3483,7 +3507,7 @@
                     <a href="<?= base_url('status/approved/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Wedding</span><br><br>
@@ -3497,7 +3521,7 @@
                     <a href="<?= base_url('status/approved/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Franchise</span><br><br>
@@ -3513,7 +3537,7 @@
                     <a href="<?= base_url('status/approved/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Lainnya</span><br><br>
@@ -3530,7 +3554,7 @@
                     <a href="<?= base_url('status/approved/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Talim</span><br><br>
@@ -3544,7 +3568,7 @@
                     <a href="<?= base_url('status/approved/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Ihram</span><br><br>
@@ -3558,7 +3582,7 @@
                     <a href="<?= base_url('status/approved/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Safar</span><br><br>
@@ -3621,7 +3645,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt=""></i>
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Renovasi</span><br><br>
@@ -3636,7 +3660,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Sewa</span><br><br>
@@ -3651,7 +3675,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Wedding</span><br><br>
@@ -3665,7 +3689,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Franchise</span><br><br>
@@ -3681,7 +3705,7 @@
                     <a href="<?= base_url('status/rejected/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-hajat-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Hajat Lainnya</span><br><br>
@@ -3698,7 +3722,7 @@
                     <a href="<?= base_url('status/rejected/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-talim-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Talim</span><br><br>
@@ -3712,7 +3736,7 @@
                     <a href="<?= base_url('status/rejected/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-ihram-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Ihram</span><br><br>
@@ -3726,7 +3750,7 @@
                     <a href="<?= base_url('status/rejected/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
-                          <img src="<?= base_url('assets/img/my-safar-82.png') ?>" alt="">
+                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
                         </div>
                         <div class="card-body text-center">
                           <span>My Safar</span><br><br>
