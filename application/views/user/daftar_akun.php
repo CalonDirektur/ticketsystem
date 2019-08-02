@@ -1,61 +1,68 @@
 <section class="content-header">
-      <h1>
-        Daftar Akun User Cabang
-        <!-- <small>it all starts here</small> -->
-      </h1>
-      <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol> -->
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container">
-        <div class="row">
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container">
+        <div class="row mt-4">
             <div class="col-lg-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Daftar Akun User Cabang</h3>
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3>Daftar Akun User Cabang</h3>
                     </div>
                     <form method="post" action="<?= base_url('Auth/process_daftar') ?>">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Nama Lengkap">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="nik">Nomor Induk Kependudukan</label>
+                                <?= form_error('nik') ?>
+                                <input name="nik" type="number" class="form-control" id="nik" value="<?= set_value('nik') ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap</label>
+                                <?= form_error('name') ?>
+                                <input name="name" type="text" class="form-control" id="name" value="<?= set_value('name') ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <?= form_error('username') ?>
+                                <input name="username" type="text" class="form-control" id="username" value="<?= set_value('username') ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <?= form_error('email') ?>
+                                <input name="email" type="email" class="form-control" id="email" value="<?= set_value('email') ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <?= form_error('password') ?>
+                                <input name="password" type="password" class="form-control" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="passconf">Password Confirmation</label>
+                                <?= form_error('passconf') ?>
+                                <input name="passconf" type="password" class="form-control" id="passwordconf">
+                            </div>
+                            <div class="form-group">
+                                <label for="id_cabang">Cabang</label>
+                                <?= form_error('id_cabang') ?>
+                                <select name="id_cabang" id="id_cabang" class="form-control">
+                                    <option disabled selected value="">- Pilih Cabang -</option>
+                                    <?php
+                                    foreach ($pertanyaan as $p) {
+                                        ?>
+                                        <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                                    <?php }  ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Username</label>
-                            <input name="username" type="text" class="form-control" id="name" placeholder="Username">
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input name="password" type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="id_cabang">Cabang</label>
-                            <select name="id_cabang" id="id_cabang" class="form-control">
-                                <option disabled selected value="">- Pilih Cabang -</option>
-                                <?php 
-                                foreach($pertanyaan as $p){
-                                    ?>
-                                    <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
-                                <?php }  ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
                     </form>
                 </div>
             </div>
         </div>
-        
+
     </div>
-  </section>
+</section>

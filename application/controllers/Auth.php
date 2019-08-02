@@ -4,7 +4,10 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('User_m');
+		$this->load->model('user_m');
+		$this->load->model('data_m');
+
+		$this->load->library('form_validation');
 	}
 
 	// Halaman Login
@@ -17,36 +20,52 @@ class Auth extends CI_Controller
 	// Halaman Daftar Akun
 	public function daftar_akun()
 	{
-		$this->load->model('data_m');
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
-		$this->template->load('template', 'user/daftar_akun', $data);
+		$this->template->load('template2', 'user/daftar_akun', $data);
 	}
 
 	//method proses pendaftaran akun user
 	public function process_daftar()
 	{
-		$data = [
-			'name' => $this->input->post('name'),
-			'nik' => $this->input->post('nik'),
-			'username' => $this->input->post('username'),
-			'email' => $this->input->post('email'),
-			'password' => $this->input->post('password'),
-			'id_cabang' => $this->input->post('id_cabang'),
-			'level' => 1
-		];
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-		//process daftar akun user
-		$success = $this->User_m->add($data);
-		redirect('dashboard');
+		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[3]|max_length[12]');
+		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[12]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
+		$this->form_validation->set_rules('id_cabang', 'ID Cabang', 'trim|required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+			$this->template->load('template2', 'user/daftar_akun', $data);
+		} else {
+			// $this->load->view('formsuccess');
+			$data = [
+				'name' => $this->input->post('name'),
+				'nik' => $this->input->post('nik'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+				'password' => $this->input->post('password'),
+				'id_cabang' => $this->input->post('id_cabang'),
+				'level' => 1
+			];
+
+			//process daftar akun user
+			$success = $this->user_m->add($data);
+			redirect('dashboard');
+		}
 	}
 
 	//Halaman List para User
 	public function list_user()
 	{
 		$data = [
-			'list_user' => $this->User_m->get()->result_array()
+			'list_user' => $this->user_m->get_cabang()
 		];
-		$this->template->load('template', 'user/list_user', $data);
+		$this->template->load('template2', 'user/list_user', $data);
 	}
 
 	//Halaman reset password
@@ -114,9 +133,22 @@ class Auth extends CI_Controller
 				$this->session->set_userdata($params);
 				echo "<script>alert('Selamat, login berhasil'); window.location='" . site_url("dashboard") . "'</script>";
 			} else {
-				echo "<script>alert('Maaf, login gagal'); window.location='" . site_url("auth") . "'</script>";
+				echo "<script>alert('Akun tidak cocok/belum diaktivasi'); window.location='" . site_url("auth") . "'</script>";
 			}
 		}
+	}
+
+	//Update Aktivasi Akun
+	public function update_user()
+	{
+		$post = $this->input->post(null, TRUE);
+
+		$data = $post['is_active'];
+
+		foreach ($data as $activate => $val) {
+			$this->user_m->update(['is_active' => $val], ['id_user' => $activate]);
+		}
+		redirect('auth/list_user');
 	}
 
 	// Proses Logout

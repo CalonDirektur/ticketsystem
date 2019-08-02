@@ -15,8 +15,9 @@ class User_m extends CI_Model
 
         // $query = $this->db->query("SELECT * FROM user WHERE (email = '".$email."' or username = '".$username."') AND password = '".$password."'' ");
 
-        $this->db->where("email = '$username' OR username = '$username'");
+        $this->db->where("email = '$username'");
         $this->db->where('password', $password);
+        $this->db->where('is_active', 1);
         $query = $this->db->get('user');
 
         return $query;
@@ -35,9 +36,24 @@ class User_m extends CI_Model
         return $query;
     }
 
+    public function get_cabang()
+    {
+        $this->db->from('user');
+        $this->db->join('tb_cabang', 'user.id_cabang = tb_cabang.id_cabang', 'inner');
+
+        $query = $this->db->get();
+
+        return $query;
+    }
+
     public function add($data)
     {
         $this->db->insert('user', $data);
+    }
+
+    public function update($data, $where)
+    {
+        $this->db->update('user', $data, $where);
     }
 
     public function del($id)
