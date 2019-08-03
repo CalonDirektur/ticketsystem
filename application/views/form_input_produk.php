@@ -221,10 +221,16 @@
               <!-- Jenis Pemilik -->
               <div class="form-group">
                 <label for="jenis_pemilik">Jenis Calon Konsumen</label>
-                <select name="jenis_pemilik" id="jenis_pemilik" class="form-control validasi sewa-required">
+                <!-- <select name="jenis_pemilik" id="jenis_pemilik" class="form-control validasi sewa-required">
                   <option value="Perorangan">Perorangan</option>
                   <option value="Perusahaan">Perusahaan/Badan Usaha</option>
-                </select>
+                </select> -->
+                <div class="form-check">
+                  <label class="form-check-label"><input name="jenis_pemilik" class="validasi sewa-required form-check-input" type="radio" value="Perorangan" required>Perorangan</label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label"><input name="jenis_pemilik" class="validasi sewa-required form-check-input" type="radio" value="Perusahaan/Badan Usaha" required>Perusahaan/Badan Usaha</label>
+                </div>
               </div>
               <!-- Hubungan dengan pemohon -->
               <div class="form-group">

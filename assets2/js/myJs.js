@@ -95,50 +95,42 @@ $(document).ready(function () {
 	function validate_mytalim() {
 		$(".validasi").removeAttr("required");
 		$(".mytalim-required").attr("required", "required");
-		alert('validate_mytalim activated!')
 	}
 
 	// Method untuk Kategori My Hajat 
 	function validate_renovasi() {
 		$(".validasi").removeAttr("required");
 		$(".renovasi-required").attr("required", "required");
-		alert('validate_renovasi activated!')
 	}
 
 	function validate_sewa() {
 		$(".validasi").removeAttr("required");
 		$(".sewa-required").attr("required", "required");
-		alert('validate_sewa activated!')
 	}
 
 	function validate_wedding() {
 		$(".validasi").removeAttr("required");
 		$(".wedding-required").attr("required", "required");
-		alert('validate_wedding activated!')
 	}
 
 	function validate_franchise() {
 		$(".validasi").removeAttr("required");
 		$(".franchise-required").attr("required", "required");
-		alert('validate_franchise activated!')
 	}
 
 	function validate_lainnya() {
 		$(".validasi").removeAttr("required");
 		$(".lainnya-required").attr("required", "required");
-		alert('validate_lainnya activated!')
 	}
 
 
 	function validate_myihram() {
 		$(".validasi").removeAttr("required");
 		$(".myihram-required").attr("required", "required");
-		alert('validate_myihram activated!')
 	}
 
 	function validate_mysafar() {
 		$(".validasi").removeAttr("required");
 		$(".mysafar-required").attr("required", "required");
-		alert('validate_mysafar activated!')
 	}
 })

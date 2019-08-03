@@ -248,6 +248,7 @@
 						<!-- Reply card Comment -->
 						<div class="card-footer card-comments">
 							<?php
+							$this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
 							$this->db->from('tb_comment, user, tb_cabang');
 							$this->db->where('parent_comment_id = ' . $komen->id . ' AND
                               user.id_user = tb_comment.id_user AND
