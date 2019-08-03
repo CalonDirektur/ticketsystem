@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-08-02 14:17:40
+# Date: 2019-08-03 10:53:24
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -77,13 +77,13 @@ CREATE TABLE `tb_comment` (
   `id_nst` int(11) NOT NULL,
   `id_lead` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_comment"
 #
 
-INSERT INTO `tb_comment` VALUES (104,0,'Komentar mytalim id 34',4,'2019-08-01 16:11:16',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(105,104,'Reply komentar mytalim id 34',4,'2019-08-01 16:11:29',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(106,0,'Komentar mytalim id 33',4,'2019-08-01 16:12:40',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(107,106,'reply keomentar mytalim id 33',4,'2019-08-01 16:12:50',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(108,0,'Komentar mytalim id 32',4,'2019-08-01 16:13:12',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(109,108,'Reply komentar mytalim id 32',4,'2019-08-01 16:13:25',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(110,0,'komentar my hajat renovasi id 14',4,'2019-08-01 16:18:51',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(111,110,'reply komentar my hajat renovasi id 14',4,'2019-08-01 16:18:59',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(112,0,'komentar my safar id 7',4,'2019-08-01 16:35:56',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(113,112,'reply komentar my safar id 7',4,'2019-08-01 16:36:02',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(114,0,'komentar my ihram id 7',4,'2019-08-01 16:36:20',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(115,114,'reply komentar my ihram id 7',4,'2019-08-01 16:36:59',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(116,0,'komentar aktivasi_agent id 3',4,'2019-08-01 16:48:24',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(117,116,'reply komentar aktivasi_agent id 3',4,'2019-08-01 16:48:32',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(118,116,'Komen admin 1',1,'2019-08-01 16:49:14',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0);
+INSERT INTO `tb_comment` VALUES (104,0,'Komentar mytalim id 34',4,'2019-08-01 16:11:16',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(105,104,'Reply komentar mytalim id 34',4,'2019-08-01 16:11:29',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(106,0,'Komentar mytalim id 33',4,'2019-08-01 16:12:40',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(107,106,'reply keomentar mytalim id 33',4,'2019-08-01 16:12:50',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(108,0,'Komentar mytalim id 32',4,'2019-08-01 16:13:12',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(109,108,'Reply komentar mytalim id 32',4,'2019-08-01 16:13:25',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(110,0,'komentar my hajat renovasi id 14',4,'2019-08-01 16:18:51',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(111,110,'reply komentar my hajat renovasi id 14',4,'2019-08-01 16:18:59',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(112,0,'komentar my safar id 7',4,'2019-08-01 16:35:56',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(113,112,'reply komentar my safar id 7',4,'2019-08-01 16:36:02',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(114,0,'komentar my ihram id 7',4,'2019-08-01 16:36:20',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(115,114,'reply komentar my ihram id 7',4,'2019-08-01 16:36:59',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(116,0,'komentar aktivasi_agent id 3',4,'2019-08-01 16:48:24',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(117,116,'reply komentar aktivasi_agent id 3',4,'2019-08-01 16:48:32',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(118,116,'Komen admin 1',1,'2019-08-01 16:49:14',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(119,0,'komentar mytalim id 28',4,'2019-08-03 10:17:12',28,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(120,119,'reply keomentar mytalim id 28',4,'2019-08-03 10:17:21',28,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0);
 
 #
 # Structure for table "tb_lead_management"
@@ -120,6 +120,27 @@ CREATE TABLE `tb_lead_management` (
 #
 
 INSERT INTO `tb_lead_management` VALUES (4,'089618819905','Ibrahim Ahmad Jabar Khaidiru Sobari','3603222007980001','Website BFI Syariah','Leeds United','My Hajat','780000000','','',0,'','','','',NULL,'2019-08-01 11:38:25','2019-08-01 11:38:25',0,7,4),(5,'089618819905','Ibrahim Ahmad Jabar Khaidiru Sobari','3603222007980001','Tour & Travel / Penyedia Jasa','Leeds United','My Ihram','9870000000','','',0,'','','','',NULL,'2019-08-01 11:40:41','2019-08-01 11:40:41',0,7,4);
+
+#
+# Structure for table "tb_my_hajat"
+#
+
+DROP TABLE IF EXISTS `tb_my_hajat`;
+CREATE TABLE `tb_my_hajat` (
+  `id_my_hajat` int(11) NOT NULL AUTO_INCREMENT,
+  `id_renovasi` int(11) DEFAULT NULL,
+  `id_sewa` int(11) DEFAULT NULL,
+  `id_wedding` int(11) DEFAULT NULL,
+  `id_franchise` int(11) DEFAULT NULL,
+  `id_myhajat_lainnya` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id_my_hajat`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+#
+# Data for table "tb_my_hajat"
+#
+
+INSERT INTO `tb_my_hajat` VALUES (1,14,NULL,NULL,NULL,0),(2,NULL,7,NULL,NULL,0),(3,NULL,NULL,12,NULL,0),(4,NULL,NULL,NULL,NULL,4),(5,NULL,NULL,NULL,5,0);
 
 #
 # Structure for table "tb_my_hajat_franchise"
@@ -258,7 +279,7 @@ CREATE TABLE `tb_my_hajat_sewa` (
   `jenis_pemilik` varchar(255) NOT NULL DEFAULT '' COMMENT 'Jenis Pemilik Rumah / Ruko',
   `hubungan_pemohon` varchar(255) NOT NULL DEFAULT '' COMMENT 'Hubungan Dengan Pemohon',
   `luas_panjang` varchar(255) DEFAULT NULL COMMENT 'Luas dan Panjang bangunan (panjang x lebar)',
-  `biaya_tahunan` int(11) NOT NULL DEFAULT 0 COMMENT 'Biaya Sewa per Tahun',
+  `biaya_tahunan` bigint(20) NOT NULL DEFAULT 0 COMMENT 'Biaya Sewa per Tahun',
   `id_approval` int(11) NOT NULL DEFAULT 0,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `informasi_tambahan` text DEFAULT NULL,
@@ -276,13 +297,13 @@ CREATE TABLE `tb_my_hajat_sewa` (
   `date_modified` varchar(255) DEFAULT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_sewa`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_sewa"
 #
 
-INSERT INTO `tb_my_hajat_sewa` VALUES (7,0,'Mochamad Ifal Alfarizah','Eksternal','James Riyadi','Perorangan','Bos','100 x 100',2147483647,1,7,'','31589143_ML.jpg','8785205_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-01 11:22:23','2019-08-01 11:22:23',4);
+INSERT INTO `tb_my_hajat_sewa` VALUES (7,0,'Mochamad Ifal Alfarizah','Eksternal','James Riyadi','Perorangan','Bos','100 x 100',2147483647,1,7,'','31589143_ML.jpg','8785205_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-01 11:22:23','2019-08-01 11:22:23',4),(8,0,'Ahmad Jabar','Eksternal','James Riyadi','Perorangan','Bos','70 x 70',9000000,0,7,'error','37244050_ML1.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-03 05:31:21','2019-08-03 05:34:18',4),(9,0,'Ibrahim Ahmad Jabar Khaidiru Sobari','Internal','Ibra Jabar','Perorangan','Kerabat','100 x 100',8000000000,0,7,'asd','32620597_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-03 05:44:33','2019-08-03 05:44:33',4);
 
 #
 # Structure for table "tb_my_hajat_wedding"
