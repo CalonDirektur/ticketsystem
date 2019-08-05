@@ -8,7 +8,12 @@ $(document).ready(function () {
 	// 	responsive: true
 	// });
 
-	$('table.status').DataTable();
+	$('table.status').DataTable({
+		"lengthMenu": [
+			[-1, 25, 50, 10],
+			["All", 25, 50, 10]
+		]
+	});
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();

@@ -24,10 +24,10 @@
             <h5 class="card-title text-center">Sign In</h5>
             <form action="<?= base_url('auth/process') ?>" method="post" class="form-signin">
 
-              <!-- Email Address/Username -->
+              <!-- Email Address/NIK -->
               <div class="form-group">
-                <label for="inputEmail">Email</label>
-                <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
+                <label for="inputEmail">NIK/E-mail</label>
+                <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Masukkan Email" required autofocus>
               </div>
 
               <!-- Password -->

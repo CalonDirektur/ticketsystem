@@ -13,7 +13,7 @@
       <div class="col-lg-6">
         <div class="row">
           <div class="mx-auto">
-            <a id="img-link" target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><img id="gambar" class="rounded" src="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>" alt="" max-width="100%" max-height="100%"></a>
+            <a id="img-link" target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><img id="gambar" class="rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" max-width="100%" max-height="100%"></a>
           </div>
         </div>
         <div class="row mt-1">
@@ -135,7 +135,7 @@
                   <td>
                     <?php
                     if ($data->id_approval == 0) {
-                      echo '<label class="badge badge-warning">Belum Direview</label>';
+                      echo '<label class="badge badge-secondary">Pending</label>';
                     }
                     if ($data->id_approval == 1) {
                       echo '<label class="badge badge-danger">Ditolak</label>';

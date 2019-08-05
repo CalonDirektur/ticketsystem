@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-08-05 13:40:38
+# Date: 2019-08-05 14:45:40
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -517,14 +517,12 @@ CREATE TABLE `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL DEFAULT '',
   `nik` varchar(255) NOT NULL DEFAULT '',
-  `username` varchar(40) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(25) NOT NULL DEFAULT '',
   `level` int(2) NOT NULL DEFAULT 0 COMMENT '1 = cabang user, 2 = admin 1 (lia), 3  = admin 2 (gede), 4 = admin nst (arif), 5 = super user (atasan)',
   `is_active` int(2) NOT NULL DEFAULT 0,
   `id_cabang` int(3) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_user`),
-  UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nik` (`nik`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
@@ -533,4 +531,4 @@ CREATE TABLE `user` (
 # Data for table "user"
 #
 
-INSERT INTO `user` VALUES (1,'Lia','3603222007980010','admin1','admin1@admin.com','admin1',2,1,46),(2,'Gede Laroiba','3603222007980009','admin2','admin2@admin.com','admin2',3,1,46),(4,'Ibrahim Ahmad','3603222007980001','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim',1,1,7),(11,'Okky Aditya','3603222007980008','okky','okky@user.com','okky',1,1,7),(12,'Adit','3603222007980007','adit','adit@adit.com','adit',1,1,6),(13,'Saiful Bahri','3603222007980002','saiful','saiful@bfi.co.id','saiful',1,1,15),(14,'Salman Al Farisi','3603222007980006','salman','salman@bfi.co.id','salman',1,1,2),(15,'User','3603222007980005','user','user@app.com','user',1,1,39),(16,'Maulana Arif Kuncoro','3603222007980023','arif','arif@bfi.co.id','arif',4,1,46),(17,'Atasan','72836472834747','superuser','superuser@bfi.co.id','superuser',5,1,46),(19,'Ramdan Darmawan','67234572635','ramdan12','ramdan.darmawan16@gmail.com','pcmaster12',1,1,45);
+INSERT INTO `user` VALUES (1,'Lia','3603222007980010','admin1@admin.com','admin1',2,1,46),(2,'Gede Laroiba','3603222007980009','admin2@admin.com','admin2',3,1,46),(4,'Ibrahim Ahmad','3603222007980001','ibrahim.ahmadd98@gmail.com','ibrahim',1,1,7),(11,'Okky Aditya','3603222007980008','okky@user.com','okky',1,1,7),(12,'Adit','3603222007980007','adit@adit.com','adit',1,1,6),(13,'Saiful Bahri','3603222007980002','saiful@bfi.co.id','saiful',1,1,15),(14,'Salman Al Farisi','3603222007980006','salman@bfi.co.id','salman',1,1,2),(15,'User','3603222007980005','user@app.com','user',1,1,39),(16,'Maulana Arif Kuncoro','3603222007980023','arif@bfi.co.id','arif',4,1,46),(17,'Atasan','72836472834747','superuser@bfi.co.id','superuser',5,1,46),(19,'Ramdan Darmawan','67234572635','ramdan.darmawan16@gmail.com','pcmaster12',1,1,45);

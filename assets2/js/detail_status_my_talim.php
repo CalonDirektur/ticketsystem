@@ -139,7 +139,7 @@
 									<td>
 										<?php
 										if ($data->id_approval == 0) {
-											echo '<label class="badge badge-secondary">Pending</label>';
+											echo '<label class="badge badge-warning">Belum Direview</label>';
 										}
 										if ($data->id_approval == 1) {
 											echo '<label class="badge badge-danger">Ditolak</label>';

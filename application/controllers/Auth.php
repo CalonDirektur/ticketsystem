@@ -30,9 +30,8 @@ class Auth extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[3]|max_length[12]');
+		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[6]');
 		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[12]');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
@@ -46,7 +45,6 @@ class Auth extends CI_Controller
 			$data = [
 				'name' => $this->input->post('name'),
 				'nik' => $this->input->post('nik'),
-				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
 				'password' => $this->input->post('password'),
 				'id_cabang' => $this->input->post('id_cabang'),
@@ -118,15 +116,15 @@ class Auth extends CI_Controller
 		if (isset($post['login'])) {
 			$this->load->model('user_m');
 
-			$username = $post['username'];
+			$nik = $post['username'];
 			$password = $post['password'];
 
-			$query = $this->user_m->login($username, $password);
+			$query = $this->user_m->login($nik, $password);
 			//cek login
 			if ($query->num_rows() > 0) {
 				$row = $query->row();
 				$params = [
-					'userid' => $row->username,
+					'userid' => $row->nik,
 					'level' => $row->level,
 					'id_cabang' => $row->id_cabang
 				];

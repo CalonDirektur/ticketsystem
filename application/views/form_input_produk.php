@@ -24,6 +24,7 @@
               <div class="form-group">
                 <label for="jenis_konsumen">Jenis Calon Konsumen *</label>
                 <select name="jenis_konsumen" id="jenis_konsumen" class="form-control" required>
+                  <option value="" selected required disabled>- Pilih Jenis Calon Konsumen -</option>
                   <option value="Internal">Internal (Karyawan)</option>
                   <option value="Eksternal">Eksternal</option>
                 </select>

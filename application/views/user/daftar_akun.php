@@ -14,7 +14,7 @@
                     <form method="post" action="<?= base_url('Auth/process_daftar') ?>" autocomplete="off">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="nik">Nomor Induk Kependudukan</label>
+                                <label for="nik">Nomor Induk Karyawan</label>
                                 <small></small>
                                 <?= form_error('nik') ?>
                                 <input name="nik" type="number" class="form-control" id="nik" value="<?= set_value('nik') ?>">
@@ -23,11 +23,6 @@
                                 <label for="name">Nama Lengkap</label>
                                 <?= form_error('name') ?>
                                 <input name="name" type="text" class="form-control" id="name" value="<?= set_value('name') ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <?= form_error('username') ?>
-                                <input name="username" type="text" class="form-control" id="username" value="<?= set_value('username') ?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
@@ -52,7 +47,7 @@
                                     <?php
                                     foreach ($pertanyaan as $p) {
                                         ?>
-                                        <option value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                                        <option <?= $p->id_cabang == 46 ? 'disabled' : '' ?> value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
                                     <?php }  ?>
                                 </select>
                             </div>

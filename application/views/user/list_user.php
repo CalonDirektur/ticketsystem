@@ -15,7 +15,7 @@
             <thead>
               <th class="all" width="1%">ID User</th>
               <th class="all" width="15%">Nama</th>
-              <th>Username</th>
+              <th>NIK</th>
               <th class="all" width="15%">Email</th>
               <th>Level</th>
               <th>Active</th>
@@ -28,7 +28,7 @@
                 <tr>
                   <td>#<?= $user->id_user ?></td>
                   <td><?= $user->name ?></td>
-                  <td><?= $user->username ?></td>
+                  <td><?= $user->nik ?></td>
                   <td><?= $user->email ?></td>
                   <td><?= $user->level ?></td>
                   <td>
@@ -44,7 +44,7 @@
               } ?>
             </tbody>
           </table>
-          <div class="card-footer">
+          <div class="card-footer text-center">
             <button type="submit" class="btn btn-info">Update User</button>
           </div>
         </div>

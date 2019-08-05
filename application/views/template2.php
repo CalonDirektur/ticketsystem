@@ -45,9 +45,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
               <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
-              <a class="dropdown-item preview-item">
+              <!-- <a class="dropdown-item preview-item">
                 <i class="icon-head"></i> Profile
-              </a>
+              </a> -->
               <a href="<?= site_url('auth/logout') ?>" class="dropdown-item preview-item">
                 <i class="icon-inbox"></i> Logout
               </a>
@@ -65,7 +65,7 @@
       <nav class="sidebar sidebar-offcanvas bg-info" id="sidebar">
         <div class="user-profile">
           <div class="user-image">
-            <img src="<?= base_url('assets2/images/faces/face28.png') ?>">
+            <img src="<?= base_url('assets2/img/profile-pic.jpg') ?>">
           </div>
           <div class="user-name">
             <?= ucfirst($this->fungsi->user_login()->name) ?>
