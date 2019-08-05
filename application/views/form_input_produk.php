@@ -2,7 +2,7 @@
   <h1>Form Pengajuan Produk</h1>
 </section>
 
-<form method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data">
+<form method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data" autocomplete="off">
   <section class="content">
     <div class="container">
       <div class="row">
@@ -16,19 +16,19 @@
             <div class="card-body">
               <!-- Nama Konsumen -->
               <div class="form-group">
-                <label for="nama_konsumen">Nama Konsumen</label>
+                <label for="nama_konsumen">Nama Konsumen *</label>
                 <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" required autofocus>
               </div>
               <!-- Jenis Calon Konsumen -->
               <div class="form-group">
-                <label for="jenis_konsumen">Jenis Calon Konsumen</label>
+                <label for="jenis_konsumen">Jenis Calon Konsumen *</label>
                 <select name="jenis_konsumen" id="jenis_konsumen" class="form-control" required>
                   <option value="Internal">Internal</option>
                   <option value="Eksternal">Eksternal</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="cabang">Cabang</label>
+                <label for="cabang">Cabang *</label>
                 <select name="cabang" id="cabang" class="form-control" disabled required>
                   <option disabled selected>- Pilih Cabang -</option>
                   <?php
@@ -47,7 +47,7 @@
           <!-- Card Pilih Input Produk -->
           <div id="card-produk" class="card mt-4">
             <div class="card-header">
-              <b>Pilih Input Produk</b>
+              <b>Pilih Input Produk *</b>
             </div>
             <div class="card-body">
               <select name="input_produk" id="input_produk" class="form-control">
@@ -153,12 +153,12 @@
             <div class="card-body">
               <!-- Nama Vendor -->
               <div class="form-group">
-                <label for="nama_vendor">Nama Vendor</label>
+                <label for="nama_vendor">Nama Vendor *</label>
                 <input name="nama_vendor" id="nama_vendor" type="text" class="form-control validasi renovasi-required" placeholder="Nama Vendor">
               </div>
               <!-- Jenis Vendor -->
               <div class="form-group">
-                <label for="jenis_vendor">Jenis Vendor</label>
+                <label for="jenis_vendor">Jenis Vendor *</label>
                 <div class="form-check">
                   <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required" id="perorangan" type="radio" name="jenis_vendor" value="Perorangan">Perorangan</label>
                 </div>
@@ -167,7 +167,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="jenis_pekerjaan">Jenis Pekerjaan</label>
+                <label for="jenis_pekerjaan">Jenis Pekerjaan *</label>
                 <div class="form-check">
                   <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required" id="borongan" type="radio" name="jenis_pekerjaan" value="Borongan">Borongan</label>
                 </div>
@@ -178,26 +178,26 @@
               </div>
               <div class="form-group">
 
-                <label for="bagian_bangunan">Bagian Bangunan Yang Direnovasi</label>
+                <label for="bagian_bangunan">Bagian Bangunan Yang Direnovasi *</label>
                 <input name="bagian_bangunan" id="bagian_bangunan" type="text" class="form-control validasi renovasi-required" placeholder="Bagian Bangunan Yang Direnovasi">
               </div>
               <div class="form-group">
 
-                <label for="luas_bangunan">Luas Bangunan</label>
+                <label for="luas_bangunan">Luas Bangunan *</label>
                 <input name="luas_bangunan" id="luas_bangunan" type="text" class="form-control validasi renovasi-required" placeholder="Luas Bangunan">
               </div>
               <div class="form-group">
 
-                <label for="jumlah_pekerja">Jumlah Tukang/Pekerja</label>
+                <label for="jumlah_pekerja">Jumlah Tukang/Pekerja *</label>
                 <input name="jumlah_pekerja" id="jumlah_pekerja" type="text" class="form-control validasi renovasi-required" placeholder="Jumlah Tukang / Pekerja">
               </div>
               <div class="form-group">
 
-                <label for="estimasi_waktu">Estimasi Waktu Pelaksanaan</label>
+                <label for="estimasi_waktu">Estimasi Waktu Pelaksanaan *</label>
                 <input name="estimasi_waktu" id="estimasi_waktu" type="text" class="form-control validasi renovasi-required" placeholder="Estimasi Waktu Pelaksanaan">
               </div>
               <div class="form-group">
-                <label for="nilai_biaya">Nilai Pembiayaan</label>
+                <label for="nilai_biaya">Nilai Pembiayaan *</label>
                 <input name="nilai_biaya" id="nilai_biaya" type="number" class="form-control validasi renovasi-required" placeholder="Nilai Pembiayaan">
               </div>
               <div class="form-group">
@@ -215,12 +215,12 @@
             <div class="card-body">
               <!-- Nama Pemilik -->
               <div class="form-group">
-                <label for="nama_pemilik">Nama Pemilik</label>
+                <label for="nama_pemilik">Nama Pemilik *</label>
                 <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control validasi sewa-required" placeholder="Nama Konsumen">
               </div>
               <!-- Jenis Pemilik -->
               <div class="form-group">
-                <label for="jenis_pemilik">Jenis Calon Konsumen</label>
+                <label for="jenis_pemilik">Jenis Calon Konsumen *</label>
                 <!-- <select name="jenis_pemilik" id="jenis_pemilik" class="form-control validasi sewa-required">
                   <option value="Perorangan">Perorangan</option>
                   <option value="Perusahaan">Perusahaan/Badan Usaha</option>
@@ -234,17 +234,17 @@
               </div>
               <!-- Hubungan dengan pemohon -->
               <div class="form-group">
-                <label for="hubungan_pemohon">Hubungan dengan pemohon</label>
+                <label for="hubungan_pemohon">Hubungan dengan pemohon *</label>
                 <input name="hubungan_pemohon" id="hubungan_pemohon" type="text" class="form-control validasi sewa-required" placeholder="Jenis Pemilik">
               </div>
               <!-- Luas x Panjang -->
               <div class="form-group">
-                <label for="luas_panjang">Luas x Panjang</label>
+                <label for="luas_panjang">Luas x Panjang *</label>
                 <input name="luas_panjang" id="luas_panjang" type="text" class="form-control validasi sewa-required" placeholder="Luas x Panjang">
               </div>
               <!-- Biaya sewa per tahun -->
               <div class="form-group">
-                <label for="biaya_pertahun">Biaya Sewa per Tahun</label>
+                <label for="biaya_pertahun">Biaya Sewa per Tahun *</label>
                 <input name="biaya_pertahun" id="biaya_pertahun" type="text" class="form-control validasi sewa-required" placeholder="Biaya Sewa per Tahun">
               </div>
               <!-- Informasi Tambahan -->
@@ -264,32 +264,32 @@
               <!-- Nama WO -->
               <div class="form-group">
 
-                <label for="nama_wo">Nama WO</label>
+                <label for="nama_wo">Nama WO *</label>
                 <input name="nama_wo" id="nama_wo" type="text" class="form-control validasi wedding-required" placeholder="Nama WO">
               </div>
               <!-- Jenis WO -->
               <div class="form-group">
-                <label for="jenis_wo">Jenis WO</label>
+                <label for="jenis_wo">Jenis WO *</label>
                 <input name="jenis_wo" id="jenis_wo" type="text" class="form-control validasi wedding-required" placeholder="Jenis WO">
               </div>
               <!-- Lama Usaha Berdiri -->
               <div class="form-group">
-                <label for="lama_berdiri">Lama Usaha Berdiri</label>
+                <label for="lama_berdiri">Lama Usaha Berdiri *</label>
                 <input name="lama_berdiri" id="lama_berdiri" type="text" class="form-control validasi wedding-required" placeholder="Lama Usaha Berdiri">
               </div>
               <!-- Jumlah Biaya -->
               <div class="form-group">
-                <label for="jumlah_biaya">Jumlah Biaya</label>
+                <label for="jumlah_biaya">Jumlah Biaya *</label>
                 <input name="jumlah_biaya" id="jumlah_biaya" type="text" class="form-control validasi wedding-required" placeholder="Jumlah Biaya">
               </div>
               <!-- Jumlah Undangan -->
               <div class="form-group">
-                <label for="jumlah_undangan">Jumlah Undangan</label>
+                <label for="jumlah_undangan">Jumlah Undangan *</label>
                 <input name="jumlah_undangan" id="jumlah_undangan" type="text" class="form-control validasi wedding-required" placeholder="Jumlah Undangan">
               </div>
               <!-- Akun Sosial Media -->
               <div class="form-group">
-                <label for="akun_sosmed">Akun Sosial Media</label>
+                <label for="akun_sosmed">Akun Sosial Media *</label>
                 <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control validasi wedding-required" placeholder="Akun Sosial Media">
               </div>
               <!-- Informasi Tambahan -->
@@ -308,17 +308,17 @@
             <div class="card-body">
               <!-- Nama Franchise -->
               <div class="form-group">
-                <label for="nama_franchise">Nama Franchise</label>
+                <label for="nama_franchise">Nama Franchise *</label>
                 <input name="nama_franchise" id="nama_franchise" type="text" class="form-control validasi franchise-required" placeholder="Nama Franchise">
               </div>
               <!-- Jumlah Cabang -->
               <div class="form-group">
-                <label for="jumlah_cabang">Jumlah Cabang</label>
+                <label for="jumlah_cabang">Jumlah Cabang *</label>
                 <input name="jumlah_cabang" id="jumlah_cabang" type="number" class="form-control validasi franchise-required" placeholder="Jumlah Cabang">
               </div>
               <!-- Jenis Franchise -->
               <div class="form-group">
-                <label for="jenis_franchise">Jenis Franchise</label>
+                <label for="jenis_franchise">Jenis Franchise *</label>
                 <select name="jenis_franchise" id="jenis_franchise" class="form-control validasi franchise-required">
                   <option value="Makanan dan Minuman">Makanan dan Minuman</option>
                   <option value="otomotif">Otomotif</option>
@@ -332,17 +332,17 @@
               </div>
               <!-- Tahun Berdiri -->
               <div class="form-group">
-                <label for="tahun_berdiri_franchise">Tahun Berdiri Franchise</label>
+                <label for="tahun_berdiri_franchise">Tahun Berdiri Franchise *</label>
                 <input name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" type="text" class="form-control validasi franchise-required" placeholder="Tahun Berdiri">
               </div>
               <!-- Harga -->
               <div class="form-group">
-                <label for="harga_franchise">Harga Franchise</label>
+                <label for="harga_franchise">Harga Franchise *</label>
                 <input name="harga_franchise" id="harga_franchise" type="text" class="form-control validasi franchise-required" placeholder="Harga">
               </div>
               <!-- Jangka Waktu Kepemilikan -->
               <div class="form-group">
-                <label for="jangka_waktu_franchise">Jangka Waktu Franchise</label>
+                <label for="jangka_waktu_franchise">Jangka Waktu Franchise *</label>
                 <select name="jangka_waktu_franchise" id="jangka_waktu_franchise" class="form-control validasi franchise-required">
                   <option value="Selamanya">Selamanya</option>
                   <option value="Jangka Tertentu">Jangka Tertentu</option>
@@ -350,7 +350,7 @@
               </div>
               <!-- Akun Sosial Media -->
               <div class="form-group">
-                <label for="akun_sosmed_website">Akun Sosial Media/Website</label>
+                <label for="akun_sosmed_website">Akun Sosial Media/Website *</label>
                 <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control validasi franchise-required" placeholder="Akun Sosial Media">
               </div>
               <!-- Informasi Tambahan -->
@@ -370,12 +370,12 @@
             <div class="card-body">
               <!-- Nama Penyedia Jasa -->
               <div class="form-group">
-                <label for="nama_penyedia_jasa">Nama Penyedia Jasa</label>
+                <label for="nama_penyedia_jasa">Nama Penyedia Jasa *</label>
                 <input name="nama_penyedia_jasa" id="nama_penyedia_jasa" type="text" class="form-control validasi lainnya-required" placeholder="Nama Penyedia Jasa">
               </div>
               <!-- Jenis Penyedia Jasa -->
               <div class="form-group">
-                <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa</label>
+                <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa *</label>
                 <select name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" class="form-control validasi lainnya-required">
                   <option value="Perorangan">Perorangan</option>
                   <option value="Badan Usaha">Badan Usaha</option>
@@ -383,7 +383,7 @@
               </div>
               <!-- Nilai Pengajuan Pembiayaan -->
               <div class="form-group">
-                <label for="nilai_pembiayaan_lainnya">Nilai Pengajuan Pembiayaan</label>
+                <label for="nilai_pembiayaan_lainnya">Nilai Pengajuan Pembiayaan *</label>
                 <input name="nilai_pembiayaan_lainnya" id="nilai_pembiayaan_lainnya" type="text" class="form-control validasi lainnya-required" placeholder="Nilai Pengajuan Pembiayaan">
               </div>
               <!-- Informasi Tambahan -->

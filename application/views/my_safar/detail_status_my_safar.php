@@ -140,6 +140,7 @@
 										<td><b>Aksi:</b></td>
 										<td>
 											<a class="btn btn-primary" href="<?= base_url('Admin2/complete/mysafar/id/' . $data->id_mysafar) ?>">Approve</a>
+											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/mysafar/id/' . $data->id_mysafar) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>

@@ -6,7 +6,7 @@ class Data_m extends CI_Model
     public function add($table, $data)
     {
         $query = $this->db->insert($table, $data);
-        return $this->db->affected_rows();
+        return $this->db->insert_id();
     }
 
     public function update($table, $data, $where)
@@ -109,6 +109,13 @@ class Data_m extends CI_Model
         $this->db->from($table);
         $this->db->where($where);
         $query = $this->db->count_all_results();
+        return $query;
+    }
+
+    public function query($query)
+    {
+        $query = $this->db->query($query);
+
         return $query;
     }
 }

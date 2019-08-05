@@ -1,4 +1,4 @@
-﻿SELECT
+﻿SELECT *,
   tb_my_hajat_renovasi.nama_konsumen as nama_konsumen_renovasi,
   tb_my_hajat_sewa.nama_konsumen as nama_konsumen_sewa,
   tb_my_hajat_wedding.nama_konsumen as nama_konsumen_wedding,

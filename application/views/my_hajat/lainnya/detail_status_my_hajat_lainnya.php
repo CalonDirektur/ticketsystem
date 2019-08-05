@@ -154,7 +154,7 @@
                     ?>
                   </td>
                 </tr>
-                <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
+                <!-- Tombol Aksi ini akan muncul untuk Admin 1 (Mba Lia) -->
                 <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
                   <tr>
                     <td><b>Aksi:</b></td>
@@ -164,11 +164,13 @@
                     </td>
                   </tr>
                 <?php } ?>
+                <!-- Tombol Aksi ini muncul untuk Admin 2 (Mas Gede) -->
                 <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
                   <tr>
                     <td><b>Aksi:</b></td>
                     <td>
                       <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
+                      <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Reject</a>
                     </td>
                   </tr>
                 <?php } ?>

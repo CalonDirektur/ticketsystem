@@ -183,7 +183,7 @@ class Ticket_register extends CI_Controller
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_user' => $post['id_user'],
-				'id_approval' => 0
+				'id_approval' => 0,
 			];
 
 			//Konfigurasi Upload
@@ -235,6 +235,9 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
+
+			$this->data_m->add('tb_my_hajat', ['id_renovasi' => $id]);
+
 
 			if ($id > 0) {
 				echo "Data berhasil disimpan";
@@ -310,7 +313,10 @@ class Ticket_register extends CI_Controller
 				$data['upload_file10'] = $this->upload->data('file_name');
 			}
 
+			//mmendapatkan id insert terakhir
 			$id = $this->data_m->add('tb_my_hajat_sewa', $data);
+
+			$this->data_m->add('tb_my_hajat', ['id_sewa' => $id]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -389,6 +395,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_wedding', $data);
+			$this->data_m->add('tb_my_hajat', ['id_wedding' => $id]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -468,6 +475,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_franchise', $data);
+			$this->data_m->add('tb_my_hajat', ['id_franchise' => $id]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -543,6 +551,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
+			$this->data_m->add('tb_my_hajat', ['id_myhajat_lainnya' => $id]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";

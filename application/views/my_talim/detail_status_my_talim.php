@@ -179,6 +179,7 @@
 										<td><b>Aksi:</b></td>
 										<td>
 											<a class="btn btn-primary" href="<?= base_url('Admin2/complete/mytalim/id/' . $data->id_mytalim) ?>">Approve</a>
+											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/mytalim/id/' . $data->id_mytalim) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>
