@@ -28,7 +28,8 @@
               </div>
               <!-- NIK -->
               <div class="form-group">
-                <label for="nik">NIK *</label>
+                <label for="nik">NIK *</label><br>
+                <small>Masukkan 6 digit NIK Anda</small>
                 <input required name="nik" id="nik" type="text" class="form-control" placeholder="NIK" value="<?= $this->fungsi->user_login()->nik ?>" required readonly>
               </div>
               <!-- Nama Cabang -->
@@ -58,18 +59,21 @@
             <div class="card-body">
               <!-- Lead ID -->
               <div class="form-group">
-                <label for="lead_id">Lead ID *</label>
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="Lead ID" required>
+                <label for="lead_id">Lead ID *</label><br>
+                <small>Masukkan nomor Lead ID customer Anda</small>
+                <input required name="lead_id" id="lead_id" type="text" class="form-control" required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
-                <label for="nama_konsumen">Nama Konsumen *</label>
-                <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" required>
+                <label for="nama_konsumen">Nama Konsumen *</label><br>
+                <small>Masukkan nama konsumen sesuai dengan KTP dan Nama Register di Web</small>
+                <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" required>
               </div>
               <!-- Nomor KTP Konsumen -->
               <div class="form-group">
-                <label for="ktp_konsumen">Nomor KTP Konsumen *</label>
-                <input required name="ktp_konsumen" id="ktp_konsumen" type="text" class="form-control" placeholder="Nomor KTP Konsumen" required>
+                <label for="ktp_konsumen">Nomor KTP Konsumen *</label><br>
+                <small>Masukkan 16 digit nomor KTP tanpa spaci, -atau titik (.)</small>
+                <input required name="ktp_konsumen" id="ktp_konsumen" type="text" class="form-control" required>
               </div>
               <!-- Sumber Lead -->
               <div class="form-group">
@@ -90,8 +94,9 @@
               </div>
               <!-- Nama Pemberi Lead -->
               <div class="form-group">
-                <label for="nama_pemberi_lead">Nama Pemberi Lead *</label>
-                <input required name="nama_pemberi_lead" id="nama_pemberi_lead" type="text" class="form-control" placeholder="Nama Pemberi Lead" required>
+                <label for="nama_pemberi_lead">Nama Pemberi Lead *</label><br>
+                <small>Masukkan nama perusahaan (Tour & Travel) jika pemberi lead perusahaan (Tour & Travel)</small>
+                <input required name="nama_pemberi_lead" id="nama_pemberi_lead" type="text" class="form-control" required>
               </div>
               <!-- produk -->
               <div class="form-group">
@@ -106,8 +111,9 @@
               </div>
               <!-- Object Price -->
               <div class="form-group">
-                <label for="object_price">Object Price *</label>
-                <input name="object_price" id="object_price" type="text" class="form-control" placeholder="Masukkan Object Price hanya angka saja, tanpa Rp, tanpa koma (,) ataupun tanpa (.) " required>
+                <label for="object_price">Object Price *</label><br>
+                <small>Masukkan Object Price hanya angka saja, tanpa Rp, tanpa koma (,) ataupun tanpa (.) </small>
+                <input name="object_price" id="object_price" type="text" class="form-control" required>
               </div>
             </div>
             <div class="card-footer text-center">

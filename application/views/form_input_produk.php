@@ -16,14 +16,15 @@
             <div class="card-body">
               <!-- Nama Konsumen -->
               <div class="form-group">
-                <label for="nama_konsumen">Nama Konsumen *</label>
-                <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" required autofocus>
+                <label for="nama_konsumen">Nama Calon Konsumen *</label><br>
+                <small>Isi kolom ini dengan nama calon konsumen yang mengajukan pembiayaan</small>
+                <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" required autofocus>
               </div>
               <!-- Jenis Calon Konsumen -->
               <div class="form-group">
                 <label for="jenis_konsumen">Jenis Calon Konsumen *</label>
                 <select name="jenis_konsumen" id="jenis_konsumen" class="form-control" required>
-                  <option value="Internal">Internal</option>
+                  <option value="Internal">Internal (Karyawan)</option>
                   <option value="Eksternal">Eksternal</option>
                 </select>
               </div>
@@ -64,41 +65,51 @@
           <div id="card-mytalim" class="card card-primary mt-4 pertanyaan">
             <div class="card-header with-border">
               <h3 class="card-title">Form My Ta'lim</h3>
+              <p>Berikan informasi mengenai program pendidikan dan siswa/pelajar yang telah didaftarkan pada lembaga pendidikan yang calon konsumen pilih</p>
             </div>
             <div class="card-body">
+              <!-- Nama Siswa -->
+              <div class="form-group">
+                <label for="nama_siswa">Nama Siswa / Mahasiswa / Pelajar Yang Didaftarkan *</label>
+                <input name="nama_siswa" id="nama_siswa" type="text" class="form-control validasi mytalim-required">
+              </div>
               <!-- Pendidikan -->
               <div class="form-group">
-                <label for="pendidikan">Pendidikan *</label>
+                <label for="pendidikan">Jenis Pembiayaan Pendidikan *</label><br>
+                <small>Berikan informasi mengenai program pendidikan dan siswa/pelajar yang telah didaftarkan pada lembaga pendidikan yang calon konsumen pilih</small>
                 <select name="pendidikan" id="pendidikan" class="form-control validasi mytalim-required">
-                  <option value="Sekolah">Sekolah</option>
-                  <option value="Universitas">Universitas</option>
-                  <option value="Kursus">Kursus</option>
+                  <option value="" required selected disabled>- Pilih Pendidikan -</option>
+                  <option value="Sekolah">Sekolah (TK, SD, SMP, SMU, Pesantren)</option>
+                  <option value="Universitas">Universitas (S1, S2, S3)</option>
+                  <option value="Kursus">Kursus (English, Bimbel, Komputer, Lainnya)</option>
                   <option value="Lainnya">Lainnya</option>
                 </select>
               </div>
               <!-- Nama Lembaga -->
               <div class="form-group">
-                <label for="nama_lembaga">Nama Lembaga *</label>
+                <label for="nama_lembaga">Nama Lembaga Pendidikan *</label>
                 <input name="nama_lembaga" id="nama_lembaga" type="text" class="form-control validasi mytalim-required" placeholder="Nama Lembaga">
               </div>
               <!-- Tahun Berdiri -->
               <div class="form-group">
-                <label for="tahun_berdiri">Tahun Berdiri *</label>
+                <label for="tahun_berdiri">Tahun Berdiri Lembaga / Beroperasi Sejak Kapan *</label>
                 <input name="tahun_berdiri" id="tahun_berdiri" type="number" class="form-control validasi mytalim-required" placeholder="Tahun Berdiri">
               </div>
               <!-- Akreditasi -->
               <div class="form-group">
-                <label for="akreditasi">Akreditasi *</label>
+                <label for="akreditasi">Akreditasi yang dimiliki lembaga tersebut *</label>
                 <input name="akreditasi" id="akreditasi" type="text" class="form-control validasi mytalim-required" placeholder="Akreditasi">
               </div>
               <!-- Tahun Periode Pendidikan -->
               <div class="form-group">
                 <label for="periode">Tahun Periode Pendidikan *</label>
+                <small>(Contoh : 2018 - 2020)</small>
                 <input name="periode" id="periode" type="text" class="form-control validasi mytalim-required" placeholder="periode">
               </div>
               <!-- Tujuan Pembiayaan -->
               <div class="form-group">
                 <label for="tujuan_pembiayaan">Tujuan Pembiayaan *</label>
+                <small>(Contoh: Uang masuk, uang paket semester, dll)</small>
                 <input name="tujuan_pembiayaan" id="tujuan_pembiayaan" type="text" class="form-control validasi mytalim-required" placeholder="Tujuan Pembiayaan">
               </div>
               <!-- Nilai Pembiayaan -->
@@ -119,20 +130,21 @@
           <div id="card-kategori-myhajat" class="card card-primary mt-4 pertanyaan">
             <div class="card-header with-border">
               <h3 class="card-title">Kategori My Hajat</h3>
+              <p>Informasikan secara detail pengajuan pembiayaaan Anda</p>
             </div>
             <div class="card-body">
               <div class="form-group">
                 <div class="form-check">
-                  <label class="form-check-label"><input class="kategori form-check-input" id="renovasi" type="radio" name="kategori_myhajat">Renovasi</label>
+                  <label class="form-check-label"><input class="kategori form-check-input" id="renovasi" type="radio" name="kategori_myhajat">Renovasi Rumah</label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label"><input class="kategori form-check-input" id="sewa" type="radio" name="kategori_myhajat">Sewa</label>
+                  <label class="form-check-label"><input class="kategori form-check-input" id="sewa" type="radio" name="kategori_myhajat">Sewa Bangunan (Rumah/Ruko)</label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label"><input class="kategori form-check-input" id="wedding" type="radio" name="kategori_myhajat">Wedding</label>
+                  <label class="form-check-label"><input class="kategori form-check-input" id="wedding" type="radio" name="kategori_myhajat">Wedding Organizer</label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label"><input class="kategori form-check-input" id="franchise" type="radio" name="kategori_myhajat">Franchise</label>
+                  <label class="form-check-label"><input class="kategori form-check-input" id="franchise" type="radio" name="kategori_myhajat">Usaha Franchise</label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label"><input class="kategori form-check-input" id="lainnya" type="radio" name="kategori_myhajat">Lainnya</label>
@@ -148,17 +160,18 @@
           <!-- card Renovasi -->
           <div id="card-renovasi" class="card card-primary kategori-myhajat pertanyaan mt-4">
             <div class="card-header with-border">
-              <h3 class="card-title">Renovasi</h3>
+              <h3 class="card-title">Detail Renovasi</h3>
+              <p>Informasikan secara detail pengjaun pembiayaaan renovasi rumah</p>
             </div>
             <div class="card-body">
               <!-- Nama Vendor -->
               <div class="form-group">
-                <label for="nama_vendor">Nama Vendor *</label>
+                <label for="nama_vendor">Nama Vendor Renovasi *</label>
                 <input name="nama_vendor" id="nama_vendor" type="text" class="form-control validasi renovasi-required" placeholder="Nama Vendor">
               </div>
               <!-- Jenis Vendor -->
               <div class="form-group">
-                <label for="jenis_vendor">Jenis Vendor *</label>
+                <label for="jenis_vendor">Jenis Vendor Renovasi *</label>
                 <div class="form-check">
                   <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required" id="perorangan" type="radio" name="jenis_vendor" value="Perorangan">Perorangan</label>
                 </div>
@@ -183,7 +196,7 @@
               </div>
               <div class="form-group">
 
-                <label for="luas_bangunan">Luas Bangunan *</label>
+                <label for="luas_bangunan">Luas Bangunan (Panjang x Lebar)*</label>
                 <input name="luas_bangunan" id="luas_bangunan" type="text" class="form-control validasi renovasi-required" placeholder="Luas Bangunan">
               </div>
               <div class="form-group">
@@ -197,7 +210,7 @@
                 <input name="estimasi_waktu" id="estimasi_waktu" type="text" class="form-control validasi renovasi-required" placeholder="Estimasi Waktu Pelaksanaan">
               </div>
               <div class="form-group">
-                <label for="nilai_biaya">Nilai Pembiayaan *</label>
+                <label for="nilai_biaya">Nilai Pengajuan Pembiayaan *</label>
                 <input name="nilai_biaya" id="nilai_biaya" type="number" class="form-control validasi renovasi-required" placeholder="Nilai Pembiayaan">
               </div>
               <div class="form-group">
@@ -258,19 +271,25 @@
           <!-- card Wedding -->
           <div id="card-wedding" class="card card-primary kategori-myhajat pertanyaan mt-4">
             <div class="card-header with-border">
-              <h3 class="card-title">Wedding</h3>
+              <h3 class="card-title">Detail Wedding Organizer</h3>
+              <p>Informasikan secara detail pengajuan pembiayaaan detail WO</p>
             </div>
             <div class="card-body">
               <!-- Nama WO -->
               <div class="form-group">
 
-                <label for="nama_wo">Nama WO *</label>
+                <label for="nama_wo">Nama Wedding Organizer *</label>
                 <input name="nama_wo" id="nama_wo" type="text" class="form-control validasi wedding-required" placeholder="Nama WO">
               </div>
               <!-- Jenis WO -->
               <div class="form-group">
-                <label for="jenis_wo">Jenis WO *</label>
-                <input name="jenis_wo" id="jenis_wo" type="text" class="form-control validasi wedding-required" placeholder="Jenis WO">
+                <label for="jenis_wo">Jenis Wedding Organizer *</label>
+                <div class="form-check">
+                  <label class="form-check-label"><input name="jenis_wo" class="validasi wedding-required form-check-input" type="radio" value="Perorangan" required>Perorangan</label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label"><input name="jenis_wo" class="validasi wedding-required form-check-input" type="radio" value="Perusahaan/Badan Usaha" required>Perusahaan/Badan Usaha</label>
+                </div>
               </div>
               <!-- Lama Usaha Berdiri -->
               <div class="form-group">
@@ -279,7 +298,7 @@
               </div>
               <!-- Jumlah Biaya -->
               <div class="form-group">
-                <label for="jumlah_biaya">Jumlah Biaya *</label>
+                <label for="jumlah_biaya">Jumlah Biaya Acara *</label>
                 <input name="jumlah_biaya" id="jumlah_biaya" type="text" class="form-control validasi wedding-required" placeholder="Jumlah Biaya">
               </div>
               <!-- Jumlah Undangan -->
@@ -289,7 +308,8 @@
               </div>
               <!-- Akun Sosial Media -->
               <div class="form-group">
-                <label for="akun_sosmed">Akun Sosial Media *</label>
+                <label for="akun_sosmed">Akun Sosial Media WO*</label>
+                <small>Masukkan nama akun social media atau website yang dimiliki jika ada (contoh: Instagram = @namaakun)</small>
                 <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control validasi wedding-required" placeholder="Akun Sosial Media">
               </div>
               <!-- Informasi Tambahan -->
@@ -313,7 +333,7 @@
               </div>
               <!-- Jumlah Cabang -->
               <div class="form-group">
-                <label for="jumlah_cabang">Jumlah Cabang *</label>
+                <label for="jumlah_cabang">Jumlah Cabang Yang Dimiliki*</label>
                 <input name="jumlah_cabang" id="jumlah_cabang" type="number" class="form-control validasi franchise-required" placeholder="Jumlah Cabang">
               </div>
               <!-- Jenis Franchise -->
@@ -342,11 +362,13 @@
               </div>
               <!-- Jangka Waktu Kepemilikan -->
               <div class="form-group">
-                <label for="jangka_waktu_franchise">Jangka Waktu Franchise *</label>
-                <select name="jangka_waktu_franchise" id="jangka_waktu_franchise" class="form-control validasi franchise-required">
-                  <option value="Selamanya">Selamanya</option>
-                  <option value="Jangka Tertentu">Jangka Tertentu</option>
-                </select>
+                <label for="jangka_waktu_franchise">Jangka Waktu Franchise*</label>
+                <div class="form-check">
+                  <label class="form-check-label"><input name="jangka_waktu_franchise" class="validasi franchise-required form-check-input" type="radio" value="Selamanya" required>Selamanya</label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label"><input name="jangka_waktu_franchise" class="validasi franchise-required form-check-input" type="radio" value="Jangka Tertentu" required>Jangka Tertentu</label>
+                </div>
               </div>
               <!-- Akun Sosial Media -->
               <div class="form-group">

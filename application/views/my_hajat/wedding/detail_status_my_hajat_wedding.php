@@ -10,14 +10,7 @@
     <!-- Rencana mau masukkin lampiran -->
     <div class="col-lg-6">
       <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <div class="card">
-            <div class="card-header text-center">
-              <b>Lampiran</b>
-            </div>
-            <a id="img-link" target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
-          </div>
-        </div>
+        <a id="img-link" target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
       </div>
       <div class="row mt-1">
         <div class="col-lg-2 col-md-2 col-sm-2 col-2">
@@ -56,14 +49,14 @@
       </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-6 p-0">
       <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
         <div class="card">
           <div class="card-header text-center">
             <h3 class="card-title">Data Ticket My Hajat Wedding</h3>
           </div>
           <!-- /.card-header -->
-          <div class="card-body no-padding">
+          <div class="card-body p-0">
             <table class="table table-striped">
               <thead>
                 <th>Kolom</th>

@@ -9,8 +9,8 @@
 <section class="content">
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
-                <table id="myTable" class="table">
+            <div class="card p-0">
+                <table class="display status responsive" width="100%">
                     <thead>
                         <th>ID NST</th>
                         <th>Lead ID</th>

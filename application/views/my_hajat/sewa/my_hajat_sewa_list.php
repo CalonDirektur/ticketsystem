@@ -8,11 +8,9 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-6">
-      <div class="table-responsive card">
-        <table id="table-admin1" class="table">
+    <div class="col-lg-12">
+      <div class="card p-0">
+        <table class="display status responsive" width="100%">
           <thead>
             <th>ID Ticket</th>
             <th>Nama Cabang</th>
@@ -52,9 +50,6 @@
           </tbody>
         </table>
       </div>
-    </div>
-    <div class="col-lg-2">
-
     </div>
   </div>
 </section>

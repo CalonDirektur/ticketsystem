@@ -92,6 +92,7 @@ class Ticket_register extends CI_Controller
 				'nama_konsumen' 		=> $post['nama_konsumen'],
 				'jenis_konsumen'	 	=> $post['jenis_konsumen'],
 				'id_cabang' 			=> $post['cabang'],
+				'nama_siswa' 			=> $post['nama_siswa'],
 				'pendidikan' 			=> $post['pendidikan'],
 				'nama_lembaga' 			=> $post['nama_lembaga'],
 				'tahun_berdiri'			=> $post['tahun_berdiri'],
@@ -947,19 +948,20 @@ class Ticket_register extends CI_Controller
 		//EDIT FORM MY'TALIM
 		if (isset($_POST['edit_mytalim'])) {
 			$data = [
-				'nama_konsumen' => $post['nama_konsumen'],
-				'jenis_konsumen' => $post['jenis_konsumen'],
-				// 'id_cabang' => $post['cabang'],
-				'pendidikan' => $post['pendidikan'],
-				'nama_lembaga' => $post['nama_lembaga'],
-				'tahun_berdiri' => $post['tahun_berdiri'],
-				'akreditasi' => $post['akreditasi'],
-				'periode' => $post['periode'],
-				'tujuan_pembiayaan' => $post['tujuan_pembiayaan'],
-				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
-				'informasi_tambahan' => $post['informasi_tambahan'],
-				'date_modified' => date('Y-m-d H:i:s'),
-				'id_approval' => 0
+				'nama_konsumen' 		=> $post['nama_konsumen'],
+				'jenis_konsumen' 		=> $post['jenis_konsumen'],
+				// 'id_cabang' 			=> $post['cabang'],
+				'pendidikan' 			=> $post['pendidikan'],
+				'nama_siswa' 			=> $post['nama_siswa'],
+				'nama_lembaga' 			=> $post['nama_lembaga'],
+				'tahun_berdiri'			=> $post['tahun_berdiri'],
+				'akreditasi' 			=> $post['akreditasi'],
+				'periode'				=> $post['periode'],
+				'tujuan_pembiayaan'		=> $post['tujuan_pembiayaan'],
+				'nilai_pembiayaan' 		=> $post['nilai_pembiayaan'],
+				'informasi_tambahan' 	=> $post['informasi_tambahan'],
+				'date_modified' 		=> date('Y-m-d H:i:s'),
+				'id_approval' 			=> 0
 			];
 
 			//Konfigurasi Upload

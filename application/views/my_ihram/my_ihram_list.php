@@ -8,11 +8,8 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <div class="col-lg-2">
-
-    </div>
-    <div class="col-lg-6">
-      <div class="table-responsive card">
+    <div class="col-lg-12">
+      <div class="card p-0">
         <table id="myTable" class="table">
           <thead>
             <th>ID My Ihram</th>
@@ -52,10 +49,6 @@
           </tbody>
         </table>
       </div>
-    </div>
-
-    <div class="col-lg-2">
-
     </div>
   </div>
 </section>

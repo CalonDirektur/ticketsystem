@@ -10,51 +10,46 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-6">
 				<div class="row">
-					<div class="col-lg-12 col-md-12">
-						<div class="card">
-							<div class="card-header text-center">
-								<b>Lampiran</b>
-							</div>
-							<a id="img-link" target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><img id="gambar" class="img-rounded" src="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>" alt="" width="400" height="400"></a>
-						</div>
+					<div class="mx-auto">
+						<a id="img-link" target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><img id="gambar" class="rounded" src="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>" alt="" max-width="100%" max-height="100%"></a>
 					</div>
 				</div>
 				<div class="row mt-1">
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/mytalim/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+						<img class="img-thumbnail <?= $data->upload_file1 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file1 != NULL ? 'uploads/mytalim/' . $data->upload_file1 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 1">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/mytalim/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+						<img class="img-thumbnail <?= $data->upload_file2 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file2 != NULL ? 'uploads/mytalim/' . $data->upload_file2 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 2">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/mytalim/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+						<img class="img-thumbnail <?= $data->upload_file3 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file3 != NULL ? 'uploads/mytalim/' . $data->upload_file3 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 3">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/mytalim/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
+						<img class="img-thumbnail <?= $data->upload_file4 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file4 != NULL ? 'uploads/mytalim/' . $data->upload_file4 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 4">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/mytalim/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 5">
+						<img class="img-thumbnail <?= $data->upload_file5 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file5 != NULL ? 'uploads/mytalim/' . $data->upload_file5 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 5">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file6 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file6 != NULL ? 'uploads/mytalim/' . $data->upload_file6 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 6">
+						<img class="img-thumbnail <?= $data->upload_file6 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file6 != NULL ? 'uploads/mytalim/' . $data->upload_file6 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 6">
 					</div>
 				</div>
 				<div class="row mt-1">
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file7 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file7 != NULL ? 'uploads/mytalim/' . $data->upload_file7 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 1">
+						<img class="img-thumbnail <?= $data->upload_file7 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file7 != NULL ? 'uploads/mytalim/' . $data->upload_file7 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 1">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file8 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file8 != NULL ? 'uploads/mytalim/' . $data->upload_file8 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 2">
+						<img class="img-thumbnail <?= $data->upload_file8 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file8 != NULL ? 'uploads/mytalim/' . $data->upload_file8 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 2">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file9 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file9 != NULL ? 'uploads/mytalim/' . $data->upload_file9 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 3">
+						<img class="img-thumbnail <?= $data->upload_file9 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file9 != NULL ? 'uploads/mytalim/' . $data->upload_file9 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 3">
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-2">
-						<img class="img-thumbnail <?= $data->upload_file10 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file10 != NULL ? 'uploads/mytalim/' . $data->upload_file10 : 'assets2/img/no-pict.png') ?>" alt="" width="100" height="100" data-toggle="tooltip" data-placement="top" title="File 4">
+						<img class="img-thumbnail <?= $data->upload_file10 != NULL ? 'thumb' : '' ?>" src="<?= base_url($data->upload_file10 != NULL ? 'uploads/mytalim/' . $data->upload_file10 : 'assets2/img/no-pict.png') ?>" alt="" max-width="100%" max-height="100%" data-toggle="tooltip" data-placement="top" title="File 4">
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6">
+			<div class="col-lg-6 col-md-6 p-0">
 				<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
 
 					<!-- Form Pertanyaan My Ta'lim -->
@@ -63,7 +58,7 @@
 							<h3 class="card-title">Data Ticket</h3>
 						</div>
 						<!-- /.card-header -->
-						<div class="card-body no-padding">
+						<div class="card-body p-0">
 							<table class="table">
 								<thead>
 									<th>Kolom</th>
@@ -92,6 +87,10 @@
 											<option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
 										</select>
 									</td>
+								</tr>
+								<tr>
+									<td><b>Nama Siswa/Mahasiswa</b></td>
+									<td><input type="text" class="form-control enable" name="nama_siswa" id="nama_siswa" value="<?= $data->nama_siswa ?>" readonly required></td>
 								</tr>
 								<tr>
 									<td><b>Pendidikan</b></td>
@@ -187,7 +186,7 @@
 						</div>
 					</div>
 					<!-- Form Upload Lampiran -->
-					<div class="card card-primary mt-4">
+					<div id="upload" class="card card-primary mt-4">
 						<div class="card-header with-border">
 							<h3 class="card-title">Upload File</h3>
 						</div>

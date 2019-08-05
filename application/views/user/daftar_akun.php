@@ -11,10 +11,11 @@
                     <div class="card-header">
                         <h3>Daftar Akun User Cabang</h3>
                     </div>
-                    <form method="post" action="<?= base_url('Auth/process_daftar') ?>">
+                    <form method="post" action="<?= base_url('Auth/process_daftar') ?>" autocomplete="off">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nik">Nomor Induk Kependudukan</label>
+                                <small></small>
                                 <?= form_error('nik') ?>
                                 <input name="nik" type="number" class="form-control" id="nik" value="<?= set_value('nik') ?>">
                             </div>
