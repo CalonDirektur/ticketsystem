@@ -38,7 +38,10 @@ LEFT JOIN tb_my_hajat_lainnya as F
 ON A.id_myhajat_lainnya = F.id_myhajat_lainnya
 
 LEFT JOIN user as U
-ON B.id_user = U.id_user OR C.id_user = U.id_user OR D.id_user = U.id_user OR E.id_user = U.id_user OR F.id_user = U.id_user
+ON U.id_user = A.id_user
+
+LEFT JOIN tb_cabang as CBG
+ON CBG.id_cabang = A.id_cabang
 
 
 

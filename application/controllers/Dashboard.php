@@ -16,13 +16,17 @@ class Dashboard extends CI_Controller
 		if ($this->fungsi->user_login()->id_cabang != 46) {
 			$where = 'id_user = ' . $this->fungsi->user_login()->id_user;
 			$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
+			$approval_myhajat = 'IS NOT NULL';
 		} else {
 			if ($this->fungsi->user_login()->level == 2) {
 				$where = 'id_approval IS NOT NULL';
+				$approval_myhajat = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 3) {
 				$where = 'id_approval = 2';
+				$approval_myhajat = '= 2';
 			} else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5) {
 				$where = 'id_approval IS NOT NULL ';
+				$approval_myhajat = 'IS NOT NULL';
 			}
 			$id_cabang = '';
 		}
@@ -126,45 +130,7 @@ class Dashboard extends CI_Controller
 		];
 
 		$data['mytalim_records'] 			= $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $where, 'id_mytalim DESC');
-		// $data['myhajat_records']			= $this->data_m->query('SELECT *,
-		// 										tb_my_hajat_renovasi.nama_konsumen as nama_konsumen_renovasi,
-		// 										tb_my_hajat_sewa.nama_konsumen as nama_konsumen_sewa,
-		// 										tb_my_hajat_wedding.nama_konsumen as nama_konsumen_wedding,
-		// 										tb_my_hajat_franchise.nama_konsumen as nama_konsumen_franchise,
-		// 										tb_my_hajat_lainnya.nama_konsumen as nama_konsumen_lainnya,
-
-		// 										tb_my_hajat_renovasi.jenis_konsumen as jenis_konsumen_renovasi,
-		// 										tb_my_hajat_sewa.jenis_konsumen as jenis_konsumen_sewa,
-		// 										tb_my_hajat_wedding.jenis_konsumen as jenis_konsumen_wedding,
-		// 										tb_my_hajat_franchise.jenis_konsumen as jenis_konsumen_franchise,
-		// 										tb_my_hajat_lainnya.jenis_konsumen as jenis_konsumen_lainnya,
-		// 										CASE
-		// 											WHEN tb_my_hajat.id_renovasi IS NOT NULL THEN "My Hajat Renovasi"
-		// 											WHEN tb_my_hajat.id_sewa IS NOT NULL THEN "My Hajat Sewa"
-		// 											WHEN tb_my_hajat.id_wedding IS NOT NULL THEN "My Hajat Wedding"
-		// 											WHEN tb_my_hajat.id_franchise IS NOT NULL THEN "My Hajat Franchise"
-		// 											WHEN tb_my_hajat.id_myhajat_lainnya IS NOT NULL THEN "My Hajat Lainnya"
-		// 										END AS produk
-
-		// 										FROM tb_my_hajat
-
-		// 										LEFT JOIN tb_my_hajat_renovasi
-		// 										ON tb_my_hajat.id_renovasi = tb_my_hajat_renovasi.id_renovasi
-
-		// 										LEFT JOIN tb_my_hajat_sewa
-		// 										ON tb_my_hajat.id_sewa = tb_my_hajat_sewa.id_sewa
-
-		// 										LEFT JOIN tb_my_hajat_wedding
-		// 										ON tb_my_hajat.id_wedding = tb_my_hajat_wedding.id_wedding
-
-		// 										LEFT JOIN tb_my_hajat_franchise
-		// 										ON tb_my_hajat.id_franchise = tb_my_hajat_franchise.id_franchise
-
-		// 										LEFT JOIN tb_my_hajat_lainnya
-		// 										ON tb_my_hajat.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya
-
-		// 										WHERE ' . $where . '
-		// ');
+		$data['myhajat_records']			= $this->data_m->get_myhajat($this->fungsi->user_login()->id_user, $approval_myhajat);
 		$data['myhajat_renovasi_records'] 	= $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $where, 'id_renovasi DESC');
 		$data['myhajat_sewa_records'] 		= $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $where, 'id_sewa DESC');
 		$data['myhajat_wedding_records'] 	= $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $where, 'id_wedding DESC');

@@ -30,7 +30,15 @@
                   <td><?= $user->name ?></td>
                   <td><?= $user->nik ?></td>
                   <td><?= $user->email ?></td>
-                  <td><?= $user->level ?></td>
+                  <td>
+                    <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->level == 5) ? 'disabled' : '' ?> disabled>
+                      <option value="1" <?= $user->level == 1 ? 'selected' : '' ?>>User Cabang</option>
+                      <option value="2" <?= $user->level == 2 ? 'selected' : '' ?>>Admin Level 1</option>
+                      <option value="3" <?= $user->level == 3 ? 'selected' : '' ?>>Admin level 2</option>
+                      <option value="4" <?= $user->level == 4 ? 'selected' : '' ?>>Admin NST</option>
+                      <option value="5" <?= $user->level == 5 ? 'selected' : '' ?>>Superuser</option>
+                    </select>
+                  </td>
                   <td>
                     <select class="form-control col-8" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->level == 5) ? 'disabled' : '' ?>>
                       <option value="0" <?= $user->is_active == 0 ? 'selected' : '' ?>>Nonaktif</option>

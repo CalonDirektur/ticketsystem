@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://172.16.24.50/helpdesk/';
-// $config['base_url'] = 'http://localhost/helpdesk/';
+$config['base_url'] = 'http://localhost/helpdesk/';
 
 /*
 |--------------------------------------------------------------------------

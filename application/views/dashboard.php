@@ -23,11 +23,11 @@
         <div class="card-body">
           <div class="row">
             <!-- Form Input Produk -->
-            <div class="col-md-2 col-sm-6 col-xs-12 mt-2">
+            <div class="col-md-2 col-sm-6 col-6 mt-1 mt-2">
               <a href="<?= base_url('ticket_register/form_input_produk') ?>">
                 <div class="card">
                   <div class="card-header text-center">
-                    <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
+                    <img class="img-fluid" src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                   </div>
                   <div class="card-body text-center">
                     Form Input Produk
@@ -37,11 +37,11 @@
             </div>
 
             <!-- Form Lead Management -->
-            <div class="col-md-2 col-sm-6 col-xs-12 mt-2">
+            <div class="col-md-2 col-sm-6 col-6 mt-1 mt-2">
               <a href="<?= base_url('ticket_register/form_lead_management') ?>">
                 <div class="card">
                   <div class="card-header text-center">
-                    <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
+                    <img class="img-fluid" src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                   </div>
                   <div class="card-body text-center">
                     Form Lead Management
@@ -49,13 +49,12 @@
                 </div>
               </a>
             </div>
-
             <!-- Form Aktivasi Agent -->
-            <div class="col-md-2 col-sm-6 col-xs-12 mt-2">
+            <div class="col-md-2 col-sm-6 col-6 mt-1 mt-2">
               <a href="<?= base_url('ticket_register/form_aktivasi_agent') ?>">
                 <div class="card">
                   <div class="card-header text-center">
-                    <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
+                    <img class="img-fluid" src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                   </div>
                   <div class="card-body text-center">
                     Form Aktivasi Agent
@@ -65,11 +64,11 @@
             </div>
 
             <!-- Form NST -->
-            <div class="col-md-2 col-sm-6 col-xs-12 mt-2">
+            <div class="col-md-2 col-sm-6 col-6 mt-1 mt-2">
               <a href="<?= base_url('ticket_register/form_nst') ?>">
                 <div class="card">
                   <div class="card-header text-center">
-                    <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
+                    <img class="img-fluid" src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                   </div>
                   <div class="card-body text-center">
                     Form NST
@@ -150,22 +149,22 @@
               </div>
             <?php } ?>
 
-            <!-- My Hajat Renovasi Table -->
-            <?php if ($myhajat_renovasi_records->num_rows() > 0) { ?>
-              <!-- My Hajat Renovasi Table -->
+            <!-- My Hajat Table -->
+            <?php if ($myhajat_records->num_rows() > 0) { ?>
+              <!-- My Hajat  Table -->
               <div class="card mt-4">
                 <div class="card-header">
-                  <h3 class="card-title">Tabel My Hajat Renovasi</h3>
+                  <h3 class="card-title">Tabel My Hajat</h3>
                 </div>
                 <div class="card-body p-0">
                   <table class="display status responsive" width="100%">
                     <thead>
                       <tr>
-                        <th class="all">ID Renovasi</th>
+                        <th class="all">ID My Hajat</th>
                         <th>Cabang</th>
                         <th class="all">Nama Konsumen</th>
                         <th>Jenis Konsumen</th>
-                        <th>Nama Vendor</th>
+                        <th>Produk</th>
                         <th class="all">Ticket Status</th>
                         <th></th>
                       </tr>
@@ -173,29 +172,132 @@
                     <tbody>
                       <?php
                       $no = 1;
-                      foreach ($myhajat_renovasi_records->result() as $d) {  ?>
-                        <tr>
-                          <td width="1%">#<?= $d->id_renovasi ?></td>
-                          <td><?= $d->nama_cabang ?></td>
-                          <td><?= $d->nama_konsumen ?></td>
-                          <td><?= $d->jenis_konsumen ?></td>
-                          <td><?= ucfirst($d->nama_vendor) ?></td>
-                          <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Pending</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 2) { ?>
-                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 3) { ?>
-                            <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $d->id_renovasi) ?>">Detail</a></td>
-                          <?php } ?>
-                        </tr>
-                        <?php
-                        $no++;
+                      foreach ($myhajat_records->result() as $myhajat) {
+                        if ($myhajat->id_renovasi != NULL) {
+                          ?>
+                          <tr>
+                            <td width="1%">#<?= $myhajat->id_my_hajat ?></td>
+                            <td><?= $myhajat->nama_cabang ?></td>
+                            <td><?= $myhajat->nama_konsumen_renovasi ?></td>
+                            <td><?= $myhajat->jenis_konsumen_renovasi ?></td>
+                            <td><?= $myhajat->produk ?></td>
+                            <?php if ($myhajat->id_approval == 0) { ?>
+                              <td><span class="badge badge-secondary">Pending</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $myhajat->id_renovasi) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 1) { ?>
+                              <td><span class="badge badge-danger">Ditolak</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/renovasi/' . $myhajat->id_renovasi) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 2) { ?>
+                              <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $myhajat->id_renovasi) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 3) { ?>
+                              <td><span class="badge badge-primary">Selesai</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $myhajat->id_renovasi) ?>">Detail</a></td>
+                            <?php } ?>
+                          </tr>
+                          <?php
+                          $no++;
+                        }
+                        if ($myhajat->id_sewa != NULL) {
+                          ?>
+                          <tr>
+                            <td width="1%">#<?= $myhajat->id_my_hajat ?></td>
+                            <td><?= $myhajat->nama_cabang ?></td>
+                            <td><?= $myhajat->nama_konsumen_sewa ?></td>
+                            <td><?= $myhajat->jenis_konsumen_sewa ?></td>
+                            <td><?= $myhajat->produk ?></td>
+                            <?php if ($myhajat->id_approval == 0) { ?>
+                              <td><span class="badge badge-secondary">Pending</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $myhajat->id_sewa) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 1) { ?>
+                              <td><span class="badge badge-danger">Ditolak</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/sewa/' . $myhajat->id_sewa) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 2) { ?>
+                              <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $myhajat->id_sewa) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 3) { ?>
+                              <td><span class="badge badge-primary">Selesai</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $myhajat->id_sewa) ?>">Detail</a></td>
+                            <?php } ?>
+                          </tr>
+                          <?php
+                          $no++;
+                        }
+                        if ($myhajat->id_wedding != NULL) {
+                          ?>
+                          <tr>
+                            <td width="1%">#<?= $myhajat->id_my_hajat ?></td>
+                            <td><?= $myhajat->nama_cabang ?></td>
+                            <td><?= $myhajat->nama_konsumen_wedding ?></td>
+                            <td><?= $myhajat->jenis_konsumen_wedding ?></td>
+                            <td><?= $myhajat->produk ?></td>
+                            <?php if ($myhajat->id_approval == 0) { ?>
+                              <td><span class="badge badge-secondary">Pending</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $myhajat->id_wedding) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 1) { ?>
+                              <td><span class="badge badge-danger">Ditolak</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/wedding/' . $myhajat->id_wedding) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 2) { ?>
+                              <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $myhajat->id_wedding) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 3) { ?>
+                              <td><span class="badge badge-primary">Selesai</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $myhajat->id_wedding) ?>">Detail</a></td>
+                            <?php } ?>
+                          </tr>
+                          <?php
+                          $no++;
+                        }
+                        if ($myhajat->id_franchise != NULL) {
+                          ?>
+                          <tr>
+                            <td width="1%">#<?= $myhajat->id_my_hajat ?></td>
+                            <td><?= $myhajat->nama_cabang ?></td>
+                            <td><?= $myhajat->nama_konsumen_franchise ?></td>
+                            <td><?= $myhajat->jenis_konsumen_franchise ?></td>
+                            <td><?= $myhajat->produk ?></td>
+                            <?php if ($myhajat->id_approval == 0) { ?>
+                              <td><span class="badge badge-secondary">Pending</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/franchise/' . $myhajat->id_franchise) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 1) { ?>
+                              <td><span class="badge badge-danger">Ditolak</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/franchise/' . $myhajat->id_franchise) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 2) { ?>
+                              <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $myhajat->id_franchise) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 3) { ?>
+                              <td><span class="badge badge-primary">Selesai</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $myhajat->id_franchise) ?>">Detail</a></td>
+                            <?php } ?>
+                          </tr>
+                          <?php
+                          $no++;
+                        }
+                        if ($myhajat->id_myhajat_lainnya != NULL) {
+                          ?>
+                          <tr>
+                            <td width="1%">#<?= $myhajat->id_my_hajat ?></td>
+                            <td><?= $myhajat->nama_cabang ?></td>
+                            <td><?= $myhajat->nama_konsumen_lainnya ?></td>
+                            <td><?= $myhajat->jenis_konsumen_lainnya ?></td>
+                            <td><?= $myhajat->produk ?></td>
+                            <?php if ($myhajat->id_approval == 0) { ?>
+                              <td><span class="badge badge-secondary">Pending</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/lainnya/' . $myhajat->id_myhajat_lainnya) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 1) { ?>
+                              <td><span class="badge badge-danger">Ditolak</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/lainnya/' . $myhajat->id_myhajat_lainnya) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 2) { ?>
+                              <td><span class="badge badge-success">Disetujui Admin 1</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $myhajat->id_myhajat_lainnya) ?>">Detail</a></td>
+                            <?php } else if ($myhajat->id_approval == 3) { ?>
+                              <td><span class="badge badge-primary">Selesai</span></td>
+                              <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $myhajat->id_myhajat_lainnya) ?>">Detail</a></td>
+                            <?php } ?>
+                          </tr>
+                          <?php
+                          $no++;
+                        }
                       } ?>
                     </tbody>
                   </table>
@@ -203,213 +305,6 @@
               </div>
             <?php } ?>
 
-            <!-- My Hajat Sewa Table -->
-            <?php if ($myhajat_sewa_records->num_rows() > 0) { ?>
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h3 class="card-title">Tabel My Hajat Sewa</h3>
-                </div>
-                <div class="card-body p-0">
-                  <table class="display status responsive" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="all">ID Sewa</th>
-                        <th class="all">Cabang</th>
-                        <th>Nama Konsumen</th>
-                        <th>Jenis Konsumen</th>
-                        <th>Nama Pemilik</th>
-                        <th class="all">Ticket Status</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $no = 1;
-                      foreach ($myhajat_sewa_records->result() as $d) {  ?>
-                        <tr>
-                          <td width="1%">#<?= $d->id_sewa ?></td>
-                          <td><?= $d->nama_cabang ?></td>
-                          <td><?= $d->nama_konsumen ?></td>
-                          <td><?= $d->jenis_konsumen ?></td>
-                          <td><?= ucfirst($d->nama_pemilik) ?></td>
-                          <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Pending</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 2) { ?>
-                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 3) { ?>
-                            <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $d->id_sewa) ?>">Detail</a></td>
-                          <?php } ?>
-                        </tr>
-                        <?php
-                        $no++;
-                      } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            <?php } ?>
-
-            <!-- My Hajat Wedding Table -->
-            <?php if ($myhajat_wedding_records->num_rows() > 0) { ?>
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h3 class="card-title">Tabel My Hajat Wedding</h3>
-                </div>
-                <div class="card-body p-0">
-                  <table class="display status responsive" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="all">ID Wedding</th>
-                        <th class="all">Cabang</th>
-                        <th>Nama Konsumen</th>
-                        <th>Jenis Konsumen</th>
-                        <th>Nama WO</th>
-                        <th class="all">Ticket Status</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $no = 1;
-                      foreach ($myhajat_wedding_records->result() as $d) {  ?>
-                        <tr>
-                          <td width="1%">#<?= $d->id_wedding ?></td>
-                          <td><?= $d->nama_cabang ?></td>
-                          <td><?= $d->nama_konsumen ?></td>
-                          <td><?= $d->jenis_konsumen ?></td>
-                          <td><?= ucfirst($d->nama_wo) ?></td>
-                          <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Pending</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 2) { ?>
-                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 3) { ?>
-                            <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $d->id_wedding) ?>">Detail</a></td>
-                          <?php } ?>
-                        </tr>
-                        <?php
-                        $no++;
-                      } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            <?php } ?>
-
-            <!-- My Hajat Franchise Table -->
-            <?php if ($myhajat_franchise_records->num_rows() > 0) { ?>
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h3 class="card-title">Tabel My Hajat Franchise</h3>
-                </div>
-                <div class="card-body p-0">
-                  <table class="display status responsive" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="all">ID Franchise</th>
-                        <th class="all">Cabang</th>
-                        <th>Nama Konsumen</th>
-                        <th>Jenis Konsumen</th>
-                        <th>Nama Franchise</th>
-                        <th class="all">Ticket Status</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $no = 1;
-                      foreach ($myhajat_franchise_records->result() as $d) {  ?>
-                        <tr>
-                          <td width="1%">#<?= $d->id_franchise ?></td>
-                          <td><?= $d->nama_cabang ?></td>
-                          <td><?= $d->nama_konsumen ?></td>
-                          <td><?= $d->jenis_konsumen ?></td>
-                          <td><?= ucfirst($d->nama_franchise) ?></td>
-                          <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Pending</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 2) { ?>
-                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 3) { ?>
-                            <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $d->id_franchise) ?>">Detail</a></td>
-                          <?php } ?>
-                        </tr>
-                        <?php
-                        $no++;
-                      } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            <?php } ?>
-
-            <!-- My Hajat Lainnya Table -->
-            <?php if ($myhajat_lainnya_records->num_rows() > 0) { ?>
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h3 class="card-title">Tabel My Hajat Lainnya</h3>
-                </div>
-                <div class="card-body p-0">
-                  <table class="display status responsive" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="all">ID My H. Lainnya</th>
-                        <th class="all">Cabang</th>
-                        <th>Nama Konsumen</th>
-                        <th>Jenis Konsumen</th>
-                        <th>Nama Penyedia Jasa</th>
-                        <th class="all">Ticket Status</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $no = 1;
-                      foreach ($myhajat_lainnya_records->result() as $d) {  ?>
-                        <tr>
-                          <td width="1%">#<?= $d->id_myhajat_lainnya ?></td>
-                          <td><?= $d->nama_cabang ?></td>
-                          <td><?= $d->nama_konsumen ?></td>
-                          <td><?= $d->jenis_konsumen ?></td>
-                          <td><?= ucfirst($d->nama_penyedia_jasa) ?></td>
-                          <?php if ($d->id_approval == 0) { ?>
-                            <td><span class="badge badge-secondary">Pending</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 2) { ?>
-                            <td><span class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
-                          <?php } else if ($d->id_approval == 3) { ?>
-                            <td><span class="badge badge-primary">Selesai</span></td>
-                            <td><a class="btn btn-primary btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $d->id_myhajat_lainnya) ?>">Detail</a></td>
-                          <?php } ?>
-                        </tr>
-                        <?php
-                        $no++;
-                      } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            <?php } ?>
 
             <!-- My Ihram Table -->
             <?php if ($myihram_records->num_rows() > 0) { ?>
@@ -694,7 +589,7 @@
 
                 <div class="row">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -709,7 +604,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -724,7 +619,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -738,7 +633,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -755,7 +650,7 @@
 
                 <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -772,7 +667,7 @@
                   <!-- fix for small devices only -->
                   <div class="clearfix visible-sm-block"></div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -786,7 +681,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -800,7 +695,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -818,7 +713,7 @@
 
                 <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -832,7 +727,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -846,7 +741,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -868,7 +763,7 @@
               <div class="tab-pane container-fluid fade" id="approved">
 
                 <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -883,7 +778,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -898,7 +793,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -912,7 +807,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -928,7 +823,7 @@
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -945,7 +840,7 @@
                   <!-- fix for small devices only -->
                   <div class="clearfix visible-sm-block"></div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -959,7 +854,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -973,7 +868,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -989,7 +884,7 @@
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1003,7 +898,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1017,7 +912,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/approved/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1039,7 +934,7 @@
               <div class="tab-pane container-fluid fade" id="rejected">
 
                 <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1053,7 +948,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1068,7 +963,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1082,7 +977,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1098,7 +993,7 @@
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1115,7 +1010,7 @@
                   <!-- fix for small devices only -->
                   <div class="clearfix visible-sm-block"></div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1129,7 +1024,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1143,7 +1038,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1160,7 +1055,7 @@
 
                 <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1174,7 +1069,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1188,7 +1083,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/rejected/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1709,7 +1604,7 @@
               <div class="tab-pane container-fluid active" id="pending">
                 <div class="row">
 
-                  <div class="col-md-2 col-sm-6 col-xs-12 mt-1">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1723,7 +1618,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1737,7 +1632,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1751,7 +1646,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1765,7 +1660,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1780,9 +1675,9 @@
                   </div>
 
                 </div>
-                <div class="row mt-4">
+                <div class="row">
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/mytalim') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1796,7 +1691,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1810,7 +1705,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1824,7 +1719,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1838,7 +1733,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -1852,7 +1747,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-2 col-sm-6 col-xs-12">
+                  <div class="col-md-2 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -2369,7 +2264,7 @@
           <div class="tab-pane container-fluid" id="kategori-produk">
             <div class="row mt-4">
               <!-- Tab panes -->
-              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-6 mt-1">
                 <a href="<?= base_url('status/approved/myhajat/renovasi') ?>">
                   <div class="card">
                     <div class="card-header text-center">
@@ -2384,7 +2279,7 @@
               </div>
 
 
-              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-6 mt-1">
                 <a href="<?= base_url('status/approved/myhajat/sewa') ?>">
                   <div class="card">
                     <div class="card-header text-center">
@@ -2399,7 +2294,7 @@
               </div>
 
 
-              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-6 mt-1">
                 <a href="<?= base_url('status/approved/myhajat/wedding') ?>">
                   <div class="card">
                     <div class="card-header text-center">
@@ -2413,7 +2308,7 @@
                 </a>
               </div>
 
-              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-6 mt-1">
                 <a href="<?= base_url('status/approved/myhajat/franchise') ?>">
                   <div class="card">
                     <div class="card-header text-center">
@@ -2429,7 +2324,7 @@
             </div>
 
             <div class="row mt-4">
-              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-6 mt-1">
                 <a href="<?= base_url('status/approved/myhajat/lainnya') ?>">
                   <div class="card">
                     <div class="card-header text-center">
@@ -2446,7 +2341,7 @@
               <!-- fix for small devices only -->
               <div class="clearfix visible-sm-block"></div>
 
-              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="col-md-3 col-sm-6 col-6 mt-1">
                 <a href="<?= base_url('status/approved/mytalim/') ?>">
                   <div class="card">
                     <div class="card-header text-center">
@@ -2610,7 +2505,7 @@
                   <div class="tab-pane container-fluid active" id="pending">
 
                     <div class="row mt-4">
-                      <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="col-md-3 col-sm-6 col-6 mt-1">
                         <a href="<?= base_url('status/pending/nst') ?>">
                           <div class="card">
                             <div class="card-header text-center">
@@ -2624,7 +2519,7 @@
                         </a>
                       </div>
 
-                      <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="col-md-3 col-sm-6 col-6 mt-1">
                         <a href="<?= base_url('status/pending/lead_management') ?>">
                           <div class="card">
                             <div class="card-header text-center">
@@ -2643,7 +2538,7 @@
 
                   <div class="tab-pane container-fluid" id="approved">
                     <div class="row mt-4">
-                      <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="col-md-3 col-sm-6 col-6 mt-1">
                         <a href="<?= base_url('status/approved/nst') ?>">
                           <div class="card">
                             <div class="card-header text-center">
@@ -2657,7 +2552,7 @@
                         </a>
                       </div>
 
-                      <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="col-md-3 col-sm-6 col-6 mt-1">
                         <a href="<?= base_url('status/approved/lead_management') ?>">
                           <div class="card">
                             <div class="card-header text-center">
@@ -2676,7 +2571,7 @@
 
                   <div class="tab-pane container-fluid" id="rejected">
                     <div class="row mt-4">
-                      <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="col-md-3 col-sm-6 col-6 mt-1">
                         <a href="<?= base_url('status/rejected/nst') ?>">
                           <div class="card">
                             <div class="card-header text-center">
@@ -2690,7 +2585,7 @@
                         </a>
                       </div>
 
-                      <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="col-md-3 col-sm-6 col-6 mt-1">
                         <a href="<?= base_url('status/rejected/lead_management') ?>">
                           <div class="card">
                             <div class="card-header text-center">
@@ -3302,7 +3197,7 @@
               <div class="tab-pane container-fluid active" id="pending">
                 <div class="row">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3317,7 +3212,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3332,7 +3227,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3346,7 +3241,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3363,7 +3258,7 @@
 
                 <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3380,7 +3275,7 @@
                   <!-- fix for small devices only -->
                   <div class="clearfix visible-sm-block"></div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3394,7 +3289,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3408,7 +3303,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3426,7 +3321,7 @@
 
                 <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3440,7 +3335,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3454,7 +3349,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/pending/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3474,7 +3369,7 @@
 
               <div class="tab-pane container-fluid" id="approved">
                 <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3489,7 +3384,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3504,7 +3399,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3518,7 +3413,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3534,7 +3429,7 @@
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3551,7 +3446,7 @@
                   <!-- fix for small devices only -->
                   <div class="clearfix visible-sm-block"></div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3565,7 +3460,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3579,7 +3474,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3595,7 +3490,7 @@
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3609,7 +3504,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3623,7 +3518,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/approved/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3642,7 +3537,7 @@
 
               <div class="tab-pane container-fluid" id="rejected">
                 <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/renovasi') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3657,7 +3552,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/sewa') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3672,7 +3567,7 @@
                   </div>
 
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/wedding') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3686,7 +3581,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/franchise') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3702,7 +3597,7 @@
                 </div>
 
                 <div class="row mt-4">
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/myhajat/lainnya') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3719,7 +3614,7 @@
                   <!-- fix for small devices only -->
                   <div class="clearfix visible-sm-block"></div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/mytalim/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3733,7 +3628,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/myihram/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3747,7 +3642,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/mysafar/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3764,7 +3659,7 @@
 
                 <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/aktivasi_agent/') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3778,7 +3673,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/nst') ?>">
                       <div class="card">
                         <div class="card-header text-center">
@@ -3792,7 +3687,7 @@
                     </a>
                   </div>
 
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-md-3 col-sm-6 col-6 mt-1">
                     <a href="<?= base_url('status/rejected/lead_management') ?>">
                       <div class="card">
                         <div class="card-header text-center">

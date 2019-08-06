@@ -237,7 +237,12 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
 
-			$this->data_m->add('tb_my_hajat', ['id_renovasi' => $id]);
+			$data2 = [
+				'id_renovasi' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_my_hajat', $data2);
 
 
 			if ($id > 0) {
@@ -317,7 +322,12 @@ class Ticket_register extends CI_Controller
 			//mmendapatkan id insert terakhir
 			$id = $this->data_m->add('tb_my_hajat_sewa', $data);
 
-			$this->data_m->add('tb_my_hajat', ['id_sewa' => $id]);
+			$data2 = [
+				'id_sewa' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_my_hajat', $data2);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -396,7 +406,13 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_wedding', $data);
-			$this->data_m->add('tb_my_hajat', ['id_wedding' => $id]);
+
+			$data2 = [
+				'id_wedding' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_my_hajat', $data2);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -476,7 +492,13 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_franchise', $data);
-			$this->data_m->add('tb_my_hajat', ['id_franchise' => $id]);
+
+			$data2 = [
+				'id_franchise' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_my_hajat', $data2);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -551,10 +573,17 @@ class Ticket_register extends CI_Controller
 				$data['upload_file10'] = $this->upload->data('file_name');
 			}
 
-			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
-			$this->data_m->add('tb_my_hajat', ['id_myhajat_lainnya' => $id]);
 
+			$data2 = [
+				'id_myhajat_lainnya' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_my_hajat', $data2);
+
+			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
 			if ($id) {
+
 				echo "Data berhasil disimpan";
 				redirect('/');
 			} else {
