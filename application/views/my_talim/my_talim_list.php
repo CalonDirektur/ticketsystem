@@ -13,9 +13,9 @@
     </div>
     <div class="col-lg-6">
       <div class="table-responsive card">
-        <table id="myTable" class="table">
+        <table id="myTable" class="table status responsive">
           <thead>
-            <th>ID Ticket</th>
+            <th>ID My Talim</th>
             <th>Nama Cabang</th>
             <th>Nama Konsumen</th>
             <th>Jenis Konsumen</th>

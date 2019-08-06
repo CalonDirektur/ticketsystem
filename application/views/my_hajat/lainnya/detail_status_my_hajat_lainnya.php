@@ -67,7 +67,13 @@
                   <th>Isi</th>
                 </thead>
                 <tr>
-                  <td><b>ID Ticket</b></td>
+                  <td><b>ID My Hajat</b></td>
+                  <td>
+                    <input type="text" class="form-control" name="id_myhajat" id="id_myhajat" value="<?= $data->id_my_hajat ?>" readonly required>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>ID My Hajat Lainnya</b></td>
                   <td>
                     <input type="text" class="form-control" name="id_myhajat_lainnya" id="id_myhajat" value="<?= $data->id_myhajat_lainnya ?>" readonly required>
                   </td>
@@ -101,7 +107,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><b>Jenis Penyedia Jasa</b></Penyedia Jasa>
+                  <td><b>Jenis Penyedia Jasa</b></td>
                   <td>
                     <select class="form-control enable" name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" required disabled>
                       <option value="Perorangan" <?= $data->jenis_penyedia_jasa == 'Perorangan' ? 'selected' : '' ?>>Perorangan</option>
@@ -122,7 +128,7 @@
                   </td>
                 </tr>
                 <!-- Tombol ini muncul khusus untuk user -->
-                <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
                   <tr>
                     <td></td>
                     <td>
@@ -166,6 +172,17 @@
                     <td>
                       <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
                       <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Reject</a>
+                    </td>
+                  </tr>
+                <?php } ?>
+                <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
+                <?php if ($this->session->userdata('level') == 5) { ?>
+                  <tr>
+                    <td><b>Aksi:</b></td>
+                    <td>
+                      <a class="btn btn-success col-12 mt-1" href="<?= base_url('Admin1/approve/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Approve</a>
+                      <a class="btn btn-primary col-12 mt-1" href="<?= base_url('Admin2/complete/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Complete</a>
+                      <a class="btn btn-danger col-12 mt-1" href="<?= base_url('Admin2/reject/myhajat/lainnya/' . $data->id_myhajat_lainnya) ?>">Reject</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -219,7 +236,7 @@
                 <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
               </div>
             </div>
-            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+            <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
               <div class="card-footer text-center">
                 <!-- Tombol ini muncul khusus untuk user -->
                 <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->

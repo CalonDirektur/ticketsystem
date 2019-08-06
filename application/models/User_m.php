@@ -15,8 +15,8 @@ class User_m extends CI_Model
 
         // $query = $this->db->query("SELECT * FROM user WHERE (email = '".$email."' or username = '".$username."') AND password = '".$password."'' ");
 
-        $this->db->where("email = '$username' OR nik = '$username'");
-        $this->db->where('password', $password);
+        $this->db->where("(email = '$username' OR nik = '$username') AND password =  '$password'");
+        // $this->db->where('password', $password);
         $this->db->where('is_active', 1);
         $query = $this->db->get('user');
 

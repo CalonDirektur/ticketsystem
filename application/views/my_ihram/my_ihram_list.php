@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card p-0">
-        <table id="myTable" class="table">
+        <table id="myTable" class="table responsive status">
           <thead>
             <th>ID My Ihram</th>
             <th>Nama Cabang</th>

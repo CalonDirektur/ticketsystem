@@ -112,6 +112,7 @@ class Data_m extends CI_Model
         return $query;
     }
 
+    // PENGECUALIAN xD
     public function get_myhajat($id_user, $id_approval)
     {
         $query = $this->db->query('SELECT *,
@@ -167,7 +168,7 @@ class Data_m extends CI_Model
                                 LEFT JOIN tb_cabang as CBG
                                 ON CBG.id_cabang = A.id_cabang
 
-                                WHERE U.id_user = ' . $id_user . '
+                                WHERE U.id_user ' . $id_user . '
                                 AND CASE 
                                 WHEN B.id_approval IS NOT NULL THEN B.id_approval ' . $id_approval . '
                                 WHEN C.id_approval IS NOT NULL THEN C.id_approval ' . $id_approval . '
@@ -178,5 +179,17 @@ class Data_m extends CI_Model
                                 ');
 
         return $query;
+    }
+
+    public function get_myhajat_by_id($table, $col, $id)
+    {
+        $this->db->from('tb_my_hajat A');
+        $this->db->join($table . ' B', 'A.' . $col . ' = B.' . $col, 'inner');
+        $this->db->join('tb_cabang T', 'T.id_cabang = A.id_cabang', 'inner');
+        $this->db->join('user U', 'U.id_user = A.id_user', 'inner');
+        $this->db->where('B.' . $col . ' = ' . $id);
+        $query = $this->db->get();
+
+        return $query->row();
     }
 }

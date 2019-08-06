@@ -63,6 +63,12 @@
                 <th>Isi</th>
               </thead>
               <tr>
+                <td><b>ID My Hajat</b></td>
+                <td>
+                  <input type="text" class="form-control" name="id_myhajat" id="id_myhajat" value="<?= $data->id_my_hajat ?>" readonly required>
+                </td>
+              </tr>
+              <tr>
                 <td><b>ID Wedding</b></td>
                 <td>
                   <input type="text" class="form-control" name="id_wedding" id="id_wedding" value="<?= $data->id_wedding ?>" readonly required>
@@ -171,12 +177,23 @@
                   </td>
                 </tr>
               <?php } ?>
+              <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
+              <?php if ($this->session->userdata('level') == 5) { ?>
+                <tr>
+                  <td><b>Aksi:</b></td>
+                  <td>
+                    <a class="btn btn-primary col-12 mt-1" href="<?= base_url('Admin1/approve/myhajat/wedding/' . $data->id_wedding) ?>">Approve</a>
+                    <a class="btn btn-success col-12 mt-1" href="<?= base_url('Admin2/complete/myhajat/wedding/' . $data->id_wedding) ?>">Complete</a>
+                    <a class="btn btn-danger col-12 mt-1" href="<?= base_url('Admin2/reject/myhajat/wedding/' . $data->id_wedding) ?>">Reject</a>
+                  </td>
+                </tr>
+              <?php } ?>
             </table>
           </div>
         </div>
         <div class="card-footer text-center">
           <!-- Tombol ini muncul khusus untuk user -->
-          <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+          <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
             <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
           <?php } ?>
         </div>
@@ -227,7 +244,7 @@
               <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
             </div>
           </div>
-          <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+          <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
             <div class="card-footer text-center">
               <!-- Tombol ini muncul khusus untuk user -->
               <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->

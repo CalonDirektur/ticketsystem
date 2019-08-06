@@ -13,7 +13,7 @@
       <div class="col-lg-6">
         <div class="row">
           <div class="mx-auto">
-            <a id="img-link" target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><img id="gambar" class="rounded" src="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>" alt="" max-width="100%" max-height="100%"></a>
+            <a id="img-link" target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><img id="gambar" class="rounded" src="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>" alt="" max-width="100%" max-height="100%"></a>
           </div>
         </div>
         <div class="row mt-1">
@@ -67,7 +67,13 @@
                   <th>Isi</th>
                 </thead>
                 <tr>
-                  <td><b>ID Ticket</b></td>
+                  <td><b>ID My Hajat</b></td>
+                  <td>
+                    <input type="text" class="form-control" name="id_myhajat" id="id_myhajat" value="<?= $data->id_my_hajat ?>" readonly required>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>ID Sewa</b></td>
                   <td><input type="text" class="form-control" name="id_sewa" id="id_sewa" value="<?= $data->id_sewa ?>" readonly required></td>
                 </tr>
                 <tr>
@@ -120,7 +126,7 @@
                 <tr>
                   <td></td>
                   <!-- Tombol ini muncul khusus untuk user -->
-                  <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                  <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
                     <td>
                       <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
                       <!-- <button type="submit" id="edit_sewa" class="btn btn-primary enable" name="edit_sewa" disabled>Kirim Data!</button> -->
@@ -162,6 +168,17 @@
                     <td>
                       <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
                       <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myhajat/sewa/' . $data->id_sewa) ?>">Reject</a>
+                    </td>
+                  </tr>
+                <?php } ?>
+                <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
+                <?php if ($this->session->userdata('level') == 5) { ?>
+                  <tr>
+                    <td><b>Aksi:</b></td>
+                    <td>
+                      <a class="btn btn-primary col-12 mt-1" href="<?= base_url('Admin1/approve/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
+                      <a class="btn btn-success col-12 mt-1" href="<?= base_url('Admin2/complete/myhajat/sewa/' . $data->id_sewa) ?>">complete</a>
+                      <a class="btn btn-danger col-12 mt-1" href="<?= base_url('Admin2/reject/myhajat/sewa/' . $data->id_sewa) ?>">Reject</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -216,7 +233,7 @@
                 <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
               </div>
             </div>
-            <?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+            <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
               <div class="card-footer text-center">
                 <!-- Tombol ini muncul khusus untuk user -->
                 <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_sewa" class="btn btn-primary enable" name="edit_sewa" disabled>Kirim Data!</button>

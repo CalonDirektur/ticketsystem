@@ -123,7 +123,7 @@
 									</td>
 								</tr>
 								<!-- Tombol ini muncul khusus untuk user -->
-								<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
+								<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
 									<tr>
 										<td>
 											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -200,7 +200,7 @@
 								<input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
 							</div>
 						</div>
-						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
+						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
 								<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_nst" class="btn btn-primary enable" name="edit_nst" disabled>Kirim Data!</button>

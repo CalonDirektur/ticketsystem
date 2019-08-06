@@ -116,7 +116,7 @@
 									</td>
 								</tr>
 								<!-- Tombol ini muncul khusus untuk user -->
-								<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+								<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 									<tr>
 										<td>
 											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -141,6 +141,17 @@
 										<td>
 											<a class="btn btn-primary" href="<?= base_url('Admin2/complete/mysafar/id/' . $data->id_mysafar) ?>">Approve</a>
 											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/mysafar/id/' . $data->id_mysafar) ?>">Reject</a>
+										</td>
+									</tr>
+								<?php } ?>
+								<!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
+								<?php if ($this->session->userdata('level') == 5) { ?>
+									<tr>
+										<td><b>Aksi:</b></td>
+										<td>
+											<a class="btn btn-primary col-12 mt-1" href="<?= base_url('Admin1/approve/mysafar/id/' . $data->id_safar) ?>">Approve</a>
+											<a class="btn btn-success col-12 mt-1" href="<?= base_url('Admin2/complete/mysafar/id/' . $data->id_safar) ?>">Complete</a>
+											<a class="btn btn-danger col-12 mt-1" href="<?= base_url('Admin2/reject/mysafar/id/' . $data->id_safar) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>
@@ -194,7 +205,7 @@
 								<input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
 							</div>
 						</div>
-						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
 								<!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->

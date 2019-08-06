@@ -117,7 +117,7 @@
 									</td>
 								</tr>
 								<!-- Tombol ini muncul khusus untuk user -->
-								<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5)  && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 									<tr>
 										<td>
 											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -131,16 +131,29 @@
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-primary" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+											<a class="btn btn-success" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
 											<a class="btn btn-danger" href="<?= base_url('Admin1/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>
+								<!-- Tombol Aksi ini akan muncul untuk Admin 2 -->
 								<?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-primary" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+											<a class="btn btn-success" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
+										</td>
+									</tr>
+								<?php } ?>
+								<!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
+								<?php if ($this->session->userdata('level') == 5) { ?>
+									<tr>
+										<td><b>Aksi:</b></td>
+										<td>
+											<a class="btn btn-primary" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Complete</a>
+											<a class="btn btn-success" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>

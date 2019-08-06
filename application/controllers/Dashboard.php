@@ -16,17 +16,25 @@ class Dashboard extends CI_Controller
 		if ($this->fungsi->user_login()->id_cabang != 46) {
 			$where = 'id_user = ' . $this->fungsi->user_login()->id_user;
 			$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
+
+			$id_user_myhajat = '= ' . $this->fungsi->user_login()->id_user;
 			$approval_myhajat = 'IS NOT NULL';
 		} else {
 			if ($this->fungsi->user_login()->level == 2) {
 				$where = 'id_approval IS NOT NULL';
 				$approval_myhajat = 'IS NOT NULL';
+
+				$id_user_myhajat = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 3) {
 				$where = 'id_approval = 2';
 				$approval_myhajat = '= 2';
+
+				$id_user_myhajat = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5) {
 				$where = 'id_approval IS NOT NULL ';
 				$approval_myhajat = 'IS NOT NULL';
+
+				$id_user_myhajat = 'IS NOT NULL';
 			}
 			$id_cabang = '';
 		}
@@ -130,7 +138,7 @@ class Dashboard extends CI_Controller
 		];
 
 		$data['mytalim_records'] 			= $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $where, 'id_mytalim DESC');
-		$data['myhajat_records']			= $this->data_m->get_myhajat($this->fungsi->user_login()->id_user, $approval_myhajat);
+		$data['myhajat_records']			= $this->data_m->get_myhajat($id_user_myhajat, $approval_myhajat);
 		$data['myhajat_renovasi_records'] 	= $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $where, 'id_renovasi DESC');
 		$data['myhajat_sewa_records'] 		= $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $where, 'id_sewa DESC');
 		$data['myhajat_wedding_records'] 	= $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $where, 'id_wedding DESC');
