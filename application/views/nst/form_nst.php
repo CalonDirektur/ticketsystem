@@ -77,41 +77,44 @@
                 <label for="upload_file1">Upload Berkas 1 *</label>
                 <input name="upload_file1" id="upload_file1" type="file" class="form-control col-8" required>
               </div>
-              <div class="form-group">
-                <label for="upload_file2">Upload Berkas 2</label>
-                <input name="upload_file2" id="upload_file2" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file3">Upload Berkas 3</label>
-                <input name="upload_file3" id="upload_file3" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file4">Upload Berkas 4</label>
-                <input name="upload_file4" id="upload_file4" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file5">Upload Berkas 5</label>
-                <input name="upload_file5" id="upload_file5" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file6">Upload Berkas 6</label>
-                <input name="upload_file6" id="upload_file6" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file7">Upload Berkas 7</label>
-                <input name="upload_file7" id="upload_file7" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file8">Upload Berkas 8</label>
-                <input name="upload_file8" id="upload_file8" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file9">Upload Berkas 9</label>
-                <input name="upload_file9" id="upload_file9" type="file" class="form-control col-8">
-              </div>
-              <div class="form-group">
-                <label for="upload_file10">Upload Berkas 10</label>
-                <input name="upload_file10" id="upload_file10" type="file" class="form-control col-8">
+              <button type="button" id="add-upload" class="btn btn-sm btn-primary btn-icon-text"><i class="mdi mdi-plus btn-icon-prepend"></i> Add Upload</button>
+              <div id="more-upload">
+                <div class="form-group">
+                  <label for="upload_file2">Upload Berkas 2</label>
+                  <input name="upload_file2" id="upload_file2" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file3">Upload Berkas 3</label>
+                  <input name="upload_file3" id="upload_file3" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file4">Upload Berkas 4</label>
+                  <input name="upload_file4" id="upload_file4" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file5">Upload Berkas 5</label>
+                  <input name="upload_file5" id="upload_file5" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file6">Upload Berkas 6</label>
+                  <input name="upload_file6" id="upload_file6" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file7">Upload Berkas 7</label>
+                  <input name="upload_file7" id="upload_file7" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file8">Upload Berkas 8</label>
+                  <input name="upload_file8" id="upload_file8" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file9">Upload Berkas 9</label>
+                  <input name="upload_file9" id="upload_file9" type="file" class="form-control col-8">
+                </div>
+                <div class="form-group">
+                  <label for="upload_file10">Upload Berkas 10</label>
+                  <input name="upload_file10" id="upload_file10" type="file" class="form-control col-8">
+                </div>
               </div>
               <p><b>Note: </b> Wajib diisi (*)</p>
             </div>

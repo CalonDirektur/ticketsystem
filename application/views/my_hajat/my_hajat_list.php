@@ -163,6 +163,11 @@
             </table>
           </div>
         </div>
+      <?php } else { ?>
+
+        <div class="card text-center p-4">
+          <h1>Tidak ada data</h1>
+        </div>
       <?php } ?>
     </div>
   </div>

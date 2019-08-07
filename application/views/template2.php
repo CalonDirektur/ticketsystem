@@ -78,6 +78,10 @@
               echo "Admin level 1";
             } else if ($this->fungsi->user_login()->level == 3) {
               echo "Admin level 2";
+            } else if ($this->fungsi->user_login()->level == 4) {
+              echo "Admin NST";
+            } else if ($this->fungsi->user_login()->level == 5) {
+              echo "Superuser";
             }
             ?>
           </div>
@@ -108,16 +112,10 @@
           <?php } ?>
           <?php if ($this->session->userdata('level') == 5) { ?>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#akun" aria-expanded="false" aria-controls="akun">
-                <i class="icon-disc menu-icon"></i>
+              <a class="nav-link" href="<?= site_url('auth/list_user') ?>">
+                <i class="icon-box menu-icon"></i>
                 <span class="menu-title">List User Akun</span>
-                <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="akun">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="<?= site_url('auth/list_user') ?>">List User</a></li>
-                </ul>
-              </div>
             </li>
           <?php } ?>
         </ul>

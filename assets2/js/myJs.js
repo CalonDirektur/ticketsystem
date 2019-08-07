@@ -67,9 +67,18 @@ $(document).ready(function () {
 		$(this).fadeOut();
 	})
 
-	$(".clickable-row").click(function () {
-		window.location = $(this).data("href");
-	});
+	// Menyembunyiakan div upload dahulu
+	$('#more-upload').hide();
+
+	//TOmbol untuk menambah file upload utk halaman input form
+	$('#add-upload').click(function () {
+		$('#more-upload').slideDown();
+		$(this).fadeOut();
+	})
+
+	// $(".clickable-row").click(function () {
+	// 	window.location = $(this).data("href");
+	// });
 
 	$("#input_produk").change(function () {
 		var input = $(this).val();

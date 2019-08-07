@@ -11,11 +11,11 @@ class Ticket_register extends CI_Controller
 		$this->load->model('data_m');
 
 		$this->load->library('form_validation');
+		check_not_login();
 	}
 
 	public function index()
 	{
-		check_not_login();
 		check_access_level_user();
 		redirect('dashboard');
 	}
