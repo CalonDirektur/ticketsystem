@@ -20,8 +20,14 @@
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
+          <div class="card-header text-center">
+            <h3>Helpdesk BFI Syariah</h3>
+          </div>
           <div class="card-body">
-            <h5 class="card-title text-center">Sign In</h5>
+            <div class="mx-auto text-center">
+              <img class="rounded img-fluid m-2 mb-4" src="<?= base_url('assets2/img/logo-bfi-syariah.png') ?>">
+            </div>
+
             <form action="<?= base_url('auth/process') ?>" method="post" class="form-signin">
 
               <!-- Email Address/NIK -->

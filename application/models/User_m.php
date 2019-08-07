@@ -29,7 +29,7 @@ class User_m extends CI_Model
         if ($id != null) {
             // $this->db->where(['username' => $id, 'user.id_cabang = tb_cabang.id_cabang']);
             $this->db->join('tb_cabang', 'user.id_cabang = tb_cabang.id_cabang', 'inner');
-            $this->db->where('nik', $id);
+            $this->db->where("nik = '$id' or email = '$id'");
         }
         $query = $this->db->get();
 

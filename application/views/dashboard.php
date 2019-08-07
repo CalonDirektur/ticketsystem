@@ -1,6 +1,9 @@
   <section class="content-header mt-4">
     <?= $this->session->flashdata('success_request_support') ?>
     <?= $this->session->flashdata('success_update_support') ?>
+    <?= $this->session->flashdata('berhasil_approve') ?>
+    <?= $this->session->flashdata('berhasil_complete') ?>
+    <?= $this->session->flashdata('berhasil_reject') ?>
     <h1 class="text-center">
       Dashboard
       <!-- <small>it all starts here</small> -->

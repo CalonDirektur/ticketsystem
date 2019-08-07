@@ -182,9 +182,8 @@
                 <tr>
                   <td><b>Aksi:</b></td>
                   <td>
-                    <a class="btn btn-primary col-12 mt-1" href="<?= base_url('Admin1/approve/myhajat/wedding/' . $data->id_wedding) ?>">Approve</a>
-                    <a class="btn btn-success col-12 mt-1" href="<?= base_url('Admin2/complete/myhajat/wedding/' . $data->id_wedding) ?>">Complete</a>
-                    <a class="btn btn-danger col-12 mt-1" href="<?= base_url('Admin2/reject/myhajat/wedding/' . $data->id_wedding) ?>">Reject</a>
+                    <a class="btn btn-success mt-1" href="<?= base_url('Superuser/complete/myhajat/wedding/' . $data->id_wedding) ?>">Complete</a>
+                    <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myhajat/wedding/' . $data->id_wedding) ?>">Reject</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -194,6 +193,9 @@
         <div class="card-footer text-center">
           <!-- Tombol ini muncul khusus untuk user -->
           <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+            <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+          <?php } ?>
+          <?php if ($this->session->userdata('level') == 5) { ?>
             <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
           <?php } ?>
         </div>
@@ -244,11 +246,18 @@
               <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
             </div>
           </div>
-          <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+          <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
             <div class="card-footer text-center">
               <!-- Tombol ini muncul khusus untuk user -->
               <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
               <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_wedding" class="btn btn-primary enable" name="edit_wedding" disabled>Kirim Data!</button>
+            </div>
+          <?php } ?>
+          <?php if ($this->session->userdata('level') == 5) { ?>
+            <div class="card-footer text-center">
+              <!-- Tombol ini muncul khusus untuk user -->
+              <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
+              <button type="submit" id="edit_wedding_superuser" class="btn btn-primary enable" name="edit_wedding_superuser" disabled>Kirim Data!</button>
             </div>
           <?php } ?>
         </div>

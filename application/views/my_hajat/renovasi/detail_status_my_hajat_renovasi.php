@@ -157,6 +157,14 @@
                     </td>
                   </tr>
                 <?php } ?>
+                <?php if ($this->session->userdata('level') == 5) { ?>
+                  <tr>
+                    <td>
+                      <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                    </td>
+                    <td></td>
+                  </tr>
+                <?php } ?>
                 <tr>
                   <td><b>Status:</b></td>
                   <td>
@@ -165,13 +173,13 @@
                       echo '<label class="badge badge-secondary">Pending</label>';
                     }
                     if ($data->id_approval == 1) {
-                      echo '<label class="badge-danger">Ditolak</label>';
+                      echo '<label class="badge badge-danger">Ditolak</label>';
                     }
                     if ($data->id_approval == 2) {
-                      echo '<label class="badge-success">Disetujui Admin 1</label>';
+                      echo '<label class="badge badge-success">Disetujui Admin 1</label>';
                     }
                     if ($data->id_approval == 3) {
-                      echo '<label class="badge-primary">Selesai</label>';
+                      echo '<label class="badge badge-primary">Selesai</label>';
                     }
                     ?>
                   </td>
@@ -200,9 +208,8 @@
                   <tr>
                     <td><b>Aksi:</b></td>
                     <td>
-                      <a class="btn btn-success col-12 mt-1" href="<?= base_url('Admin1/approve/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
-                      <a class="btn btn-primary col-12 mt-1" href="<?= base_url('Admin2/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Complete</a>
-                      <a class="btn btn-danger col-12 mt-1" href="<?= base_url('Admin2/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+                      <a class="btn btn-primary mt-1" href="<?= base_url('Superuser/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Complete</a>
+                      <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -256,11 +263,18 @@
                 <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
               </div>
             </div>
-            <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+            <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
               <div class="card-footer text-center">
                 <!-- Tombol ini muncul khusus untuk user -->
                 <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
                 <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_renovasi" class="btn btn-primary enable" name="edit_renovasi" disabled>Kirim Data!</button>
+              </div>
+            <?php } ?>
+            <?php if ($this->session->userdata('level') == 5) { ?>
+              <div class="card-footer text-center">
+                <!-- Tombol ini muncul khusus untuk user -->
+                <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
+                <button type="submit" id="edit_renovasi_superuser" class="btn btn-primary enable" name="edit_renovasi_superuser" disabled>Kirim Data!</button>
               </div>
             <?php } ?>
           </div>

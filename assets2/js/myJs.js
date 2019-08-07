@@ -80,6 +80,7 @@ $(document).ready(function () {
 	// 	window.location = $(this).data("href");
 	// });
 
+	// Script untuk input produk 
 	$("#input_produk").change(function () {
 		var input = $(this).val();
 		// alert(input);
@@ -102,6 +103,18 @@ $(document).ready(function () {
 			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim").fadeOut();
 			$("#submit").attr('name', 'submit_mysafar');
 			validate_mysafar();
+		}
+	})
+
+	//
+	$(".cross-branch-div").hide();
+	$(".form-check-input").click(function () {
+		if ($("#cross_branch").is(':checked')) {
+			$(".cross-branch-div").fadeIn();
+			$(".cross_branch-required").attr('required', 'required');
+		} else {
+			$(".cross-branch-div").fadeOut();
+			$(".cross_branch-required").val("").removeAttr('required');
 		}
 	})
 

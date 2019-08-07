@@ -593,10 +593,10 @@ class Status extends CI_Controller
             $this->template->load('template2', 'aktivasi_agent/aktivasi_agent_list', $data);
         }
         if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
-            $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_mysafar' => $id, 'id_approval' => 1])->row();
+            $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_agent' => $id, 'id_approval' => 1])->row();
             $data['komentar'] = $this->comment_m->get_comment('tb_aktivasi_agent', 'parent_comment_id = 0 AND 
-                                                                tb_comment.id_mysafar = tb_aktivasi_agent.id_mysafar AND 
-                                                                tb_aktivasi_agent.id_mysafar = ' . $id . ' AND
+                                                                tb_comment.id_agent = tb_aktivasi_agent.id_agent AND 
+                                                                tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);

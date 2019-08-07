@@ -186,6 +186,26 @@
 								<label for="upload_file5">Upload Berkas 5</label>
 								<input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-10" disabled>
 							</div>
+							<div class="form-group">
+								<label for="upload_file6">Upload Berkas 6</label>
+								<input name="upload_file6" id="upload_file6" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file7">Upload Berkas 7</label>
+								<input name="upload_file7" id="upload_file7" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file8">Upload Berkas 8</label>
+								<input name="upload_file8" id="upload_file8" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file9">Upload Berkas 9</label>
+								<input name="upload_file9" id="upload_file9" type="file" class="form-control enable col-10" disabled>
+							</div>
+							<div class="form-group">
+								<label for="upload_file10">Upload Berkas 10</label>
+								<input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
+							</div>
 						</div>
 						<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<div class="card-footer text-center">

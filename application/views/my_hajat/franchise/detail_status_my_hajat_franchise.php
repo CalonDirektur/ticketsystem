@@ -152,7 +152,15 @@
               <tr>
                 <td></td>
                 <!-- Tombol ini muncul khusus untuk user -->
-                <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                <tr>
+                  <td>
+                    <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                  </td>
+                </tr>
+              <?php } ?>
+              <?php if ($this->session->userdata('level') == 5) { ?>
+                <tr>
                   <td>
                     <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
                   </td>
@@ -201,9 +209,8 @@
                 <tr>
                   <td><b>Aksi:</b></td>
                   <td>
-                    <a class="btn btn-primary" href="<?= base_url('Admin1/approve/complete/franchise/' . $data->id_franchise) ?>">Complete</a>
-                    <a class="btn btn-success" href="<?= base_url('Admin2/complete/complete/franchise/' . $data->id_franchise) ?>">Approve</a>
-                    <a class="btn btn-danger" href="<?= base_url('Admin2/reject/complete/franchise/' . $data->id_franchise) ?>">Reject</a>
+                    <a class="btn btn-success" href="<?= base_url('Superuser/complete/myhajat/franchise/' . $data->id_franchise) ?>">Complete</a>
+                    <a class="btn btn-danger" href="<?= base_url('Superuser/reject/myhajat/franchise/' . $data->id_franchise) ?>">Reject</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -258,11 +265,17 @@
               <input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-10" disabled>
             </div>
           </div>
-          <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+          <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
             <div class="card-footer text-center">
               <!-- Tombol ini muncul khusus untuk user -->
               <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-              <button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_franchise" class="btn btn-primary enable" name="edit_franchise" disabled>Kirim Data!</button>
+              <button type="submit" id="edit_franchise" class="btn btn-primary enable" name="edit_franchise" disabled>Kirim Data!</button>
+            </div>
+          <?php } ?>
+          <?php if ($this->session->userdata('level') == 5) { ?>
+            <div class="card-footer text-center">
+              <!-- Tombol ini muncul khusus untuk SUPERUSER -->
+              <button type="submit" id="edit_renovasi_superuser" class="btn btn-primary enable" name="edit_renovasi_superuser" disabled>Kirim Data!</button>
             </div>
           <?php } ?>
         </div>

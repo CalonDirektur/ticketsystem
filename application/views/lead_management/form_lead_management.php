@@ -45,12 +45,51 @@
                 </select>
                 <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
               </div>
+
+              <div class="form-group">
+                <label>Asal Leads*</label>
+                <div class="form-check">
+                  <label class="form-check-label"><input class="form-check-input cross_branch-required" id="in_branch" type="radio" name="asal_leads" value="In Branch" required>In Branch</label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label"><input class="form-check-input cross_branch-required" id="cross_branch" type="radio" name="asal_leads" value="Cross-Branch" required>Cross-Branch</label>
+                </div>
+              </div>
+
+              <!-- Asal Leads (muncul jika cross branch dipilih) -->
+              <div class="cross-branch-div">
+                <!-- Nama Cabang Tujuan -->
+                <div class="form-group">
+                  <label for="cabang_tujuan">Cabang Tujuan *</label>
+                  <select name="cabang_tujuan" id="cabang_tujuan" class="form-control cross_branch-required">
+                    <option disabled selected value="">- Pilih Cabang -</option>
+                    <?php
+                    foreach ($pertanyaan as $p) {
+                      ?>
+                      <option value="<?= $p->id_cabang ?>" <?= $p->id_cabang == 46 ? 'disabled' : '' ?>><?= $p->nama_cabang ?></option>
+                    <?php }  ?>
+                  </select>
+                  <input type="hidden" name="cabang_tujuan" value="<?= $this->fungsi->user_login()->id_cabang ?>">
+                </div>
+                <!-- Surveyor -->
+                <div class="form-group">
+                  <label for="surveyor">Surveyor *</label>
+                  <input name="surveyor" id="surveyor" type="text" class="form-control cross_branch-required">
+                </div>
+                <!-- TTD PIC -->
+                <div class="form-group">
+                  <label for="ttd_pic">TTD PIC *</label>
+                  <input name="ttd_pic" id="ttd_pic" type="text" class="form-control cross_branch-required">
+                </div>
+              </div>
+
               <!-- Insert ID User -->
               <input name="id_user" id="id_user" type="hidden" value="<?= $this->fungsi->user_login()->id_user ?>">
+
             </div>
           </div>
 
-          <!-- card Pertanyaan form My'Talim -->
+          <!-- card Pertanyaan form Lead Management -->
           <div class="card card-primary mt-4">
             <div class="card-header with-border">
               <h3 class="card-title">Form My Lead Management</h3>
@@ -68,12 +107,6 @@
                 <label for="nama_konsumen">Nama Konsumen *</label><br>
                 <small>Masukkan nama konsumen sesuai dengan KTP dan Nama Register di Web</small>
                 <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" required>
-              </div>
-              <!-- Nomor KTP Konsumen -->
-              <div class="form-group">
-                <label for="ktp_konsumen">Nomor KTP Konsumen *</label><br>
-                <small>Masukkan 16 digit nomor KTP tanpa spaci, -atau titik (.)</small>
-                <input required name="ktp_konsumen" id="ktp_konsumen" type="text" class="form-control" required>
               </div>
               <!-- Sumber Lead -->
               <div class="form-group">
@@ -118,10 +151,11 @@
             </div>
             <div class="card-footer text-center">
               <button class="btn btn-primary" name="submit_lead_management">Kirim Data!</button>
-    </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</form>
 </section>

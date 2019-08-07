@@ -34,18 +34,28 @@
 								</tr>
 								<tr>
 									<td><b>Lead ID</b></td>
-									<td><input type="number" class="form-control enable" name="lead_id" id="lead_id" value="<?= $data->lead_id ?>" readonly required></td>
+									<td><input type="text" class="form-control enable" name="lead_id" id="lead_id" value="<?= $data->lead_id ?>" readonly required></td>
+								</tr>
+								<tr>
+									<td><b>Asal Leads</b></td>
+									<td>
+										<select required name="asal_leads" id="asal_leads" class="form-control enable" required disabled>
+											<option disabled selected value="">- Pilih Sumber Lead -</option>
+											<option value="In Branch" <?= $data->asal_leads == 'In Branch' ? 'selected' : ''  ?>>In Branch</option>
+											<option value="Cross-Branch" <?= $data->asal_leads == 'Cross-Branch' ? 'selected' : ''  ?>>Cross-Branch</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><b>Cabang Tujuan</b></td>
+									<td>
+										<input type="text" class="form-control enable" name="cabang_tujuan" id="cabang_tujuan" value="<?= $data->cabang_tujuan ?>" readonly required>
+									</td>
 								</tr>
 								<tr>
 									<td><b>Nama Konsumen</b></td>
 									<td>
 										<input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
-									</td>
-								</tr>
-								<tr>
-									<td><b>KTP Konsumen</b></td>
-									<td>
-										<input type="text" class="form-control enable" name="ktp_konsumen" id="ktp_konsumen" value="<?= $data->ktp_konsumen ?>" readonly required>
 									</td>
 								</tr>
 								<tr>
@@ -189,7 +199,7 @@
 								<?php } ?>
 
 								<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
-								<?php if ($this->session->userdata('level') == 4 && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
+								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 4) && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>

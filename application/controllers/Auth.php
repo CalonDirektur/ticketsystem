@@ -69,40 +69,53 @@ class Auth extends CI_Controller
 	//Halaman reset password
 	public function lupa_password()
 	{
+		$this->load->model('user_m');
+		$post = $this->input->post(null, TRUE);
+
+
 		if (isset($_POST['reset_password'])) {
-			// Konfigurasi email
-			$config = [
-				'mailtype'  => 'html',
-				'charset'   => 'utf-8',
-				'protocol'  => 'smtp',
-				'smtp_host' => 'ssl://smtp.gmail.com',
-				'smtp_user' => 'ibrahim.ahmad58@gmail.com',    // Ganti dengan email gmail kamu
-				'smtp_pass' => 'Speedog0g4',      // Password gmail kamu
-				'smtp_port' => 465,
-				'crlf'      => "\r\n",
-				'newline'   => "\r\n"
-			];
 
-			// Load library email dan konfigurasinya
-			$this->load->library('email', $config);
+			$email = $post['email'];
+			$data = $this->user_m->get($email);
 
-			// Email dan nama pengirim
-			$this->email->from('ibrahim.ahmad58@gmail.com', 'MasRud.com | M. Rudianto');
+			if ($data->num_rows() > 0) {
+				$akun = $data->row();
+				// Konfigurasi email
+				$config = [
+					'mailtype'  => 'html',
+					'charset'   => 'utf-8',
+					'protocol'  => 'smtp',
+					'smtp_host' => 'ssl://smtp.gmail.com',
+					'smtp_user' => 'ibrahim.ahmad58@gmail.com',    // Ganti dengan email gmail kamu
+					'smtp_pass' => 'Speedog0g4',      // Password gmail kamu
+					'smtp_port' => 465,
+					'crlf'      => "\r\n",
+					'newline'   => "\r\n"
+				];
 
-			// Email penerima
-			$this->email->to('ibrahim.ahmadd98@gmail.com'); // Ganti dengan email tujuan kamu	
+				// Load library email dan konfigurasinya
+				$this->load->library('email', $config);
 
-			// Subject email
-			$this->email->subject('Kirim Email dengan SMTP Gmail | MasRud.com');
+				// Email dan nama pengirim
+				$this->email->from('ibrahim.ahmad58@gmail.com', 'BFI Syariah Head Office');
 
-			// Isi email
-			$this->email->message("Ini adalah contoh email CodeIgniter yang dikirim menggunakan SMTP email Google (Gmail).<br><br> Klik <strong><a href='https://masrud.com/post/kirim-email-dengan-smtp-gmail' target='_blank' rel='noopener'>disini</a></strong> untuk melihat tutorialnya.");
+				// Email penerima
+				$this->email->to($email); // Ganti dengan email tujuan kamu	
 
-			// Tampilkan pesan sukses atau error
-			if ($this->email->send()) {
-				echo 'Sukses! email berhasil dikirim.';
+				// Subject email
+				$this->email->subject('Lupa Password');
+
+				// Isi email
+				$this->email->message("Detail Akun Anda: \n NIK: $akun->nik \n Nama: $akun->name \n E-mail: $akun->email \n Password: $akun->password");
+
+				// Tampilkan pesan sukses atau error
+				if ($this->email->send()) {
+					echo 'Sukses! email berhasil dikirim.';
+				} else {
+					echo 'Error! email tidak dapat dikirim.';
+				}
 			} else {
-				echo 'Error! email tidak dapat dikirim.';
+				echo "akun tidak ditemukan";
 			}
 		} else {
 			$this->load->view('lupa_password');
