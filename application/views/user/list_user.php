@@ -13,10 +13,10 @@
           </div>
           <table id="table-admin1" class="table responsive status" width="100%">
             <thead>
-              <th class="all" width="1%">ID User</th>
-              <th class="all" width="15%">Nama</th>
+              <th class="all">ID User</th>
+              <th class="all">Nama</th>
               <th>NIK</th>
-              <th class="all" width="15%">Email</th>
+              <th class="all">Email</th>
               <th>Level</th>
               <th>Active</th>
               <th>ID Cabang</th>

@@ -18,7 +18,7 @@ $(document).ready(function () {
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();
 	// Script Halaman Formulir Pendaftaran Tiket My Hajat
-	$(".card.pertanyaan, #upload").hide();
+	$(".card.pertanyaan").hide();
 	$('.kategori').click(function () {
 		if ($("#renovasi").is(':checked')) {
 			$("#submit").attr('name', 'submit_renovasi')
@@ -73,7 +73,7 @@ $(document).ready(function () {
 	//TOmbol untuk menambah file upload utk halaman input form
 	$('#add-upload').click(function () {
 		$('#more-upload').slideDown();
-		$(this).fadeOut();
+		$(this).fadeOut('fast');
 	})
 
 	// $(".clickable-row").click(function () {
@@ -106,17 +106,18 @@ $(document).ready(function () {
 		}
 	})
 
-	//
+	//Script untuk form lead management user, ketika memilih asal leads
 	$(".cross-branch-div").hide();
 	$(".form-check-input").click(function () {
 		if ($("#cross_branch").is(':checked')) {
-			$(".cross-branch-div").fadeIn();
+			$(".cross-branch-div").slideDown();
 			$(".cross_branch-required").attr('required', 'required');
 		} else {
-			$(".cross-branch-div").fadeOut();
+			$(".cross-branch-div").slideUp();
 			$(".cross_branch-required").val("").removeAttr('required');
 		}
 	})
+
 
 	// Method untuk My Ta'lim 
 	function validate_mytalim() {

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<section class="content-header">
+	<section class="content-header text-center mt-4">
 		<h1>
 			Detail Lead Management Tickets
 		</h1>
@@ -22,20 +22,24 @@
 									<th>Kolom</th>
 									<th>Isi</th>
 								</thead>
+								<!-- ID Lead Management -->
 								<tr>
 									<td><b>ID Lead Management</b></td>
 									<td><input type="text" class="form-control" name="id_lead" id="id_lead" value="<?= $data->id_lead ?>" readonly required></td>
 								</tr>
+								<!-- Nama Cabang -->
 								<tr>
 									<td><b>Nama Cabang</b></td>
 									<td>
-										<input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
+										<input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->cabang_user ?>" readonly required>
 									</td>
 								</tr>
+								<!-- Lead ID -->
 								<tr>
 									<td><b>Lead ID</b></td>
 									<td><input type="text" class="form-control enable" name="lead_id" id="lead_id" value="<?= $data->lead_id ?>" readonly required></td>
 								</tr>
+								<!-- Asal Leads -->
 								<tr>
 									<td><b>Asal Leads</b></td>
 									<td>
@@ -46,18 +50,42 @@
 										</select>
 									</td>
 								</tr>
-								<tr>
+								<!-- Cabang Tujuan -->
+								<tr class="cross-branch">
 									<td><b>Cabang Tujuan</b></td>
 									<td>
-										<input type="text" class="form-control enable" name="cabang_tujuan" id="cabang_tujuan" value="<?= $data->cabang_tujuan ?>" readonly required>
+										<select name="cabang_tujuan" id="cabang_tujuan" class="form-control enable cross-branch" disabled>
+											<option selected value="">- Tidak Ada Cabang Tujuan -</option>
+											<?php
+											foreach ($cabang_tujuan->result() as $p) {
+												?>
+												<option value="<?= $p->id_cabang ?>" <?= $p->id_cabang == $data->id_cabang_tujuan ? 'selected' : '' ?> <?= $p->id_cabang == 46 ? 'disabled' : '' ?>><?= $p->nama_cabang ?></option>
+											<?php }  ?>
+										</select>
 									</td>
 								</tr>
+								<!-- Surveyor -->
+								<tr class="cross-branch">
+									<td><b>Surveyor</b></td>
+									<td>
+										<input type="text" class="form-control enable cross-branch" name="surveyor" id="surveyor" value="<?= $data->surveyor ?>" readonly>
+									</td>
+								</tr>
+								<!-- TTD PIC -->
 								<tr>
+									<td><b>TTD PIC</b></td>
+									<td>
+										<input type="text" class="form-control enable" name="ttd_pic" id="ttd_pic" value="<?= $data->ttd_pic ?>" readonly>
+									</td>
+								</tr>
+								<!-- Nama Konsumen -->
+								<tr class="cross-branch">
 									<td><b>Nama Konsumen</b></td>
 									<td>
-										<input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
+										<input type="text" class="form-control enable cross-branch" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
 									</td>
 								</tr>
+								<!-- Sumber Lead -->
 								<tr>
 									<td><b>Sumber Lead</b></td>
 									<td>
@@ -76,25 +104,27 @@
 										</select>
 									</td>
 								</tr>
+								<!-- Nama Pemberi Lead -->
 								<tr>
 									<td><b>Nama Pemberi Lead</b></td>
 									<td>
 										<input type="text" class="form-control enable" name="nama_pemberi_lead" id="nama_pemberi_lead" value="<?= $data->nama_pemberi_lead ?>" readonly required>
 									</td>
 								</tr>
+								<!-- Object Price -->
 								<tr>
 									<td><b>Object Price</b></td>
 									<td>
 										<input type="number" class="form-control enable" name="object_price" id="object_price" value="<?= $data->object_price ?>" readonly required>
 									</td>
 								</tr>
+								<!-- Produk -->
 								<tr>
 									<td><b>Produk</b></td>
 									<td>
 										<select class="form-control enable" name="produk" id="produk" disabled>
 											<option value="My Ihram" <?= $data->produk == 'My Ihram' ? 'selected' : ''  ?>> My Ihram</option>
 											<option value="My Hajat" <?= $data->produk == 'My Hajat' ? 'selected' : ''  ?>> My Hajat</option>
-											<option value="My Cars" <?= $data->produk == 'My Cars' ? 'selected' : ''  ?>> My Cars</option>
 											<option value="My Talim" <?= $data->produk == 'My Talim' ? 'selected' : ''  ?>> My Talim</option>
 											<option value="My Faedah" <?= $data->produk == 'My Faedah' ? 'selected' : ''  ?>> My Faedah</option>
 											<option value="My CarS" <?= $data->produk == 'My CarS' ? 'selected' : ''  ?>> My CarS</option>
@@ -102,7 +132,7 @@
 									</td>
 								</tr>
 								<!-- Menu ini muncul khusus untuk Admin NST -->
-								<?php if ($this->session->userdata('level') == 4) { ?>
+								<?php if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) { ?>
 									<tr>
 										<td><b>Tahap Reject</b></td>
 										<td>
@@ -199,11 +229,21 @@
 								<?php } ?>
 
 								<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
-								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 4) && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
+								<?php if (($this->session->userdata('level') == 4 || $this->session->userdata('level') == 4) && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_lead_management" class="btn btn-primary enable" name="edit_lead_management" disabled>Kirim Data!</button>
+											<button type="submit" id="edit_lead_management" class="btn btn-info enable" name="edit_lead_management" disabled>Update Data!</button>
+										</td>
+									</tr>
+								<?php } ?>
+
+								<!-- Tombol Aksi ini akan muncul khusus User -->
+								<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
+									<tr>
+										<td><b>Aksi:</b></td>
+										<td>
+											<button type="submit" id="edit_lead_management_user" class="btn btn-primary enable" name="edit_lead_management_user" disabled>Update Data!</button>
 										</td>
 									</tr>
 								<?php } ?>

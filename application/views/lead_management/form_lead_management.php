@@ -46,13 +46,20 @@
                 <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
               </div>
 
+              <!-- Asal Leads -->
               <div class="form-group">
                 <label>Asal Leads*</label>
                 <div class="form-check">
-                  <label class="form-check-label"><input class="form-check-input cross_branch-required" id="in_branch" type="radio" name="asal_leads" value="In Branch" required>In Branch</label>
+                  <label class="form-check-label">
+                    <input class="form-check-input" id="in_branch" type="radio" name="asal_leads" value="In Branch" required>
+                    In Branch
+                  </label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label"><input class="form-check-input cross_branch-required" id="cross_branch" type="radio" name="asal_leads" value="Cross-Branch" required>Cross-Branch</label>
+                  <label class="form-check-label">
+                    <input class="form-check-input" id="cross_branch" type="radio" name="asal_leads" value="Cross-Branch" required>
+                    Cross-Branch
+                  </label>
                 </div>
               </div>
 
@@ -69,7 +76,6 @@
                       <option value="<?= $p->id_cabang ?>" <?= $p->id_cabang == 46 ? 'disabled' : '' ?>><?= $p->nama_cabang ?></option>
                     <?php }  ?>
                   </select>
-                  <input type="hidden" name="cabang_tujuan" value="<?= $this->fungsi->user_login()->id_cabang ?>">
                 </div>
                 <!-- Surveyor -->
                 <div class="form-group">
@@ -100,7 +106,7 @@
               <div class="form-group">
                 <label for="lead_id">Lead ID *</label><br>
                 <small>Masukkan nomor Lead ID customer Anda</small>
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" required>
+                <input required name="lead_id" id="lead_id" type="text" class="form-control" minlength="16" required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
@@ -128,7 +134,6 @@
               <!-- Nama Pemberi Lead -->
               <div class="form-group">
                 <label for="nama_pemberi_lead">Nama Pemberi Lead *</label><br>
-                <small>Masukkan nama perusahaan (Tour & Travel) jika pemberi lead perusahaan (Tour & Travel)</small>
                 <input required name="nama_pemberi_lead" id="nama_pemberi_lead" type="text" class="form-control" required>
               </div>
               <!-- produk -->
@@ -146,7 +151,7 @@
               <div class="form-group">
                 <label for="object_price">Object Price *</label><br>
                 <small>Masukkan Object Price hanya angka saja, tanpa Rp, tanpa koma (,) ataupun tanpa (.) </small>
-                <input name="object_price" id="object_price" type="text" class="form-control" required>
+                <input name="object_price" id="object_price" type="number" class="form-control" required>
               </div>
             </div>
             <div class="card-footer text-center">

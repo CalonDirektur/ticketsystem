@@ -192,4 +192,11 @@ class Data_m extends CI_Model
 
         return $query->row();
     }
+
+    //CUSTOM QUERY
+    public function query($query)
+    {
+        $query = $this->db->query($query);
+        return $query;
+    }
 }

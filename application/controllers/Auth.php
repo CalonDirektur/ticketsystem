@@ -79,15 +79,37 @@ class Auth extends CI_Controller
 			$data = $this->user_m->get($email);
 
 			if ($data->num_rows() > 0) {
+				function generateMixedPassword($length = 8)
+				{
+					$base = 'abcdefghijklmnopqrstuvwxyz';
+					$baseD = '0123456789';
+
+					$r = array();
+
+					for ($i = 0; $i < $length; $i += 2) {
+						$r[] = substr($base, rand(0, strlen($base) - 1), 1);
+					}
+					for ($i = 0; $i < $length; $i += 2) {
+						$r[] = substr($baseD, rand(0, strlen($baseD) - 1), 1);
+					}
+					shuffle($r);
+
+					return implode('', $r);
+				}
+				$generate = generateMixedPassword();
+				$random_password = $generate;
+				// Script untuk ubah password random
+				$this->user_m->update(['password' => $random_password], ['email' => $email]);
+
 				$akun = $data->row();
 				// Konfigurasi email
 				$config = [
 					'mailtype'  => 'html',
 					'charset'   => 'utf-8',
 					'protocol'  => 'smtp',
-					'smtp_host' => 'ssl://smtp.gmail.com',
-					'smtp_user' => 'ibrahim.ahmad58@gmail.com',    // Ganti dengan email gmail kamu
-					'smtp_pass' => 'Speedog0g4',      // Password gmail kamu
+					'smtp_host' => 'srv50.niagahoster.com',
+					'smtp_user' => 'administrator@bfisyariah.id',    // Ganti dengan email gmail kamu
+					'smtp_pass' => 'Tralala1',      // Password gmail kamu
 					'smtp_port' => 465,
 					'crlf'      => "\r\n",
 					'newline'   => "\r\n"
@@ -97,7 +119,7 @@ class Auth extends CI_Controller
 				$this->load->library('email', $config);
 
 				// Email dan nama pengirim
-				$this->email->from('ibrahim.ahmad58@gmail.com', 'BFI Syariah Head Office');
+				$this->email->from('administrator@bfisyariah.id', 'BFI Syariah Head Office');
 
 				// Email penerima
 				$this->email->to($email); // Ganti dengan email tujuan kamu	
@@ -106,7 +128,7 @@ class Auth extends CI_Controller
 				$this->email->subject('Lupa Password');
 
 				// Isi email
-				$this->email->message("Detail Akun Anda: \n NIK: $akun->nik \n Nama: $akun->name \n E-mail: $akun->email \n Password: $akun->password");
+				$this->email->message("Detail Akun Anda: \n NIK: $akun->nik \n Nama: $akun->name \n E-mail: $akun->email \n Password:" . $random_password);
 
 				// Tampilkan pesan sukses atau error
 				if ($this->email->send()) {

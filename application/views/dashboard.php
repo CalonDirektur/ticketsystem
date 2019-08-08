@@ -528,9 +528,9 @@
                 <table class="display status responsive" width="100%">
                   <thead>
                     <tr>
-                      <th class="all">ID Lead</th>
+                      <th class="all">ID Lead Mgt.</th>
                       <th>Cabang</th>
-                      <th class="all">Lead ID</th>
+                      <th>Lead ID</th>
                       <th>Nama Konsumen</th>
                       <th>Sumber Lead</th>
                       <th class="all">Produk</th>
@@ -584,6 +584,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#rejected">Rejected <label class="badge badge-danger"><?= $total_rejected ?></label></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#completed">Completed <label class="badge badge-info"><?= $total_completed ?></label></a>
             </li>
           </ul>
           <br>
@@ -917,6 +920,113 @@
 
             </div>
 
+            <!-- Tab completed -->
+            <div class="tab-pane container-fluid fade" id="completed">
+
+              <div class="row mt-4">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myhajat') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-info"><?= $total_completed_myhajat ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-info"><?= $completed_mytalim ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-info"><?= $completed_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-info"><?= $completed_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/aktivasi_agent/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Aktivasi Agent</span><br>
+                        <label class="badge badge-info"><?= $completed_aktivasi_agent ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/nst') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>NST</span><br>
+                        <label class="badge badge-info"><?= $completed_nst ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/lead_management') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Lead Management</span><br>
+                        <label class="badge badge-info"><?= $completed_lead_management ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
@@ -974,7 +1084,7 @@
                           <td><span class="badge badge-secondary">Pending</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/pending/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
                         <?php } else if ($d->id_approval == 1) { ?>
-                          <td><span class="badge badge-danger">Ditolak</span></td>
+                          <td><span class="badge badge-info">Ditolak</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/rejected/mytalim/id/' . $d->id_mytalim) ?>">Detail</a></td>
                         <?php } else if ($d->id_approval == 2) { ?>
                           <td><span class="badge badge-success">Disetujui Admin 1</span></td>
@@ -1029,7 +1139,7 @@
                             <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/renovasi/' . $myhajat->id_renovasi) ?>">Detail</a></td>
                           <?php } else if ($myhajat->id_approval_renovasi == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><span class="badge badge-info">Ditolak</span></td>
                             <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/renovasi/' . $myhajat->id_renovasi) ?>">Detail</a></td>
                           <?php } else if ($myhajat->id_approval_renovasi == 2) { ?>
                             <td><span class="badge badge-success">Disetujui Admin 1</span></td>
@@ -1054,7 +1164,7 @@
                             <td><span class="badge badge-secondary">Pending</span></td>
                             <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/pending/myhajat/sewa/' . $myhajat->id_sewa) ?>">Detail</a></td>
                           <?php } else if ($myhajat->id_approval_sewa == 1) { ?>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
+                            <td><span class="badge badge-info">Ditolak</span></td>
                             <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/rejected/myhajat/sewa/' . $myhajat->id_sewa) ?>">Detail</a></td>
                           <?php } else if ($myhajat->id_approval_sewa == 2) { ?>
                             <td><span class="badge badge-success">Disetujui Admin 1</span></td>
@@ -1316,6 +1426,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#rejected">Rejected <span class="badge badge-danger"><?= $total_rejected ?></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#completed">Completed <span class="badge badge-info"><?= $total_completed ?></span></a>
             </li>
           </ul>
           <br>
@@ -1640,6 +1753,113 @@
                       <div class="card-body text-center p-2">
                         <span>Lead Management</span><br>
                         <label class="badge badge-secondary"><?= $rejected_lead_management ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Tab completed -->
+            <div class="tab-pane container-fluid fade" id="completed">
+
+              <div class="row mt-4">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myhajat') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-info"><?= $total_completed_myhajat ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-info"><?= $completed_mytalim ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-info"><?= $completed_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-info"><?= $completed_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/aktivasi_agent/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Aktivasi Agent</span><br>
+                        <label class="badge badge-info"><?= $completed_aktivasi_agent ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/nst') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>NST</span><br>
+                        <label class="badge badge-info"><?= $completed_nst ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/lead_management') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Lead Management</span><br>
+                        <label class="badge badge-info"><?= $completed_lead_management ?></span>
                       </div>
                     </div>
                   </a>
@@ -2044,6 +2264,9 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#rejected">Rejected <label class="badge badge-danger"><?= $total_rejected ?></label></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#completed">Completed <label class="badge badge-info"><?= $total_completed ?></label></a>
+            </li>
           </ul>
           <br>
 
@@ -2375,7 +2598,112 @@
               </div>
 
             </div>
+            <!-- Tab completed -->
+            <div class="tab-pane container-fluid fade" id="completed">
 
+              <div class="row mt-4">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myhajat') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-info"><?= $total_completed_myhajat ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-info"><?= $completed_mytalim ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-info"><?= $completed_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-info"><?= $completed_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/aktivasi_agent/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Aktivasi Agent</span><br>
+                        <label class="badge badge-info"><?= $completed_aktivasi_agent ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/nst') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>NST</span><br>
+                        <label class="badge badge-info"><?= $completed_nst ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/lead_management') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Lead Management</span><br>
+                        <label class="badge badge-info"><?= $completed_lead_management ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -3061,7 +3389,7 @@
                 <table class="display status responsive" width="100%">
                   <thead>
                     <tr>
-                      <th class="all">ID Lead</th>
+                      <th class="all">ID Lead Mgt.</th>
                       <th class="all">Lead ID</th>
                       <th>Nama Konsumen</th>
                       <th>Sumber Lead</th>
@@ -3116,71 +3444,74 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#rejected">Rejected <label class="badge badge-danger"><?= $total_rejected ?></label></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#completed">Completed <label class="badge badge-info"><?= $total_completed ?></label></a>
+            </li>
           </ul>
 
           <div class="tab-content">
 
             <div class="tab-pane container-fluid active" id="pending">
-                <div class="row mt-4">
+              <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/pending/myhajat/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Hajat</span><br>
-                          <label class="badge badge-secondary"><?= $total_pending_myhajat ?></span>
-                        </div>
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/pending/myhajat/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                       </div>
-                    </a>
-                  </div>
-  
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/pending/mytalim/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Talim</span><br>
-                          <label class="badge badge-secondary"><?= $pending_mytalim ?></label>
-                        </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-secondary"><?= $total_pending_myhajat ?></span>
                       </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/pending/myihram/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Ihram</span><br>
-                          <label class="badge badge-secondary"><?= $pending_myihram ?></label>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/pending/mysafar/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Safar</span><br>
-                          <label class="badge badge-secondary"><?= $pending_mysafar ?></label>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
+                    </div>
+                  </a>
                 </div>
+
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/pending/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-secondary"><?= $pending_mytalim ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/pending/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-secondary"><?= $pending_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/pending/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-secondary"><?= $pending_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
 
               <div class="row mt-4">
 
@@ -3231,65 +3562,65 @@
             </div>
 
             <div class="tab-pane container-fluid fade" id="approved">
-                <div class="row mt-4">
+              <div class="row mt-4">
 
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/approved/myhajat/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Hajat</span><br>
-                          <label class="badge badge-success"><?= $total_approved_myhajat ?></span>
-                        </div>
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/approved/myhajat/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
                       </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/approved/mytalim/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Talim</span><br>
-                          <label class="badge badge-success"><?= $approved_mytalim ?></span>
-                        </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-success"><?= $total_approved_myhajat ?></span>
                       </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/approved/myihram/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Ihram</span><br>
-                          <label class="badge badge-success"><?= $approved_myihram ?></label>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/approved/mysafar/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Safar</span><br>
-                          <label class="badge badge-success"><?= $approved_mysafar ?></label>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
+                    </div>
+                  </a>
                 </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/approved/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-success"><?= $approved_mytalim ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/approved/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-success"><?= $approved_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/approved/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-success"><?= $approved_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
 
               <div class="row mt-4">
                 <div class="col-md-3 col-sm-6 col-6 mt-1">
@@ -3338,65 +3669,65 @@
             </div>
 
             <div class="tab-pane container-fluid fade" id="rejected">
-                <div class="row mt-4">
-                  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/rejected/myhajat/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Hajat</span><br>
-                          <label class="badge badge-danger"><?= $total_rejected_myhajat ?></span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/rejected/mytalim/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Talim</span><br>
-                          <label class="badge badge-danger"><?= $rejected_mytalim ?></span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/rejected/myihram/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Ihram</span><br>
-                          <label class="badge badge-danger"><?= $rejected_myihram ?></label>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-  
-                  <div class="col-md-3 col-sm-6 col-6 mt-1">
-                    <a href="<?= base_url('status/rejected/mysafar/') ?>">
-                      <div class="card">
-                        <div class="card-header text-center">
-                          <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
-                        </div>
-                        <div class="card-body text-center p-2">
-                          <span>My Safar</span><br>
-                          <label class="badge badge-danger"><?= $rejected_mysafar ?></label>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+              <div class="row mt-4">
 
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/rejected/myhajat/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-danger"><?= $total_rejected_myhajat ?></span>
+                      </div>
+                    </div>
+                  </a>
                 </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/rejected/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-danger"><?= $rejected_mytalim ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/rejected/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-danger"><?= $rejected_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/rejected/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-danger"><?= $rejected_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
 
               <div class="row mt-4">
 
@@ -3442,6 +3773,113 @@
                   </a>
                 </div>
               </div>
+            </div>
+
+            <!-- Tab completed -->
+            <div class="tab-pane container-fluid fade" id="completed">
+
+              <div class="row mt-4">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myhajat') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-hajat-82.png') ?>" alt=""></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Hajat</span><br>
+                        <label class="badge badge-info"><?= $total_completed_myhajat ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mytalim/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-talim-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Talim</span><br>
+                        <label class="badge badge-info"><?= $completed_mytalim ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/myihram/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-ihram-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Ihram</span><br>
+                        <label class="badge badge-info"><?= $completed_myihram ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/mysafar/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/my-safar-82.png') ?>" alt="">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>My Safar</span><br>
+                        <label class="badge badge-info"><?= $completed_mysafar ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/aktivasi_agent/') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82">
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Aktivasi Agent</span><br>
+                        <label class="badge badge-info"><?= $completed_aktivasi_agent ?></label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/nst') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>NST</span><br>
+                        <label class="badge badge-info"><?= $completed_nst ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-6 mt-1">
+                  <a href="<?= base_url('status/completed/lead_management') ?>">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82"></i>
+                      </div>
+                      <div class="card-body text-center p-2">
+                        <span>Lead Management</span><br>
+                        <label class="badge badge-info"><?= $completed_lead_management ?></span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
 

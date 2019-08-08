@@ -24,6 +24,15 @@
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets2/img/bfi.jpg') ?>" />
+  <style>
+    table {
+      table-layout: fixed
+    }
+
+    table td {
+      word-wrap: break-word
+    }
+  </style>
 </head>
 
 <body>

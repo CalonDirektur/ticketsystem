@@ -109,7 +109,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mytalim';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -190,7 +190,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -275,7 +275,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -362,7 +362,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -449,7 +449,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -532,7 +532,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -615,7 +615,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myihram';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -691,7 +691,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mysafar';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -774,7 +774,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/lead_management';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -849,7 +849,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/aktivasi_agent';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -925,7 +925,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/nst';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1010,7 +1010,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mytalim';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1088,7 +1088,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1163,7 +1163,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1240,7 +1240,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1318,7 +1318,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1392,7 +1392,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1463,7 +1463,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myihram';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1534,7 +1534,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mysafar';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1595,7 +1595,6 @@ class Ticket_register extends CI_Controller
 		// FORMULIR LEAD MANAGEMENT
 		if (isset($_POST['edit_lead_management'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('ktp_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
 			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
 			$this->form_validation->set_rules('sumber_lead', 'Jenis Penyedia Jasa', 'required');
@@ -1626,7 +1625,7 @@ class Ticket_register extends CI_Controller
 				'cabang_survey' 		=> $post['cabang_survey'],
 				'informasi_tambahan'	=> $post['informasi_tambahan'],
 				'date_modified' 		=> date('Y-m-d H:i:s'),
-				'id_approval'			=> 2
+				'id_approval'			=> 3
 			];
 
 			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
@@ -1646,7 +1645,6 @@ class Ticket_register extends CI_Controller
 		if (isset($_POST['edit_aktivasi_agent'])) {
 			$data = [
 				// 'id_cabang' => $post['cabang'],
-				'lead_id' => $post['lead_id'],
 				'nama_agent' => $post['nama_agent'],
 				'jenis_agent' => $post['jenis_agent'],
 				'date_modified' => date('Y-m-d H:i:s'),
@@ -1655,7 +1653,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/aktivasi_agent';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1729,7 +1727,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/nst';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1812,7 +1810,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mytalim';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1890,7 +1888,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -1965,7 +1963,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2042,7 +2040,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2120,7 +2118,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2194,7 +2192,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2265,7 +2263,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myihram';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2336,7 +2334,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mysafar';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2398,7 +2396,6 @@ class Ticket_register extends CI_Controller
 		/* BELUM SELESAI */
 		if (isset($_POST['edit_lead_management_superuser'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
-			$this->form_validation->set_rules('ktp_konsumen', 'Jenis Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
 			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
 			$this->form_validation->set_rules('sumber_lead', 'Jenis Penyedia Jasa', 'required');
@@ -2428,7 +2425,6 @@ class Ticket_register extends CI_Controller
 				'cabang_survey'         => $post['cabang_survey'],
 				'informasi_tambahan'    => $post['informasi_tambahan'],
 				'date_modified'         => date('Y-m-d H:i:s'),
-				'id_approval'            => 2
 			];
 
 			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
@@ -2448,7 +2444,6 @@ class Ticket_register extends CI_Controller
 		if (isset($_POST['edit_aktivasi_agent_superuser'])) {
 			$data = [
 				// 'id_cabang' => $post['cabang'],
-				'lead_id' => $post['lead_id'],
 				'nama_agent' => $post['nama_agent'],
 				'jenis_agent' => $post['jenis_agent'],
 				'date_modified' => date('Y-m-d H:i:s'),
@@ -2457,7 +2452,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/aktivasi_agent';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2531,7 +2526,7 @@ class Ticket_register extends CI_Controller
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/nst';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 5000;
 			$config['max_height']           = 5000;
@@ -2579,6 +2574,47 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->update('tb_nst', $data, ['id_nst' => $post['id_nst']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		//////////// USER NST & LEAD MANAGEMENT
+		// FORMULIR LEAD MANAGEMENT
+		if (isset($_POST['edit_lead_management_user'])) {
+			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
+			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
+			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
+			$this->form_validation->set_rules('sumber_lead', 'Jenis Penyedia Jasa', 'required');
+			$this->form_validation->set_rules('nama_pemberi_lead', 'Nilai Pengajuan Pembiayaan', 'required');
+			$this->form_validation->set_rules('produk', 'Nilai Pengajuan Pembiayaan', 'required');
+			$this->form_validation->set_rules('object_price', 'Nilai Pengajuan Pembiayaan', 'required');
+			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
+
+			$data = [
+				'lead_id' 				=> $post['lead_id'],
+				'asal_leads' 			=> $post['asal_leads'],
+				'cabang_tujuan'			=> $post['cabang_tujuan'],
+				'surveyor'				=> $post['surveyor'],
+				'ttd_pic'				=> $post['ttd_pic'],
+				'nama_konsumen'			=> $post['nama_konsumen'],
+
+				// 'id_cabang' 			=> $post['cabang'],
+				'sumber_lead' 			=> $post['sumber_lead'],
+				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
+				'produk' 				=> $post['produk'],
+				'object_price' 			=> $post['object_price'],
+				'date_modified' 		=> date('Y-m-d H:i:s')
+			];
+
+			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";

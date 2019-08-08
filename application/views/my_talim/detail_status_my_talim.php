@@ -166,7 +166,7 @@
 
 				</div>
 				<!-- Bagian Munculin lampiran -->
-				<div class="col-lg-6 col-md-6">
+				<div class="col-lg-6 col-md-12 mt-2">
 					<!-- Form Upload Lampiran -->
 					<div id="upload" class="card">
 						<div class="card-header">
@@ -180,43 +180,43 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><?php if ($data->upload_file1 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a></td><?php } ?>
 										<td><input name="upload_file1" id="upload_file1" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file2 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a></td><?php } ?>
 										<td><input name="upload_file2" id="upload_file2" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file3 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a></td><?php } ?>
 										<td><input name="upload_file3" id="upload_file3" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file4 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a></td><?php } ?>
 										<td><input name="upload_file4" id="upload_file4" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file5 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a></td><?php } ?>
 										<td><input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file6 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a></td><?php } ?>
 										<td><input name="upload_file6" id="upload_file6" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file7 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a></td><?php } ?>
 										<td><input name="upload_file7" id="upload_file7" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file8 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a></td><?php } ?>
 										<td><input name="upload_file8" id="upload_file8" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file9 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a></td><?php } ?>
 										<td><input name="upload_file9" id="upload_file9" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 									<tr>
-										<td><?php if ($data->upload_file10 != NULL) { ?><a target="_blank" class="btn btn-info" href="<?= base_url('uploads/mytalim/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a></td><?php } ?>
+										<td><?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a></td><?php } ?>
 										<td><input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-12" disabled></td>
 									</tr>
 								</tbody>

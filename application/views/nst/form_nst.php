@@ -43,7 +43,7 @@
               <!-- Nama Agent -->
               <div class="form-group">
                 <label for="lead_id">Lead ID *</label>
-                <input required name="lead_id" id="lead_id" type="number" class="form-control" placeholder="Lead ID" required>
+                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="Lead ID" minlength="16" required>
               </div>
               <!-- Nama Agent -->
               <div class="form-group">

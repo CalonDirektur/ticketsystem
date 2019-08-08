@@ -226,12 +226,22 @@ class Status extends CI_Controller
             $this->template->load('template2', 'lead_management/lead_management_list', $data);
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
-            $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
+            // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
+                                                FROM tb_lead_management A
+                                                INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
+                                                LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
+                                                WHERE A.id_lead = $id AND A.id_approval = 0
+            ")->row();
+
+            $data['cabang_tujuan'] = $this->data_m->get('tb_cabang');
+
             $data['komentar'] = $this->comment_m->get_comment('tb_lead_management', 'parent_comment_id = 0 AND 
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang')->result();
+
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
     }
@@ -416,22 +426,6 @@ class Status extends CI_Controller
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang')->result();
             $this->template->load('template2', 'nst/detail_status_nst', $data);
-        }
-
-        ////////////////////////////// LEAD MANAGEMENT /////////////////////////////////////////
-        if ($produk == 'lead_management' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_lead_management', 'approved_review', $this->id_user)->result();
-            $this->template->load('template2', 'lead_management/lead_management_list', $data);
-        }
-        if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
-            $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 2])->row();
-
-            $data['komentar'] = $this->comment_m->get_comment('tb_lead_management', 'parent_comment_id = 0 AND 
-                                                                tb_comment.id_lead = tb_lead_management.id_lead AND 
-                                                                tb_lead_management.id_lead = ' . $id . ' AND
-                                                                tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
-            $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
     }
 
@@ -623,7 +617,13 @@ class Status extends CI_Controller
             $this->template->load('template2', 'lead_management/lead_management_list', $data);
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
-            $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 1])->row();
+            // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 1])->row();
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
+                                                FROM tb_lead_management A
+                                                INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
+                                                LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
+                                                WHERE A.id_lead = $id AND A.id_approval = 1
+            ")->row();
             $data['komentar'] = $this->comment_m->get_comment('tb_lead_management', 'parent_comment_id = 0 AND 
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
@@ -632,6 +632,7 @@ class Status extends CI_Controller
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
     }
+    //MENAMPILKAN DATA TIKET YANG SUDAH SELESAI (COMPLETED)
 
     public function completed($produk = NULL, $kategori = NULL, $id = NULL)
     {
@@ -820,12 +821,22 @@ class Status extends CI_Controller
             $this->template->load('template2', 'lead_management/lead_management_list', $data);
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
-            $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 3])->row();
+            // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
+                                                FROM tb_lead_management A
+                                                INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
+                                                LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
+                                                WHERE A.id_lead = $id AND A.id_approval = 3
+            ")->row();
+
+            $data['cabang_tujuan'] = $this->data_m->get('tb_cabang');
+
             $data['komentar'] = $this->comment_m->get_comment('tb_lead_management', 'parent_comment_id = 0 AND 
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang')->result();
+
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
     }
