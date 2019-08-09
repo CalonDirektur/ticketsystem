@@ -29,6 +29,7 @@
                   <option value="Eksternal">Eksternal</option>
                 </select>
               </div>
+              <!-- Cabang -->
               <div class="form-group">
                 <label for="cabang">Cabang *</label>
                 <select name="cabang" id="cabang" class="form-control" disabled required>
@@ -300,7 +301,7 @@
               <!-- Jumlah Biaya -->
               <div class="form-group">
                 <label for="jumlah_biaya">Jumlah Biaya Acara *</label>
-                <input name="jumlah_biaya" id="jumlah_biaya" type="text" class="form-control validasi wedding-required" placeholder="Jumlah Biaya">
+                <input name="jumlah_biaya" id="jumlah_biaya" type="number" class="form-control validasi wedding-required" placeholder="Jumlah Biaya">
               </div>
               <!-- Jumlah Undangan -->
               <div class="form-group">
@@ -342,8 +343,8 @@
                 <label for="jenis_franchise">Jenis Franchise *</label>
                 <select name="jenis_franchise" id="jenis_franchise" class="form-control validasi franchise-required">
                   <option value="Makanan dan Minuman">Makanan dan Minuman</option>
-                  <option value="otomotif">Otomotif</option>
-                  <option value="pendidikan/pelatihan">Pendidikan/Pelatihan</option>
+                  <option value="Otomotif">Otomotif</option>
+                  <option value="Pendidikan/pelatihan">Pendidikan/Pelatihan</option>
                   <option value="Hiburan & Hobi">Hiburan & Hobi</option>
                   <option value="Komputer/Teknologi">Komputer/Teknologi</option>
                   <option value="Kesehatan & Kecantikan">Kesehatan & Kecantikan</option>
@@ -359,7 +360,7 @@
               <!-- Harga -->
               <div class="form-group">
                 <label for="harga_franchise">Harga Franchise *</label>
-                <input name="harga_franchise" id="harga_franchise" type="text" class="form-control validasi franchise-required" placeholder="Harga">
+                <input name="harga_franchise" id="harga_franchise" type="number" class="form-control validasi franchise-required" placeholder="Harga">
               </div>
               <!-- Jangka Waktu Kepemilikan -->
               <div class="form-group">
@@ -406,7 +407,7 @@
               <!-- Nilai Pengajuan Pembiayaan -->
               <div class="form-group">
                 <label for="nilai_pembiayaan_lainnya">Nilai Pengajuan Pembiayaan *</label>
-                <input name="nilai_pembiayaan_lainnya" id="nilai_pembiayaan_lainnya" type="text" class="form-control validasi lainnya-required" placeholder="Nilai Pengajuan Pembiayaan">
+                <input name="nilai_pembiayaan_lainnya" id="nilai_pembiayaan_lainnya" type="number" class="form-control validasi lainnya-required" placeholder="Nilai Pengajuan Pembiayaan">
               </div>
               <!-- Informasi Tambahan -->
               <div class="form-group">

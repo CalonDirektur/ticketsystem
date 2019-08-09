@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/login-css.css') ?>">
 </head>
 
-<body>
+<body style="background-image: url(<?= base_url('assets2/img/ho.jpg') ?>); background-size: cover">
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-08-08 20:38:39
+# Date: 2019-08-09 14:10:48
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -35,7 +35,7 @@ CREATE TABLE `tb_aktivasi_agent` (
 # Data for table "tb_aktivasi_agent"
 #
 
-INSERT INTO `tb_aktivasi_agent` VALUES (3,0,'Mossad Agent','Syariah Agent','31589143_ML.jpg','Tukang_CoMarketingActivity.pdf','Tukang_FinancialServiceProposal.pdf',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,7,4,'2019-08-01 11:47:45','2019-08-08 09:09:41');
+INSERT INTO `tb_aktivasi_agent` VALUES (4,0,'Agent Badan Intelijen Nasional Syariah','Syariah Agent','ho.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,7,4,'2019-08-09 05:05:59','2019-08-09 05:34:51');
 
 #
 # Structure for table "tb_cabang"
@@ -83,7 +83,7 @@ CREATE TABLE `tb_comment` (
 # Data for table "tb_comment"
 #
 
-INSERT INTO `tb_comment` VALUES (104,0,'Komentar mytalim id 34',4,'2019-08-01 16:11:16',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(105,104,'Reply komentar mytalim id 34',4,'2019-08-01 16:11:29',34,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(106,0,'Komentar mytalim id 33',4,'2019-08-01 16:12:40',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(107,106,'reply keomentar mytalim id 33',4,'2019-08-01 16:12:50',33,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(108,0,'Komentar mytalim id 32',4,'2019-08-01 16:13:12',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(109,108,'Reply komentar mytalim id 32',4,'2019-08-01 16:13:25',32,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(110,0,'komentar my hajat renovasi id 14',4,'2019-08-01 16:18:51',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(111,110,'reply komentar my hajat renovasi id 14',4,'2019-08-01 16:18:59',NULL,14,NULL,NULL,NULL,NULL,0,0,0,0,0),(112,0,'komentar my safar id 7',4,'2019-08-01 16:35:56',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(113,112,'reply komentar my safar id 7',4,'2019-08-01 16:36:02',NULL,NULL,NULL,NULL,NULL,NULL,7,0,0,0,0),(114,0,'komentar my ihram id 7',4,'2019-08-01 16:36:20',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(115,114,'reply komentar my ihram id 7',4,'2019-08-01 16:36:59',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(116,0,'komentar aktivasi_agent id 3',4,'2019-08-01 16:48:24',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(117,116,'reply komentar aktivasi_agent id 3',4,'2019-08-01 16:48:32',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(118,116,'Komen admin 1',1,'2019-08-01 16:49:14',NULL,NULL,NULL,NULL,NULL,NULL,0,0,3,0,0),(119,0,'komentar mytalim id 28',4,'2019-08-03 10:17:12',28,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(120,119,'reply keomentar mytalim id 28',4,'2019-08-03 10:17:21',28,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(121,0,'wkkwkwkw',12,'2019-08-06 11:24:02',NULL,NULL,NULL,NULL,NULL,6,0,0,0,0,0),(122,114,'reply komentar my hajat wedding 12',4,'2019-08-08 09:16:48',NULL,NULL,NULL,NULL,NULL,NULL,0,7,0,0,0),(123,0,'Lead maangement id 15 komen',16,'2019-08-08 14:51:15',NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,15),(124,123,'reply lead management id 15',16,'2019-08-08 14:51:36',NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,0,15);
+INSERT INTO `tb_comment` VALUES (125,0,'ditolak mytalim id 35',17,'2019-08-09 10:32:26',35,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0),(126,0,'maaf kesalahan',4,'2019-08-09 10:45:37',NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,2,0);
 
 #
 # Structure for table "tb_konsumen"
@@ -140,7 +140,7 @@ CREATE TABLE `tb_lead_management` (
 # Data for table "tb_lead_management"
 #
 
-INSERT INTO `tb_lead_management` VALUES (13,'In Branch','3',NULL,NULL,'ahbdjsabd7831y4872y48237','Meyraldi Rizky Saputra','Agent','Leeds City','My Ihram','21321321313','','',0,'',NULL,'','',NULL,'2019-08-08 06:06:28','2019-08-08 06:20:50',3,7,4),(14,'Cross-Branch','4','Ibrahim Ahmad Jabar','asd','asdasd2asdasddwyt','julio saputra','Digital Marketing','asd','My Ihram','21321321313','Pefindo Checking','DRS>70%',213,'wwkwkkwkw','Reject','asdasd','asdasd','2','2019-08-08 06:21:26','2019-08-08 08:17:18',3,7,4),(15,'In Branch','','','','leads8779872389273','Ibrahim Ahmad','Digital Marketing','Avram Glazer','My Faedah','21321321313','Pefindo Checking','Collectibility',20,'wwkwkkwkw','Approve','SLA BRANCH','CABANG SURVEY','Tidak ada informasi tambahan','2019-08-08 07:30:32','2019-08-08 09:50:48',3,7,4);
+INSERT INTO `tb_lead_management` VALUES (16,'Cross-Branch','2','Ibrahim Ahmad Jabar','Mas Azan','leads8779872389273','Ahmed Mubarok','Digital Partner','Avram Glazer','My Hajat','21321321313','Pefindo Checking','Collectibility',90,'DSR','Approve','SLA BRANCH','CABANG SURVEY','hahaha','2019-08-09 05:21:54','2019-08-09 05:42:44',3,7,4);
 
 #
 # Structure for table "tb_my_hajat"
@@ -163,7 +163,7 @@ CREATE TABLE `tb_my_hajat` (
 # Data for table "tb_my_hajat"
 #
 
-INSERT INTO `tb_my_hajat` VALUES (18,17,NULL,NULL,NULL,NULL,6,12),(19,18,NULL,NULL,NULL,NULL,6,12),(21,NULL,NULL,NULL,NULL,6,6,12),(22,NULL,NULL,NULL,NULL,7,6,12),(23,19,NULL,NULL,NULL,NULL,7,4),(24,NULL,NULL,14,NULL,NULL,7,4);
+INSERT INTO `tb_my_hajat` VALUES (25,20,NULL,NULL,NULL,NULL,7,4),(26,NULL,13,NULL,NULL,NULL,7,4),(27,NULL,NULL,15,NULL,NULL,7,4),(28,NULL,NULL,NULL,8,NULL,7,4),(29,NULL,NULL,NULL,NULL,8,7,4),(30,21,NULL,NULL,NULL,NULL,39,15);
 
 #
 # Structure for table "tb_my_hajat_franchise"
@@ -179,7 +179,7 @@ CREATE TABLE `tb_my_hajat_franchise` (
   `jumlah_cabang` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Cabang Yang Dimiliki',
   `jenis_franchise` varchar(50) NOT NULL DEFAULT '' COMMENT 'Jenis Franchise',
   `tahun_berdiri_franchise` varchar(255) NOT NULL DEFAULT '' COMMENT 'Tahun Berdiri Franchise',
-  `harga_franchise` int(11) NOT NULL DEFAULT 0 COMMENT 'Harga Franchise',
+  `harga_franchise` bigint(20) NOT NULL DEFAULT 0 COMMENT 'Harga Franchise',
   `jangka_waktu_franchise` varchar(255) NOT NULL DEFAULT '' COMMENT 'Jangka Waktu Franchise',
   `akun_sosmed_website` varchar(255) NOT NULL DEFAULT '' COMMENT 'Akun Media Sosial / Website Franchise',
   `informasi_tambahan` text DEFAULT NULL,
@@ -205,6 +205,7 @@ CREATE TABLE `tb_my_hajat_franchise` (
 # Data for table "tb_my_hajat_franchise"
 #
 
+INSERT INTO `tb_my_hajat_franchise` VALUES (8,0,'Francis Ajax','Eksternal','Arkademy',90,'Retail','2010',5000000000,'Jangka Tertentu','@sabana_id','  Tidak ada informasi tambahan untuk sabana FC','MOH_EDI.PNG','steam_error_2.PNG','steam_error.PNG','UPIH_RAHAYU_SRI_REJEKI.PNG',NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 04:44:36','2019-08-09 05:34:31',3,7,4);
 
 #
 # Structure for table "tb_my_hajat_lainnya"
@@ -242,7 +243,7 @@ CREATE TABLE `tb_my_hajat_lainnya` (
 # Data for table "tb_my_hajat_lainnya"
 #
 
-INSERT INTO `tb_my_hajat_lainnya` VALUES (6,'Ahmed Mubarok','Eksternal','Mecca Travel','Badan Usaha',2000000000,' ga ada','MyIhram3.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-06 06:22:34','2019-08-06 06:30:29',3,0,6,12),(7,'konsumen','Eksternal','Kocheeengg','Perorangan',2000000000,'informasi tamabhan','7_September_Cover.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-06 06:25:56','2019-08-07 07:58:56',1,0,6,12);
+INSERT INTO `tb_my_hajat_lainnya` VALUES (8,'Gede Laroiba','Internal','Service Org.','Badan Usaha',25000000,'Tidak ada informasi untuuk ini','8785205_ML1.jpg','31589143_ML1.jpg','75387856_ML.jpg','80665507_ML.jpg',NULL,NULL,NULL,NULL,'75387856_ML1.jpg','80665507_ML1.jpg','2019-08-09 04:48:38','2019-08-09 05:34:36',3,0,7,4);
 
 #
 # Structure for table "tb_my_hajat_renovasi"
@@ -258,7 +259,7 @@ CREATE TABLE `tb_my_hajat_renovasi` (
   `jenis_pekerjaan` varchar(255) NOT NULL DEFAULT '',
   `bagian_bangunan` varchar(255) NOT NULL DEFAULT '',
   `luas_bangunan` varchar(255) NOT NULL DEFAULT '',
-  `jumlah_pekerja` int(11) NOT NULL DEFAULT 0,
+  `jumlah_pekerja` varchar(11) NOT NULL DEFAULT '0',
   `estimasi_waktu` varchar(255) NOT NULL DEFAULT '',
   `nilai_pembiayaan` bigint(20) NOT NULL DEFAULT 0,
   `informasi_tambahan` text DEFAULT NULL,
@@ -285,7 +286,7 @@ CREATE TABLE `tb_my_hajat_renovasi` (
 # Data for table "tb_my_hajat_renovasi"
 #
 
-INSERT INTO `tb_my_hajat_renovasi` VALUES (17,'julio saputra','Eksternal','Aji-tkangin.com','Badan Usaha','Badan Usaha','Taman','150 x 152',900,'9 tahun',999999999999,'nonononono','6_September.png','7_September_4.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-06 05:54:00','2019-08-08 15:57:02',3,6,0,12),(18,'Ahmad Jabrin','Eksternal','vendoro makkah','Perorangan','Perorangan','sdfsdf','sdfsdfsd',12312,'dasasd',123,'dsf','MyIhram1.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-06 06:16:58','2019-08-07 13:57:15',3,6,0,12),(19,'Ahmad Baequni','Eksternal','Vendor Renovasi','Perorangan','Perorangan','Atap','90 x 90',210,'9 waktu',9000000000,'Traveloka','Trifold_Flyer.jpg','Ikhtisar_Data_Keuangan_Fintech_(P2P_Lending)_Periode_Desember_2018.xlsx',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-06 08:42:01','2019-08-08 09:56:32',0,7,0,4);
+INSERT INTO `tb_my_hajat_renovasi` VALUES (20,'Maulana Arif Kuncoro','Internal','Renovasi.com','Badan Usaha','Badan Usaha','Bagian atap','10 x 10','122 orang','9 bulan',9000000000,'Bismillah','023fbaf7-d185-42a3-9989-d50ea8ba3e62.jpg','FORM_DATA_BANK_DASHBOARD.docx','Mudharabah-Deni_Nasri.pdf','WhatsApp_Image_2019-05-14_at_14.50.04.jpeg','WhatsApp_Image_2019-05-20_at_11.10.10.jpeg','ebea9f35-1e88-40a4-bd8f-00b69bbb4ac3.jpg',NULL,NULL,NULL,NULL,'2019-08-09 04:29:24','2019-08-09 10:40:38',3,7,0,4),(21,'Akon','Eksternal','Vendor.com','Perorangan','Perorangan','Bagian Dapur','90 x 90','212','9 tahun',19998837737,'ALhmadulillah renovasi','no_thumbnail_found_suggestion.png','ho.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 05:56:30','2019-08-09 11:09:56',2,39,0,15);
 
 #
 # Structure for table "tb_my_hajat_sewa"
@@ -325,6 +326,7 @@ CREATE TABLE `tb_my_hajat_sewa` (
 # Data for table "tb_my_hajat_sewa"
 #
 
+INSERT INTO `tb_my_hajat_sewa` VALUES (13,0,'Samir Nasri','Eksternal','James Ahmad Riyadi','Perorangan','Teman','90 x 90',1000000000,3,7,' Tidak ada informasi tambahan untuk support request ini.','WhatsApp_Image_2019-05-20_at_11.10.15.jpeg','5a952fc5-632e-4d2b-a95a-6f43dfad93c9.jpg','5a952fc5-632e-4d2b-a95a-6f43dfad93c91.jpg',NULL,'itinerary_persada_indonesia.docx','Promo_Umroh_Gratis_1_Leads_2019-07-01_2019-07-03.xls',NULL,NULL,NULL,NULL,'2019-08-09 04:36:04','2019-08-09 05:34:17',4);
 
 #
 # Structure for table "tb_my_hajat_wedding"
@@ -339,7 +341,7 @@ CREATE TABLE `tb_my_hajat_wedding` (
   `nama_wo` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nama Wedding Organizer',
   `jenis_wo` varchar(50) NOT NULL DEFAULT '' COMMENT 'Jenis Wedding Organizer',
   `lama_berdiri` varchar(255) NOT NULL DEFAULT '' COMMENT 'Lama Usaha Berdiri',
-  `jumlah_biaya` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Biaya Acara',
+  `jumlah_biaya` bigint(20) NOT NULL DEFAULT 0 COMMENT 'Jumlah Biaya Acara',
   `jumlah_undangan` int(11) NOT NULL DEFAULT 0 COMMENT 'Jumlah Undangan',
   `akun_sosmed` varchar(50) NOT NULL DEFAULT '' COMMENT 'Akun Media Sosial WO',
   `informasi_tambahan` text DEFAULT NULL,
@@ -365,7 +367,7 @@ CREATE TABLE `tb_my_hajat_wedding` (
 # Data for table "tb_my_hajat_wedding"
 #
 
-INSERT INTO `tb_my_hajat_wedding` VALUES (14,0,'Ahmad Abdu','Internal','Suryajana','Perusahaan/Badan Usaha','1998',2147483647,2019,'@namaakun','yang bener ajee','abhinaya.png','wallhaven-743619.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-06 08:45:12','2019-08-08 03:55:14',7,3,4);
+INSERT INTO `tb_my_hajat_wedding` VALUES (15,0,'Andrisa','Internal','Wedding Org','Perusahaan/Badan Usaha','9 Tahun',28000000,512,'@wedding_org',' Tidak ada informasi tambahan untuk wedding ini','buku_rekening_kaka.jpg','Data_dari_BFI.xlsx','All_Brosur_+_Itinerary_(1).txt','WhatsApp_Image_2019-05-20_at_11.10.101.jpeg','Logo_OJK.png',NULL,NULL,NULL,NULL,NULL,'2019-08-09 04:42:22','2019-08-09 05:34:21',7,3,4);
 
 #
 # Structure for table "tb_my_ihram"
@@ -400,7 +402,7 @@ CREATE TABLE `tb_my_ihram` (
 # Data for table "tb_my_ihram"
 #
 
-INSERT INTO `tb_my_ihram` VALUES (7,0,'Ahmad Jabar','Internal','','22886363_ML.jpg','11861127_ML.jpg','13160727_ML.jpg','8785205_ML.jpg','28085868_ML.jpg','11913347_ML.jpg',NULL,NULL,NULL,NULL,'2019-08-01 16:56:30','2019-08-01 11:34:26',1,7,4);
+INSERT INTO `tb_my_ihram` VALUES (8,0,'Lia','Internal','Ihram Travel','87901200_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 13:06:33','2019-08-09 05:34:41',1,7,4);
 
 #
 # Structure for table "tb_my_safar"
@@ -435,7 +437,7 @@ CREATE TABLE `tb_my_safar` (
 # Data for table "tb_my_safar"
 #
 
-INSERT INTO `tb_my_safar` VALUES (7,0,'Ibrahim','Eksternal','Safar Travel','32620597_ML.jpg','32900260_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-01 16:56:39','2019-08-01 11:35:37',1,7,4),(8,0,'Mas Eko','Eksternal','Safar Travel','8_Agustus.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-07 13:05:23','2019-08-07 04:29:35',1,7,4);
+INSERT INTO `tb_my_safar` VALUES (9,0,'Eko Patriot','Internal','Safar Travel','my-safar-82.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 10:40:56','2019-08-09 05:34:45',3,7,4);
 
 #
 # Structure for table "tb_my_talim"
@@ -478,7 +480,7 @@ CREATE TABLE `tb_my_talim` (
 # Data for table "tb_my_talim"
 #
 
-INSERT INTO `tb_my_talim` VALUES (28,0,'Ibrahim Ahmad','Internal','Universitas','khidir','Universitas Budi Luhur','1996','A','2016 - 2021','Supaya bisa kuliah',0,'8785205_ML.jpg','9469640_ML.jpg','11861127_ML.jpg','11913347_ML.jpg','12450825_ML.jpg','13113112_ML.jpg','13160727_ML.jpg','17298849_ML.jpg','19583854_ML.jpg','22886363_ML.jpg',2,' ',7,4,'2019-08-01 10:46:52','2019-08-07 07:59:19'),(29,0,'Ramdan Darmawan','Eksternal','Universitas','aHMAD jABRIN','Universitas Budi Luhur','1996','A','2016 - 2021','Supaya bisa mendapat pekerjaan',0,'91201975_ML.jpg','89480959_ML.jpg','89457932_ML.jpg','87901200_ML.jpg','86182968_ML.jpg','83200817_ML.jpg','82876449_ML.jpg','81562729_ML.jpg','DailySocial_Startup_Report_2018.pdf','Content.xlsx',0,'     ',7,4,'2019-08-01 10:51:42','2019-08-08 03:41:55'),(30,0,'Don Aria Sabda','Eksternal','Universitas','','Universitas Indonesia','1996','B','1990-1991','Pekerjaan Cerah',0,'81562729_ML1.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,'',7,4,'2019-08-01 10:57:44','2019-08-01 10:57:44'),(31,0,'Meyraldi Rizky Saputra','Eksternal','Lainnya','','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML.jpg','23355853_ML.jpg','11913347_ML1.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,'',7,4,'2019-08-01 11:05:10','2019-08-01 11:05:10'),(32,0,'Meyraldi Rizky Saputra','Eksternal','Lainnya','','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML1.jpg','23355853_ML1.jpg','11913347_ML2.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,'',7,4,'2019-08-01 11:06:27','2019-08-01 11:06:27'),(33,0,'Meyraldi Rizky Saputra','Eksternal','Lainnya','Ahmad Jabar','UPH','1995','F','2017 - 2018','Pekerjaan Cerah',900000000,'31589143_ML2.jpg','23355853_ML2.jpg','11913347_ML3.jpg','UMRAH_9_HARI_(1).xlsx','UMRAH_9_HARI.xlsx','DigitalMarketing.xlsx','Thirdparty.xlsx','pictogram_ihram.png','20190228_163224.jpg','20190228_163236.jpg',0,'   ',7,4,'2019-08-01 11:09:03','2019-08-08 04:52:08'),(34,0,'Ahmad Jabar','Eksternal','Lainnya','','UPH','1995','C','2017 - 2018','Pekerjaan Cerah',0,'31589143_ML3.jpg','23355853_ML3.jpg','11913347_ML4.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,'',7,4,'2019-08-01 11:10:33','2019-08-01 11:10:33');
+INSERT INTO `tb_my_talim` VALUES (35,0,'Ahmad Sauqi','Eksternal','Universitas','Ibrahim Ahmad Jabar','Universitas Budi Luhur','1990','A','2016 - 2020','Uang Masuk',5000000000,'Trifold_Flyer.jpg','20190228_1632241.jpg','IMG-20190125-WA0005.jpg','wallhaven-743619.jpg','Logo_OJK.png','pictogram_ihram1.png','Tukang_CoMarketingActivity.pdf','Tukang_FinancialServiceProposal.pdf','9d8a81ba-73e0-4f21-88b2-64fb7c718603.jpg','5a952fc5-632e-4d2b-a95a-6f43dfad93c9.jpg',3,'     Tidak ada informasi tambahan',7,4,'2019-08-09 04:16:36','2019-08-09 05:34:09');
 
 #
 # Structure for table "tb_nst"
@@ -513,7 +515,7 @@ CREATE TABLE `tb_nst` (
 # Data for table "tb_nst"
 #
 
-INSERT INTO `tb_nst` VALUES (1,'ahbdjsasdsaddcvd','Muhammad Alvin Prayoga','My Ihram','20190228_163224.jpg','20190228_163236.jpg',NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-08-08 10:46:52','2019-08-08 10:49:22');
+INSERT INTO `tb_nst` VALUES (2,'ahbdjsabd7831y4872y48237','Muhammad Alvin Prahyugo','My Faedah','profile-pic.jpg',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-08-09 05:21:03','2019-08-09 05:45:52');
 
 #
 # Structure for table "tb_ticket"
@@ -556,4 +558,4 @@ CREATE TABLE `user` (
 # Data for table "user"
 #
 
-INSERT INTO `user` VALUES (1,'Lia','200001','admin1','admin1@admin.com','admin1',2,1,46),(2,'Gede Laroiba','200002','admin2','admin2@admin.com','admin2',3,1,46),(4,'Ibrahim Ahmad','832831','ibrahim','ibrahim.ahmadd98@gmail.com','iNs7n6G\'',1,1,7),(11,'Okky Aditya','200003','okky','okky@user.com','okky',1,0,7),(12,'Adit','200005','adit','adit@adit.com','adit',1,1,6),(13,'Saiful Bahri','200006','saiful','saiful@bfi.co.id','saiful',1,0,15),(14,'Salman Al Farisi','200007','salman','salman@bfi.co.id','salman',1,0,2),(15,'User','200008','user','user@app.com','user',1,1,39),(16,'Maulana Arif Kuncoro','200009','arif','arif@bfi.co.id','arif',4,1,46),(17,'Atasan','200010','superuser','superuser@bfi.co.id','superuser',5,1,46),(19,'Ramdan Darmawan','200011','ramdan12','ramdan.darmawan16@gmail.com','pcmaster12',1,0,45);
+INSERT INTO `user` VALUES (1,'Lia','200001','admin1','admin1@admin.com','admin1',2,1,46),(2,'Gede Laroiba','200002','admin2','admin2@admin.com','admin2',3,1,46),(4,'Ibrahim Ahmad','832831','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim123',1,1,7),(11,'Okky Aditya','200003','okky','okky@user.com','okky',1,0,7),(12,'Adit','200005','adit','adit@adit.com','adit',1,1,6),(13,'Saiful Bahri','200006','saiful','saiful@bfi.co.id','saiful',1,0,15),(14,'Salman Al Farisi','200007','salman','salman@bfi.co.id','salman',1,0,2),(15,'Abdul Akon Right Na nana','200008','user','user@app.com','user',1,1,39),(16,'Maulana Arif Kuncoro','200009','arif','arif@bfi.co.id','arif',4,1,46),(17,'Admin Supervisor','200010','superuser','superuser@bfi.co.id','superuser',5,1,46),(19,'Ramdan Darmawan','200011','ramdan12','ramdan.darmawan16@gmail.com','pcmaster12',1,0,45);

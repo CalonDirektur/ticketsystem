@@ -142,7 +142,7 @@
                 <tr>
                   <td><b>Aksi:</b></td>
                   <td>
-                    <a class="btn btn-success mt-1" href="<?= base_url('Superuser/complete/myhajat/wedding/' . $data->id_wedding) ?>">Complete</a>
+                    <a class="btn btn-info mt-1" href="<?= base_url('Superuser/complete/myhajat/wedding/' . $data->id_wedding) ?>">Complete</a>
                     <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myhajat/wedding/' . $data->id_wedding) ?>">Reject</a>
                   </td>
                 </tr>

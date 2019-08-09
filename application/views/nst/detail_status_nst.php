@@ -86,7 +86,7 @@
 									</tr>
 								<?php } ?>
 								<!-- Tombol ini muncul untuk menyelesaikan support dan  khusus untuk user -->
-								<?php if ($this->session->userdata('level') == 1 && ($data->id_approval == 2)) { ?>
+								<?php if ($this->session->userdata('level') == 1 && $data->id_approval == 2) { ?>
 									<tr>
 										<td>
 											<a class="btn btn-primary" href="<?= base_url('Admin_nst/complete/nst/id/' . $data->id_nst) ?>">Selesaikan</a>
@@ -94,8 +94,8 @@
 										<td></td>
 									</tr>
 								<?php } ?>
-								<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-								<?php if (($this->session->userdata('level') == 2 || $this->session->userdata('level') == 4) && ($data->id_approval == 0)) { ?>
+								<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
+								<?php if (($this->session->userdata('level') == 5 || $this->session->userdata('level') == 4)) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>

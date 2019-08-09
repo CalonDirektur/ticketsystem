@@ -84,7 +84,7 @@
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-success" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+											<a class="btn btn-info" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
 											<a class="btn btn-danger" href="<?= base_url('Admin1/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 										</td>
 									</tr>
@@ -94,7 +94,7 @@
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-success" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+											<a class="btn btn-info" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
 											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 										</td>
 									</tr>
@@ -104,9 +104,8 @@
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-primary" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Complete</a>
-											<a class="btn btn-success" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
-											<a class="btn btn-danger" href="<?= base_url('Admin2/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
+											<a class="btn btn-info" href="<?= base_url('Superuser/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Complete</a>
+											<a class="btn btn-danger" href="<?= base_url('Superuser/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 										</td>
 									</tr>
 								<?php } ?>

@@ -131,7 +131,7 @@
 										</select>
 									</td>
 								</tr>
-								<!-- Menu ini muncul khusus untuk Admin NST -->
+								<!-- Menu ini muncul khusus untuk Admin NST dan Superuser -->
 								<?php if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) { ?>
 									<tr>
 										<td><b>Tahap Reject</b></td>
@@ -218,8 +218,8 @@
 										?>
 									</td>
 								</tr>
-								<!-- Tombol ini muncul khusus untuk user -->
-								<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+								<!-- Tombol ubah data muncul khusus untuk user -->
+								<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0)) { ?>
 									<tr>
 										<td>
 											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -227,9 +227,17 @@
 										<td></td>
 									</tr>
 								<?php } ?>
-
-								<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
-								<?php if (($this->session->userdata('level') == 4 || $this->session->userdata('level') == 4) && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
+								<!-- Tombol ubah data muncul khusus untuk ADMIN NST dan SUPERUSER -->
+								<?php if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) { ?>
+									<tr>
+										<td>
+											<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+										</td>
+										<td></td>
+									</tr>
+								<?php } ?>
+								<!-- Tombol UPDATE DATA ini akan muncul untuk Admin NST dan SUPERUSER -->
+								<?php if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
@@ -238,8 +246,8 @@
 									</tr>
 								<?php } ?>
 
-								<!-- Tombol Aksi ini akan muncul khusus User -->
-								<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 2)) { ?>
+								<!-- Tombol UPDATE DATA ini akan muncul khusus User -->
+								<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0)) { ?>
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>

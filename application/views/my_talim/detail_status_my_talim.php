@@ -226,7 +226,7 @@
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
 								<!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-								<button onclick="return confirm('Harap periksa kembali\n,Apakah Anda yakin data yang diisi sudah benar?');" type="submit" id="edit_mytalim" class="btn btn-primary enable" name="edit_mytalim" disabled>Kirim Data!</button>
+								<button type="submit" id="edit_mytalim" class="btn btn-primary enable" name="edit_mytalim" disabled>Kirim Data!</button>
 							</div>
 						<?php } ?>
 						<?php if ($this->session->userdata('level') == 5) { ?>

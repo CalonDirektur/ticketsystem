@@ -14,7 +14,6 @@
           <div class="card-header text-center">
             <h3 class="card-title">Data Ticket My Hajat Franchise</h3>
           </div>
-          <!-- /.card-header -->
           <div class="card-body p-0">
             <table class="table table-striped">
               <thead>
@@ -70,7 +69,16 @@
               <tr>
                 <td><b>Jenis Franchise</b></td>
                 <td>
-                  <input type="text" class="form-control enable" name="jenis_franchise" id="jenis_franchise" value="<?= $data->jenis_franchise ?>" readonly required>
+                  <select class="form-control enable" name="jenis_franchise" id="jenis_franchise" disabled required>
+                    <option value="Makanan dan Minuman" <?= $data->jenis_franchise == 'Makanan dan Minuman' ? 'selected' : '' ?>>Makanan dan Minuman</option>
+                    <option value="Otomotif" <?= $data->jenis_franchise == 'Otomotif' ? 'selected' : '' ?>>Otomotif</option>
+                    <option value="Pendidikan/pelatihan" <?= $data->jenis_franchise == 'Pendidikan/pelatihan' ? 'selected' : '' ?>>Pendidikan/Pelatihan</option>
+                    <option value="Hiburan & Hobi" <?= $data->jenis_franchise == 'Hiburan & Hobi' ? 'selected' : '' ?>>Hiburan & Hobi</option>
+                    <option value="Komputer/Teknologi" <?= $data->jenis_franchise == 'Komputer/Teknologi' ? 'selected' : '' ?>>Komputer/Teknologi</option>
+                    <option value="Kesehatan & Kecantikan" <?= $data->jenis_franchise == 'Kesehatan & Kecantikan' ? 'selected' : '' ?>>Kesehatan & Kecantikan</option>
+                    <option value="Retail" <?= $data->jenis_franchise == 'Retail' ? 'selected' : '' ?>>Retail</option>
+                    <option value="Lainnya" <?= $data->jenis_franchise == 'Lainnya' ? 'selected' : '' ?>>Lainnya</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -114,6 +122,7 @@
                   <td>
                     <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
                   </td>
+                  <td></td>
                 </tr>
               <?php } ?>
               <?php if ($this->session->userdata('level') == 5) { ?>
@@ -121,6 +130,7 @@
                   <td>
                     <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
                   </td>
+                  <td></td>
                 </tr>
               <?php } ?>
               <tr>
@@ -166,7 +176,7 @@
                 <tr>
                   <td><b>Aksi:</b></td>
                   <td>
-                    <a class="btn btn-success" href="<?= base_url('Superuser/complete/myhajat/franchise/' . $data->id_franchise) ?>">Complete</a>
+                    <a class="btn btn-info" href="<?= base_url('Superuser/complete/myhajat/franchise/' . $data->id_franchise) ?>">Complete</a>
                     <a class="btn btn-danger" href="<?= base_url('Superuser/reject/myhajat/franchise/' . $data->id_franchise) ?>">Reject</a>
                   </td>
                 </tr>

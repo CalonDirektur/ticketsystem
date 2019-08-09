@@ -111,7 +111,7 @@
 									<tr>
 										<td><b>Aksi:</b></td>
 										<td>
-											<a class="btn btn-success mt-1" href="<?= base_url('Superuser/complete/myihram/id/' . $data->id_myihram) ?>">Complete</a>
+											<a class="btn btn-info mt-1" href="<?= base_url('Superuser/complete/myihram/id/' . $data->id_myihram) ?>">Complete</a>
 											<a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
 										</td>
 									</tr>

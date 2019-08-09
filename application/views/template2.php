@@ -24,15 +24,6 @@
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets2/img/bfi.jpg') ?>" />
-  <style>
-    table {
-      table-layout: fixed
-    }
-
-    table td {
-      word-wrap: break-word
-    }
-  </style>
 </head>
 
 <body>
@@ -54,9 +45,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
               <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
-              <!-- <a class="dropdown-item preview-item">
+              <a href="<?= base_url('Auth/profile') ?>" class="dropdown-item preview-item">
                 <i class="icon-head"></i> Profile
-              </a> -->
+              </a>
               <a href="<?= site_url('auth/logout') ?>" class="dropdown-item preview-item">
                 <i class="icon-inbox"></i> Logout
               </a>

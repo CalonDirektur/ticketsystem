@@ -184,6 +184,50 @@ class Auth extends CI_Controller
 		redirect('auth/list_user');
 	}
 
+	//method untuk memunculkan data profil
+	public function profile()
+	{
+		// echo $this->fungsi->user_login()->nik;
+		$query = $this->user_m->get($this->fungsi->user_login()->nik);
+		$data['data'] = $query->row();
+		$this->template->load('template2', 'profile', $data);
+	}
+
+	public function update_profil()
+	{
+		$post = $this->input->post(NULL, TRUE);
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]');
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|matches[password]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->user_m->get($this->fungsi->user_login()->nik);
+			$data['data'] = $query->row();
+			$this->template->load('template2', 'profile', $data);
+		} else {
+
+			$where = ['nik' => $post['nik']];
+
+			if ($post['password'] == NULL) {
+				$data = [
+					'name' => $post['name']
+				];
+			} else {
+				$data = [
+					'name' => $post['name'],
+					'password' => $post['password']
+				];
+			}
+			$this->user_m->update($data, $where);
+			$this->session->set_flashdata('update_profile_success', '<div class="alert alert-success" role="alert"> Berhasil mengubah profil Anda!</div>');
+			redirect("dashboard");
+		}
+	}
+
 	// Proses Logout
 	public function logout()
 	{

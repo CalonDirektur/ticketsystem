@@ -80,6 +80,70 @@ $(document).ready(function () {
 	// 	window.location = $(this).data("href");
 	// });
 
+	//Script untuk form lead management user, ketika memilih asal leads
+	$(".cross-branch-div").hide();
+	$(".form-check-input").click(function () {
+		if ($("#cross_branch").is(':checked')) {
+			$(".cross-branch-div").slideDown();
+			$(".cross_branch-required").attr('required', 'required');
+		} else {
+			$(".cross-branch-div").slideUp();
+			$(".cross_branch-required").val("").removeAttr('required');
+		}
+	})
+
+	//jika card report request support di klik maka akan scroll ke table
+	$(".card-pending").click(function () {
+		// alert('asd');
+		$('html,body').animate({
+			scrollTop: $(".pending:first").offset().top - 500
+		}, 'medium', function () {
+			$(".pending").animate({
+				'opacity': '0.3'
+			}, 'fast');
+			$(".pending").animate({
+				'opacity': '1.0'
+			}, 'fast');
+		});
+	});
+	$(".card-approved").click(function () {
+		$('html,body').animate({
+			scrollTop: $(".approved:first").offset().top - 500
+		}, 'medium', function () {
+			$(".approved").animate({
+				'opacity': '0.3'
+			}, 'fast');
+			$(".approved").animate({
+				'opacity': '1.0'
+			}, 'fast');
+		});
+	});
+	$(".card-rejected").click(function () {
+		$('html,body').animate({
+			scrollTop: $(".rejected:first").offset().top - 500
+		}, 'medium', function () {
+			$(".rejected").animate({
+				'opacity': '0.3'
+			}, 'fast');
+			$(".rejected").animate({
+				'opacity': '1.0'
+			}, 'fast');
+		});
+	});
+	$(".card-completed").click(function () {
+		$('html,body').animate({
+			scrollTop: $(".completed:first").offset().top - 500
+		}, 'medium', function () {
+			$(".completed").animate({
+				'opacity': '0.3'
+			}, 'fast');
+			$(".completed").animate({
+				'opacity': '1.0'
+			}, 'fast');
+		});
+
+	});
+
 	// Script untuk input produk 
 	$("#input_produk").change(function () {
 		var input = $(this).val();
@@ -106,17 +170,7 @@ $(document).ready(function () {
 		}
 	})
 
-	//Script untuk form lead management user, ketika memilih asal leads
-	$(".cross-branch-div").hide();
-	$(".form-check-input").click(function () {
-		if ($("#cross_branch").is(':checked')) {
-			$(".cross-branch-div").slideDown();
-			$(".cross_branch-required").attr('required', 'required');
-		} else {
-			$(".cross-branch-div").slideUp();
-			$(".cross_branch-required").val("").removeAttr('required');
-		}
-	})
+
 
 
 	// Method untuk My Ta'lim 
