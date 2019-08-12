@@ -11296,7 +11296,7 @@ pre code {
 .typeahead::placeholder,
 .tt-query::placeholder,
 .tt-hint::placeholder {
-	color: #666666;
+	color: #cccccc;
 	opacity: 1;
 }
 
@@ -13928,7 +13928,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
 	color: #fff;
-	background-color: #007bff;
+	background-color: #fdfdfd;
 }
 
 .nav-fill .nav-item {
@@ -22255,7 +22255,7 @@ code {
 }
 
 .form-check .form-check-label input[type="checkbox"]:checked+.input-helper:before {
-	background: #ec37fc;
+	background: #3794fc;
 	border-width: 0;
 }
 
@@ -23873,7 +23873,7 @@ dl li {
 }
 
 .sidebar .nav .nav-item .nav-link i {
-	color: inherit;
+	color: #ffffff;
 }
 
 .sidebar .nav .nav-item .nav-link i.menu-icon {
@@ -23969,7 +23969,7 @@ dl li {
 }
 
 .sidebar .nav .nav-item.active+.nav-item .nav-link {
-	border-top: 1px solid #ec37fc;
+	border-top: 1px solid #ffffff;
 }
 
 .sidebar .nav .nav-item:first-child .nav-link {
@@ -24029,20 +24029,21 @@ dl li {
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover {
-	color: #b10dbf;
+	color: #ffffff;
 	background: transparent;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover::before {
-	border: 1px solid #b10dbf;
+	border: 1px solid #ffffff;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
-	color: #b10dbf;
+	color: #ffffff;
+	font-weight: 900;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active::before {
-	border: 1px solid #b10dbf;
+	border: 1px solid #ffffff;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link::before {
@@ -24929,7 +24930,7 @@ dl li {
 	}
 
 	.sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link.active {
-		color: #001737;
+		color: #ffffff;
 	}
 
 	.sidebar-icon-only .sidebar .nav.sub-menu .nav-item:before {

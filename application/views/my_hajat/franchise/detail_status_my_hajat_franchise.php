@@ -80,7 +80,7 @@
               <tr>
                 <td><b>Tahun Berdiri Franchise</b></td>
                 <td>
-                  <input type="number" class="form-control enable" name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" value="<?= $data->tahun_berdiri_franchise ?>" readonly required>
+                  <input type="text" class="form-control enable" name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" value="<?= $data->tahun_berdiri_franchise ?>" readonly required>
                 </td>
               </tr>
               <tr>

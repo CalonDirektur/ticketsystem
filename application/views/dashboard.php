@@ -5,6 +5,7 @@
     <?= $this->session->flashdata('berhasil_complete') ?>
     <?= $this->session->flashdata('berhasil_reject') ?>
     <?= $this->session->flashdata('update_profile_success') ?>
+    <?= $this->session->flashdata('upload_error') ?>
     <h1 class="text-center">
       Dashboard
       <!-- <small>it all starts here</small> -->
@@ -176,7 +177,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -202,7 +203,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -228,7 +229,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -254,7 +255,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -280,7 +281,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -306,7 +307,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -332,7 +333,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -358,7 +359,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -384,7 +385,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -410,7 +411,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -436,7 +437,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -487,7 +488,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -513,7 +514,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -539,7 +540,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -565,7 +566,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -591,7 +592,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -617,7 +618,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -643,7 +644,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -669,7 +670,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -695,7 +696,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -721,7 +722,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -747,7 +748,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -799,7 +800,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -825,7 +826,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -851,7 +852,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -877,7 +878,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -903,7 +904,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -929,7 +930,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -955,7 +956,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -981,7 +982,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1007,7 +1008,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1033,7 +1034,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1059,7 +1060,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1110,7 +1111,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1136,7 +1137,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1162,7 +1163,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1188,7 +1189,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1214,7 +1215,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1240,7 +1241,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1266,7 +1267,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1292,7 +1293,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1318,7 +1319,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1344,7 +1345,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1370,7 +1371,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1479,7 +1480,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1505,7 +1506,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1531,7 +1532,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1558,7 +1559,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1585,7 +1586,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1611,7 +1612,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1637,7 +1638,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1663,7 +1664,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1689,7 +1690,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1740,7 +1741,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1766,7 +1767,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1792,7 +1793,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1819,7 +1820,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1846,7 +1847,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1872,7 +1873,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1898,7 +1899,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1924,7 +1925,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -1950,7 +1951,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2002,7 +2003,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2028,7 +2029,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2054,7 +2055,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2081,7 +2082,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2108,7 +2109,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2134,7 +2135,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2160,7 +2161,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2186,7 +2187,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2212,7 +2213,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2263,7 +2264,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2289,7 +2290,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2315,7 +2316,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2342,7 +2343,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2369,7 +2370,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2395,7 +2396,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2421,7 +2422,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2447,7 +2448,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2473,7 +2474,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2576,7 +2577,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2602,7 +2603,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2628,7 +2629,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2655,7 +2656,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2682,7 +2683,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2708,7 +2709,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2734,7 +2735,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2760,7 +2761,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2786,7 +2787,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2837,7 +2838,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2863,7 +2864,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2889,7 +2890,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2916,7 +2917,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2943,7 +2944,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2969,7 +2970,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -2995,7 +2996,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3021,7 +3022,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3047,7 +3048,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3099,7 +3100,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3125,7 +3126,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3151,7 +3152,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3178,7 +3179,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3205,7 +3206,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3231,7 +3232,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3257,7 +3258,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3283,7 +3284,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3309,7 +3310,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3360,7 +3361,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3386,7 +3387,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3412,7 +3413,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3439,7 +3440,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3466,7 +3467,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3492,7 +3493,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3518,7 +3519,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3544,7 +3545,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3570,7 +3571,7 @@
                       <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                      <td><span class="badge badge-primary completed">Selesai</span></td>
+                      <td><span class="badge badge-info completed">Selesai</span></td>
                       <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                     <?php } ?>
                   </tr>
@@ -3589,24 +3590,9 @@
     <!-- Admin NST Arif -->
     <?php if ($this->session->userdata('level') == 4) { ?>
       <div class="card">
-        <div class="card-header">Review Ticket Support</div>
-        <div class="card-body">
-          <!-- Nav pills -->
-          <ul class="nav nav-pills" style="margin-bottom: 16px">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#list-all">All</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#kategori-produk">Kategori Produk</a>
-            </li>
-          </ul>
-
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane container-fluid active" id="list-all">
+        <div class="card-body p-0">
 
               <!-- NST Table -->
-              <?php if ($nst_records->num_rows() > 0) { ?>
                 <div class="card mt-4">
                   <div class="card-header">
                     <h3 class="card-title">Tabel NST</h3>
@@ -3644,7 +3630,7 @@
                               <td><span class="badge badge-success">Disetujui Admin NST</span></td>
                               <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                             <?php } else if ($d->id_approval == 3) { ?>
-                              <td><span class="badge badge-primary completed">Selesai</span></td>
+                              <td><span class="badge badge-info completed">Selesai</span></td>
                               <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                             <?php } ?>
                           </tr>
@@ -3655,10 +3641,8 @@
                     </table>
                   </div>
                 </div>
-              <?php } ?>
 
               <!-- Lead Management Table -->
-              <?php if ($lead_management_records->num_rows() > 0) { ?>
                 <div class="card mt-4">
                   <div class="card-header">
                     <h3 class="card-title">Tabel Lead Management</h3>
@@ -3698,7 +3682,7 @@
                               <td><span class="badge badge-success">Disetujui Admin NST</span></td>
                               <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
                             <?php } else if ($d->id_approval == 3) { ?>
-                              <td><span class="badge badge-primary completed">Selesai</span></td>
+                              <td><span class="badge badge-info completed">Selesai</span></td>
                               <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
                             <?php } ?>
                           </tr>
@@ -3709,180 +3693,7 @@
                     </table>
                   </div>
                 </div>
-              <?php } ?>
 
-            </div>
-
-            <div class="tab-pane container-fluid" id="kategori-produk">
-
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs">
-                <li class="nav-item active">
-                  <a class="nav-link active" data-toggle="tab" href="#pending">Pending <label class="badge badge-secondary"><?= $total_pending ?></label></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#approved">Approved <label class="badge badge-success"><?= $total_approved ?></label></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#rejected">Rejected <label class="badge badge-danger"><?= $total_rejected ?></label></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#completed">Completed <label class="badge badge-info"><?= $total_completed ?></label></a>
-                </li>
-              </ul>
-              <br>
-
-              <!-- Tab panes STATUS -->
-              <div class="tab-content">
-                <!-- Tab Pending -->
-                <div class="tab-pane container-fluid active" id="pending">
-                  <div class="row">
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/pending/nst') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82">
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>NST</span><br>
-                            <label class="badge badge-secondary"><?= $pending_nst ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/pending/lead_management') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82">
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>Lead Management</span><br>
-                            <label class="badge badge-secondary"><?= $pending_lead_management ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-
-                  </div>
-
-                </div>
-
-                <!-- Tab Approved -->
-                <div class="tab-pane container-fluid fade" id="approved">
-
-                  <div class="row">
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/approved/nst') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>NST</span><br>
-                            <label class="badge badge-success"><?= $approved_nst ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/approved/lead_management') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>Lead Management</span><br>
-                            <label class="badge badge-success"><?= $approved_lead_management ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-
-
-                <!-- Tab Rejected -->
-                <div class="tab-pane container-fluid fade" id="rejected">
-
-                  <div class="row">
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/rejected/nst') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>NST</span><br>
-                            <label class="badge badge-danger"><?= $rejected_nst ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/rejected/lead_management') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82"></i>
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>Lead Management</span><br>
-                            <label class="badge badge-danger"><?= $rejected_lead_management ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- Tab completed -->
-                <div class="tab-pane container-fluid fade" id="completed">
-
-                  <div class="row">
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/completed/nst') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82"></i>
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>NST</span><br>
-                            <label class="badge badge-info"><?= $completed_nst ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-6 mt-1">
-                      <a href="<?= base_url('status/completed/lead_management') ?>">
-                        <div class="card">
-                          <div class="card-header text-center">
-                            <img src="<?= base_url('assets2/img/no-pict.png') ?>" alt="" width="100" height="82"></i>
-                          </div>
-                          <div class="card-body text-center p-2">
-                            <span>Lead Management</span><br>
-                            <label class="badge badge-info"><?= $completed_lead_management ?></span>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-          </div>
         </div>
       </div>
     <?php }  ?>
@@ -3974,7 +3785,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4000,7 +3811,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4026,7 +3837,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4052,7 +3863,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4078,7 +3889,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4104,7 +3915,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4130,7 +3941,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4156,7 +3967,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4182,7 +3993,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4208,7 +4019,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>
@@ -4234,7 +4045,7 @@
                           <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/approved/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                         <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                          <td><span class="badge badge-primary completed">Selesai</span></td>
+                          <td><span class="badge badge-info completed">Selesai</span></td>
                           <td><a class="btn btn-info btn-rounded btn-fw" href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">Detail</a></td>
                         <?php } ?>
                       </tr>

@@ -1,6 +1,7 @@
 <div class="container">
-  <section class="content-header">
-    <h1>Form Aktivasi Agent</h1>
+  <section class="content-header text-center mt-4">
+    <h4>Form Aktivasi Agent</h4>
+    <p><?= date('d F, Y'); ?></p>
   </section>
 
   <!-- Main content -->
@@ -10,28 +11,9 @@
 
       <div class="row">
         <div class="col-lg-12">
-          <!-- card Data Konsumen -->
-          <div class="card card-primary mt-4">
-            <div class="card-header with-border">
-              <h3 class="card-title">Konsumen</h3>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="cabang">Cabang *</label>
-                <select required name="-" id="cabang" class="form-control" disabled>
-                  <option disabled selected value="">- Pilih Cabang -</option>
-                  <?php
-                  foreach ($pertanyaan as $p) {
-                    ?>
-                    <option value="<?= $p->id_cabang ?>" <?= $this->fungsi->user_login()->id_cabang == $p->id_cabang ? 'selected' : '' ?>><?= $p->nama_cabang ?></option>
-                  <?php }  ?>
-                </select>
-                <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
-              </div>
-              <!-- Insert ID Usser -->
-              <input name="id_user" id="id_user" type="hidden" value="<?= $this->fungsi->user_login()->id_user ?>">
-            </div>
-          </div>
+
+          <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
+          <input name="id_user" id="id_user" type="hidden" value="<?= $this->fungsi->user_login()->id_user ?>">
 
           <!-- card Pertanyaan form My Ihram -->
           <div class="card card-primary mt-4">
@@ -42,12 +24,12 @@
             <div class="card-body">
               <!-- Nama Agent -->
               <div class="form-group">
-                <label for="nama_agent">Nama Agent *</label>
+                <label for="nama_agent">Nama Agent </label>
                 <input required name="nama_agent" id="nama_agent" type="text" class="form-control" placeholder="Nama Agent" required>
               </div>
               <!-- Jenis Agent -->
               <div class="form-group">
-                <label for="jenis_agent">Jenis Agent *</label>
+                <label for="jenis_agent">Jenis Agent </label>
                 <select name="jenis_agent" id="jenis_agent" class="form-control" required>
                   <option disabled selected value="">- Jenis Agent -</option>
                   <option value="Syariah Ambassador">Syariah Ambassador</option>
@@ -60,63 +42,122 @@
 
           <!-- card Upload File -->
           <div class="card card-primary mt-4">
-            <div class="card-header with-border">
-              <h3 class="card-title">Upload File</h3>
+            <div class="card-header">
+              <b>Data Lampiran</b>
             </div>
-
             <div class="card-body">
               <div class="form-group">
-                <label for="upload_file1">Upload Berkas 1 *</label>
-                <input name="upload_file1" id="upload_file1" type="file" class="form-control col-8" required>
-              </div>
-              <button type="button" id="add-upload" class="btn btn-sm btn-primary btn-icon-text"><i class="mdi mdi-plus btn-icon-prepend"></i> Add Upload</button>
-              <div id="more-upload">
-                <div class="form-group">
-                  <label for="upload_file2">Upload Berkas 2</label>
-                  <input name="upload_file2" id="upload_file2" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file3">Upload Berkas 3</label>
-                  <input name="upload_file3" id="upload_file3" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file4">Upload Berkas 4</label>
-                  <input name="upload_file4" id="upload_file4" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file5">Upload Berkas 5</label>
-                  <input name="upload_file5" id="upload_file5" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file6">Upload Berkas 6</label>
-                  <input name="upload_file6" id="upload_file6" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file7">Upload Berkas 7</label>
-                  <input name="upload_file7" id="upload_file7" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file8">Upload Berkas 8</label>
-                  <input name="upload_file8" id="upload_file8" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file9">Upload Berkas 9</label>
-                  <input name="upload_file9" id="upload_file9" type="file" class="form-control col-8">
-                </div>
-                <div class="form-group">
-                  <label for="upload_file10">Upload Berkas 10</label>
-                  <input name="upload_file10" id="upload_file10" type="file" class="form-control col-8">
+                <label>File upload 1</label>
+                <input type="file" name="file_upload1" class="file-upload-default" required>
+                <div class="input-group col-xs-12">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                  <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                  </span>
                 </div>
               </div>
-              <p><b>Note: </b> Wajib diisi (*)</p>
+              <button type="button" id="add-upload" class="btn btn-sm btn-info btn-icon-text"><i class="mdi mdi-plus btn-icon-prepend mb-4"></i> Add Upload</button>
+
+              <div id="more-upload" class="mt-4 mb-4">
+                <div class="form-group">
+                  <label>Dokumen 2</label>
+                  <input type="file" name="file_upload2" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 3</label>
+                  <input type="file" name="file_upload3" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 4</label>
+                  <input type="file" name="file_upload4" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 5</label>
+                  <input type="file" name="file_upload5" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 6</label>
+                  <input type="file" name="file_upload6" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 7</label>
+                  <input type="file" name="file_upload7" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 8</label>
+                  <input type="file" name="file_upload8" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 9</label>
+                  <input type="file" name="file_upload9" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dokumen 10</label>
+                  <input type="file" name="file_upload10" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-footer text-center">
-              <button class="btn btn-primary" name="submit_aktivasi_agent">Kirim Data!</button>
-    </form>
-</div>
-</div>
-</div>
+              <button type="submit" id="submit" class="btn btn-info" name="">Kirim Data!</button>
+            </div>
+          </div>
+        </div>
 
-</div>
+      </div>
 </div>
 </section>
+</form>

@@ -24,6 +24,32 @@
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets2/img/bfi.jpg') ?>" />
+
+  <style>
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #cccccc !important;
+      opacity: 1 !important;
+      /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: red;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: red;
+    }
+
+    #logout_sidebar_button {
+      position: absolute;
+      display: inline-block;
+      bottom: 0;
+      left: 15px;
+    }
+  </style>
 </head>
 
 <body>
@@ -33,6 +59,7 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center bg-info">
         <a class="navbar-brand brand-logo text-white" href="<?= base_url('dashboard') ?>">BFI SYARIAH</a>
         <a class="navbar-brand brand-logo-mini text-white" href="<?= base_url('dashboard') ?>">BFI</a>
+
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -41,17 +68,8 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-flex mr-4 ">
             <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="icon-cog"></i>
+              <!-- <i class="icon-cog"></i> -->
             </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
-              <a href="<?= base_url('Auth/profile') ?>" class="dropdown-item preview-item">
-                <i class="icon-head"></i> Profile
-              </a>
-              <a href="<?= site_url('auth/logout') ?>" class="dropdown-item preview-item">
-                <i class="icon-inbox"></i> Logout
-              </a>
-            </div>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -64,17 +82,17 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas bg-info" id="sidebar">
         <?php if ($this->session->userdata('userid') != NULL) { ?>
-          <div class="user-profile">
-            <div class="user-image">
-              <img src="<?= base_url('assets2/img/profile-pic.jpg') ?>">
-            </div>
-            <div class="user-name">
-              <?= ucfirst($this->fungsi->user_login()->name) ?>
-            </div>
-            <div class="user-designation">
-              <?php
+        <div class="user-profile">
+          <div class="user-image">
+            <img src="<?= base_url('assets2/img/profile-pic.jpg') ?>">
+          </div>
+          <div class="user-name">
+            <?= ucfirst($this->fungsi->user_login()->name) ?>
+          </div>
+          <div class="user-designation">
+            <?php
               if ($this->fungsi->user_login()->level == 1) {
-                echo "Cabang User<br>" . ucfirst($this->fungsi->user_login()->nama_cabang);
+                echo ucfirst($this->fungsi->user_login()->nama_cabang);
               } else if ($this->fungsi->user_login()->level == 2) {
                 echo "Admin level 1";
               } else if ($this->fungsi->user_login()->level == 3) {
@@ -85,44 +103,56 @@
                 echo "Superuser";
               }
               ?>
-            </div>
           </div>
+        </div>
         <?php } ?>
         <ul class="nav">
           <?php if ($this->session->userdata('userid') != NULL) { ?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= site_url('dashboard') ?>">
-                <i class="icon-box menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-              </a>
-            </li>
-          <?php } ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('dashboard') ?>">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
           <?php if ($this->session->userdata('level') == 1) { ?>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
-                <i class="icon-disc menu-icon"></i>
-                <span class="menu-title">Daftar Tiket</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="daftar-tiket">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Form Input Produk</a></li>
-                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Form Lead Management</a></li>
-                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Form Aktivasi Agent</a></li>
-                  <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">Form NST</a></li>
-                </ul>
-              </div>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
+              <i class="icon-disc menu-icon"></i>
+              <span class="menu-title">Request Ticket</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="daftar-tiket">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Form Input Produk</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Form Lead Management</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Form Aktivasi Agent</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">Form NST</a></li>
+              </ul>
+            </div>
+          </li>
           <?php } ?>
           <?php if ($this->session->userdata('level') == 5) { ?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= site_url('auth/list_user') ?>">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">List User Akun</span>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('auth/list_user') ?>">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">List User Akun</span>
+            </a>
+          </li>
           <?php } ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('Auth/profile') ?>">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item" id="logout-sidebar">
+            <a class="nav-link" href="<?= base_url('Auth/logout') ?>">
+              <i class="icon-esc menu-icon"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
         </ul>
+        <?php } ?>
       </nav>
       <!-- partial -->
       <div class="main-panel">
@@ -131,8 +161,9 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <!-- <footer class="footer">
-        </footer> -->
+        <footer class="footer mt-4">
+          Helpdesk BFI Syariah
+        </footer>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
@@ -147,6 +178,7 @@
   <script src="<?= base_url('assets2/vendors/chart.js/Chart.min.js') ?>"></script>
   <script src="<?= base_url('assets2/vendors/jquery-bar-rating/jquery.barrating.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dashboard.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/file-upload.js') ?>"></script>
 
   <!-- ANEKA JAVASCRIPT IBRAHIM -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

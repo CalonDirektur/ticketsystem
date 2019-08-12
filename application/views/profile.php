@@ -1,5 +1,6 @@
 <section class="content-header mt-4 text-center">
-    <h3>Profile</h3>
+    <b>Profile</b>
+    <p><?= date('d F, Y'); ?></p>
 </section>
 
 <section class="content">

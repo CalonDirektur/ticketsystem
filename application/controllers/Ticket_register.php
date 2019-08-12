@@ -111,8 +111,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/mytalim';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -199,8 +199,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -291,8 +291,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -385,8 +385,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -479,8 +479,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -569,8 +569,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -660,8 +660,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myihram';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -743,8 +743,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/mysafar';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -809,93 +809,103 @@ class Ticket_register extends CI_Controller
 
 		// FORMULIR LEAD MANAGEMENT
 		if (isset($_POST['submit_lead_management'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required|is_unique[tb_lead_management.lead_id]');
 
-			$data = [
-				'lead_id' 				=> $post['lead_id'],
-				'asal_leads' 			=> $post['asal_leads'],
-				'cabang_tujuan'			=> $post['cabang_tujuan'],
-				'surveyor'				=> $post['surveyor'],
-				'ttd_pic'				=> $post['ttd_pic'],
-				'nama_konsumen'			=> $post['nama_konsumen'],
+			if ($this->form_validation->run() != FALSE) {
 
-				'id_cabang' 			=> $post['cabang'],
-				'sumber_lead' 			=> $post['sumber_lead'],
-				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
-				'produk' 				=> $post['produk'],
-				'object_price' 			=> $post['object_price'],
-				'date_created' 			=> date('Y-m-d H:i:s'),
-				'date_modified' 		=> date('Y-m-d H:i:s'),
-				'id_user' 				=> $post['id_user'],
-				'id_approval'			=> 0
-			];
+				$data = [
+					'lead_id' 				=> $post['lead_id'],
+					'asal_leads' 			=> $post['asal_leads'],
+					'cabang_tujuan'			=> $post['cabang_tujuan'],
+					'surveyor'				=> $post['surveyor'],
+					'ttd_pic'				=> $post['ttd_pic'],
+					'nama_konsumen'			=> $post['nama_konsumen'],
 
-			//Konfigurasi Upload
-			$config['upload_path']         = './uploads/lead_management';
-			$config['allowed_types']        = '*';
-			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
-			$this->load->library('upload', $config);
+					'id_cabang' 			=> $post['cabang'],
+					'sumber_lead' 			=> $post['sumber_lead'],
+					'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
+					'produk' 				=> $post['produk'],
+					'object_price' 			=> $post['object_price'],
+					'date_created' 			=> date('Y-m-d H:i:s'),
+					'date_modified' 		=> date('Y-m-d H:i:s'),
+					'id_user' 				=> $post['id_user'],
+					'id_approval'			=> 0
+				];
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
+				//Konfigurasi Upload
+				$config['upload_path']         = './uploads/lead_management';
+				$config['allowed_types']        = '*';
+				$config['max_size']             = 10000;
+				$config['max_width']            = 10000;
+				$config['max_height']           = 10000;
+				$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file1')) {
+					$data['upload_file1'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file2')) {
+					$data['upload_file2'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file3')) {
+					$data['upload_file3'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file4')) {
+					$data['upload_file4'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file5')) {
+					$data['upload_file5'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file6')) {
+					$data['upload_file6'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file7')) {
+					$data['upload_file7'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file8')) {
+					$data['upload_file8'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file9')) {
+					$data['upload_file9'] = $this->upload->data('file_name');
+				}
+
+				if ($this->upload->do_upload('upload_file10')) {
+					$data['upload_file10'] = $this->upload->data('file_name');
+				}
 
 
-			$id = $this->data_m->add('tb_lead_management', $data);
+				$id = $this->data_m->add('tb_lead_management', $data);
 
-			$data3 = [
-				'id_lead' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_ticket', $data3);
+				$data3 = [
+					'id_lead' => $id,
+					'id_cabang' => $post['cabang'],
+					'id_user' => $post['id_user']
+				];
+				$this->data_m->add('tb_ticket', $data3);
 
-			if ($id) {
-				echo "Data berhasil disimpan";
-				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				if ($id) {
+					echo "Data berhasil disimpan";
+					$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+					redirect('/');
+				} else {
+					echo "Data gagal disimpan";
+				}
+				redirect('dashboard');
 			} else {
-				echo "Data gagal disimpan";
+				// Mengambil list cabang2 
+				$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+				$this->template->load('template2', 'lead_management/form_lead_management', $data);
 			}
-			redirect('dashboard');
 		}
+
 
 		// PROSES SUBMIT FORM AKTIVASI AGENT //
 		// FORMULIR AKTIVASI AGENT
@@ -915,8 +925,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/aktivasi_agent';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -982,6 +992,10 @@ class Ticket_register extends CI_Controller
 		// PROSES SUBMIT FORM NST //
 		// FORMULIR NST
 		if (isset($_POST['submit_nst'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required|is_unique[tb_nst.lead_id]');
+
+			if ($this->form_validation->run() != FALSE) {
 
 			$data = [
 				'lead_id' => $post['lead_id'],
@@ -998,8 +1012,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/nst';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1062,6 +1076,7 @@ class Ticket_register extends CI_Controller
 			redirect('dashboard');
 		}
 	}
+	}
 
 	public function edit()
 	{
@@ -1090,8 +1105,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/mytalim';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1168,8 +1183,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1243,8 +1258,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1320,8 +1335,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1398,8 +1413,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1472,8 +1487,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1543,8 +1558,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myihram';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1614,8 +1629,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/mysafar';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1733,8 +1748,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/aktivasi_agent';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1807,8 +1822,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/nst';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1890,8 +1905,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/mytalim';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -1968,8 +1983,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2043,8 +2058,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2120,8 +2135,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2198,8 +2213,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2272,8 +2287,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2343,8 +2358,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/myihram';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2414,8 +2429,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/mysafar';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2532,8 +2547,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/aktivasi_agent';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 100000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
@@ -2606,8 +2621,8 @@ class Ticket_register extends CI_Controller
 			$config['upload_path']         = './uploads/nst';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 10000;
-			$config['max_width']            = 5000;
-			$config['max_height']           = 5000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
