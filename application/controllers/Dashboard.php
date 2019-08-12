@@ -17,24 +17,24 @@ class Dashboard extends CI_Controller
 			$where = 'id_user = ' . $this->fungsi->user_login()->id_user;
 			$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
 
-			$id_user_myhajat = '= ' . $this->fungsi->user_login()->id_user;
-			$approval_myhajat = 'IS NOT NULL';
+			$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+			$approval_tickets = 'IS NOT NULL';
 		} else {
 			if ($this->fungsi->user_login()->level == 2) {
 				$where = 'id_approval IS NOT NULL';
-				$approval_myhajat = 'IS NOT NULL';
+				$approval_tickets = 'IS NOT NULL';
 
-				$id_user_myhajat = 'IS NOT NULL';
+				$id_user_tickets = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 3) {
 				$where = 'id_approval = 2';
-				$approval_myhajat = '= 2';
+				$approval_tickets = 'IS NOT NULL';
 
-				$id_user_myhajat = 'IS NOT NULL';
+				$id_user_tickets = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5) {
 				$where = 'id_approval IS NOT NULL ';
-				$approval_myhajat = 'IS NOT NULL';
+				$approval_tickets = 'IS NOT NULL';
 
-				$id_user_myhajat = 'IS NOT NULL';
+				$id_user_tickets = 'IS NOT NULL';
 			}
 			$id_cabang = '';
 		}
@@ -180,7 +180,7 @@ class Dashboard extends CI_Controller
 		];
 
 		$data['mytalim_records'] 			= $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $where, 'id_mytalim DESC');
-		$data['myhajat_records']			= $this->data_m->get_myhajat($id_user_myhajat, $approval_myhajat);
+		$data['myhajat_records']			= $this->data_m->get_myhajat($id_user_tickets, $approval_tickets);
 		$data['myhajat_renovasi_records'] 	= $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $where, 'id_renovasi DESC');
 		$data['myhajat_sewa_records'] 		= $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $where, 'id_sewa DESC');
 		$data['myhajat_wedding_records'] 	= $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $where, 'id_wedding DESC');
@@ -191,6 +191,12 @@ class Dashboard extends CI_Controller
 		$data['aktivasi_agent_records'] 	= $this->data_m->get_product('tb_aktivasi_agent', 'tb_aktivasi_agent.' . $where, 'id_agent DESC');
 		$data['nst_records'] 				= $this->data_m->get_product('tb_nst', 'tb_nst.' . $where, 'id_nst DESC');
 		$data['lead_management_records'] 	= $this->data_m->get_product('tb_lead_management', 'tb_lead_management.' . $where, 'id_lead DESC');
+
+		$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
+		$data['ticket_records_pending'] = $this->data_m->get_tickets($id_user_tickets, ' = 0');
+		$data['ticket_records_rejected'] = $this->data_m->get_tickets($id_user_tickets, ' = 1');
+		$data['ticket_records_approved'] = $this->data_m->get_tickets($id_user_tickets, ' = 2');
+		$data['ticket_records_completed'] = $this->data_m->get_tickets($id_user_tickets, ' = 3');
 
 		$this->template->load('template2', 'dashboard', $data);
 	}

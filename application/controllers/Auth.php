@@ -30,9 +30,9 @@ class Auth extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[6]');
+		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[6]|is_unique[user.nik]');
 		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('id_cabang', 'ID Cabang', 'trim|required');
@@ -46,7 +46,7 @@ class Auth extends CI_Controller
 				'name' => $this->input->post('name'),
 				'nik' => $this->input->post('nik'),
 				'email' => $this->input->post('email'),
-				'password' => $this->input->post('password'),
+				'password' => md5($this->input->post('password')),
 				'id_cabang' => $this->input->post('id_cabang'),
 				'level' => 1
 			];
@@ -152,7 +152,7 @@ class Auth extends CI_Controller
 			$this->load->model('user_m');
 
 			$nik = $post['username'];
-			$password = $post['password'];
+			$password = md5($post['password']);
 
 			$query = $this->user_m->login($nik, $password);
 			//cek login
@@ -166,7 +166,7 @@ class Auth extends CI_Controller
 				$this->session->set_userdata($params);
 				echo "<script>alert('Selamat, login berhasil'); window.location='" . site_url("dashboard") . "'</script>";
 			} else {
-				echo "<script>alert('Akun tidak cocok/belum diaktivasi'); window.location='" . site_url("auth") . "'</script>";
+				echo "<script>alert('Akun tidak cocok/belum diaktivasi $password'); window.location='" . site_url("auth") . "'</script>";
 			}
 		}
 	}
@@ -176,10 +176,15 @@ class Auth extends CI_Controller
 	{
 		$post = $this->input->post(null, TRUE);
 
-		$data = $post['is_active'];
+		$is_active = $post['is_active'];
+		$level = $post['level'];
 
-		foreach ($data as $activate => $val) {
+		foreach ($is_active as $activate => $val) {
 			$this->user_m->update(['is_active' => $val], ['id_user' => $activate]);
+		}
+
+		foreach ($level as $lv => $val) {
+			$this->user_m->update(['level' => $val], ['id_user' => $lv]);
 		}
 		redirect('auth/list_user');
 	}
@@ -219,7 +224,7 @@ class Auth extends CI_Controller
 			} else {
 				$data = [
 					'name' => $post['name'],
-					'password' => $post['password']
+					'password' => md5($post['password'])
 				];
 			}
 			$this->user_m->update($data, $where);

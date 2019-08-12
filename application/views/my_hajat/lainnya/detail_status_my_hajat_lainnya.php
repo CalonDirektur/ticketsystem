@@ -25,16 +25,12 @@
                   <th>Isi</th>
                 </thead>
                 <tr>
-                  <td><b>ID My Hajat</b></td>
+                  <td><b>ID Ticket</b></td>
                   <td>
-                    <input type="text" class="form-control" name="id_myhajat" id="id_myhajat" value="<?= $data->id_my_hajat ?>" readonly required>
+                    <input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required>
+                    <input type="hidden" class="form-control" name="id_myhajat_lainnya" id="id_myhajat_lainnya" value="<?= $data->id_myhajat_lainnya ?>" readonly required>
                   </td>
                 </tr>
-                <tr>
-                  <td><b>ID My Hajat Lainnya</b></td>
-                  <td>
-                    <input type="text" class="form-control" name="id_myhajat_lainnya" id="id_myhajat" value="<?= $data->id_myhajat_lainnya ?>" readonly required>
-                  </td>
                 </tr>
                 <tr>
                   <td><b>Nama Cabang</b></td>

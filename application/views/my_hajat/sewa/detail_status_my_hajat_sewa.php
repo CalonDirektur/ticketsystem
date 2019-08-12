@@ -24,15 +24,11 @@
                   <th>Kolom</th>
                   <th>Isi</th>
                 </thead>
+                <!-- ID Ticket -->
                 <tr>
-                  <td><b>ID My Hajat</b></td>
-                  <td>
-                    <input type="text" class="form-control" name="id_myhajat" id="id_myhajat" value="<?= $data->id_my_hajat ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>ID Sewa</b></td>
-                  <td><input type="text" class="form-control" name="id_sewa" id="id_sewa" value="<?= $data->id_sewa ?>" readonly required></td>
+                  <td><b>ID Ticket</b></td>
+                  <td><input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required></td>
+                  <td><input type="hidden" class="form-control" name="id_sewa" id="id_sewa" value="<?= $data->id_sewa ?>" readonly required></td>
                 </tr>
                 <tr>
                   <td><b>Nama Cabang</b></td>

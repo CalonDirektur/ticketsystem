@@ -22,10 +22,11 @@
 									<th>Kolom</th>
 									<th>Isi</th>
 								</thead>
-								<!-- ID Lead Management -->
+								<!-- ID Ticket -->
 								<tr>
-									<td><b>ID Lead Management</b></td>
-									<td><input type="text" class="form-control" name="id_lead" id="id_lead" value="<?= $data->id_lead ?>" readonly required></td>
+									<td><b>ID Ticket</b></td>
+									<td><input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required></td>
+									<td><input type="hidden" class="form-control" name="id_lead" id="id_lead" value="<?= $data->id_lead ?>" readonly required></td>
 								</tr>
 								<!-- Nama Cabang -->
 								<tr>
@@ -134,6 +135,9 @@
 								<!-- Menu ini muncul khusus untuk Admin NST dan Superuser -->
 								<?php if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) { ?>
 									<tr>
+										<td class="text-center" colspan="2"><b>Form di bawah diisikan oleh Admin NST</b></td>
+									</tr>
+									<tr>
 										<td><b>Tahap Reject</b></td>
 										<td>
 											<select class="form-control enable" name="tahap_reject" id="tahap_reject" disabled>
@@ -198,8 +202,8 @@
 											<textarea rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly><?= $data->informasi_tambahan ?></textarea>
 										</td>
 									</tr>
-									<tr>
-									<?php } ?>
+								<?php } ?>
+								<tr>
 									<td><b>Status:</b></td>
 									<td>
 										<?php

@@ -31,7 +31,7 @@
                   <td><?= $user->nik ?></td>
                   <td><?= $user->email ?></td>
                   <td>
-                    <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->level == 5) ? 'disabled' : '' ?> disabled>
+                    <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
                       <option value="1" <?= $user->level == 1 ? 'selected' : '' ?>>User Cabang</option>
                       <option value="2" <?= $user->level == 2 ? 'selected' : '' ?>>Admin Level 1</option>
                       <option value="3" <?= $user->level == 3 ? 'selected' : '' ?>>Admin level 2</option>
@@ -40,7 +40,7 @@
                     </select>
                   </td>
                   <td>
-                    <select class="form-control col-8" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->level == 5) ? 'disabled' : '' ?>>
+                    <select class="form-control col-8" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
                       <option value="0" <?= $user->is_active == 0 ? 'selected' : '' ?>>Nonaktif</option>
                       <option value="1" <?= $user->is_active == 1 ? 'selected' : '' ?>>Aktif</option>
                     </select>

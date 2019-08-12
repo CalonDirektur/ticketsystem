@@ -157,6 +157,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_talim', $data);
 
+			$data2 = [
+				'id_mytalim' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
+
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -245,6 +252,13 @@ class Ticket_register extends CI_Controller
 			];
 			$this->data_m->add('tb_my_hajat', $data2);
 
+			$data3 = [
+				'id_renovasi' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data3);
+
 
 			if ($id > 0) {
 				echo "Data berhasil disimpan";
@@ -331,6 +345,13 @@ class Ticket_register extends CI_Controller
 			];
 			$this->data_m->add('tb_my_hajat', $data2);
 
+			$data3 = [
+				'id_sewa' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data3);
+
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -416,6 +437,13 @@ class Ticket_register extends CI_Controller
 				'id_user' => $post['id_user']
 			];
 			$this->data_m->add('tb_my_hajat', $data2);
+
+			$data3 = [
+				'id_wedding' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data3);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -504,6 +532,13 @@ class Ticket_register extends CI_Controller
 			];
 			$this->data_m->add('tb_my_hajat', $data2);
 
+			$data3 = [
+				'id_franchise' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data3);
+
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -587,6 +622,14 @@ class Ticket_register extends CI_Controller
 				'id_user' => $post['id_user']
 			];
 			$this->data_m->add('tb_my_hajat', $data2);
+
+			$data3 = [
+				'id_myhajat_lainnya' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data3);
+
 			if ($id) {
 
 				echo "Data berhasil disimpan";
@@ -664,6 +707,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_ihram', $data);
 
+			$data2 = [
+				'id_myihram' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
+
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -739,6 +789,13 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->add('tb_my_safar', $data);
+
+			$data2 = [
+				'id_mysafar' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -823,6 +880,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_lead_management', $data);
 
+			$data3 = [
+				'id_lead' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data3);
+
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -897,6 +961,13 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->add('tb_aktivasi_agent', $data);
+
+			$data2 = [
+				'id_agent' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -973,6 +1044,13 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->add('tb_nst', $data);
+
+			$data2 = [
+				'id_nst' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
 
 			if ($id) {
 				echo "Data berhasil disimpan";

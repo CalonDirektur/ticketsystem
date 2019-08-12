@@ -63,36 +63,40 @@
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas bg-info" id="sidebar">
-        <div class="user-profile">
-          <div class="user-image">
-            <img src="<?= base_url('assets2/img/profile-pic.jpg') ?>">
+        <?php if ($this->session->userdata('userid') != NULL) { ?>
+          <div class="user-profile">
+            <div class="user-image">
+              <img src="<?= base_url('assets2/img/profile-pic.jpg') ?>">
+            </div>
+            <div class="user-name">
+              <?= ucfirst($this->fungsi->user_login()->name) ?>
+            </div>
+            <div class="user-designation">
+              <?php
+              if ($this->fungsi->user_login()->level == 1) {
+                echo "Cabang User<br>" . ucfirst($this->fungsi->user_login()->nama_cabang);
+              } else if ($this->fungsi->user_login()->level == 2) {
+                echo "Admin level 1";
+              } else if ($this->fungsi->user_login()->level == 3) {
+                echo "Admin level 2";
+              } else if ($this->fungsi->user_login()->level == 4) {
+                echo "Admin NST";
+              } else if ($this->fungsi->user_login()->level == 5) {
+                echo "Superuser";
+              }
+              ?>
+            </div>
           </div>
-          <div class="user-name">
-            <?= ucfirst($this->fungsi->user_login()->name) ?>
-          </div>
-          <div class="user-designation">
-            <?php
-            if ($this->fungsi->user_login()->level == 1) {
-              echo "Cabang User<br>" . ucfirst($this->fungsi->user_login()->nama_cabang);
-            } else if ($this->fungsi->user_login()->level == 2) {
-              echo "Admin level 1";
-            } else if ($this->fungsi->user_login()->level == 3) {
-              echo "Admin level 2";
-            } else if ($this->fungsi->user_login()->level == 4) {
-              echo "Admin NST";
-            } else if ($this->fungsi->user_login()->level == 5) {
-              echo "Superuser";
-            }
-            ?>
-          </div>
-        </div>
+        <?php } ?>
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="<?= site_url('dashboard') ?>">
-              <i class="icon-box menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
+          <?php if ($this->session->userdata('userid') != NULL) { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= site_url('dashboard') ?>">
+                <i class="icon-box menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+          <?php } ?>
           <?php if ($this->session->userdata('level') == 1) { ?>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
@@ -113,7 +117,7 @@
           <?php if ($this->session->userdata('level') == 5) { ?>
             <li class="nav-item">
               <a class="nav-link" href="<?= site_url('auth/list_user') ?>">
-                <i class="icon-box menu-icon"></i>
+                <i class="icon-head menu-icon"></i>
                 <span class="menu-title">List User Akun</span>
               </a>
             </li>

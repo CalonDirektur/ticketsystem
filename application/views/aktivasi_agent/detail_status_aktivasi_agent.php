@@ -23,8 +23,9 @@
 									<th>Isi</th>
 								</thead>
 								<tr>
-									<td><b>ID Aktivasi Agent</b></td>
-									<td><input type="text" class="form-control" name="id_agent" id="id_agent" value="<?= $data->id_agent ?>" readonly required></td>
+									<td><b>ID Ticket</b></td>
+									<td><input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required></td>
+									<td><input type="hidden" class="form-control" name="id_agent" id="id_agent" value="<?= $data->id_agent ?>" readonly required></td>
 								</tr>
 								<tr>
 									<td><b>Nama Cabang</b></td>

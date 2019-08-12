@@ -21,11 +21,7 @@
                 <label for="email">Email *</label>
                 <input required name="email" id="email" type="text" class="form-control" value="<?= $this->fungsi->user_login()->email ?>" readonly>
               </div>
-              <!-- Nama Konsumen -->
-              <div class="form-group">
-                <label for="nama_konsumen">Nama Konsumen *</label>
-                <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" required>
-              </div>
+
               <!-- NIK -->
               <div class="form-group">
                 <label for="nik">NIK *</label><br>
@@ -45,7 +41,11 @@
                 </select>
                 <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
               </div>
-
+              <!-- Nama Konsumen -->
+              <div class="form-group">
+                <label for="nama_konsumen">Nama Konsumen *</label>
+                <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" required>
+              </div>
               <!-- Asal Leads -->
               <div class="form-group">
                 <label>Asal Leads*</label>

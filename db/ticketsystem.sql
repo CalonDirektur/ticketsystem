@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.3.16-MariaDB)
-# Date: 2019-08-09 14:10:48
+# Date: 2019-08-10 21:23:21
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -10,7 +10,6 @@
 DROP TABLE IF EXISTS `tb_aktivasi_agent`;
 CREATE TABLE `tb_aktivasi_agent` (
   `id_agent` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_agent` varchar(255) NOT NULL DEFAULT '',
   `jenis_agent` varchar(255) NOT NULL DEFAULT '',
   `upload_file1` varchar(255) DEFAULT NULL,
@@ -29,13 +28,13 @@ CREATE TABLE `tb_aktivasi_agent` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_agent`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_aktivasi_agent"
 #
 
-INSERT INTO `tb_aktivasi_agent` VALUES (4,0,'Agent Badan Intelijen Nasional Syariah','Syariah Agent','ho.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,7,4,'2019-08-09 05:05:59','2019-08-09 05:34:51');
+INSERT INTO `tb_aktivasi_agent` VALUES (5,'Agent BIN','Syariah Agent','Logo_OJK.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,7,4,'2019-08-10 09:40:08','2019-08-10 09:40:08');
 
 #
 # Structure for table "tb_cabang"
@@ -77,7 +76,7 @@ CREATE TABLE `tb_comment` (
   `id_nst` int(11) NOT NULL,
   `id_lead` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_comment"
@@ -134,13 +133,13 @@ CREATE TABLE `tb_lead_management` (
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_lead`),
   UNIQUE KEY `lead_id` (`lead_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_lead_management"
 #
 
-INSERT INTO `tb_lead_management` VALUES (16,'Cross-Branch','2','Ibrahim Ahmad Jabar','Mas Azan','leads8779872389273','Ahmed Mubarok','Digital Partner','Avram Glazer','My Hajat','21321321313','Pefindo Checking','Collectibility',90,'DSR','Approve','SLA BRANCH','CABANG SURVEY','hahaha','2019-08-09 05:21:54','2019-08-09 05:42:44',3,7,4);
+INSERT INTO `tb_lead_management` VALUES (17,'In Branch',NULL,'','','lead087809974805','Ahmad Jabar Khaidir','Tour & Travel / Penyedia Jasa','France','My Ihram','2000000000','','',0,'','','','',NULL,'2019-08-10 09:39:23','2019-08-10 09:39:23',0,7,4);
 
 #
 # Structure for table "tb_my_hajat"
@@ -157,13 +156,13 @@ CREATE TABLE `tb_my_hajat` (
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_my_hajat`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat"
 #
 
-INSERT INTO `tb_my_hajat` VALUES (25,20,NULL,NULL,NULL,NULL,7,4),(26,NULL,13,NULL,NULL,NULL,7,4),(27,NULL,NULL,15,NULL,NULL,7,4),(28,NULL,NULL,NULL,8,NULL,7,4),(29,NULL,NULL,NULL,NULL,8,7,4),(30,21,NULL,NULL,NULL,NULL,39,15);
+INSERT INTO `tb_my_hajat` VALUES (31,22,NULL,NULL,NULL,NULL,7,4),(32,NULL,14,NULL,NULL,NULL,7,4),(33,NULL,NULL,16,NULL,NULL,7,4),(34,NULL,NULL,NULL,9,NULL,7,4),(35,NULL,NULL,NULL,NULL,9,7,4);
 
 #
 # Structure for table "tb_my_hajat_franchise"
@@ -172,7 +171,6 @@ INSERT INTO `tb_my_hajat` VALUES (25,20,NULL,NULL,NULL,NULL,7,4),(26,NULL,13,NUL
 DROP TABLE IF EXISTS `tb_my_hajat_franchise`;
 CREATE TABLE `tb_my_hajat_franchise` (
   `id_franchise` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_konsumen` varchar(255) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(255) NOT NULL DEFAULT '',
   `nama_franchise` varchar(50) NOT NULL DEFAULT '' COMMENT 'Nama Franchise',
@@ -199,13 +197,13 @@ CREATE TABLE `tb_my_hajat_franchise` (
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_franchise`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_franchise"
 #
 
-INSERT INTO `tb_my_hajat_franchise` VALUES (8,0,'Francis Ajax','Eksternal','Arkademy',90,'Retail','2010',5000000000,'Jangka Tertentu','@sabana_id','  Tidak ada informasi tambahan untuk sabana FC','MOH_EDI.PNG','steam_error_2.PNG','steam_error.PNG','UPIH_RAHAYU_SRI_REJEKI.PNG',NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 04:44:36','2019-08-09 05:34:31',3,7,4);
+INSERT INTO `tb_my_hajat_franchise` VALUES (9,'Russel Johnson','Eksternal','Chicken Sogil',195,'Makanan dan Minuman','2011',19000000,'Jangka Tertentu','@sogil_id','Chicken Sogil So Gila! men','steam_error1.PNG','steam_error_21.PNG','Opera_Snapshot_2018-03-15_171223_www.tiket.com.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 09:11:50','2019-08-10 09:11:50',3,7,4);
 
 #
 # Structure for table "tb_my_hajat_lainnya"
@@ -233,17 +231,16 @@ CREATE TABLE `tb_my_hajat_lainnya` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   `id_approval` int(11) NOT NULL DEFAULT 0,
-  `id_ticket` int(11) DEFAULT 0,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_myhajat_lainnya`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_lainnya"
 #
 
-INSERT INTO `tb_my_hajat_lainnya` VALUES (8,'Gede Laroiba','Internal','Service Org.','Badan Usaha',25000000,'Tidak ada informasi untuuk ini','8785205_ML1.jpg','31589143_ML1.jpg','75387856_ML.jpg','80665507_ML.jpg',NULL,NULL,NULL,NULL,'75387856_ML1.jpg','80665507_ML1.jpg','2019-08-09 04:48:38','2019-08-09 05:34:36',3,0,7,4);
+INSERT INTO `tb_my_hajat_lainnya` VALUES (9,'Kang Ubay','Eksternal','Hadean Motor','Perorangan',9800000,'Ubay HM','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 09:14:01','2019-08-10 09:15:25',3,7,4);
 
 #
 # Structure for table "tb_my_hajat_renovasi"
@@ -277,16 +274,15 @@ CREATE TABLE `tb_my_hajat_renovasi` (
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_approval` int(11) NOT NULL DEFAULT 0,
   `id_cabang` int(11) NOT NULL DEFAULT 0,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_renovasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_renovasi"
 #
 
-INSERT INTO `tb_my_hajat_renovasi` VALUES (20,'Maulana Arif Kuncoro','Internal','Renovasi.com','Badan Usaha','Badan Usaha','Bagian atap','10 x 10','122 orang','9 bulan',9000000000,'Bismillah','023fbaf7-d185-42a3-9989-d50ea8ba3e62.jpg','FORM_DATA_BANK_DASHBOARD.docx','Mudharabah-Deni_Nasri.pdf','WhatsApp_Image_2019-05-14_at_14.50.04.jpeg','WhatsApp_Image_2019-05-20_at_11.10.10.jpeg','ebea9f35-1e88-40a4-bd8f-00b69bbb4ac3.jpg',NULL,NULL,NULL,NULL,'2019-08-09 04:29:24','2019-08-09 10:40:38',3,7,0,4),(21,'Akon','Eksternal','Vendor.com','Perorangan','Perorangan','Bagian Dapur','90 x 90','212','9 tahun',19998837737,'ALhmadulillah renovasi','no_thumbnail_found_suggestion.png','ho.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 05:56:30','2019-08-09 11:09:56',2,39,0,15);
+INSERT INTO `tb_my_hajat_renovasi` VALUES (22,'Muhammad Alvan ','Eksternal','Vendor','Perorangan','Perorangan','Bagian-bagian','90 x 90','210','9 Minggu',9000000000,'Ya benar','IMG-20190125-WA0005.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 07:02:56','2019-08-10 16:49:04',3,7,4);
 
 #
 # Structure for table "tb_my_hajat_sewa"
@@ -295,7 +291,6 @@ INSERT INTO `tb_my_hajat_renovasi` VALUES (20,'Maulana Arif Kuncoro','Internal',
 DROP TABLE IF EXISTS `tb_my_hajat_sewa`;
 CREATE TABLE `tb_my_hajat_sewa` (
   `id_sewa` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_konsumen` varchar(255) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(255) NOT NULL DEFAULT '',
   `nama_pemilik` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nama Pemilik Rumah / Ruko',
@@ -320,13 +315,13 @@ CREATE TABLE `tb_my_hajat_sewa` (
   `date_modified` varchar(255) DEFAULT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_sewa`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_sewa"
 #
 
-INSERT INTO `tb_my_hajat_sewa` VALUES (13,0,'Samir Nasri','Eksternal','James Ahmad Riyadi','Perorangan','Teman','90 x 90',1000000000,3,7,' Tidak ada informasi tambahan untuk support request ini.','WhatsApp_Image_2019-05-20_at_11.10.15.jpeg','5a952fc5-632e-4d2b-a95a-6f43dfad93c9.jpg','5a952fc5-632e-4d2b-a95a-6f43dfad93c91.jpg',NULL,'itinerary_persada_indonesia.docx','Promo_Umroh_Gratis_1_Leads_2019-07-01_2019-07-03.xls',NULL,NULL,NULL,NULL,'2019-08-09 04:36:04','2019-08-09 05:34:17',4);
+INSERT INTO `tb_my_hajat_sewa` VALUES (14,'Thor Odinson','Eksternal','Sewa','Perorangan','Sahabat','80 x 80',200000,3,7,'  sunday league','9d8a81ba-73e0-4f21-88b2-64fb7c718603.jpg','9d8a81ba-73e0-4f21-88b2-64fb7c7186031.jpg','5a952fc5-632e-4d2b-a95a-6f43dfad93c92.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 07:08:00','2019-08-10 07:09:15',4);
 
 #
 # Structure for table "tb_my_hajat_wedding"
@@ -335,7 +330,6 @@ INSERT INTO `tb_my_hajat_sewa` VALUES (13,0,'Samir Nasri','Eksternal','James Ahm
 DROP TABLE IF EXISTS `tb_my_hajat_wedding`;
 CREATE TABLE `tb_my_hajat_wedding` (
   `id_wedding` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_konsumen` varchar(255) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(255) NOT NULL DEFAULT '',
   `nama_wo` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nama Wedding Organizer',
@@ -361,13 +355,13 @@ CREATE TABLE `tb_my_hajat_wedding` (
   `id_approval` int(11) NOT NULL DEFAULT 0 COMMENT 'ID status approval tiket',
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_wedding`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_hajat_wedding"
 #
 
-INSERT INTO `tb_my_hajat_wedding` VALUES (15,0,'Andrisa','Internal','Wedding Org','Perusahaan/Badan Usaha','9 Tahun',28000000,512,'@wedding_org',' Tidak ada informasi tambahan untuk wedding ini','buku_rekening_kaka.jpg','Data_dari_BFI.xlsx','All_Brosur_+_Itinerary_(1).txt','WhatsApp_Image_2019-05-20_at_11.10.101.jpeg','Logo_OJK.png',NULL,NULL,NULL,NULL,NULL,'2019-08-09 04:42:22','2019-08-09 05:34:21',7,3,4);
+INSERT INTO `tb_my_hajat_wedding` VALUES (16,'terserah','Eksternal','wedding','Perusahaan/Badan Usaha','9 tahun',3332343,810,'@wedding','','buku_rekening_kaka1.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 07:10:30','2019-08-10 07:10:30',7,3,4);
 
 #
 # Structure for table "tb_my_ihram"
@@ -376,7 +370,6 @@ INSERT INTO `tb_my_hajat_wedding` VALUES (15,0,'Andrisa','Internal','Wedding Org
 DROP TABLE IF EXISTS `tb_my_ihram`;
 CREATE TABLE `tb_my_ihram` (
   `id_myihram` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
   `nama_travel` varchar(255) NOT NULL DEFAULT '',
@@ -396,13 +389,13 @@ CREATE TABLE `tb_my_ihram` (
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_myihram`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_ihram"
 #
 
-INSERT INTO `tb_my_ihram` VALUES (8,0,'Lia','Internal','Ihram Travel','87901200_ML.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 13:06:33','2019-08-09 05:34:41',1,7,4);
+INSERT INTO `tb_my_ihram` VALUES (9,'Ihram Romli Ahmad Saputra','Eksternal','Ihram Travel Saputra','Proposal_My_Talim.docx',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 20:55:46','2019-08-10 15:55:46',0,7,4);
 
 #
 # Structure for table "tb_my_safar"
@@ -411,7 +404,6 @@ INSERT INTO `tb_my_ihram` VALUES (8,0,'Lia','Internal','Ihram Travel','87901200_
 DROP TABLE IF EXISTS `tb_my_safar`;
 CREATE TABLE `tb_my_safar` (
   `id_mysafar` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
   `nama_travel` varchar(255) NOT NULL DEFAULT '',
@@ -431,13 +423,13 @@ CREATE TABLE `tb_my_safar` (
   `id_cabang` int(11) NOT NULL DEFAULT 0,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_mysafar`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 #
 # Data for table "tb_my_safar"
 #
 
-INSERT INTO `tb_my_safar` VALUES (9,0,'Eko Patriot','Internal','Safar Travel','my-safar-82.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-09 10:40:56','2019-08-09 05:34:45',3,7,4);
+INSERT INTO `tb_my_safar` VALUES (10,'Ahmad Safari','Eksternal','Safar Travel','Memo_-_Permohonan_Domain_Hosting.pdf',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-10 16:50:06','2019-08-10 09:35:38',3,7,4);
 
 #
 # Structure for table "tb_my_talim"
@@ -446,7 +438,6 @@ INSERT INTO `tb_my_safar` VALUES (9,0,'Eko Patriot','Internal','Safar Travel','m
 DROP TABLE IF EXISTS `tb_my_talim`;
 CREATE TABLE `tb_my_talim` (
   `id_mytalim` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(5) NOT NULL DEFAULT 0,
   `nama_konsumen` varchar(40) NOT NULL DEFAULT '',
   `jenis_konsumen` varchar(40) NOT NULL DEFAULT '',
   `pendidikan` varchar(50) NOT NULL DEFAULT '',
@@ -474,13 +465,13 @@ CREATE TABLE `tb_my_talim` (
   `date_created` timestamp NULL DEFAULT NULL,
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mytalim`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_my_talim"
 #
 
-INSERT INTO `tb_my_talim` VALUES (35,0,'Ahmad Sauqi','Eksternal','Universitas','Ibrahim Ahmad Jabar','Universitas Budi Luhur','1990','A','2016 - 2020','Uang Masuk',5000000000,'Trifold_Flyer.jpg','20190228_1632241.jpg','IMG-20190125-WA0005.jpg','wallhaven-743619.jpg','Logo_OJK.png','pictogram_ihram1.png','Tukang_CoMarketingActivity.pdf','Tukang_FinancialServiceProposal.pdf','9d8a81ba-73e0-4f21-88b2-64fb7c718603.jpg','5a952fc5-632e-4d2b-a95a-6f43dfad93c9.jpg',3,'     Tidak ada informasi tambahan',7,4,'2019-08-09 04:16:36','2019-08-09 05:34:09');
+INSERT INTO `tb_my_talim` VALUES (36,'Muhammad Abdul Azis','Eksternal','Sekolah','Ibrahim Ahmad Jabar','Universitas besatu','1998','A','2018 - 2020','Uang masuk',5000000000,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,'ya',7,4,'2019-08-10 06:41:32','2019-08-10 06:41:32');
 
 #
 # Structure for table "tb_nst"
@@ -509,13 +500,13 @@ CREATE TABLE `tb_nst` (
   `date_modified` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_nst`),
   UNIQUE KEY `lead_id` (`lead_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_nst"
 #
 
-INSERT INTO `tb_nst` VALUES (2,'ahbdjsabd7831y4872y48237','Muhammad Alvin Prahyugo','My Faedah','profile-pic.jpg',NULL,NULL,NULL,NULL,NULL,NULL,'','','',3,7,4,'2019-08-09 05:21:03','2019-08-09 05:45:52');
+INSERT INTO `tb_nst` VALUES (3,'lead087809974805','Ahmad Jabar Khaidir','My Ta\'lim','5a952fc5-632e-4d2b-a95a-6f43dfad93c9.jpg',NULL,NULL,NULL,NULL,NULL,NULL,'','','',0,7,4,'2019-08-10 10:07:44','2019-08-10 10:07:44');
 
 #
 # Structure for table "tb_ticket"
@@ -523,15 +514,28 @@ INSERT INTO `tb_nst` VALUES (2,'ahbdjsabd7831y4872y48237','Muhammad Alvin Prahyu
 
 DROP TABLE IF EXISTS `tb_ticket`;
 CREATE TABLE `tb_ticket` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ticket` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_ticket` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mytalim` int(11) DEFAULT NULL,
+  `id_mysafar` int(11) DEFAULT NULL,
+  `id_myihram` int(11) DEFAULT NULL,
+  `id_lead` int(11) DEFAULT NULL,
+  `id_agent` int(11) DEFAULT NULL,
+  `id_nst` int(11) DEFAULT NULL,
+  `id_wedding` int(11) DEFAULT NULL,
+  `id_sewa` int(11) DEFAULT NULL,
+  `id_renovasi` int(11) DEFAULT NULL,
+  `id_myhajat_lainnya` int(11) DEFAULT NULL,
+  `id_franchise` int(11) DEFAULT NULL,
+  `id_cabang` int(3) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_ticket`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "tb_ticket"
 #
 
+INSERT INTO `tb_ticket` VALUES (13,36,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,4),(14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,22,NULL,NULL,7,4),(15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14,NULL,NULL,NULL,7,4),(16,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,7,4),(17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,7,4),(18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,NULL,7,4),(19,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,4),(20,NULL,NULL,9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,4),(21,NULL,NULL,NULL,17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,4),(22,NULL,NULL,NULL,NULL,5,NULL,NULL,NULL,NULL,NULL,NULL,7,4),(23,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,NULL,NULL,NULL,7,4);
 
 #
 # Structure for table "user"
@@ -558,4 +562,4 @@ CREATE TABLE `user` (
 # Data for table "user"
 #
 
-INSERT INTO `user` VALUES (1,'Lia','200001','admin1','admin1@admin.com','admin1',2,1,46),(2,'Gede Laroiba','200002','admin2','admin2@admin.com','admin2',3,1,46),(4,'Ibrahim Ahmad','832831','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim123',1,1,7),(11,'Okky Aditya','200003','okky','okky@user.com','okky',1,0,7),(12,'Adit','200005','adit','adit@adit.com','adit',1,1,6),(13,'Saiful Bahri','200006','saiful','saiful@bfi.co.id','saiful',1,0,15),(14,'Salman Al Farisi','200007','salman','salman@bfi.co.id','salman',1,0,2),(15,'Abdul Akon Right Na nana','200008','user','user@app.com','user',1,1,39),(16,'Maulana Arif Kuncoro','200009','arif','arif@bfi.co.id','arif',4,1,46),(17,'Admin Supervisor','200010','superuser','superuser@bfi.co.id','superuser',5,1,46),(19,'Ramdan Darmawan','200011','ramdan12','ramdan.darmawan16@gmail.com','pcmaster12',1,0,45);
+INSERT INTO `user` VALUES (1,'Lia','200001','admin1','admin1@admin.com','admin1',2,1,46),(2,'Gede Laroiba','200002','admin2','admin2@admin.com','admin2',3,1,46),(4,'Ibrahim Ahmad','832831','ibrahim','ibrahim.ahmadd98@gmail.com','ibrahim123',1,1,7),(11,'Okky Aditya','200003','okky','okky@user.com','okky',1,0,7),(12,'Adit','200005','adit','adit@adit.com','adit',1,1,6),(13,'Saiful Bahri','200006','saiful','saiful@bfi.co.id','saiful',1,0,15),(14,'Salman Al Farisi','200007','salman','salman@bfi.co.id','salman',1,0,2),(15,'User','200008','user','user@app.com','user',1,1,39),(16,'Maulana Arif Kuncoro','200009','arif','arif@bfi.co.id','arif',4,1,46),(17,'Admin Supervisor','200010','superuser','superuser@bfi.co.id','superuser',5,1,46),(19,'Ramdan Darmawan','200011','ramdan12','ramdan.darmawan16@gmail.com','pcmaster12',1,0,45);

@@ -260,7 +260,7 @@
               <!-- Biaya sewa per tahun -->
               <div class="form-group">
                 <label for="biaya_pertahun">Biaya Sewa per Tahun *</label>
-                <input name="biaya_pertahun" id="biaya_pertahun" type="text" class="form-control validasi sewa-required" placeholder="Biaya Sewa per Tahun">
+                <input name="biaya_pertahun" id="biaya_pertahun" type="number" class="form-control validasi sewa-required" placeholder="Biaya Sewa per Tahun">
               </div>
               <!-- Informasi Tambahan -->
               <div class="form-group">
