@@ -10,9 +10,10 @@ $(document).ready(function () {
 
 	$('table.status').DataTable({
 		"lengthMenu": [
-			[-1, 25, 50, 10],
-			["All", 25, 50, 10]
-		]
+			[15, 25, 50, 10],
+			["15", 25, 50, 10]
+		],
+		"lengthChange": false
 	});
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
@@ -76,9 +77,9 @@ $(document).ready(function () {
 		$(this).fadeOut('fast');
 	})
 
-	// $(".clickable-row").click(function () {
-	// 	window.location = $(this).data("href");
-	// });
+	$(".clickable-row").click(function () {
+		window.location = $(this).data("href");
+	});
 
 	//Script untuk form lead management user, ketika memilih asal leads
 	$(".cross-branch-div").hide();

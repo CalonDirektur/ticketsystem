@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <section class="content-header text-center mt-4">
     <h4>Form Lead Management</h4>
     <p><?= date('d F, Y'); ?></p>
@@ -68,7 +68,7 @@
                 </div>
                 <!-- TTD PIC -->
                 <div class="form-group">
-                  <label for="ttd_pic">TTD PIC </label>
+                  <label for="ttd_pic">PIC Akad</label>
                   <input name="ttd_pic" id="ttd_pic" type="text" class="form-control cross_branch-required">
                 </div>
               </div>
@@ -78,7 +78,7 @@
                 <?= form_error('lead_id') ?>
                 <label for="lead_id">Lead ID </label><br>
                 <!-- <small>Masukkan nomor Lead ID customer Anda</small> -->
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" maxlength="16" value="<?= set_value('lead_id') ?>" required>
+                <input required name="lead_id" id="lead_id" type="text" class="form-control" maxlength="16" value="<?= set_value('lead_id') ?>" placeholder="201908SLOS123456" required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
@@ -117,6 +117,8 @@
                   <option value="My Safar">My Safar</option>
                   <option value="My Ta'lim">My Ta'lim</option>
                   <option value="My Hajat">My Hajat</option>
+                  <option value="My Faedah">My Faedah</option>
+                  <option value="My CarS">My CarS</option>
                 </select>
               </div>
               <!-- Object Price -->
@@ -136,12 +138,12 @@
 
             </div>
             <div class="card-footer">
-              <button class="btn btn-info text-center" name="submit_lead_management">Kirim Data!</button>
+              <button class="btn btn-info text-center pull-right" name="submit_lead_management">Kirim Data!</button>
             </div>
           </div>
 
         </div>
       </div>
+    </form>
+  </section>
 </div>
-</form>
-</section>

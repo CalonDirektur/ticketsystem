@@ -49,6 +49,10 @@
       bottom: 0;
       left: 15px;
     }
+
+    table td {
+      padding: 0
+    }
   </style>
 </head>
 
@@ -57,8 +61,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center bg-info">
-        <a class="navbar-brand brand-logo text-white" href="<?= base_url('dashboard') ?>">BFI SYARIAH</a>
-        <a class="navbar-brand brand-logo-mini text-white" href="<?= base_url('dashboard') ?>">BFI</a>
+        <a class="navbar-brand brand-logo text-white" href="<?= base_url('dashboard') ?>"><i class="icon-heart"></i> <span style="font-size: 20px">HELPDESK</span> </a>
+        <a class="navbar-brand brand-logo-mini text-white" href="<?= base_url('dashboard') ?>"><i class="icon-heart"></i></a>
 
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -131,6 +135,21 @@
             </div>
           </li>
           <?php } ?>
+          <?php if ($this->session->userdata('level') == 4) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('status/lead_management/id') ?>">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">Lead Management</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('status/nst/id') ?>">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">NST</span>
+            </a>
+          </li>
+          <?php } ?>
+
           <?php if ($this->session->userdata('level') == 5) { ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= site_url('auth/list_user') ?>">
@@ -161,7 +180,7 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer mt-4">
+        <footer class="footer text-center">
           Helpdesk BFI Syariah
         </footer>
         <!-- partial -->

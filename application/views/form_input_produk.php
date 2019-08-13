@@ -1,10 +1,10 @@
 <section class="content-header text-center mt-4 mb-4">
-  <h4><b>Form Pengajuan Produk</b></h4>
+  <h4>Form Pengajuan Produk</h4>
   <p><?= date('d F, Y'); ?></p>
 </section>
 
 <form method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data" autocomplete="off">
-  <section class="content">
+  <section class="content mb-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -19,7 +19,7 @@
               <div class="form-group">
                 <label for="nama_konsumen">Nama Konsumen </label><br>
                 <!-- <small>Isi kolom ini dengan nama calon konsumen yang mengajukan pembiayaan</small> -->
-                <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" required autofocus>
+                <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" required autofocus>
               </div>
               <!-- Jenis Calon Konsumen -->
               <div class="form-group">
@@ -70,7 +70,7 @@
               <!-- Nama Siswa -->
               <div class="form-group">
                 <label for="nama_siswa">Nama Pelajar </label>
-                <input name="nama_siswa" id="nama_siswa" type="text" class="form-control validasi mytalim-required">
+                <input name="nama_siswa" id="nama_siswa" type="text" class="form-control validasi mytalim-required" placeholder="Nama Pelajar">
               </div>
               <!-- Pendidikan -->
               <div class="form-group">
@@ -135,7 +135,7 @@
           <div id="card-kategori-myhajat" class="card card-primary mt-4 pertanyaan">
             <div class="card-header">
               <b>Kategori My Hajat</b>
-              <p>Informasikan secara detail pengajuan pembiayaaan Anda</p>
+              <!-- <p>Informasikan secara detail pengajuan pembiayaaan Anda</p> -->
             </div>
             <div class="card-body">
               <div class="form-group">
@@ -240,7 +240,7 @@
           <!-- card Sewa -->
           <div id="card-sewa" class="card card-primary kategori-myhajat pertanyaan mt-4">
             <div class="card-header">
-              <b>Sewa</b>
+              <b>Sewa Bangunan</b>
             </div>
             <div class="card-body">
               <!-- Nama Pemilik -->
@@ -265,7 +265,7 @@
               <!-- Hubungan dengan pemohon -->
               <div class="form-group">
                 <label for="hubungan_pemohon">Hubungan dengan pemohon </label>
-                <input name="hubungan_pemohon" id="hubungan_pemohon" type="text" class="form-control validasi sewa-required" placeholder="Jenis Pemilik">
+                <input name="hubungan_pemohon" id="hubungan_pemohon" type="text" class="form-control validasi sewa-required" placeholder="Orang Lain / Rekan ">
               </div>
               <!-- Luas x Panjang -->
               <div class="form-group">
@@ -294,7 +294,7 @@
           <div id="card-wedding" class="card card-primary kategori-myhajat pertanyaan mt-4">
             <div class="card-header">
               <b>Detail Wedding Organizer</b>
-              <p>Informasikan secara detail pengajuan pembiayaaan detail WO</p>
+              <!-- <p>Informasikan secara detail pengajuan pembiayaaan detail WO</p> -->
             </div>
             <div class="card-body">
               <!-- Nama WO -->
@@ -341,7 +341,7 @@
                     <span class="input-group-text bg-secondary text-black">@</span>
                   </div>
                   <!-- <small>Masukkan nama akun social media atau website yang dimiliki jika ada (contoh: Instagram = @namaakun)</small> -->
-                  <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control validasi wedding-required" placeholder="Akun Sosial Media">
+                  <input name="akun_sosmed" id="akun_sosmed" type="text" class="form-control validasi wedding-required" placeholder="Contoh : (Facebook : syariahbfi | Instagram : @syariahbfi)">
                 </div>
 
               </div>
@@ -356,7 +356,7 @@
           <!-- card Franchise -->
           <div id="card-franchise" class="card card-primary kategori-myhajat pertanyaan mt-4">
             <div class="card-header">
-              <b>Franchise</b>
+              <b>Detail Franchise</b>
             </div>
             <div class="card-body">
               <!-- Nama Franchise -->
@@ -386,7 +386,7 @@
               <!-- Tahun Berdiri -->
               <div class="form-group">
                 <label for="tahun_berdiri_franchise">Tahun Berdiri Franchise </label>
-                <input name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" type="text" class="form-control validasi franchise-required" placeholder="Tahun Berdiri">
+                <input name="tahun_berdiri_franchise" id="tahun_berdiri_franchise" type="number" class="form-control validasi franchise-required" placeholder="Tahun Berdiri">
               </div>
               <!-- Harga -->
               <div class="form-group">
@@ -415,7 +415,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text bg-secondary text-black">@</span>
                   </div>
-                  <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control validasi franchise-required" placeholder="Akun Sosial Media">
+                  <input name="akun_sosmed_website" id="akun_sosmed_website" type="text" class="form-control validasi franchise-required" placeholder="Contoh : (Facebook : syariahbfi | Instagram : @syariahbfi)">
                 </div>
               </div>
               <!-- Informasi Tambahan -->
@@ -429,7 +429,7 @@
           <!-- card lainnya -->
           <div id="card-lainnya" class="card card-primary kategori-myhajat pertanyaan mt-4">
             <div class="card-header">
-              <b>Penyedia Jasa</b>
+              <b>Detail Penyedia Jasa</b>
             </div>
             <div class="card-body">
               <!-- Nama Penyedia Jasa -->
@@ -604,8 +604,8 @@
                 </div>
               </div>
             </div>
-            <div class="card-footer text-center">
-              <button type="submit" id="submit" class="btn btn-info" name="">Kirim Data!</button>
+            <div class="card-footer">
+              <button type="submit" id="submit" class="btn btn-info pull-right" name="">Kirim Data!</button>
             </div>
           </div>
 

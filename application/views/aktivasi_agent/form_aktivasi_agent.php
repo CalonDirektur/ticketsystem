@@ -152,7 +152,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button type="submit" id="submit" class="btn btn-info" name="">Kirim Data!</button>
+              <button type="submit" id="submit" class="btn btn-info pull-right" name="">Kirim Data!</button>
             </div>
           </div>
         </div>

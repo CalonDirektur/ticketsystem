@@ -1,9 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid mt-4 mb-4">
 
-  <section class="content-header mt-4 text-center">
-    <h1>
+  <section class="content-header text-center">
+    <h4>
       Detail My Hajat Renovasi Tickets
-    </h1>
+    </h4>
+    <p><?= date('d F, Y'); ?></p>
   </section>
 
   <!-- Main content -->
@@ -11,248 +12,318 @@
     <form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
       <div class="row">
         <!-- Formulir -->
-        <div class="col-lg-6 p-0">
-
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-header text-center">
               <h3 class="card-title">Data Ticket My Hajat Renovasi</h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body p-0">
-              <table class="table table-striped">
-                <thead>
-                  <th>Kolom</th>
-                  <th>Isi</th>
-                </thead>
-                <!-- ID Ticket -->
-                <tr>
-                  <td><b>ID Ticket</b></td>
-                  <td><input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required></td>
-                  <td><input type="hidden" class="form-control" name="id_renovasi" id="id_renovasi" value="<?= $data->id_renovasi ?>" readonly required></td>
-                </tr>
-                <tr>
-                  <td><b>Nama Cabang</b></td>
-                  <td>
-                    <input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Nama Konsumen</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Jenis Konsumen</b></td>
-                  <td>
-                    <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
-                      <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
-                        Internal</option>
-                      <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Nama Vendor</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="nama_vendor" id="nama_vendor" value="<?= $data->nama_vendor ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Jenis Vendor</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="jenis_vendor" id="jenis_vendor" value="<?= $data->jenis_vendor ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Bagian Bangunan</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="bagian_bangunan" id="bagian_bangunan" value="<?= $data->bagian_bangunan ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Luas Bangunan</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="luas_bangunan" id="luas_bangunan" value="<?= $data->luas_bangunan ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Jumlah Pekerja</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="jumlah_pekerja" id="jumlah_pekerja" value="<?= $data->jumlah_pekerja ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Estimasi Waktu</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="estimasi_waktu" id="estimasi_waktu" value="<?= $data->estimasi_waktu ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Nilai Pembiayaan</b></td>
-                  <td>
-                    <input type="text" class="form-control enable" name="nilai_pembiayaan" id="nilai_pembiayaan" value="<?= $data->nilai_pembiayaan ?>" readonly required>
-                  </td>
-                </tr>
-                <tr>
-                  <td><b>Informasi Tambahan</b></td>
-                  <td>
-                    <textarea name="informasi_tambahan" class="form-control enable" id="informasi_tambahan" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
-                  </td>
-                </tr>
-                <!-- Tombol ini muncul khusus untuk user -->
-                <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-                  <tr>
-                    <td></td>
-                    <td>
-                      <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
-                    </td>
-                  </tr>
-                <?php } ?>
-                <?php if ($this->session->userdata('level') == 5) { ?>
-                  <tr>
-                    <td>
-                      <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
-                    </td>
-                    <td></td>
-                  </tr>
-                <?php } ?>
-                <tr>
-                  <td><b>Status:</b></td>
-                  <td>
-                    <?php
-                    if ($data->id_approval == 0) {
-                      echo '<label class="badge badge-secondary">Pending</label>';
-                    }
-                    if ($data->id_approval == 1) {
-                      echo '<label class="badge badge-danger">Ditolak</label>';
-                    }
-                    if ($data->id_approval == 2) {
-                      echo '<label class="badge badge-success">Disetujui Admin 1</label>';
-                    }
-                    if ($data->id_approval == 3) {
-                      echo '<label class="badge badge-primary">Selesai</label>';
-                    }
-                    ?>
-                  </td>
-                </tr>
-                <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-                <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
-                  <tr>
-                    <td><b>Aksi:</b></td>
-                    <td>
-                      <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
-                      <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
-                    </td>
-                  </tr>
-                <?php } ?>
-                <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
-                  <tr>
-                    <td><b>Aksi:</b></td>
-                    <td>
-                      <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
-                      <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
-                    </td>
-                  </tr>
-                <?php } ?>
-                <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
-                <?php if ($this->session->userdata('level') == 5) { ?>
-                  <tr>
-                    <td><b>Aksi:</b></td>
-                    <td>
-                      <a class="btn btn-primary mt-1" href="<?= base_url('Superuser/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Complete</a>
-                      <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
-                    </td>
-                  </tr>
-                <?php } ?>
-              </table>
+            <div class="card-body">
+              <!-- ID Ticket -->
+              <div class="form-group">
+                <label for="">ID Ticket</label>
+                <input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required>
+                <input type="hidden" class="form-control" name="id_renovasi" id="id_renovasi" value="<?= $data->id_renovasi ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Nama Cabang</label>
+                <input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Nama Konsumen</label>
+                <input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Jenis Konsumen</label>
+                <select class="form-control enable" name="jenis_konsumen" id="jenis_konsumen" disabled>
+                  <option value="Internal" <?= $data->jenis_konsumen == 'Internal' ? 'selected' : ''  ?>>
+                    Internal</option>
+                  <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">Nama Vendor</label>
+                <input type="text" class="form-control enable" name="nama_vendor" id="nama_vendor" value="<?= $data->nama_vendor ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Jenis Vendor</label>
+
+                <input type="text" class="form-control enable" name="jenis_vendor" id="jenis_vendor" value="<?= $data->jenis_vendor ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Bagian Bangunan</label>
+                <input type="text" class="form-control enable" name="bagian_bangunan" id="bagian_bangunan" value="<?= $data->bagian_bangunan ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Luas Bangunan</label>
+                <input type="text" class="form-control enable" name="luas_bangunan" id="luas_bangunan" value="<?= $data->luas_bangunan ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Jumlah Pekerja</label>
+                <input type="text" class="form-control enable" name="jumlah_pekerja" id="jumlah_pekerja" value="<?= $data->jumlah_pekerja ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Estimasi Waktu</label>
+                <input type="text" class="form-control enable" name="estimasi_waktu" id="estimasi_waktu" value="<?= $data->estimasi_waktu ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Nilai Pembiayaan</label>
+                <input type="text" class="form-control enable" name="nilai_pembiayaan" id="nilai_pembiayaan" value="<?= $data->nilai_pembiayaan ?>" readonly required>
+              </div>
+              <div class="form-group">
+                <label for="">Informasi Tambahan</label>
+                <textarea name="informasi_tambahan" class="form-control enable" id="informasi_tambahan" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
+              </div>
+              <!-- Tombol ini muncul khusus untuk user -->
+              <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+              <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+              <?php } ?>
+              <?php if ($this->session->userdata('level') == 5) { ?>
+              <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+              <?php } ?>
+              <label for="">Status:</label>
+              <?php
+              if ($data->id_approval == 0) {
+                echo '<label class="badge badge-secondary">Pending</label>';
+              }
+              if ($data->id_approval == 1) {
+                echo '<label class="badge badge-danger">Ditolak</label>';
+              }
+              if ($data->id_approval == 2) {
+                echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+              }
+              if ($data->id_approval == 3) {
+                echo '<label class="badge badge-primary">Selesai</label>';
+              }
+              ?>
+            </div>
+            <div class="card-footer">
+              <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
+              <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+              <label for="">Aksi:</label>
+              <a class="btn btn-primary" href="<?= base_url('Admin1/approve/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
+              <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+              <?php } ?>
+              <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
+              <label for="">Aksi:</label>
+              <a class="btn btn-primary" href="<?= base_url('Admin2/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
+              <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+              <?php } ?>
+              <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
+              <?php if ($this->session->userdata('level') == 5) { ?>
+              <label for="">Aksi:</label>
+              <a class="btn btn-primary mt-1" href="<?= base_url('Superuser/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Complete</a>
+              <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+              <?php } ?>
             </div>
           </div>
 
         </div>
 
         <!-- Bagian Munculin lampiran -->
-        <div class="col-lg-6 col-md-12 mt-2">
+        <div class="col-lg-6">
           <!-- Form Upload Lampiran -->
           <div id="upload" class="card">
             <div class="card-header">
               <h3 class="card-title text-center">Lampiran (Attachment)</h3>
             </div>
             <div class="card-body p-0" id="dynamic-field">
-              <table class="table text-center" width="100%" style="table-layout:fixed;">
+              <table class="table text-center" width="100%">
                 <thead>
                   <th>File Terlampir</th>
                   <th>Ubah/tambah file lampiran</th>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a></td><?php } ?>
-                    <td><input name="upload_file1" id="upload_file1" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload1" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td style="word-wrap: break-word"><?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a></td><?php } ?>
-                    <td><input name="upload_file2" id="upload_file2" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload2" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a></td><?php } ?>
-                    <td><input name="upload_file3" id="upload_file3" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload3" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a></td><?php } ?>
-                    <td><input name="upload_file4" id="upload_file4" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload4" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a></td><?php } ?>
-                    <td><input name="upload_file5" id="upload_file5" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload5" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a></td><?php } ?>
-                    <td><input name="upload_file6" id="upload_file6" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload6" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a></td><?php } ?>
-                    <td><input name="upload_file7" id="upload_file7" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload7" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a></td><?php } ?>
-                    <td><input name="upload_file8" id="upload_file8" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload8" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a></td><?php } ?>
-                    <td><input name="upload_file9" id="upload_file9" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload9" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a></td><?php } ?>
-                    <td><input name="upload_file10" id="upload_file10" type="file" class="form-control enable col-12" disabled></td>
+                    <td>
+                      <?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a><?php } ?>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <input type="file" name="file_upload10" class="file-upload-default" required>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-              <div class="card-footer text-center">
-                <!-- Tombol ini muncul khusus untuk user -->
-                <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-                <button type="submit" id="edit_renovasi" class="btn btn-primary enable" name="edit_renovasi" disabled>Kirim Data!</button>
-              </div>
+            <div class="card-footer text-center">
+              <!-- Tombol ini muncul khusus untuk user -->
+              <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
+              <button type="submit" id="edit_renovasi" class="btn btn-primary enable" name="edit_renovasi" disabled>Update Data!</button>
+            </div>
             <?php } ?>
             <?php if ($this->session->userdata('level') == 5) { ?>
-              <div class="card-footer text-center">
-                <!-- Tombol ini muncul khusus untuk user -->
-                <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-                <button type="submit" id="edit_renovasi_superuser" class="btn btn-primary enable" name="edit_renovasi_superuser" disabled>Kirim Data!</button>
-              </div>
+            <div class="card-footer text-center">
+              <!-- Tombol ini muncul khusus untuk SUPERUSER -->
+              <button type="submit" id="edit_renovasi_superuser" class="btn btn-primary enable" name="edit_renovasi_superuser" disabled>Update Data!</button>
+            </div>
             <?php } ?>
           </div>
         </div>
+
       </div>
     </form>
+
+    <?php if ($komentar->num_rows() == 0) { ?>
     <!-- Post Komentar -->
     <div class="row mt-4">
       <div class="col-lg-12 col-md-6">
         <form method="post" action="<?= base_url('comment/post_comment/id_renovasi') ?>">
           <div class="card">
             <div class="card-header with-border">
-              <b>Post Komentar</b>
+              <label for="">Post Komentar</label>
             </div>
             <div class="card-body">
               <div class="form-group">
@@ -263,30 +334,31 @@
               </div>
             </div>
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary pull-right" name="submit_komentar">Kirim</button>
+              <button type="submit" class="btn btn-info pull-right" name="submit_komentar">Post Komentar</button>
             </div>
         </form>
       </div>
     </div>
 </div>
+<?php } ?>
 
 
-<?php foreach ($komentar as $komen) { ?>
-  <div class="row mt-4">
-    <div class="col-lg-12 col-md-12">
+<?php foreach ($komentar->result() as $komen) { ?>
+<div class="row mt-4">
+  <div class="col-lg-12 col-md-12">
 
-      <div class="card card-widget">
-        <div class="card-header with-border">
-          <div class="user-block"> <span class="username"><b><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></b><br>
-            <span class="description">Diposting: <?= $komen->date ?></span>
-          </div>
+    <div class="card card-widget">
+      <div class="card-header with-border">
+        <div class="user-block"> <span class="username"><label for=""><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></label><br>
+          <span class="description">Diposting: <?= $komen->date ?></span>
         </div>
-        <div class="card-body">
-          <p><?= $komen->comment ?></p>
-        </div>
-        <!-- Reply card Comment -->
-        <div class="card-footer card-comments">
-          <?php
+      </div>
+      <div class="card-body">
+        <p><?= $komen->comment ?></p>
+      </div>
+      <!-- Reply card Comment -->
+      <div class="card-footer card-comments">
+        <?php
           $this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
           $this->db->from('tb_comment, user, tb_cabang');
           $this->db->where('parent_comment_id = ' . $komen->id . ' AND
@@ -294,34 +366,34 @@
                               user.id_cabang = tb_cabang.id_cabang');
           $reply = $this->db->get();
           ?>
-          <?php foreach ($reply->result() as $balasan) { ?>
-            <div class="card-comment">
-              <div class="comment-text">
-                <span class="username">
-                  <b><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</b>:
-                  <span class="text-muted pull-right"> <?= $balasan->date ?></span>
-                </span>
-                <?= $balasan->comment ?>
-              </div>
-            </div>
-            <hr>
-          <?php } ?>
+        <?php foreach ($reply->result() as $balasan) { ?>
+        <div class="card-comment">
+          <div class="comment-text">
+            <span class="username">
+              <label for=""><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</label>:
+              <span class="text-muted pull-right"> <?= $balasan->date ?></span>
+            </span>
+            <?= $balasan->comment ?>
+          </div>
         </div>
-        <div class="card-footer">
-          <!-- Reply comment form -->
-          <form action="<?= base_url('comment/post_reply/id_renovasi'); ?>" method="post">
-            <div class="img-push">
-              <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
-              <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-              <input name="id_komentar" type="hidden" value="<?= $data->id_renovasi ?>">
-              <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
-              <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-            </div>
-          </form>
-        </div>
+        <hr>
+        <?php } ?>
+      </div>
+      <div class="card-footer">
+        <!-- Reply comment form -->
+        <form action="<?= base_url('comment/post_reply/id_renovasi'); ?>" method="post">
+          <div class="img-push">
+            <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
+            <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+            <input name="id_komentar" type="hidden" value="<?= $data->id_renovasi ?>">
+            <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+            <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
 <?php } ?>
 

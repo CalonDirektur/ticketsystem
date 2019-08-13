@@ -164,7 +164,7 @@ class Auth extends CI_Controller
 					'id_cabang' => $row->id_cabang
 				];
 				$this->session->set_userdata($params);
-				echo "<script>alert('Selamat, login berhasil'); window.location='" . site_url("dashboard") . "'</script>";
+				echo "<script>window.location='" . site_url("dashboard") . "'</script>";
 			} else {
 				echo "<script>alert('Akun tidak cocok/belum diaktivasi'); window.location='" . site_url("auth") . "'</script>";
 			}

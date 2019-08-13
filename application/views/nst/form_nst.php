@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <section class="content-header text-center mt-4">
     <h4>Form NST</h4>
     <p><?= date('d F, Y'); ?></p>
@@ -26,7 +26,7 @@
               <div class="form-group">
                 <?= form_error('lead_id') ?>
                 <label for="lead_id">Lead ID </label>
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="Lead ID" minlength="16" value="<?= set_value('lead_id') ?>" required>
+                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="201908SLOS123456" minlength="16" value="<?= set_value('lead_id') ?>" required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button type="submit" id="submit" class="btn btn-info" name="">Kirim Data!</button>
+              <button type="submit" id="submit" class="btn btn-info pull-right" name="">Kirim Data!</button>
             </div>
           </div>
 

@@ -49,7 +49,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -74,7 +74,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -95,7 +95,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -115,7 +115,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -134,7 +134,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -153,7 +153,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
         }
 
@@ -172,7 +172,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
                                                                 tb_my_ihram.id_myihram = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
         }
@@ -192,7 +192,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
                                                                 tb_my_safar.id_mysafar = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
         }
 
@@ -209,7 +209,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_agent = tb_aktivasi_agent.id_agent AND 
                                                                 tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
 
@@ -225,7 +225,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_nst = tb_nst.id_nst AND 
                                                                 tb_nst.id_nst = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'nst/detail_status_nst', $data);
         }
 
@@ -250,7 +250,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
@@ -272,7 +272,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
@@ -296,7 +296,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -315,7 +315,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -334,7 +334,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -353,7 +353,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -372,7 +372,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
         }
 
@@ -391,7 +391,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
                                                                 tb_my_ihram.id_myihram = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
         }
 
@@ -410,7 +410,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
                                                                 tb_my_safar.id_mysafar = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
         }
 
@@ -427,7 +427,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_agent = tb_aktivasi_agent.id_agent AND 
                                                                 tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
 
@@ -443,7 +443,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_nst = tb_nst.id_nst AND 
                                                                 tb_nst.id_nst = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'nst/detail_status_nst', $data);
         }
 
@@ -468,7 +468,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
@@ -491,7 +491,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -514,7 +514,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -533,7 +533,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -552,7 +552,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -571,7 +571,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -590,7 +590,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
         }
 
@@ -609,7 +609,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
                                                                 tb_my_ihram.id_myihram = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
         }
@@ -629,7 +629,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
                                                                 tb_my_safar.id_mysafar = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
         }
 
@@ -645,7 +645,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_agent = tb_aktivasi_agent.id_agent AND 
                                                                 tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
 
@@ -661,7 +661,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_nst = tb_nst.id_nst AND 
                                                                 tb_nst.id_nst = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'nst/detail_status_nst', $data);
         }
 
@@ -683,7 +683,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
     }
@@ -705,7 +705,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mytalim = tb_my_talim.id_mytalim AND 
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -728,7 +728,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_renovasi = tb_my_hajat_renovasi.id_renovasi AND 
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -747,7 +747,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -766,7 +766,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_wedding = tb_my_hajat_wedding.id_wedding AND 
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -785,7 +785,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_franchise = tb_my_hajat_franchise.id_franchise AND 
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -804,7 +804,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myhajat_lainnya = tb_my_hajat_lainnya.id_myhajat_lainnya AND 
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
         }
 
@@ -823,7 +823,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_myihram = tb_my_ihram.id_myihram AND 
                                                                 tb_my_ihram.id_myihram = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
         }
@@ -843,7 +843,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_mysafar = tb_my_safar.id_mysafar AND 
                                                                 tb_my_safar.id_mysafar = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
         }
 
@@ -859,7 +859,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_agent = tb_aktivasi_agent.id_agent AND 
                                                                 tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
 
@@ -875,7 +875,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_nst = tb_nst.id_nst AND 
                                                                 tb_nst.id_nst = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'nst/detail_status_nst', $data);
         }
 
@@ -900,7 +900,7 @@ class Status extends CI_Controller
                                                                 tb_comment.id_lead = tb_lead_management.id_lead AND 
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
-                                                                user.id_cabang = tb_cabang.id_cabang')->result();
+                                                                user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
