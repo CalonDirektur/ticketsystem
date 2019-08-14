@@ -231,7 +231,7 @@ class Status extends CI_Controller
 
         ////////////////////////////// LEAD MANAGEMENT /////////////////////////////////////////
         if ($produk == 'lead_management' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_lead_management', 'pending_review', $this->id_user)->result();
+            $data['data'] = $this->data_m->get('tb_lead_management', 'null', $this->id_user)->result();
             $this->template->load('template2', 'lead_management/lead_management_list', $data);
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
@@ -308,9 +308,9 @@ class Status extends CI_Controller
         }
         //Menampilkan halaman ticket APPROVED pada produk my hajat kategori sewa dengan $id tertentu
         if ($produk == 'myhajat' && $kategori == 'sewa' && $id != NULL) {
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_hajat_sewa', 'id_sewa', $id);
             // $data['data'] = $this->data_m->get_by_id('tb_my_hajat_sewa', ['id_sewa' => $id])->row();
-            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_hajat_renovasi', 'id_renovasi', $id);
-            $data['data'] = $this->data_m->get_myhajat_by_id('tb_my_hajat_sewa', 'id_sewa', $id);
+            // $data['data'] = $this->data_m->get_myhajat_by_id('tb_my_hajat_sewa', 'id_sewa', $id);
             $data['komentar'] = $this->comment_m->get_comment('tb_my_hajat_sewa', 'parent_comment_id = 0 AND 
                                                                 tb_comment.id_sewa = tb_my_hajat_sewa.id_sewa AND 
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
@@ -903,6 +903,29 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
+        }
+    }
+
+    public function list($produk)
+    {
+        if ($produk == "lead_management") {
+            $data['data'] = $this->data_m->query("SELECT * 
+                                                    FROM 
+                                                tb_lead_management as A
+                                                INNER JOIN tb_ticket as B
+                                                ON A.id_lead = B.id_lead 
+                                                ");
+            $this->template->load('template2', 'lead_management/lead_management_list', $data);
+        }
+
+        if ($produk == "nst") {
+            $data['data'] = $this->data_m->query("SELECT * 
+                                                    FROM 
+                                                tb_nst as A
+                                                INNER JOIN tb_ticket as B
+                                                ON A.id_nst = B.id_nst 
+                                                ");
+            $this->template->load('template2', 'nst/nst_list', $data);
         }
     }
 }

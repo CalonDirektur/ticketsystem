@@ -196,7 +196,8 @@ class Data_m extends CI_Model
     public function get_tickets($id_user, $id_approval)
     {
         $query = $this->db->query("
-      SELECT *, A.id_ticket as id_ticket,
+      SELECT *, 
+      A.id_ticket as id_ticket,
         BA.nama_konsumen as nama_konsumen_renovasi,
         BB.nama_konsumen as nama_konsumen_sewa,
         BC.nama_konsumen as nama_konsumen_wedding,
@@ -297,6 +298,12 @@ class Data_m extends CI_Model
 
     public function get_ticket_by_id($table, $col, $id)
     {
+        $this->db->select("*,
+                            DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
+                            DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
+                            DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
+                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan
+                            ");
         $this->db->from('tb_ticket A');
         $this->db->join($table . ' B', 'A.' . $col . ' = B.' . $col, 'inner');
         $this->db->join('tb_cabang T', 'T.id_cabang = A.id_cabang', 'inner');

@@ -46,21 +46,23 @@
 									<option value="My CarS" <?= $data->produk == 'My CarS' ? 'selected' : ''  ?>> My CarS</option>
 								</select>
 							</div>
-							<label for="">Status:</label>
-							<?php
-							if ($data->id_approval == 0) {
-								echo '<label class="badge badge-secondary">Pending</label>';
-							}
-							if ($data->id_approval == 1) {
-								echo '<label class="badge badge-danger">Ditolak</label>';
-							}
-							if ($data->id_approval == 2) {
-								echo '<label class="badge badge-success">Disetujui Admin NST</label>';
-							}
-							if ($data->id_approval == 3) {
-								echo '<label class="badge badge-primary">Selesai</label>';
-							}
-							?>
+							<div id="status-ticket" class="pull-right">
+								<label for="">Status:</label>
+								<?php
+								if ($data->id_approval == 0) {
+									echo '<label class="badge badge-secondary">Pending</label>';
+								}
+								if ($data->id_approval == 1) {
+									echo '<label class="badge badge-danger">Ditolak</label>';
+								}
+								if ($data->id_approval == 2) {
+									echo '<label class="badge badge-success">Disetujui Admin NST</label>';
+								}
+								if ($data->id_approval == 3) {
+									echo '<label class="badge badge-success">Selesai</label>';
+								}
+								?>
+							</div>
 							<!-- Tombol ini muncul khusus untuk user -->
 							<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
 							<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -69,12 +71,11 @@
 						<div class="card-footer">
 							<!-- Tombol ini muncul untuk menyelesaikan support dan  khusus untuk user -->
 							<?php if ($this->session->userdata('level') == 1 && $data->id_approval == 2) { ?>
-							<a class="btn btn-primary" href="<?= base_url('Admin_nst/complete/nst/id/' . $data->id_nst) ?>">Selesaikan</a>
+							<a id="selesaikan" class="btn btn-info" href="<?= base_url('Admin_nst/complete/nst/id/' . $data->id_nst) ?>">Selesaikan</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
 							<?php if (($this->session->userdata('level') == 5 || $this->session->userdata('level') == 4)) { ?>
-							<label for="">Aksi:</label>
-							<a class="btn btn-primary" href="<?= base_url('Admin_nst/approve/nst/id/' . $data->id_nst) ?>">Approve</a>
+							<a class="btn btn-info" href="<?= base_url('Admin_nst/approve/nst/id/' . $data->id_nst) ?>">Approve</a>
 							<a class="btn btn-danger" href="<?= base_url('Admin_nst/reject/nst/id/' . $data->id_nst) ?>">Reject</a>
 							<?php } ?>
 						</div>
@@ -90,7 +91,7 @@
 						<div class="card-body p-0" id="dynamic-field">
 							<table class="table text-center" width="100%">
 								<thead>
-									<th>File Terlampir</th>
+									<th width="50%">File Terlampir</th>
 									<th>Ubah/tambah file lampiran</th>
 								</thead>
 								<tbody>
@@ -100,11 +101,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload1" class="file-upload-default" required>
+												<input type="file" name="upload_file1" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -116,11 +117,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload2" class="file-upload-default" required>
+												<input type="file" name="upload_file2" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -132,11 +133,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload3" class="file-upload-default" required>
+												<input type="file" name="upload_file3" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -148,11 +149,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload4" class="file-upload-default" required>
+												<input type="file" name="upload_file4" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -164,11 +165,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload5" class="file-upload-default" required>
+												<input type="file" name="upload_file5" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -180,11 +181,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload6" class="file-upload-default" required>
+												<input type="file" name="upload_file6" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -196,11 +197,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload7" class="file-upload-default" required>
+												<input type="file" name="upload_file7" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -212,11 +213,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload8" class="file-upload-default" required>
+												<input type="file" name="upload_file8" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -228,11 +229,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload9" class="file-upload-default" required>
+												<input type="file" name="upload_file9" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -244,11 +245,11 @@
 										</td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload10" class="file-upload-default" required>
+												<input type="file" name="upload_file10" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
-														<button class="file-upload-browse btn btn-info" type="button">Upload</button>
+														<button class="file-upload-browse btn btn-info enable" disabled type="button">Upload</button>
 													</span>
 												</div>
 											</div>
@@ -257,17 +258,17 @@
 								</tbody>
 							</table>
 						</div>
-						<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+						<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
 						<div class="card-footer text-center">
 							<!-- Tombol ini muncul khusus untuk user -->
 							<!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-							<button type="submit" id="edit_myihram" class="btn btn-primary enable" name="edit_myihram" disabled>Update Data!</button>
+							<button type="submit" id="edit_nst" class="btn btn-info enable" name="edit_nst" disabled>Update Data!</button>
 						</div>
 						<?php } ?>
 						<?php if ($this->session->userdata('level') == 5) { ?>
 						<div class="card-footer text-center">
 							<!-- Tombol ini muncul khusus untuk SUPERUSER -->
-							<button type="submit" id="edit_myihram_superuser" class="btn btn-primary enable" name="edit_myihram_superuser" disabled>Update Data!</button>
+							<button type="submit" id="edit_nst_superuser" class="btn btn-info enable" name="edit_nst_superuser" disabled>Update Data!</button>
 						</div>
 						<?php } ?>
 					</div>

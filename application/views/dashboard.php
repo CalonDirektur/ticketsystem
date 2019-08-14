@@ -124,7 +124,7 @@
         <b class="card-title">Tabel Request Support</b>
       </div>
       <div class="card-body p-0">
-        <table class="display status" width="100%">
+        <table class="display responsive status" width="100%">
           <thead>
             <tr>
               <th class="all" width="1%">ID Ticket</th>
@@ -148,7 +148,7 @@
               <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_mytalim ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_mytalim == 0) { ?>
@@ -176,7 +176,7 @@
               <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_mysafar ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_mysafar == 0) { ?>
@@ -204,7 +204,7 @@
               <?php } else if ($tickets->id_approval_myihram == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_myihram ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_myihram == 0) { ?>
@@ -232,7 +232,7 @@
               <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_lead_management ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_lead_management == 0) { ?>
@@ -240,7 +240,7 @@
               <?php } else if ($tickets->id_approval_lead_management == 1) { ?>
               <td><span class="badge badge-danger rejected">Ditolak</span></td>
               <?php } else if ($tickets->id_approval_lead_management == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+              <td><span class="badge badge-success approved">Disetujui Admin NST</span></td>
               <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
               <td><span class="badge badge-info completed">Selesai</span></td>
               <?php } ?>
@@ -260,7 +260,7 @@
               <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_aktivasi_agent ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
@@ -288,7 +288,7 @@
               <?php } else if ($tickets->id_approval_nst == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_nst ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_nst == 0) { ?>
@@ -296,7 +296,7 @@
               <?php } else if ($tickets->id_approval_nst == 1) { ?>
               <td><span class="badge badge-danger rejected">Ditolak</span></td>
               <?php } else if ($tickets->id_approval_nst == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+              <td><span class="badge badge-success approved">Disetujui Admin NST</span></td>
               <?php } else if ($tickets->id_approval_nst == 3) { ?>
               <td><span class="badge badge-info completed">Selesai</span></td>
               <?php } ?>
@@ -316,7 +316,7 @@
               <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_renovasi ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_renovasi == 0) { ?>
@@ -344,7 +344,7 @@
               <?php } else if ($tickets->id_approval_sewa == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_sewa ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_sewa == 0) { ?>
@@ -372,7 +372,7 @@
               <?php } else if ($tickets->id_approval_wedding == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_wedding ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_wedding == 0) { ?>
@@ -400,7 +400,7 @@
               <?php } else if ($tickets->id_approval_franchise == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_franchise ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_franchise == 0) { ?>
@@ -428,7 +428,7 @@
               <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_lainnya ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_lainnya == 0) { ?>
@@ -492,7 +492,7 @@
         <b class="card-title">Tabel Request Support</b>
       </div>
       <div class="card-body p-0">
-        <table class="display status" width="100%">
+        <table class="display responsive status" width="100%">
           <thead>
             <tr>
               <th class="all" width="1%">ID Ticket</th>
@@ -518,7 +518,7 @@
               <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_mytalim ?></td>
@@ -548,7 +548,7 @@
               <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_mysafar ?></td>
@@ -578,7 +578,7 @@
               <?php } else if ($tickets->id_approval_myihram == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_myihram ?></td>
@@ -608,7 +608,7 @@
               <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_aktivasi_agent ?></td>
@@ -638,7 +638,7 @@
               <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_renovasi ?></td>
@@ -668,7 +668,7 @@
               <?php } else if ($tickets->id_approval_sewa == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_sewa ?></td>
@@ -698,7 +698,7 @@
               <?php } else if ($tickets->id_approval_wedding == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_wedding ?></td>
@@ -728,7 +728,7 @@
               <?php } else if ($tickets->id_approval_franchise == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_franchise ?></td>
@@ -758,7 +758,7 @@
               <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_lainnya ?></td>
@@ -788,16 +788,22 @@
     <?php if ($this->session->userdata('level') == 3) { ?>
     <!-- Report Status Request Support -->
     <div class="row mt-4">
-
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 status-card card-approved mt-2" style="cursor: pointer">
-        <!-- Disetujui Admin 1  -->
+      <!-- Card Pending -->
+      <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-pending" style="cursor: pointer">
+        <div class="card text-center p-5">
+          <h3 class="card-title">Pending</h3><br>
+          <h3><span class="badge badge-secondary"><?= $total_pending ?></span></h3>
+        </div>
+      </div>
+      <!-- Disetujui Admin 1  -->
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-approved mt-2" style="cursor: pointer">
         <div class="card text-center p-5">
           <h3 class="card-title">Disetujui Admin 1</h3><br>
           <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
         </div>
       </div>
       <!-- Ditolak -->
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 status-card card-rejected mt-2" style="cursor: pointer">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-rejected mt-2" style="cursor: pointer">
         <div class="card text-center p-5">
           <h3 class="card-title">Ditolak</h3><br>
           <h3><span class="badge badge-danger"><?= $total_rejected ?></span></h3>
@@ -805,7 +811,7 @@
       </div>
 
       <!-- Selesai -->
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 status-card card-completed mt-2" style="cursor: pointer">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-completed mt-2" style="cursor: pointer">
         <div class="card text-center p-5">
           <h3 class="card-title">Selesai</h3><br>
           <h3><span class="badge badge-info"><?= $total_completed ?></span></h3>
@@ -819,7 +825,7 @@
         <b class="card-title">Tabel Request Support</b>
       </div>
       <div class="card-body p-0">
-        <table class="display status" width="100%">
+        <table class="display responsive status" width="100%">
           <thead>
             <tr>
               <th class="all" width="1%">ID Ticket</th>
@@ -845,7 +851,7 @@
               <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_mytalim ?></td>
@@ -875,7 +881,7 @@
               <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_mysafar ?></td>
@@ -905,7 +911,7 @@
               <?php } else if ($tickets->id_approval_myihram == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_myihram ?></td>
@@ -935,7 +941,7 @@
               <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_aktivasi_agent ?></td>
@@ -965,7 +971,7 @@
               <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_renovasi ?></td>
@@ -995,7 +1001,7 @@
               <?php } else if ($tickets->id_approval_sewa == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_sewa ?></td>
@@ -1025,7 +1031,7 @@
               <?php } else if ($tickets->id_approval_wedding == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_wedding ?></td>
@@ -1055,7 +1061,7 @@
               <?php } else if ($tickets->id_approval_franchise == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_franchise ?></td>
@@ -1085,7 +1091,7 @@
               <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_lainnya ?></td>
@@ -1146,7 +1152,7 @@
               <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_lead_management ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_lead_management == 0) { ?>
@@ -1154,7 +1160,7 @@
               <?php } else if ($tickets->id_approval_lead_management == 1) { ?>
               <td><span class="badge badge-danger rejected">Ditolak</span></td>
               <?php } else if ($tickets->id_approval_lead_management == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+              <td><span class="badge badge-success approved">Disetujui Admin NST</span></td>
               <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
               <td><span class="badge badge-info completed">Selesai</span></td>
               <?php } ?>
@@ -1174,7 +1180,7 @@
               <?php } else if ($tickets->id_approval_nst == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->nama_konsumen_nst ?></td>
               <td><?= $tickets->produk ?></td>
               <?php if ($tickets->id_approval_nst == 0) { ?>
@@ -1182,7 +1188,7 @@
               <?php } else if ($tickets->id_approval_nst == 1) { ?>
               <td><span class="badge badge-danger rejected">Ditolak</span></td>
               <?php } else if ($tickets->id_approval_nst == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+              <td><span class="badge badge-success approved">Disetujui Admin NST</span></td>
               <?php } else if ($tickets->id_approval_nst == 3) { ?>
               <td><span class="badge badge-info completed">Selesai</span></td>
               <?php } ?>
@@ -1265,7 +1271,7 @@
               <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mytalim/id/' . $tickets->id_mytalim) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_mytalim ?></td>
@@ -1295,7 +1301,7 @@
               <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/mysafar/id/' . $tickets->id_mysafar) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_mysafar ?></td>
@@ -1325,7 +1331,7 @@
               <?php } else if ($tickets->id_approval_myihram == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myihram/id/' . $tickets->id_myihram) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_myihram ?></td>
@@ -1355,7 +1361,7 @@
               <?php } else if ($tickets->id_approval_lead_management == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/lead_management/id/' . $tickets->id_lead) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_lead_management ?></td>
@@ -1385,7 +1391,7 @@
               <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/aktivasi_agent/id/' . $tickets->id_agent) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_aktivasi_agent ?></td>
@@ -1415,7 +1421,7 @@
               <?php } else if ($tickets->id_approval_nst == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/nst/id/' . $tickets->id_nst) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_nst ?></td>
@@ -1445,7 +1451,7 @@
               <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_renovasi ?></td>
@@ -1475,7 +1481,7 @@
               <?php } else if ($tickets->id_approval_sewa == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/sewa/' . $tickets->id_sewa) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_sewa ?></td>
@@ -1505,7 +1511,7 @@
               <?php } else if ($tickets->id_approval_wedding == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/wedding/' . $tickets->id_wedding) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_wedding ?></td>
@@ -1535,7 +1541,7 @@
               <?php } else if ($tickets->id_approval_franchise == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/franchise/' . $tickets->id_franchise) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_franchise ?></td>
@@ -1565,7 +1571,7 @@
               <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
             <tr class="clickable-row" data-href="<?= base_url('status/completed/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
               <?php } ?>
-              <td width="10%">#<?= $tickets->id_ticket ?></td>
+              <td class="not-clickable" width="10%">#<?= $tickets->id_ticket ?></td>
               <td><?= $tickets->name ?></td>
               <td><?= $tickets->nama_cabang ?></td>
               <td><?= $tickets->nama_konsumen_lainnya ?></td>

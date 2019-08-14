@@ -1,8 +1,9 @@
-<div class="container-fluid">
-	<section class="content-header mt-4	text-center">
-		<h1>
-			Detail Aktivasi Agent Tickets
-		</h1>
+<div class="container-fluid mt-4 mb-4">
+	<section class="content-header text-center mb-4">
+		<h4>
+			Detail Aktivasi Agent
+		</h4>
+		<p><?= date('d F, Y') ?></p>
 	</section>
 
 	<!-- Main content -->
@@ -43,22 +44,23 @@
 								</select>
 							</div>
 
-							<label for="">Status:</label>
-
-							<?php
-							if ($data->id_approval == 0) {
-								echo '<label class="badge badge-secondary">Pending</label>';
-							}
-							if ($data->id_approval == 1) {
-								echo '<label class="badge badge-danger">Ditolak</label>';
-							}
-							if ($data->id_approval == 2) {
-								echo '<label class="badge badge-success">Disetujui Admin 1</label>';
-							}
-							if ($data->id_approval == 3) {
-								echo '<label class="badge badge-primary">Selesai</label>';
-							}
-							?>
+							<div id="status-ticket" class="pull-right">
+								<label for="">Status:</label>
+								<?php
+								if ($data->id_approval == 0) {
+									echo '<label class="badge badge-secondary">Pending</label>';
+								}
+								if ($data->id_approval == 1) {
+									echo '<label class="badge badge-danger">Ditolak</label>';
+								}
+								if ($data->id_approval == 2) {
+									echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+								}
+								if ($data->id_approval == 3) {
+									echo '<label class="badge badge-success">Selesai</label>';
+								}
+								?>
+							</div>
 							<!-- Tombol ini muncul khusus untuk user -->
 							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5)  && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -103,7 +105,7 @@
 										<td><?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload1" class="file-upload-default" required>
+												<input type="file" name="upload_file1" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -117,7 +119,7 @@
 										<td><?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload2" class="file-upload-default" required>
+												<input type="file" name="upload_file2" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -131,7 +133,7 @@
 										<td><?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload3" class="file-upload-default" required>
+												<input type="file" name="upload_file3" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -145,7 +147,7 @@
 										<td><?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload4" class="file-upload-default" required>
+												<input type="file" name="upload_file4" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -159,7 +161,7 @@
 										<td><?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload5" class="file-upload-default" required>
+												<input type="file" name="upload_file5" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -173,7 +175,7 @@
 										<td><?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload6" class="file-upload-default" required>
+												<input type="file" name="upload_file6" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -187,7 +189,7 @@
 										<td><?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload7" class="file-upload-default" required>
+												<input type="file" name="upload_file7" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -201,7 +203,7 @@
 										<td><?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload8" class="file-upload-default" required>
+												<input type="file" name="upload_file8" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -215,7 +217,7 @@
 										<td><?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload9" class="file-upload-default" required>
+												<input type="file" name="upload_file9" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">
@@ -229,7 +231,7 @@
 										<td><?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/aktivasi_agent/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a><?php } ?></td>
 										<td>
 											<div class="form-group">
-												<input type="file" name="file_upload10" class="file-upload-default" required>
+												<input type="file" name="upload_file10" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
 													<span class="input-group-append">

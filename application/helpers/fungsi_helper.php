@@ -59,3 +59,24 @@ function check_nik($nik)
         // echo "<script>alert('Anda harus masuk sebagai Admin level 2')</script>";
     }
 }
+
+function selisih_tanggal($end_date)
+{
+    $now = date('Y-m-d H:i:s');
+
+    $diff = strtotime($now) - strtotime($end_date);
+    $fullDays    = floor($diff / (60 * 60 * 24));
+    $fullHours   = floor(($diff - ($fullDays * 60 * 60 * 24)) / (60 * 60));
+    $fullMinutes = floor(($diff - ($fullDays * 60 * 60 * 24) - ($fullHours * 60 * 60)) / 60);
+    if ($fullDays == 0 && $fullHours == 0 && $fullMinutes == 0) {
+        echo "Baru Saja.";
+    } else if ($fullDays == 0 && $fullHours == 0) {
+        echo "Completed on<br> $fullMinutes minutes.";
+    } else if ($fullDays == 0) {
+        echo "Completed on<br> $fullHours hours, $fullMinutes minutes .";
+    } else if ($fullDays == 1) {
+        echo "Completed on<br> $fullDays days, $fullHours hours.";
+    } else {
+        echo "Completed on<br> $fullDays days.";
+    }
+}

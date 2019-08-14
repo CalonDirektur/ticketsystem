@@ -26,7 +26,7 @@
               <div class="form-group">
                 <?= form_error('lead_id') ?>
                 <label for="lead_id">Lead ID </label>
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="201908SLOS123456" minlength="16" value="<?= set_value('lead_id') ?>" required>
+                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="201908SLOS123456" maxlength="16" value="<?= set_value('lead_id') ?>" required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
@@ -57,7 +57,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label>File upload 1</label>
-                <input type="file" name="file_upload1" class="file-upload-default" required>
+                <input type="file" name="upload_file1" class="file-upload-default" required>
                 <div class="input-group col-xs-12">
                   <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                   <span class="input-group-append">
@@ -70,7 +70,7 @@
               <div id="more-upload" class="mt-4 mb-4">
                 <div class="form-group">
                   <label>Dokumen 2</label>
-                  <input type="file" name="file_upload2" class="file-upload-default">
+                  <input type="file" name="upload_file2" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 3</label>
-                  <input type="file" name="file_upload3" class="file-upload-default">
+                  <input type="file" name="upload_file3" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -90,7 +90,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 4</label>
-                  <input type="file" name="file_upload4" class="file-upload-default">
+                  <input type="file" name="upload_file4" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -100,7 +100,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 5</label>
-                  <input type="file" name="file_upload5" class="file-upload-default">
+                  <input type="file" name="upload_file5" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 6</label>
-                  <input type="file" name="file_upload6" class="file-upload-default">
+                  <input type="file" name="upload_file6" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -120,7 +120,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 7</label>
-                  <input type="file" name="file_upload7" class="file-upload-default">
+                  <input type="file" name="upload_file7" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -130,7 +130,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 8</label>
-                  <input type="file" name="file_upload8" class="file-upload-default">
+                  <input type="file" name="upload_file8" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -140,7 +140,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 9</label>
-                  <input type="file" name="file_upload9" class="file-upload-default">
+                  <input type="file" name="upload_file9" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -150,7 +150,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dokumen 10</label>
-                  <input type="file" name="file_upload10" class="file-upload-default">
+                  <input type="file" name="upload_file10" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
                     <span class="input-group-append">
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button type="submit" id="submit" class="btn btn-info pull-right" name="">Kirim Data!</button>
+              <button type="submit" id="submit" class="btn btn-info pull-right" name="submit_nst">Kirim Data!</button>
             </div>
           </div>
 

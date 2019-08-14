@@ -997,85 +997,87 @@ class Ticket_register extends CI_Controller
 
 			if ($this->form_validation->run() != FALSE) {
 
-			$data = [
-				'lead_id' => $post['lead_id'],
-				'nama_konsumen' => $post['nama_konsumen'],
-				'produk' => $post['produk'],
-				'date_created' => date('Y-m-d H:i:s'),
-				'date_modified' => date('Y-m-d H:i:s'),
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user'],
-				'id_approval' => 0
-			];
+				$data = [
+					'lead_id' => $post['lead_id'],
+					'nama_konsumen' => $post['nama_konsumen'],
+					'produk' => $post['produk'],
+					'date_created' => date('Y-m-d H:i:s'),
+					'date_modified' => date('Y-m-d H:i:s'),
+					'id_cabang' => $post['cabang'],
+					'id_user' => $post['id_user'],
+					'id_approval' => 0
+				];
 
-			//Konfigurasi Upload
-			$config['upload_path']         = './uploads/nst';
-			$config['allowed_types']        = '*';
-			$config['max_size']             = 10000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
-			$this->load->library('upload', $config);
+				//Konfigurasi Upload
+				$config['upload_path']         = './uploads/nst';
+				$config['allowed_types']        = '*';
+				$config['max_size']             = 10000;
+				$config['max_width']            = 10000;
+				$config['max_height']           = 10000;
+				$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file1')) {
+					$data['upload_file1'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file2')) {
+					$data['upload_file2'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file3')) {
+					$data['upload_file3'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file4')) {
+					$data['upload_file4'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file5')) {
+					$data['upload_file5'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file6')) {
+					$data['upload_file6'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file7')) {
+					$data['upload_file7'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file8')) {
+					$data['upload_file8'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file9')) {
+					$data['upload_file9'] = $this->upload->data('file_name');
+				}
 
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
-			}
+				if ($this->upload->do_upload('upload_file10')) {
+					$data['upload_file10'] = $this->upload->data('file_name');
+				}
 
 
-			$id = $this->data_m->add('tb_nst', $data);
+				$id = $this->data_m->add('tb_nst', $data);
 
-			$data2 = [
-				'id_nst' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_ticket', $data2);
+				$data2 = [
+					'id_nst' => $id,
+					'id_cabang' => $post['cabang'],
+					'id_user' => $post['id_user']
+				];
+				$this->data_m->add('tb_ticket', $data2);
 
-			if ($id) {
-				echo "Data berhasil disimpan";
-				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				if ($id) {
+					echo "Data berhasil disimpan";
+					$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+					redirect('/');
+				} else {
+					echo "Data gagal disimpan";
+				}
+				redirect('dashboard');
 			} else {
-				echo "Data gagal disimpan";
+				$this->template->load('template2', 'nst/form_nst');
 			}
-			redirect('dashboard');
 		}
-	}
 	}
 
 	public function edit()
@@ -1725,7 +1727,7 @@ class Ticket_register extends CI_Controller
 
 			if ($id) {
 				echo "Data berhasil disimpan";
-				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil Update data request support!</strong></div>');
 
 				redirect('/');
 			} else {

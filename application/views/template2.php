@@ -51,7 +51,8 @@
     }
 
     table td {
-      padding: 0
+      word-break: break-all;
+      padding: 0;
     }
   </style>
 </head>
@@ -137,13 +138,13 @@
           <?php } ?>
           <?php if ($this->session->userdata('level') == 4) { ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?= site_url('status/lead_management/id') ?>">
+            <a class="nav-link" href="<?= site_url('status/list/lead_management/') ?>">
               <i class="icon-box menu-icon"></i>
               <span class="menu-title">Lead Management</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= site_url('status/nst/id') ?>">
+            <a class="nav-link" href="<?= site_url('status/list/nst') ?>">
               <i class="icon-box menu-icon"></i>
               <span class="menu-title">NST</span>
             </a>

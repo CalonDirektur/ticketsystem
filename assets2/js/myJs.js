@@ -66,6 +66,7 @@ $(document).ready(function () {
 		$('.enable').removeAttr('readonly disabled');
 		$('#upload').slideDown('slow');
 		$(this).fadeOut();
+		$('#selesaikan').fadeOut();
 	})
 
 	// Menyembunyiakan div upload dahulu
@@ -76,10 +77,14 @@ $(document).ready(function () {
 		$('#more-upload').slideDown();
 		$(this).fadeOut('fast');
 	})
-
-	$(".clickable-row").click(function () {
+	$("tr.clickable-row").not("tr > td.not-clickable").css('cursor', 'pointer');
+	$("table").on('click', '.clickable-row', function () {
+		$("tr.clickable-row").not("tr > td.not-clickable").css('cursor', 'pointer');
 		window.location = $(this).data("href");
-	});
+	})
+	// $(".clickable-row").not("tr td:first-child").click(function () {
+	// 	window.location = $(this).data("href");
+	// });
 
 	//Script untuk form lead management user, ketika memilih asal leads
 	$(".cross-branch-div").hide();

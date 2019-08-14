@@ -21,7 +21,7 @@
 							<h3 class="card-title">Data Ticket</h3>
 						</div>
 						<!-- /.card-header -->
-						<div class="card-body no-padding">
+						<div class="card-body">
 							<!-- ID Ticket -->
 							<div class="form-group">
 								<label for="id_ticket">ID Ticket</label>
@@ -171,22 +171,23 @@
 							</div>
 							<?php } ?>
 
-							<b>Status:</b>
-
-							<?php
-							if ($data->id_approval == 0) {
-								echo '<label class="badge badge-secondary">Pending</label>';
-							}
-							if ($data->id_approval == 1) {
-								echo '<label class="badge badge-danger">Ditolak</label>';
-							}
-							if ($data->id_approval == 2) {
-								echo '<label class="badge badge-success">Disetujui Admin NST</label>';
-							}
-							if ($data->id_approval == 3) {
-								echo '<label class="badge badge-primary">Selesai</label>';
-							}
-							?>
+							<div id="status-ticket" class="pull-right">
+								<label for="">Status:</label>
+								<?php
+								if ($data->id_approval == 0) {
+									echo '<label class="badge badge-secondary">Pending</label>';
+								}
+								if ($data->id_approval == 1) {
+									echo '<label class="badge badge-danger">Ditolak</label>';
+								}
+								if ($data->id_approval == 2) {
+									echo '<label class="badge badge-success">Disetujui Admin NST</label>';
+								}
+								if ($data->id_approval == 3) {
+									echo '<label class="badge badge-success">Selesai</label>';
+								}
+								?>
+							</div>
 						</div>
 						<div class="form-group">
 							<!-- Tombol ubah data muncul khusus untuk user -->
@@ -205,7 +206,7 @@
 							<?php } ?>
 							<!-- Tombol UPDATE DATA ini akan muncul khusus User -->
 							<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0)) { ?>
-							<button type="submit" id="edit_lead_management_user" class="btn btn-primary enable" name="edit_lead_management_user" disabled>Update Data!</button>
+							<button type="submit" id="edit_lead_management_user" class="btn btn-info enable" name="edit_lead_management_user" disabled>Update Data!</button>
 							<?php } ?>
 						</div>
 					</div>
@@ -219,7 +220,10 @@
 		<?php if ($komentar->num_rows() == 0) { ?>
 		<!-- Post Komentar -->
 		<div class="row mt-4">
-			<div class="col-lg-12 col-md-12">
+			<div class="col-lg-2">
+
+			</div>
+			<div class="col-lg-8">
 				<form method="post" action="<?= base_url('comment/post_comment/id_lead') ?>">
 					<div class="card">
 						<div class="card-header with-border">
@@ -239,13 +243,19 @@
 					</div>
 				</form>
 			</div>
+			<div class="col-lg-2">
+
+			</div>
 		</div>
 		<?php } ?>
 
 		<!-- Menampilkan Komentar -->
 		<?php foreach ($komentar->result() as $komen) { ?>
 		<div class="row mt-4">
-			<div class="col-lg-12 col-md-12">
+			<div class="col-lg-2">
+
+			</div>
+			<div class="col-lg-8">
 
 				<div class="card card-widget">
 					<div class="card-header with-border">
@@ -263,8 +273,8 @@
 							$this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
 							$this->db->from('tb_comment, user, tb_cabang');
 							$this->db->where('parent_comment_id = ' . $komen->id . ' AND
-                              user.id_user = tb_comment.id_user AND
-                              user.id_cabang = tb_cabang.id_cabang');
+									  user.id_user = tb_comment.id_user AND
+									  user.id_cabang = tb_cabang.id_cabang');
 							$reply = $this->db->get();
 							?>
 						<?php foreach ($reply->result() as $balasan) { ?>
@@ -292,6 +302,9 @@
 						</form>
 					</div>
 				</div>
+			</div>
+			<div class="col-lg-2">
+
 			</div>
 		</div>
 		<?php } ?>
