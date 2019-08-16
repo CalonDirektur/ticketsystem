@@ -75,6 +75,13 @@ class Ticket_register extends CI_Controller
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$this->template->load('template2', 'form_input_produk', $data);
 	}
+
+	public function form_mitra_kerjasama()
+	{
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+		$this->template->load('template2', 'mitra_kerjasama/form_mitra_kerjasama', $data);
+	}
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 
 
@@ -182,13 +189,14 @@ class Ticket_register extends CI_Controller
 				'id_cabang' => $post['cabang'],
 				'nama_vendor' => $post['nama_vendor'],
 				'jenis_vendor' => $post['jenis_vendor'],
-				'jenis_pekerjaan' => $post['jenis_vendor'],
+				'jenis_pekerjaan' => $post['jenis_pekerjaan'],
 				'bagian_bangunan' => $post['bagian_bangunan'],
 				'luas_bangunan' => $post['luas_bangunan'],
 				'jumlah_pekerja' => $post['jumlah_pekerja'],
 				'estimasi_waktu' => $post['estimasi_waktu'],
 				'nilai_pembiayaan' => $post['nilai_biaya'],
 				'informasi_tambahan' => $post['informasi_tambahan_renovasi'],
+
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_user' => $post['id_user'],
@@ -1078,6 +1086,277 @@ class Ticket_register extends CI_Controller
 				$this->template->load('template2', 'nst/form_nst');
 			}
 		}
+
+		// FORMULIR MITRA KERJA SAMA
+		if (isset($_POST['submit_mitra_kerjasama'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			$data = [
+				'nama_mitra' => $post['nama_mitra'],
+				'jenis_mitra' => $post['jenis_mitra'],
+				'bidang_usaha' => $post['bidang_usaha'],
+				'sosial_media' => $post['sosial_media'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mitra_kerjasama';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->add('tb_mitra_kerjasama', $data);
+
+			$data2 = [
+				'id_mitra_kerjasama' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIr MY FAEDAH
+		if (isset($_POST['submit_myfaedah'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor_myfaedah'],
+				'jenis_vendor' => $post['jenis_vendor_myfaedah'],
+				'lama_usaha' => $post['lama_usaha_myfaedah'],
+				'nama_barang' => $post['nama_barang'],
+				'kondisi_barang' => $post['kondisi_barang'],
+				'jumlah_barang' => $post['jumlah_barang'],
+				'merek_barang' => $post['merek_barang'],
+				'warna_barang' => $post['warna_barang'],
+				'tahun' => $post['tahun_barang'],
+				'harga_barang' => $post['harga_barang'],
+				'tujuan_pembelian' => $post['tujuan_pembelian'],
+				'informasi_tambahan' => $post['informasi_tambahan_myfaedah'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_faedah', $data);
+
+			$data2 = [
+				'id_myfaedah' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id > 0) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIE MY CARS
+		if (isset($_POST['submit_mycars'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor_mycars'],
+				'jenis_vendor' => $post['jenis_vendor_mycars'],
+				'lama_usaha' => $post['lama_usaha_vendor_mycars'],
+				'nama_mobil' => $post['nama_mobil'],
+				'kondisi_mobil' => $post['kondisi_mobil'],
+				'merek_mobil' => $post['merek_mobil'],
+				'transmisi' => $post['transmisi'],
+				'tahun' => $post['tahun_mobil'],
+				'harga_mobil' => $post['harga_mobil'],
+				'informasi_tambahan' => $post['informasi_tambahan_mycars'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mycars';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_my_cars', $data);
+
+			$data2 = [
+				'id_mycars' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id > 0) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
 	}
 
 	public function edit()
@@ -1171,12 +1450,14 @@ class Ticket_register extends CI_Controller
 				'jenis_konsumen' => $post['jenis_konsumen'],
 				'nama_vendor' => $post['nama_vendor'],
 				'jenis_vendor' => $post['jenis_vendor'],
+				'jenis_pekerjaan' => $post['jenis_pekerjaan'],
 				'bagian_bangunan' => $post['bagian_bangunan'],
 				'luas_bangunan' => $post['luas_bangunan'],
 				'jumlah_pekerja' => $post['jumlah_pekerja'],
 				'estimasi_waktu' => $post['estimasi_waktu'],
 				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
 				'informasi_tambahan' => $post['informasi_tambahan'],
+
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_approval' => 0
 			];
@@ -1882,6 +2163,257 @@ class Ticket_register extends CI_Controller
 			redirect('dashboard');
 		}
 
+		// FORMULIR MITRA KERJA SAMA
+		if (isset($_POST['edit_mitra_kerjasama'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			$data = [
+				'nama_mitra' => $post['nama_mitra'],
+				'jenis_mitra' => $post['jenis_mitra'],
+				'bidang_usaha' => $post['bidang_usaha'],
+				'sosial_media' => $post['sosial_media'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_cabang' => $post['cabang'],
+				// 'id_user' => $post['id_user'],
+				'id_approval' => 0
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mitra_kerjasama';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->update('tb_mitra_kerjasama', $data, ['id_mitra_kerjasama' => $post['id_mitra_kerjasama']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIr MY FAEDAH
+		if (isset($_POST['edit_myfaedah'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				// 'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor_myfaedah'],
+				'jenis_vendor' => $post['jenis_vendor_myfaedah'],
+				'lama_usaha' => $post['lama_usaha_myfaedah'],
+				'nama_barang' => $post['nama_barang'],
+				'kondisi_barang' => $post['kondisi_barang'],
+				'jumlah_barang' => $post['jumlah_barang'],
+				'merek_barang' => $post['merek_barang'],
+				'warna_barang' => $post['warna_barang'],
+				'tahun' => $post['tahun_barang'],
+				'harga_barang' => $post['harga_barang'],
+				'tujuan_pembelian' => $post['tujuan_pembelian'],
+				'informasi_tambahan' => $post['informasi_tambahan_myfaedah'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->update('tb_my_faedah', $data, ['id_myfaedah' => $post['id_myfaedah']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIE MY CARS
+		if (isset($_POST['edit_mycars'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				// 'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor_mycars'],
+				'jenis_vendor' => $post['jenis_vendor_mycars'],
+				'lama_usaha' => $post['lama_usaha_vendor_mycars'],
+				'nama_mobil' => $post['nama_mobil'],
+				'kondisi_mobil' => $post['kondisi_mobil'],
+				'merek_mobil' => $post['merek_mobil'],
+				'transmisi' => $post['transmisi'],
+				'tahun' => $post['tahun_mobil'],
+				'harga_mobil' => $post['harga_mobil'],
+				'informasi_tambahan' => $post['informasi_tambahan_mycars'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mycars';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->update('tb_my_cars', $data, ['id_mycars' => $post['id_mycars']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
 		//////////////////////////////// EDIT FROM UNTUK SUPERUSER //////////////////////////////
 
 		//EDIT FORM MY'TALIM
@@ -1971,6 +2503,7 @@ class Ticket_register extends CI_Controller
 				'jenis_konsumen' => $post['jenis_konsumen'],
 				'nama_vendor' => $post['nama_vendor'],
 				'jenis_vendor' => $post['jenis_vendor'],
+				'jenis_pekerjaan' => $post['jenis_pekerjaan'],
 				'bagian_bangunan' => $post['bagian_bangunan'],
 				'luas_bangunan' => $post['luas_bangunan'],
 				'jumlah_pekerja' => $post['jumlah_pekerja'],
@@ -2710,6 +3243,257 @@ class Ticket_register extends CI_Controller
 			];
 
 			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIR MITRA KERJA SAMA
+		if (isset($_POST['edit_mitra_kerjasama_superuser'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			$data = [
+				'nama_mitra' => $post['nama_mitra'],
+				'jenis_mitra' => $post['jenis_mitra'],
+				'bidang_usaha' => $post['bidang_usaha'],
+				'sosial_media' => $post['sosial_media'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_cabang' => $post['cabang'],
+				// 'id_user' => $post['id_user'],
+				// 'id_approval' => 0
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mitra_kerjasama';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+
+			$id = $this->data_m->update('tb_mitra_kerjasama', $data, ['id_mitra_kerjasama' => $post['id_mitra_kerjasama']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIr MY FAEDAH
+		if (isset($_POST['edit_myfaedah_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				// 'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor_myfaedah'],
+				'jenis_vendor' => $post['jenis_vendor_myfaedah'],
+				'lama_usaha' => $post['lama_usaha_myfaedah'],
+				'nama_barang' => $post['nama_barang'],
+				'kondisi_barang' => $post['kondisi_barang'],
+				'jumlah_barang' => $post['jumlah_barang'],
+				'merek_barang' => $post['merek_barang'],
+				'warna_barang' => $post['warna_barang'],
+				'tahun' => $post['tahun_barang'],
+				'harga_barang' => $post['harga_barang'],
+				'tujuan_pembelian' => $post['tujuan_pembelian'],
+				'informasi_tambahan' => $post['informasi_tambahan_myfaedah'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->update('tb_my_faedah', $data, ['id_myfaedah' => $post['id_myfaedah']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		// FORMULIE MY CARS
+		if (isset($_POST['edit_mycars_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+				// 'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor_mycars'],
+				'jenis_vendor' => $post['jenis_vendor_mycars'],
+				'lama_usaha' => $post['lama_usaha_vendor_mycars'],
+				'nama_mobil' => $post['nama_mobil'],
+				'kondisi_mobil' => $post['kondisi_mobil'],
+				'merek_mobil' => $post['merek_mobil'],
+				'transmisi' => $post['transmisi'],
+				'tahun' => $post['tahun_mobil'],
+				'harga_mobil' => $post['harga_mobil'],
+				'informasi_tambahan' => $post['informasi_tambahan_mycars'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mycars';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 10000;
+			$config['max_width']            = 10000;
+			$config['max_height']           = 10000;
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('upload_file1')) {
+				$data['upload_file1'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file2')) {
+				$data['upload_file2'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file3')) {
+				$data['upload_file3'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file4')) {
+				$data['upload_file4'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file5')) {
+				$data['upload_file5'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file6')) {
+				$data['upload_file6'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file7')) {
+				$data['upload_file7'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file8')) {
+				$data['upload_file8'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file9')) {
+				$data['upload_file9'] = $this->upload->data('file_name');
+			}
+
+			if ($this->upload->do_upload('upload_file10')) {
+				$data['upload_file10'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->update('tb_my_cars', $data, ['id_mycars' => $post['id_mycars']]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";

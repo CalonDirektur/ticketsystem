@@ -30,7 +30,7 @@ class Auth extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[6]|is_unique[user.nik]');
+		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[7]|is_unique[user.nik]');
 		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
@@ -99,7 +99,7 @@ class Auth extends CI_Controller
 				$generate = generateMixedPassword();
 				$random_password = $generate;
 				// Script untuk ubah password random
-				$this->user_m->update(['password' => $random_password], ['email' => $email]);
+				$this->user_m->update(['password' => md5($random_password)], ['email' => $email]);
 
 				$akun = $data->row();
 				// Konfigurasi email

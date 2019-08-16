@@ -19,7 +19,7 @@
 							<h3 class="card-title">Data Ticket</h3>
 							<div class="row p-0 m-0">
 								<div class="col-6 p-0 m-0">
-									<p>ID Ticket: #<?= $data->id_ticket ?></p>
+									<a href="#" id="id-ticket">ID Ticket: #<?= $data->id_ticket ?></a>
 								</div>
 								<div class="col-6 p-0 m-0">
 									<div id="status-ticket" class="pull-right">
@@ -34,34 +34,30 @@
 											echo '<label class="badge badge-success">Disetujui Admin 1</label>';
 										}
 										if ($data->id_approval == 3) {
-											echo '<label class="badge badge-success">Selesai</label>';
+											echo '<label class="badge badge-info">Selesai</label>';
 										}
 										?>
 									</div>
 								</div>
 							</div>
-							<hr>
-							<div class="row p-0 m-0">
+							<hr class="hr">
+							<div id="hide-detail-ticket" class="row p-0 m-0">
 								<div class="col-6 p-0 m-0">
 									<?= ($data->tanggal_dibuat != NULL ? '<p>Created on ' . $data->tanggal_dibuat . '</p>' : '') ?>
-									<?= ($data->tanggal_disetujui != NULL ? '<p>Last Approved on ' . $data->tanggal_disetujui . '</p>' : '')  ?>
-									<?= ($data->tanggal_diselesaikan != NULL ? '<p>Last Completed on ' . $data->tanggal_diselesaikan . '</p>' : '')  ?>
-									<?= ($data->tanggal_ditolak != NULL ? '<p>Last Rejected on ' . $data->tanggal_ditolak . '</p>' : '')  ?>
+									<?= ($data->tanggal_diubah != NULL ? '<p>Terakhir diubah ' . $data->tanggal_diubah . '</p>' : '')  ?>
+									<?= ($data->tanggal_disetujui != NULL ? '<p>Approved on ' . $data->tanggal_disetujui . '</p>' : '')  ?>
+									<?= ($data->tanggal_diselesaikan != NULL ? '<p>Completed on ' . $data->tanggal_diselesaikan . '</p>' : '')  ?>
+									<?php if ($data->id_approval == 1) {
+										echo ($data->tanggal_ditolak != NULL ? '<p>Rejected on ' . $data->tanggal_ditolak . '</p>' : '');
+									} ?>
 								</div>
 								<div class="col-6 p-0 m-0">
-									<div class="selisih-tanggal pull-right">
-										<?= selisih_tanggal($data->date_completed); ?>
-									</div>
+
 								</div>
 							</div>
 						</div>
 						<div class="card-body">
-							<div class="form-group">
-								<!-- ID Ticket -->
-								<label for="">ID Ticket</label>
-								<input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required>
-								<input type="hidden" class="form-control" name="id_mytalim" id="id_mytalim" value="<?= $data->id_mytalim ?>" readonly required>
-							</div>
+							<input type="hidden" class="form-control" name="id_mytalim" id="id_mytalim" value="<?= $data->id_mytalim ?>" readonly required>
 							<div class="form-group">
 								<label for="">Nama Cabang</label>
 								<input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->nama_cabang ?>" readonly required>
@@ -121,7 +117,6 @@
 								<textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea>
 							</div>
 							<div id="status-ticket" class="pull-right">
-								<label for="">Status:</label>
 								<?php
 								if ($data->id_approval == 0) {
 									echo '<label class="badge badge-secondary">Pending</label>';
@@ -133,7 +128,7 @@
 									echo '<label class="badge badge-success">Disetujui Admin 1</label>';
 								}
 								if ($data->id_approval == 3) {
-									echo '<label class="badge badge-success">Selesai</label>';
+									echo '<label class="badge badge-info">Selesai</label>';
 								}
 								?>
 							</div>

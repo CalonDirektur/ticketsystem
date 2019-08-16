@@ -15,6 +15,7 @@ $(document).ready(function () {
 		],
 		"lengthChange": false
 	});
+	$('#table-user').DataTable()
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();
@@ -150,30 +151,46 @@ $(document).ready(function () {
 
 	});
 
+	$('#hide-detail-ticket, .hr').hide();
+	$('#id-ticket').click(function () {
+		$('#hide-detail-ticket, .hr').slideToggle();
+	})
+
 	// Script untuk input produk 
 	$("#input_produk").change(function () {
 		var input = $(this).val();
 		// alert(input);
 		if (input == "My Ta'lim") {
 			$("#card-mytalim, .upload").fadeIn();
-			$(".kategori-myhajat, #card-kategori-myhajat, #card-myihram, #card-mysafar").fadeOut();
+			$(".kategori-myhajat, #card-kategori-myhajat, #card-myihram, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
 			$("#submit").attr('name', 'submit_mytalim');
 			validate_mytalim();
 		} else if (input == "My Hajat") {
 			$("#card-kategori-myhajat").fadeIn();
-			$(".kategori-myhajat, #card-mytalim, #card-myihram, #card-mysafar").fadeOut();
+			$(".kategori-myhajat, #card-mytalim, #card-myihram, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
 			$(".validasi").removeAttr("required");
 		} else if (input == "My Ihram") {
 			$("#card-myihram, .upload").fadeIn();
-			$(".kategori-myhajat, #card-kategori-myhajat, #card-mytalim, #card-mysafar").fadeOut();
+			$(".kategori-myhajat, #card-kategori-myhajat, #card-mytalim, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
 			$("#submit").attr('name', 'submit_myihram');
 			validate_myihram();
 		} else if (input == "My Safar") {
 			$("#card-mysafar, .upload").fadeIn();
-			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim").fadeOut();
+			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-myfaedah, #card-mycars").fadeOut();
 			$("#submit").attr('name', 'submit_mysafar');
 			validate_mysafar();
+		} else if (input == "My Faedah") {
+			$("#card-myfaedah, .upload").fadeIn();
+			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-mycars").fadeOut();
+			$("#submit").attr('name', 'submit_myfaedah');
+			validate_myfaedah();
+		} else if (input == "My Cars") {
+			$("#card-mycars, .upload").fadeIn();
+			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-myfaedah").fadeOut();
+			$("#submit").attr('name', 'submit_mycars');
+			validate_mycars();
 		}
+
 	})
 
 
@@ -220,5 +237,15 @@ $(document).ready(function () {
 	function validate_mysafar() {
 		$(".validasi").removeAttr("required");
 		$(".mysafar-required").attr("required", "required");
+	}
+
+	function validate_myfaedah() {
+		$(".validasi").removeAttr("required");
+		$(".myfaedah-required").attr("required", "required");
+	}
+
+	function validate_mycars() {
+		$(".validasi").removeAttr("required");
+		$(".mycars-required").attr("required", "required");
 	}
 })

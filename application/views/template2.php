@@ -128,10 +128,11 @@
             </a>
             <div class="collapse" id="daftar-tiket">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Form Input Produk</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Form Lead Management</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Form Aktivasi Agent</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">Form NST</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Input Produk</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Lead Management</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Aktivasi Agent</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">NST</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_mitra_kerjasama') ?>">Mitra Kerja sama</a></li>
               </ul>
             </div>
           </li>

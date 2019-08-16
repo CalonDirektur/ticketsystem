@@ -209,6 +209,9 @@ class Data_m extends CI_Model
         F.nama_konsumen as nama_konsumen_nst,
         G.nama_konsumen as nama_konsumen_lead_management,
         H.nama_konsumen as nama_konsumen_myihram,
+        I.nama_mitra as nama_mitra_kerjasama,
+        J.nama_konsumen as nama_konsumen_myfaedah,
+        K.nama_konsumen as nama_konsumen_mycars,
 
         BA.id_approval as id_approval_renovasi,
         BB.id_approval as id_approval_sewa,
@@ -221,6 +224,9 @@ class Data_m extends CI_Model
         F.id_approval as id_approval_nst,
         G.id_approval as id_approval_lead_management,
         H.id_approval as id_approval_myihram,
+        I.id_approval as id_approval_mitra_kerjasama,
+        J.id_approval as id_approval_myfaedah,
+        K.id_approval as id_approval_mycars,
         
         
         CASE
@@ -235,6 +241,9 @@ class Data_m extends CI_Model
         WHEN A.id_nst IS NOT NULL THEN 'NST'
         WHEN A.id_lead IS NOT NULL THEN 'Lead Management'
         WHEN A.id_myihram IS NOT NULL THEN 'My Ihram'
+        WHEN A.id_mitra_kerjasama IS NOT NULL THEN 'Mitra Kerja sama'
+        WHEN A.id_myfaedah IS NOT NULL THEN 'My Faedah'
+        WHEN A.id_mycars IS NOT NULL THEN 'My Cars'
         END AS produk
         
         FROM tb_ticket as A
@@ -270,6 +279,15 @@ class Data_m extends CI_Model
         
         LEFT JOIN tb_my_ihram as H
         ON A.id_myihram = H.id_myihram
+
+        LEFT JOIN tb_mitra_kerjasama as I
+        ON A.id_mitra_kerjasama = I.id_mitra_kerjasama
+
+        LEFT JOIN tb_my_faedah as J
+        ON A.id_myfaedah = J.id_myfaedah
+
+        LEFT JOIN tb_my_cars as K
+        ON A.id_mycars = K.id_mycars
         
         LEFT JOIN user as U
         ON U.id_user = A.id_user
@@ -290,6 +308,9 @@ class Data_m extends CI_Model
         WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
         WHEN G.id_approval IS NOT NULL THEN G.id_approval $id_approval
         WHEN H.id_approval IS NOT NULL THEN H.id_approval $id_approval
+        WHEN I.id_approval IS NOT NULL THEN I.id_approval $id_approval
+        WHEN J.id_approval IS NOT NULL THEN J.id_approval $id_approval
+        WHEN K.id_approval IS NOT NULL THEN K.id_approval $id_approval
         END
         )
         ");
@@ -302,7 +323,8 @@ class Data_m extends CI_Model
                             DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
                             DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
                             DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
-                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan
+                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan,
+                            DATE_FORMAT(date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah,
                             ");
         $this->db->from('tb_ticket A');
         $this->db->join($table . ' B', 'A.' . $col . ' = B.' . $col, 'inner');

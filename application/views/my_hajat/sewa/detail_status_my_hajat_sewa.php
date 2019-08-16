@@ -14,8 +14,46 @@
         <!-- Formulir -->
         <div class="col-lg-6">
           <div class="card">
-            <div class="card-header text-center">
-              <h3 class="card-title">Data Ticket My Hajat Sewa</h3>
+            <div class="card-header">
+              <h3 class="card-title">Data Ticket</h3>
+              <div class="row p-0 m-0">
+                <div class="col-6 p-0 m-0">
+                  <a href="#" id="id-ticket">ID Ticket: #<?= $data->id_ticket ?></a>
+                </div>
+                <div class="col-6 p-0 m-0">
+                  <div id="status-ticket" class="pull-right">
+                    <?php
+                    if ($data->id_approval == 0) {
+                      echo '<label class="badge badge-secondary">Pending</label>';
+                    }
+                    if ($data->id_approval == 1) {
+                      echo '<label class="badge badge-danger">Ditolak</label>';
+                    }
+                    if ($data->id_approval == 2) {
+                      echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+                    }
+                    if ($data->id_approval == 3) {
+                      echo '<label class="badge badge-info">Selesai</label>';
+                    }
+                    ?>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr">
+              <div id="hide-detail-ticket" class="row p-0 m-0">
+                <div class="col-6 p-0 m-0">
+                  <?= ($data->tanggal_dibuat != NULL ? '<p>Created on ' . $data->tanggal_dibuat . '</p>' : '') ?>
+                  <?= ($data->tanggal_diubah != NULL ? '<p>Terakhir diubah ' . $data->tanggal_diubah . '</p>' : '')  ?>
+                  <?= ($data->tanggal_disetujui != NULL ? '<p>Approved on ' . $data->tanggal_disetujui . '</p>' : '')  ?>
+                  <?= ($data->tanggal_diselesaikan != NULL ? '<p>Completed on ' . $data->tanggal_diselesaikan . '</p>' : '')  ?>
+                  <?php if ($data->id_approval == 1) {
+                    echo ($data->tanggal_ditolak != NULL ? '<p>Rejected on ' . $data->tanggal_ditolak . '</p>' : '');
+                  } ?>
+                </div>
+                <div class="col-6 p-0 m-0">
+
+                </div>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

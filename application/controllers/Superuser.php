@@ -67,6 +67,24 @@ class Superuser extends CI_Controller
             $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support Aktivasi Agent!</div>');
             redirect('/');
         }
+
+        if ($produk == 'mitra_kerjasama') {
+            $this->Superuser_m->approve('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+            $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support Mitra Kerjasama!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'mycars') {
+            $this->Superuser_m->approve('tb_my_cars', ['id_mycars' => $id]);
+            $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support My CarS!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah') {
+            $this->Superuser_m->approve('tb_my_faedah', ['id_myfaedah' => $id]);
+            $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support My Faedah!</div>');
+            redirect('/');
+        }
     }
 
     public function reject($produk = NULL, $kategori, $id)
@@ -129,7 +147,25 @@ class Superuser extends CI_Controller
 
         if ($produk == 'lead_management') {
             $this->Superuser_m->reject('tb_lead_management', ['id_lead' => $id]);
-            $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Reject request support Aktivasi Agent!</div>');
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support Aktivasi Agent!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'mitra_kerjasama') {
+            $this->Superuser_m->reject('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support Mitra Kerjasama!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'mycars') {
+            $this->Superuser_m->reject('tb_my_cars', ['id_mycars' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My CarS!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah') {
+            $this->Superuser_m->reject('tb_my_faedah', ['id_myfaedah' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah!</div>');
             redirect('/');
         }
     }
@@ -204,6 +240,24 @@ class Superuser extends CI_Controller
         if ($produk == 'aktivasi_agent') {
             $this->Superuser_m->complete('tb_aktivasi_agent', ['id_agent' => $id]);
             $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Aktivasi Agent!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'mitra_kerjasama') {
+            $this->Superuser_m->complete('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Mitra Kerjasama!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'mycars') {
+            $this->Superuser_m->complete('tb_my_cars', ['id_mycars' => $id]);
+            $this->session->set_flashdata('berhasil_completed', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support My CarS!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah') {
+            $this->Superuser_m->complete('tb_my_faedah', ['id_myfaedah' => $id]);
+            $this->session->set_flashdata('berhasil_completed', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support My Faedah!</div>');
             redirect('/');
         }
     }

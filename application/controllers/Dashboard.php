@@ -70,6 +70,24 @@ class Dashboard extends CI_Controller
 		$total_rejected_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 1 $id_cabang");
 		$total_completed_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 3 $id_cabang");
 
+		//Total Status My faedah
+		$total_pending_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang");
+		$total_approved_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 2 $id_cabang");
+		$total_rejected_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 1 $id_cabang");
+		$total_completed_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 3 $id_cabang");
+
+		//Total Status My cars
+		$total_pending_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang");
+		$total_approved_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 2 $id_cabang");
+		$total_rejected_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 1 $id_cabang");
+		$total_completed_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 3 $id_cabang");
+
+		//Total Status My Safar
+		$total_pending_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang");
+		$total_approved_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 2 $id_cabang");
+		$total_rejected_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 1 $id_cabang");
+		$total_completed_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 3 $id_cabang");
+
 		//Total Status Aktivasi Agent
 		$total_pending_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 0 $id_cabang");
 		$total_approved_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang");
@@ -90,13 +108,13 @@ class Dashboard extends CI_Controller
 
 		//Total Pending
 		if ($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) {
-			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_lead_management;
+			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_lead_management + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
 			//Total Approved
-			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_lead_management;
+			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_lead_management + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
 			//Total Rejected
-			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_lead_management;
+			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_lead_management + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
 			//Total Completed
-			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_lead_management;
+			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_lead_management + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
 		} else if ($this->session->userdata('level') == 4) {
 			$total_pending = $total_pending_nst + $total_pending_lead_management;
 			//Total Approved
@@ -106,13 +124,13 @@ class Dashboard extends CI_Controller
 			//Total Completed
 			$total_completed = $total_completed_nst + $total_completed_lead_management;
 		} else if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 3) {
-			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent;
+			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
 			//Total Approved
-			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent;
+			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
 			//Total Rejected
-			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent;
+			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
 			//Total Completed
-			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent;
+			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
 		}
 
 		$data = [
@@ -128,6 +146,9 @@ class Dashboard extends CI_Controller
 			'pending_aktivasi_agent' 		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 0 $id_cabang"),
 			'pending_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang"),
 			'pending_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 0 $id_cabang"),
+			'pending_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
+			'pending_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+			'pending_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
 			'total_pending_myhajat' 		=> $total_pending_myhajat,
 
 			//Approved Status
@@ -142,6 +163,9 @@ class Dashboard extends CI_Controller
 			'approved_aktivasi_agent' 		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang"),
 			'approved_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 2 $id_cabang"),
 			'approved_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 2 $id_cabang"),
+			'approved_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
+			'approved_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+			'approved_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
 			'total_approved_myhajat' 		=> $total_approved_myhajat,
 
 			//Rejected Status
@@ -156,6 +180,9 @@ class Dashboard extends CI_Controller
 			'rejected_aktivasi_agent'		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 1 $id_cabang"),
 			'rejected_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang"),
 			'rejected_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 1 $id_cabang"),
+			'rejected_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
+			'rejected_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+			'rejected_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
 			'total_rejected_myhajat' 		=> $total_rejected_myhajat,
 
 			//Completed Status
@@ -170,9 +197,12 @@ class Dashboard extends CI_Controller
 			'completed_aktivasi_agent'		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 3 $id_cabang"),
 			'completed_nst' 				=> $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang"),
 			'completed_lead_management' 	=> $this->data_m->count_data("tb_lead_management", "id_approval = 3 $id_cabang"),
+			'completed_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
+			'completed_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+			'completed_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
 			'total_completed_myhajat' 		=> $total_completed_myhajat,
 
-			//Total Pending
+			//Total
 			'total_pending' => $total_pending,
 			'total_approved' => $total_approved,
 			'total_rejected' => $total_rejected,

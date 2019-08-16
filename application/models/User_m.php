@@ -40,7 +40,7 @@ class User_m extends CI_Model
     {
         $this->db->from('user');
         $this->db->join('tb_cabang', 'user.id_cabang = tb_cabang.id_cabang', 'inner');
-
+        $this->db->order_by('tanggal_daftar', 'DESC');
         $query = $this->db->get();
 
         return $query;

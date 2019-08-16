@@ -69,14 +69,15 @@ function selisih_tanggal($end_date)
     $fullHours   = floor(($diff - ($fullDays * 60 * 60 * 24)) / (60 * 60));
     $fullMinutes = floor(($diff - ($fullDays * 60 * 60 * 24) - ($fullHours * 60 * 60)) / 60);
     if ($fullDays == 0 && $fullHours == 0 && $fullMinutes == 0) {
-        echo "Baru Saja.";
+        $selisih = "Baru Saja.";
     } else if ($fullDays == 0 && $fullHours == 0) {
-        echo "Completed on<br> $fullMinutes minutes.";
+        $selisih = "$fullMinutes menit yang lalu.";
     } else if ($fullDays == 0) {
-        echo "Completed on<br> $fullHours hours, $fullMinutes minutes .";
+        $selisih = "$fullHours jam $fullMinutes menit yang lalu .";
     } else if ($fullDays == 1) {
-        echo "Completed on<br> $fullDays days, $fullHours hours.";
+        $selisih = "$fullDays hari $fullHours jam yang lalu.";
     } else {
-        echo "Completed on<br> $fullDays days.";
+        $selisih = "$fullDays hari yang lalu.";
     }
+    return $selisih;
 }

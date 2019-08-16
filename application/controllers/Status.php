@@ -236,7 +236,12 @@ class Status extends CI_Controller
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
-            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan,
+            DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
+                            DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
+                            DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
+                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan,
+                            DATE_FORMAT(date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah
                                                 FROM tb_lead_management A
                                                 INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
                                                 INNER JOIN tb_ticket as D ON D.id_lead = A.id_lead
@@ -253,6 +258,57 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
+        }
+
+        ////////////////////////////// Mitra Kerja sama /////////////////////////////////////////
+        if ($produk == 'mitra_kerjasama' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_mitra_kerjasama', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'mitra_kerjasama/mitra_kerjasama_list', $data);
+        }
+
+        if ($produk == 'mitra_kerjasama' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_mitra_kerjasama', 'id_mitra_kerjasama', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_mitra_kerjasama', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mitra_kerjasama = tb_mitra_kerjasama.id_mitra_kerjasama AND 
+                                                                tb_mitra_kerjasama.id_mitra_kerjasama = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'mitra_kerjasama/detail_status_mitra_kerjasama', $data);
+        }
+
+        ////////////////////////////// My Faedah /////////////////////////////////////////
+        if ($produk == 'myfaedah' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_faedah', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_faedah/my_faedah_list', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myfaedah = tb_my_faedah.id_myfaedah AND 
+                                                                tb_my_faedah.id_myfaedah = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah', $data);
+        }
+
+        ////////////////////////////// My cars /////////////////////////////////////////
+        if ($produk == 'mycars' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_cars', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_cars/my_cars_list', $data);
+        }
+
+        if ($produk == 'mycars' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_cars', ['id_mycars' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_cars', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mycars = tb_my_cars.id_mycars AND 
+                                                                tb_my_cars.id_mycars = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_cars/detail_status_my_cars', $data);
         }
     }
     public function approved($produk = NULL, $kategori = NULL, $id = NULL)
@@ -454,11 +510,16 @@ class Status extends CI_Controller
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
-            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan,
+                            DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
+                            DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
+                            DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
+                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan,
+                            DATE_FORMAT(date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah
                                                 FROM tb_lead_management A
                                                 INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
-                                                INNER JOIN tb_ticket as D ON D.id_lead = A.id_lead
                                                 LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
+                                                INNER JOIN tb_ticket as D ON D.id_lead = A.id_lead
                                                 WHERE A.id_lead = $id
             ")->row();
 
@@ -471,6 +532,57 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
+        }
+
+        ////////////////////////////// Mitra Kerja sama /////////////////////////////////////////
+        if ($produk == 'mitra_kerjasama' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_mitra_kerjasama', 'approved_review', $this->id_user)->result();
+            $this->template->load('template2', 'mitra_kerjasama/mitra_kerjasama_list', $data);
+        }
+
+        if ($produk == 'mitra_kerjasama' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_mitra_kerjasama', 'id_mitra_kerjasama', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_mitra_kerjasama', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mitra_kerjasama = tb_mitra_kerjasama.id_mitra_kerjasama AND 
+                                                                tb_mitra_kerjasama.id_mitra_kerjasama = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'mitra_kerjasama/detail_status_mitra_kerjasama', $data);
+        }
+
+        ////////////////////////////// My Faedah /////////////////////////////////////////
+        if ($produk == 'myfaedah' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_faedah', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_faedah/my_faedah_list', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myfaedah = tb_my_faedah.id_myfaedah AND 
+                                                                tb_my_faedah.id_myfaedah = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah', $data);
+        }
+
+        ////////////////////////////// My cars /////////////////////////////////////////
+        if ($produk == 'mycars' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_cars', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_cars/my_cars_list', $data);
+        }
+
+        if ($produk == 'mycars' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_cars', ['id_mycars' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_cars', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mycars = tb_my_cars.id_mycars AND 
+                                                                tb_my_cars.id_mycars = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_cars/detail_status_my_cars', $data);
         }
     }
 
@@ -672,7 +784,12 @@ class Status extends CI_Controller
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 1])->row();
-            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan,
+            DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
+                            DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
+                            DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
+                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan,
+                            DATE_FORMAT(date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah
                                                 FROM tb_lead_management A
                                                 INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
                                                 INNER JOIN tb_ticket as D ON D.id_lead = A.id_lead
@@ -685,6 +802,57 @@ class Status extends CI_Controller
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
+        }
+
+        ////////////////////////////// Mitra Kerja sama /////////////////////////////////////////
+        if ($produk == 'mitra_kerjasama' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_mitra_kerjasama', 'rejected_review', $this->id_user)->result();
+            $this->template->load('template2', 'mitra_kerjasama/mitra_kerjasama_list', $data);
+        }
+
+        if ($produk == 'mitra_kerjasama' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_mitra_kerjasama', 'id_mitra_kerjasama', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_mitra_kerjasama', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mitra_kerjasama = tb_mitra_kerjasama.id_mitra_kerjasama AND 
+                                                                tb_mitra_kerjasama.id_mitra_kerjasama = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'mitra_kerjasama/detail_status_mitra_kerjasama', $data);
+        }
+
+        ////////////////////////////// My Faedah /////////////////////////////////////////
+        if ($produk == 'myfaedah' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_faedah', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_faedah/my_faedah_list', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myfaedah = tb_my_faedah.id_myfaedah AND 
+                                                                tb_my_faedah.id_myfaedah = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah', $data);
+        }
+
+        ////////////////////////////// My cars /////////////////////////////////////////
+        if ($produk == 'mycars' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_cars', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_cars/my_cars_list', $data);
+        }
+
+        if ($produk == 'mycars' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_cars', ['id_mycars' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_cars', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mycars = tb_my_cars.id_mycars AND 
+                                                                tb_my_cars.id_mycars = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_cars/detail_status_my_cars', $data);
         }
     }
     //MENAMPILKAN DATA TIKET YANG SUDAH SELESAI (COMPLETED)
@@ -886,8 +1054,13 @@ class Status extends CI_Controller
         }
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
-            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan
-                                                FROM tb_lead_management A
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan,
+            DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
+                            DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
+                            DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
+                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan,
+                            DATE_FORMAT(date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah                                               
+                            FROM tb_lead_management A
                                                 INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
                                                 INNER JOIN tb_ticket as D ON D.id_lead = A.id_lead
                                                 LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
@@ -903,6 +1076,57 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
+        }
+
+        ////////////////////////////// Mitra Kerja sama /////////////////////////////////////////
+        if ($produk == 'mitra_kerjasama' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_mitra_kerjasama', 'completed_review', $this->id_user)->result();
+            $this->template->load('template2', 'mitra_kerjasama/mitra_kerjasama_list', $data);
+        }
+
+        if ($produk == 'mitra_kerjasama' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_mitra_kerjasama', 'id_mitra_kerjasama', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_mitra_kerjasama', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mitra_kerjasama = tb_mitra_kerjasama.id_mitra_kerjasama AND 
+                                                                tb_mitra_kerjasama.id_mitra_kerjasama = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'mitra_kerjasama/detail_status_mitra_kerjasama', $data);
+        }
+
+        ////////////////////////////// My Faedah /////////////////////////////////////////
+        if ($produk == 'myfaedah' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_faedah', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_faedah/my_faedah_list', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myfaedah = tb_my_faedah.id_myfaedah AND 
+                                                                tb_my_faedah.id_myfaedah = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah', $data);
+        }
+
+        ////////////////////////////// My cars /////////////////////////////////////////
+        if ($produk == 'mycars' && $kategori == NULL && $id == NULL) {
+            $data['data'] = $this->data_m->get('tb_my_cars', 'pending_review', $this->id_user)->result();
+            $this->template->load('template2', 'my_cars/my_cars_list', $data);
+        }
+
+        if ($produk == 'mycars' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_cars', ['id_mycars' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_cars', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_mycars = tb_my_cars.id_mycars AND 
+                                                                tb_my_cars.id_mycars = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            $this->template->load('template2', 'my_cars/detail_status_my_cars', $data);
         }
     }
 

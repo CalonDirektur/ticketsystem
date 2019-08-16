@@ -73,7 +73,7 @@
               <div class="form-group">
                 <label for="">ID Ticket</label>
                 <input type="text" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required>
-                <input type="hidden" class="form-control" name="id_renovasi" id="id_renovasi" value="<?= $data->id_renovasi ?>" readonly required>
+                <input type="hidden" class="form-control" name="id_myfaedah" id="id_myfaedah" value="<?= $data->id_myfaedah ?>" readonly required>
               </div>
               <div class="form-group">
                 <label for="">Nama Cabang</label>
@@ -93,45 +93,82 @@
               </div>
               <div class="form-group">
                 <label for="">Nama Vendor</label>
-                <input type="text" class="form-control enable" name="nama_vendor" id="nama_vendor" value="<?= $data->nama_vendor ?>" readonly required>
+                <input type="text" class="form-control enable" name="nama_vendor_myfaedah" id="nama_vendor_myfaedah" value="<?= $data->nama_vendor ?>" readonly required>
               </div>
               <div class="form-group">
                 <label for="">Jenis Vendor</label>
-                <select class="form-control enable" name="jenis_vendor" id="jenis_vendor" disabled>
-                  <option value="Perorangan" <?= $data->jenis_vendor == 'Perorangan' ? 'selected' : ''  ?>>Perorangan</option>
-                  <option value="Badan Usaha" <?= $data->jenis_vendor == 'Badan Usaha' ? 'selected' : ''  ?>>Badan Usaha</option>
-                </select>
+                <input type="text" class="form-control enable" name="jenis_vendor_myfaedah" id="jenis_vendor_myfaedah" value="<?= $data->jenis_vendor ?>" readonly required>
               </div>
+              <!-- Lama Usaha -->
               <div class="form-group">
-                <label for="">Jenis Pekerjaan</label>
-                <select class="form-control enable" name="jenis_pekerjaan" id="jenis_pekerjaan" disabled>
-                  <option value="Borongan" <?= $data->jenis_pekerjaan == 'Borongan' ? 'selected' : ''  ?>>Borongan</option>
-                  <option value="Harian" <?= $data->jenis_pekerjaan == 'Harian' ? 'selected' : ''  ?>>Harian</option>
-                </select>
-              </div>
+                <label for="lama_usaha_myfaedah">Lama Usaha </label>
+                <input name="lama_usaha_myfaedah" id="lama_usaha_myfaedah" type="text" class="form-control enable" value="<?= $data->lama_usaha ?>" placeholder="Lama Usaha" disabled>
+              </div><!-- Nama Barang -->
               <div class="form-group">
-                <label for="">Bagian Bangunan</label>
-                <input type="text" class="form-control enable" name="bagian_bangunan" id="bagian_bangunan" value="<?= $data->bagian_bangunan ?>" readonly required>
+                <label for="nama_barang">Nama Barang </label>
+                <input name="nama_barang" id="nama_barang" type="text" class="form-control enable" value="<?= $data->nama_barang ?>" placeholder="Nama Barang" disabled>
               </div>
+
+              <!-- Kondisi Barang -->
               <div class="form-group">
-                <label for="">Luas Bangunan</label>
-                <input type="text" class="form-control enable" name="luas_bangunan" id="luas_bangunan" value="<?= $data->luas_bangunan ?>" readonly required>
+                <label for="kondisi_barang">Kondisi Barang</label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="form-check-input enable" value="Baru" <?= $data->kondisi_barang == 'Baru' ? 'checked' : '' ?> id="baru" type="radio" name="kondisi_barang" value="Baru" disabled>Baru</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="form-check-input enable" value="Bekas" <?= $data->kondisi_barang == 'Bekas' ? 'checked' : '' ?> id="bekas" type="radio" name="kondisi_barang" value="Bekas" disabled>Bekas</label>
+                </div>
               </div>
+
+              <!-- Jumlah Barang -->
               <div class="form-group">
-                <label for="">Jumlah Pekerja</label>
-                <input type="text" class="form-control enable" name="jumlah_pekerja" id="jumlah_pekerja" value="<?= $data->jumlah_pekerja ?>" readonly required>
+                <label for="jumlah_barang">Jumlah Barang</label>
+                <input name="jumlah_barang" id="jumlah_barang" type="number" class="form-control enable" value="<?= $data->jumlah_barang ?>" placeholder="Jumlah Barang" disabled>
               </div>
+
+              <!-- Merek & Tipe -->
               <div class="form-group">
-                <label for="">Estimasi Waktu</label>
-                <input type="text" class="form-control enable" name="estimasi_waktu" id="estimasi_waktu" value="<?= $data->estimasi_waktu ?>" readonly required>
+                <label for="merek_barang">Merek & Tipe Barang</label>
+                <input name="merek_barang" id="merek_barang" type="text" class="form-control enable" value="<?= $data->merek_barang ?>" placeholder="Merek & Tipe" disabled>
               </div>
+
+              <!-- Warna -->
               <div class="form-group">
-                <label for="">Nilai Pembiayaan</label>
-                <input type="text" class="form-control enable" name="nilai_pembiayaan" id="nilai_pembiayaan" value="<?= $data->nilai_pembiayaan ?>" readonly required>
+                <label for="warna_barang">Warna Barang</label>
+                <input name="warna_barang" id="warna_barang" type="text" class="form-control enable" value="<?= $data->warna_barang ?>" placeholder="Warna" disabled>
               </div>
+
+              <!-- Tahun -->
+              <div class="form-group">
+                <label for="tahun_barang">Tahun</label>
+                <input name="tahun_barang" id="tahun_barang" type="number" class="form-control enable" value="<?= $data->tahun ?>" placeholder="Tahun" disabled>
+              </div>
+
+              <!-- Harga Barang -->
+              <div class="form-group">
+                <label for="harga_barang">Harga Barang </label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text bg-success text-white">Rp.</span>
+                  </div>
+                  <input name="harga_barang" id="harga_barang" type="number" class="form-control enable" value="<?= $data->harga_barang ?>" placeholder="Harga Barang" disabled>
+                </div>
+              </div>
+
+              <!-- Tujuan Pembelian -->
+              <div class="form-group">
+                <label for="tujuan_pembelian">Tujuan Pembelian</label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input enable" value="Konsumtif" <?= $data->tujuan_pembelian == 'Konsumtif' ? 'checked' : '' ?> id="konsumtif" type="radio" name="tujuan_pembelian" value="Konsumtif" disabled>Konsumtif</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input enable" value="Produktif" <?= $data->tujuan_pembelian == 'Produktif' ? 'checked' : '' ?> id="produktif" type="radio" name="tujuan_pembelian" value="Produktif" disabled>Produktif</label>
+                </div>
+              </div>
+              <!-- informasi tambahan -->
               <div class="form-group">
                 <label for="">Informasi Tambahan</label>
-                <textarea name="informasi_tambahan" class="form-control enable" id="informasi_tambahan" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
+                <textarea name="informasi_tambahan_myfaedah" class="form-control enable" id="informasi_tambahan_myfaedah" cols="40" rows="5" readonly><?= $data->informasi_tambahan ?></textarea>
               </div>
               <!-- Tombol ini muncul khusus untuk user -->
               <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
@@ -162,19 +199,19 @@
               <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
               <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
 
-              <a class="btn btn-info" href="<?= base_url('Admin1/approve/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
-              <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+              <a class="btn btn-info" href="<?= base_url('Admin1/approve/myfaedah/id/' . $data->id_myfaedah) ?>">Approve</a>
+              <a class="btn btn-danger" href="<?= base_url('Admin1/reject/myfaedah/id/' . $data->id_myfaedah) ?>">Reject</a>
               <?php } ?>
               <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
 
-              <a class="btn btn-info" href="<?= base_url('Admin2/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Approve</a>
-              <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+              <a class="btn btn-info" href="<?= base_url('Admin2/complete/myfaedah/id/' . $data->id_myfaedah) ?>">Approve</a>
+              <a class="btn btn-danger" href="<?= base_url('Admin2/reject/myfaedah/id/' . $data->id_myfaedah) ?>">Reject</a>
               <?php } ?>
               <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
               <?php if ($this->session->userdata('level') == 5) { ?>
 
-              <a class="btn btn-info mt-1" href="<?= base_url('Superuser/complete/myhajat/renovasi/' . $data->id_renovasi) ?>">Complete</a>
-              <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myhajat/renovasi/' . $data->id_renovasi) ?>">Reject</a>
+              <a class="btn btn-info mt-1" href="<?= base_url('Superuser/complete/myfaedah/id/' . $data->id_myfaedah) ?>">Complete</a>
+              <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/myfaedah/id/' . $data->id_myfaedah) ?>">Reject</a>
               <?php } ?>
             </div>
           </div>
@@ -197,7 +234,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?>
+                      <?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -213,7 +250,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a><?php } ?>
+                      <?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -229,7 +266,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a><?php } ?>
+                      <?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -245,7 +282,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a><?php } ?>
+                      <?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -261,7 +298,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a><?php } ?>
+                      <?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -277,7 +314,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a><?php } ?>
+                      <?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -293,7 +330,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a><?php } ?>
+                      <?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -309,7 +346,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a><?php } ?>
+                      <?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -325,7 +362,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a><?php } ?>
+                      <?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -341,7 +378,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myhajat/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a><?php } ?>
+                      <?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myfaedah/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a><?php } ?>
                     </td>
                     <td>
                       <div class="form-group">
@@ -362,13 +399,13 @@
             <div class="card-footer text-center">
               <!-- Tombol ini muncul khusus untuk user -->
               <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-              <button type="submit" id="edit_renovasi" class="btn btn-info enable" name="edit_renovasi" disabled>Update Data!</button>
+              <button type="submit" id="edit_myfaedah" class="btn btn-info enable" name="edit_myfaedah" disabled>Update Data!</button>
             </div>
             <?php } ?>
             <?php if ($this->session->userdata('level') == 5) { ?>
             <div class="card-footer text-center">
               <!-- Tombol ini muncul khusus untuk SUPERUSER -->
-              <button type="submit" id="edit_renovasi_superuser" class="btn btn-info enable" name="edit_renovasi_superuser" disabled>Update Data!</button>
+              <button type="submit" id="edit_myfaedah_superuser" class="btn btn-info enable" name="edit_myfaedah_superuser" disabled>Update Data!</button>
             </div>
             <?php } ?>
           </div>
@@ -381,7 +418,7 @@
     <!-- Post Komentar -->
     <div class="row mt-4">
       <div class="col-lg-12 col-md-6">
-        <form method="post" action="<?= base_url('comment/post_comment/id_renovasi') ?>">
+        <form method="post" action="<?= base_url('comment/post_comment/id_myfaedah') ?>">
           <div class="card">
             <div class="card-header with-border">
               <label for="">Post Komentar</label>
@@ -389,7 +426,7 @@
             <div class="card-body">
               <div class="form-group">
                 <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
-                <input type="hidden" name="id_komentar" value="<?= $data->id_renovasi ?>">
+                <input type="hidden" name="id_komentar" value="<?= $data->id_myfaedah ?>">
                 <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
                 <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
               </div>
@@ -442,11 +479,11 @@
       </div>
       <div class="card-footer">
         <!-- Reply comment form -->
-        <form action="<?= base_url('comment/post_reply/id_renovasi'); ?>" method="post">
+        <form action="<?= base_url('comment/post_reply/id_myfaedah'); ?>" method="post">
           <div class="img-push">
             <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
             <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-            <input name="id_komentar" type="hidden" value="<?= $data->id_renovasi ?>">
+            <input name="id_komentar" type="hidden" value="<?= $data->id_myfaedah ?>">
             <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
             <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
           </div>

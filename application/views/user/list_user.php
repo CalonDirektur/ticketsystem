@@ -11,10 +11,10 @@
           <div class="card-header">
             <b>Daftar Akun User</b>
           </div>
-          <table id="table-admin1" class="table responsive status" width="100%">
+          <table id="table-user" class="table responsive status" width="100%">
             <thead>
-              <th class="all">ID User</th>
               <th class="all">Nama</th>
+              <th>Tanggal Daftar</th>
               <th>NIK</th>
               <th class="all">Email</th>
               <th>Level</th>
@@ -25,29 +25,29 @@
               <?php
               $no = 1;
               foreach ($list_user->result() as $user) {  ?>
-                <tr>
-                  <td>#<?= $user->id_user ?></td>
-                  <td><?= $user->name ?></td>
-                  <td><?= $user->nik ?></td>
-                  <td><?= $user->email ?></td>
-                  <td>
-                    <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
-                      <option value="1" <?= $user->level == 1 ? 'selected' : '' ?>>User Cabang</option>
-                      <option value="2" <?= $user->level == 2 ? 'selected' : '' ?>>Admin Level 1</option>
-                      <option value="3" <?= $user->level == 3 ? 'selected' : '' ?>>Admin level 2</option>
-                      <option value="4" <?= $user->level == 4 ? 'selected' : '' ?>>Admin NST</option>
-                      <option value="5" <?= $user->level == 5 ? 'selected' : '' ?>>Superuser</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control col-8" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
-                      <option value="0" <?= $user->is_active == 0 ? 'selected' : '' ?>>Nonaktif</option>
-                      <option value="1" <?= $user->is_active == 1 ? 'selected' : '' ?>>Aktif</option>
-                    </select>
-                  </td>
-                  <td><?= $user->nama_cabang ?></td>
-                </tr>
-                <?php
+              <tr>
+                <td><?= $user->name ?></td>
+                <td><?= $user->tanggal_daftar ?></td>
+                <td><?= $user->nik ?></td>
+                <td><?= $user->email ?></td>
+                <td>
+                  <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
+                    <option value="1" <?= $user->level == 1 ? 'selected' : '' ?>>User Cabang</option>
+                    <option value="2" <?= $user->level == 2 ? 'selected' : '' ?>>Admin Level 1</option>
+                    <option value="3" <?= $user->level == 3 ? 'selected' : '' ?>>Admin level 2</option>
+                    <option value="4" <?= $user->level == 4 ? 'selected' : '' ?>>Admin NST</option>
+                    <option value="5" <?= $user->level == 5 ? 'selected' : '' ?>>Superuser</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control col-8" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
+                    <option value="0" <?= $user->is_active == 0 ? 'selected' : '' ?>>Nonaktif</option>
+                    <option value="1" <?= $user->is_active == 1 ? 'selected' : '' ?>>Aktif</option>
+                  </select>
+                </td>
+                <td><?= $user->nama_cabang ?></td>
+              </tr>
+              <?php
                 $no++;
               } ?>
             </tbody>

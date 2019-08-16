@@ -77,6 +77,24 @@ class Admin2 extends CI_Controller
 			$this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Aktivasi Agent!</div>');
 			redirect('/');
 		}
+
+		if ($produk == 'mitra_kerjasama') {
+			$this->Aksi_Admin2_m->complete('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+			$this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Mitra Kerjasama!</div>');
+			redirect('/');
+		}
+
+		if ($produk == 'mycars') {
+			$this->Aksi_Admin2_m->complete('tb_my_cars', ['id_mycars' => $id]);
+			$this->session->set_flashdata('berhasil_completed', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support My CarS!</div>');
+			redirect('/');
+		}
+
+		if ($produk == 'myfaedah') {
+			$this->Aksi_Admin2_m->complete('tb_my_faedah', ['id_myfaedah' => $id]);
+			$this->session->set_flashdata('berhasil_completed', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support My Faedah!</div>');
+			redirect('/');
+		}
 	}
 
 	//menyelesaikan support ticket
@@ -143,6 +161,24 @@ class Admin2 extends CI_Controller
 		if ($produk == 'aktivasi_agent') {
 			$this->Aksi_Admin2_m->reject('tb_aktivasi_agent', ['id_agent' => $id]);
 			$this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support Aktivasi Agent!</div>');
+			redirect('/');
+		}
+
+		if ($produk == 'mitra_kerjasama') {
+			$this->Aksi_Admin2_m->reject('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+			$this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Mitra Kerjasama!</div>');
+			redirect('/');
+		}
+
+		if ($produk == 'mycars') {
+			$this->Aksi_Admin2_m->reject('tb_my_cars', ['id_mycars' => $id]);
+			$this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My CarS!</div>');
+			redirect('/');
+		}
+
+		if ($produk == 'myfaedah') {
+			$this->Aksi_Admin2_m->reject('tb_my_faedah', ['id_myfaedah' => $id]);
+			$this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah!</div>');
 			redirect('/');
 		}
 	}

@@ -17,7 +17,7 @@
                                 <label for="nik">Nomor Induk Karyawan</label>
                                 <small></small>
                                 <?= form_error('nik') ?>
-                                <input name="nik" type="number" class="form-control" id="nik" value="<?= set_value('nik') ?>">
+                                <input name="nik" type="number" class="form-control" id="nik" maxlength="7" value="<?= set_value('nik') ?>">
                             </div>
                             <div class="form-group">
                                 <label for="name">Nama Lengkap</label>
@@ -47,7 +47,7 @@
                                     <?php
                                     foreach ($pertanyaan as $p) {
                                         ?>
-                                        <option <?= $p->id_cabang == 46 ? 'disabled' : '' ?> value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
+                                    <option <?= $p->id_cabang == 46 ? 'disabled' : '' ?> value="<?= $p->id_cabang ?>"><?= $p->nama_cabang ?></option>
                                     <?php }  ?>
                                 </select>
                             </div>
