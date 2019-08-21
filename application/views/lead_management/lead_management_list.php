@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <table class="display status responsive" width="100%">
+        <table class="table display status dt-responsive" width="100%">
           <thead>
             <th>ID Ticket</th>
             <th>Lead ID</th>
@@ -33,16 +33,16 @@
               <td><?= $d->produk ?></td>
               <?php if ($d->id_approval == 0) { ?>
               <td><label class="badge badge-secondary">Belum Direview</span></td>
-              <td><a class="btn btn-secondary" href="<?= base_url('status/pending/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+              <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
               <?php } else if ($d->id_approval == 1) { ?>
               <td><label class="badge badge-danger">Ditolak</span></td>
-              <td><a class="btn btn-secondary" href="<?= base_url('status/rejected/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+              <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
               <?php } else if ($d->id_approval == 2) { ?>
               <td><label class="badge badge-success">Disetujui Admin 1</span></td>
-              <td><a class="btn btn-secondary" href="<?= base_url('status/approved/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+              <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
               <?php } else if ($d->id_approval == 3) { ?>
               <td><label class="badge badge-primary">Selesai</label></td>
-              <td><a class="btn btn-secondary" href="<?= base_url('status/completed/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+              <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
               <?php } ?>
             </tr>
             <?php

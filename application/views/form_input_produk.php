@@ -3,7 +3,7 @@
   <p><?= date('d F, Y'); ?></p>
 </section>
 
-<form method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data" autocomplete="off">
+<form id="submit-produk" method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data" autocomplete="on">
   <section class="content mb-5">
     <div class="container">
       <div class="row">
@@ -796,6 +796,10 @@
                     </span>
                   </div>
                 </div>
+              </div>
+
+              <div class="alert alert-success mt-4">
+                <strong>Perhatian!</strong> File upload tidak boleh lebih dari 10 MB.
               </div>
             </div>
             <div class="card-footer">

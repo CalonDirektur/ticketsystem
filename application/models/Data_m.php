@@ -20,55 +20,10 @@ class Data_m extends CI_Model
         $this->db->select('*');
         $this->db->from($table);
 
-        if ($where == 'status_admin1') {
+        if ($where != NULL) {
             $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
             $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
 
-            if ($id_user != NULL) {
-                $this->db->where($table . '.id_user', $id_user);
-            }
-            $this->db->where('id_approval', 0);
-            $this->db->or_where('id_approval', 1);
-        }
-        if ($where == 'status_admin2') {
-            if ($id_user != NULL) {
-                $this->db->where($table . '.id_user', $id_user);
-            }
-            $this->db->where('id_approval', 2);
-            $this->db->or_where('id_approval', 3);
-        }
-        if ($where == 'pending_review') {
-            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
-            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
-
-            $this->db->where('id_approval', 0);
-            if ($id_user != NULL) {
-                $this->db->where($table . '.id_user', $id_user);
-            }
-        }
-        if ($where == 'rejected_review') {
-            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
-            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
-
-            $this->db->where('id_approval', 1);
-            if ($id_user != NULL) {
-                $this->db->where($table . '.id_user', $id_user);
-            }
-        }
-        if ($where == 'approved_review') {
-            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
-            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
-
-            $this->db->where('id_approval', 2);
-            if ($id_user != NULL) {
-                $this->db->where($table . '.id_user', $id_user);
-            }
-        }
-        if ($where == 'completed_review') {
-            $this->db->join('tb_cabang', $table . '.id_cabang = tb_cabang.id_cabang', 'inner');
-            $this->db->join('user', $table . '.id_user = user.id_user', 'inner');
-
-            $this->db->where('id_approval', 3);
             if ($id_user != NULL) {
                 $this->db->where($table . '.id_user', $id_user);
             }
@@ -109,6 +64,16 @@ class Data_m extends CI_Model
         $this->db->from($table);
         $this->db->where($where);
         $query = $this->db->count_all_results();
+        return $query;
+    }
+
+    public function cek_duplikat($table, $where)
+    {
+        $this->db->select("*,DATEDIFF(now(), date_created) as selisih_tanggal");
+        $this->db->from($table);
+        $this->db->where($where);
+
+        $query = $this->db->get();
         return $query;
     }
 

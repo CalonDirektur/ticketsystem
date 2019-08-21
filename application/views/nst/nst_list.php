@@ -11,9 +11,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <table class="display status responsive" width="100%">
+                <table class="table display status dt-responsive" width="100%">
                     <thead>
-                        <th>ID NST</th>
+                        <th>ID Ticket</th>
                         <th>Lead ID</th>
                         <th>Nama Konsumen</th>
                         <th>Produk</th>
@@ -25,22 +25,22 @@
                         $no = 1;
                         foreach ($data->result() as $d) {  ?>
                         <tr>
-                            <td>#<?= $d->id_nst ?></td>
+                            <td>#<?= $d->id_ticket ?></td>
                             <td><?= $d->lead_id ?></td>
                             <td><?= $d->nama_konsumen ?></td>
                             <td><?= $d->produk ?></td>
                             <?php if ($d->id_approval == 0) { ?>
                             <td><label class="badge badge-secondary">Belum Direview</span></td>
-                            <td><a class="btn btn-secondary" href="<?= base_url('status/pending/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                            <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                             <?php } else if ($d->id_approval == 1) { ?>
                             <td><label class="badge badge-danger">Ditolak</span></td>
-                            <td><a class="btn btn-secondary" href="<?= base_url('status/rejected/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                            <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                             <?php } else if ($d->id_approval == 2) { ?>
                             <td><label class="badge badge-success">Disetujui Admin 1</span></td>
-                            <td><a class="btn btn-secondary" href="<?= base_url('status/approved/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                            <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                             <?php } else if ($d->id_approval == 3) { ?>
                             <td><label class="badge badge-primary">Selesai</label></td>
-                            <td><a class="btn btn-secondary" href="<?= base_url('status/completed/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                            <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                             <?php } ?>
                         </tr>
                         <?php

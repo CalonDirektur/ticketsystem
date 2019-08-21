@@ -7,16 +7,7 @@ class User_m extends CI_Model
     //Method Proses Login
     public function login($username, $password)
     {
-        // $this->db->select('*');
-        // $this->db->from('user');
-        // $this->db->where('username', $post['username']);
-        // $this->db->where('password', $post['password']);
-        // $query = $this->db->get();
-
-        // $query = $this->db->query("SELECT * FROM user WHERE (email = '".$email."' or username = '".$username."') AND password = '".$password."'' ");
-
         $this->db->where("(email = '$username' OR nik = '$username') AND password =  '$password'");
-        // $this->db->where('password', $password);
         $this->db->where('is_active', 1);
         $query = $this->db->get('user');
 
@@ -27,7 +18,6 @@ class User_m extends CI_Model
     {
         $this->db->from('user');
         if ($id != null) {
-            // $this->db->where(['username' => $id, 'user.id_cabang = tb_cabang.id_cabang']);
             $this->db->join('tb_cabang', 'user.id_cabang = tb_cabang.id_cabang', 'inner');
             $this->db->where("nik = '$id' or email = '$id'");
         }

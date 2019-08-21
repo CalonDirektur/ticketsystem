@@ -170,6 +170,10 @@
                   </div>
                 </div>
               </div>
+
+              <div class="alert alert-success mt-4">
+                <strong>Perhatian!</strong> File upload tidak boleh lebih dari 10 MB.
+              </div>
             </div>
             <div class="card-footer text-center">
               <button type="submit" id="submit" class="btn btn-info pull-right" name="submit_mitra_kerjasama">Kirim Data!</button>

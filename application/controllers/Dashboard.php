@@ -107,20 +107,28 @@ class Dashboard extends CI_Controller
 		$total_completed_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 3 $id_cabang");
 
 		//Total Pending
-		if ($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5) {
-			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_lead_management + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
+		if ($this->session->userdata('level') == 1) {
+			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
 			//Total Approved
-			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_lead_management + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
+			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
 			//Total Rejected
-			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_lead_management + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
+			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
 			//Total Completed
-			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_lead_management + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
+			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
+		} else if ($this->session->userdata('level') == 5) {
+			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
+			//Total Approved
+			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
+			//Total Rejected
+			$total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
+			//Total Completed
+			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
 		} else if ($this->session->userdata('level') == 4) {
 			$total_pending = $total_pending_nst + $total_pending_lead_management;
 			//Total Approved
-			$total_approved = $total_approved_nst + $total_approved_lead_management;
+			$total_approved = $total_approved_nst;
 			//Total Rejected
-			$total_rejected = $total_rejected_nst + $total_rejected_lead_management;
+			$total_rejected = $total_rejected_nst;
 			//Total Completed
 			$total_completed = $total_completed_nst + $total_completed_lead_management;
 		} else if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 3) {

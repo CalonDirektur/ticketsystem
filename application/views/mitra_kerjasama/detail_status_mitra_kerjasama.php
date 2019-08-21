@@ -113,7 +113,7 @@
 								?>
 							</div>
 							<!-- Tombol ini muncul khusus untuk user -->
-							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 5)  && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+							<?php if (($this->session->userdata('level') == 1)  && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
 							<?php } ?>
 							<!-- Tombol ini muncul khusus untuk user -->
@@ -124,19 +124,16 @@
 						<div class="card-footer">
 							<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
 							<?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
-							<label for="">Aksi:</label>
-							<a class="btn btn-info" href="<?= base_url('Admin1/approve/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Approve</a>
-							<a class="btn btn-danger" href="<?= base_url('Admin1/reject/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Reject</a>
+							<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYETUJUI request support ini?')" href="<?= base_url('Admin1/approve/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Approve</a>
+							<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin1/reject/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Reject</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin 2 -->
 							<?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
-							<label for="">Aksi:</label>
-							<a class="btn btn-info" href="<?= base_url('Admin2/complete/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Approve</a>
-							<a class="btn btn-danger" href="<?= base_url('Admin2/reject/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Reject</a>
+							<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Admin2/complete/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Approve</a>
+							<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin2/reject/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Reject</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
 							<?php if ($this->session->userdata('level') == 5) { ?>
-							<label for="">Aksi:</label>
 							<a class="btn btn-info" href="<?= base_url('Superuser/complete/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Complete</a>
 							<a class="btn btn-danger" href="<?= base_url('Superuser/reject/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Reject</a>
 							<?php } ?>

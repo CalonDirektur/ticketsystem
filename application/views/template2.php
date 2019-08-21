@@ -2,6 +2,36 @@
 <html lang="en">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-T6V2FSM');
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129708943-5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-129708943-5');
+  </script>
+  <!-- End Google Tag Manager -->
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,9 +49,10 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets2/css/jquery.dataTables.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets2/img/bfi.jpg') ?>" />
 
@@ -54,10 +85,24 @@
       word-break: break-all;
       padding: 0;
     }
+
+    .highlighted {
+      background: red;
+    }
+
+    .nonhighlighted {
+      background: white;
+    }
   </style>
+
+
+
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6V2FSM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -159,6 +204,12 @@
               <span class="menu-title">List User Akun</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('status/list/lead_management/') ?>">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">Lead Management</span>
+            </a>
+          </li>
           <?php } ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= site_url('Auth/profile') ?>">
@@ -206,8 +257,10 @@
   <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dataTables.rowReorder.min.js') ?>"></script>
-  <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
   <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script> -->
 
 </body>

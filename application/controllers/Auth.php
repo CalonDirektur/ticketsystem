@@ -30,9 +30,9 @@ class Auth extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[7]|is_unique[user.nik]');
+		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[7]|is_unique[user.nik]', ['is_unique' => 'NIK sudah dipakai']);
 		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]', ['is_unique' => 'Email sudah dipakai']);
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('id_cabang', 'ID Cabang', 'trim|required');
@@ -60,8 +60,10 @@ class Auth extends CI_Controller
 	//Halaman List para User
 	public function list_user()
 	{
+		check_access_level_superuser();
 		$data = [
-			'list_user' => $this->user_m->get_cabang()
+			'list_user' => $this->user_m->get_cabang(),
+			'list_cabang' => $this->data_m->get('tb_cabang')
 		];
 		$this->template->load('template2', 'user/list_user', $data);
 	}

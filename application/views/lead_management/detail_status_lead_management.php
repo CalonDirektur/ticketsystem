@@ -24,22 +24,6 @@
 									<a href="#" id="id-ticket">ID Ticket: #<?= $data->id_ticket ?></a>
 								</div>
 								<div class="col-6 p-0 m-0">
-									<div id="status-ticket" class="pull-right">
-										<?php
-										if ($data->id_approval == 0) {
-											echo '<label class="badge badge-secondary">Pending</label>';
-										}
-										if ($data->id_approval == 1) {
-											echo '<label class="badge badge-danger">Ditolak</label>';
-										}
-										if ($data->id_approval == 2) {
-											echo '<label class="badge badge-success">Disetujui Admin 1</label>';
-										}
-										if ($data->id_approval == 3) {
-											echo '<label class="badge badge-info">Selesai</label>';
-										}
-										?>
-									</div>
 								</div>
 							</div>
 							<hr class="hr">
@@ -58,7 +42,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- /.card-header -->
 						<div class="card-body">
 							<!-- ID Ticket -->
 							<div class="form-group">
@@ -214,24 +197,6 @@
 								<textarea rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan"><?= $data->informasi_tambahan ?></textarea>
 							</div>
 							<?php } ?>
-
-							<div id="status-ticket" class="pull-right">
-								<label for="">Status:</label>
-								<?php
-								if ($data->id_approval == 0) {
-									echo '<label class="badge badge-secondary">Pending</label>';
-								}
-								if ($data->id_approval == 1) {
-									echo '<label class="badge badge-danger">Ditolak</label>';
-								}
-								if ($data->id_approval == 2) {
-									echo '<label class="badge badge-success">Disetujui Admin NST</label>';
-								}
-								if ($data->id_approval == 3) {
-									echo '<label class="badge badge-success">Selesai</label>';
-								}
-								?>
-							</div>
 						</div>
 						<div class="form-group">
 							<!-- Tombol ubah data muncul khusus untuk user -->

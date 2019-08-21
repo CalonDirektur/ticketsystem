@@ -112,13 +112,13 @@
 							<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
 							<?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
 
-							<a class="btn btn-info" href="<?= base_url('Admin1/approve/myihram/id/' . $data->id_myihram) ?>">Approve</a>
-							<a class="btn btn-danger" href="<?= base_url('Admin1/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
+							<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support?')" href="<?= base_url('Admin1/approve/myihram/id/' . $data->id_myihram) ?>">Approve</a>
+							<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin1/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
 							<?php } ?>
 							<?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
 
-							<a class="btn btn-info" href="<?= base_url('Admin2/complete/myihram/id/' . $data->id_myihram) ?>">Approve</a>
-							<a class="btn btn-danger" href="<?= base_url('Admin2/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
+							<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Admin2/complete/myihram/id/' . $data->id_myihram) ?>">Approve</a>
+							<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin2/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
 							<?php if ($this->session->userdata('level') == 5) { ?>

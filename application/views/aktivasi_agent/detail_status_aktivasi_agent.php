@@ -54,8 +54,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- /.card-header -->
-						<div class="card-body no-padding">
+						<div class="card-body">
 							<!-- ID Ticket -->
 							<div class="form-group">
 								<label for="">ID Ticket</label>
@@ -107,19 +106,19 @@
 						<div class="card-footer">
 							<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
 							<?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
-							<label for="">Aksi:</label>
-							<a class="btn btn-info" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
-							<a class="btn btn-danger" href="<?= base_url('Admin1/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
+
+							<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support ini?')" href="<?= base_url('Admin1/approve/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+							<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin1/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin 2 -->
 							<?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
-							<label for="">Aksi:</label>
-							<a class="btn btn-info" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
-							<a class="btn btn-danger" href="<?= base_url('Admin2/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
+
+							<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Admin2/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Approve</a>
+							<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin2/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
 							<?php if ($this->session->userdata('level') == 5) { ?>
-							<label for="">Aksi:</label>
+
 							<a class="btn btn-info" href="<?= base_url('Superuser/complete/aktivasi_agent/id/' . $data->id_agent) ?>">Complete</a>
 							<a class="btn btn-danger" href="<?= base_url('Superuser/reject/aktivasi_agent/id/' . $data->id_agent) ?>">Reject</a>
 							<?php } ?>
@@ -325,6 +324,7 @@
 			</div>
 		</div>
 		<?php } ?>
+
 		<!-- Menampilkan Komentar -->
 		<?php foreach ($komentar->result() as $komen) { ?>
 		<div class="row mt-4">

@@ -15,11 +15,11 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/login-css.css') ?>">
 </head>
 
-<body style="background-image: url(<?= base_url('assets2/img/ho.jpg') ?>); background-size: cover">
-  <div class="container">
-    <div class="row">
+<body>
+  <div class="container h-100">
+    <div class="row align-items-center h-100">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
+        <div class="card card-signin h-100 justify-content-center my-5">
           <div class="card-header text-center">
             <h3>Helpdesk BFI Syariah</h3>
           </div>
@@ -28,7 +28,7 @@
               <img class="rounded img-fluid m-2 mb-4" src="<?= base_url('assets2/img/logo-bfi-syariah.png') ?>">
             </div>
 
-            <form action="<?= base_url('auth/process') ?>" method="post" class="form-signin">
+            <form action="<?= base_url('auth/process') ?>" method="post" class="form-signin" autocomplete="off">
 
               <!-- Email Address/NIK -->
               <div class="form-group">

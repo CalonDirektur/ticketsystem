@@ -13,7 +13,8 @@ $(document).ready(function () {
 			[15, 25, 50, 10],
 			["15", 25, 50, 10]
 		],
-		"lengthChange": false
+		"lengthChange": false,
+		stateSave: true
 	});
 	$('#table-user').DataTable()
 	//Menyembunyikan tombol submit di halaman tiket yang direject
@@ -79,6 +80,9 @@ $(document).ready(function () {
 		$(this).fadeOut('fast');
 	})
 	$("tr.clickable-row").not("tr > td.not-clickable").css('cursor', 'pointer');
+	$("table").on("click", ".not-clickable", function (e) {
+		e.stopPropagation();
+	});
 	$("table").on('click', '.clickable-row', function () {
 		$("tr.clickable-row").not("tr > td.not-clickable").css('cursor', 'pointer');
 		window.location = $(this).data("href");
@@ -86,6 +90,23 @@ $(document).ready(function () {
 	// $(".clickable-row").not("tr td:first-child").click(function () {
 	// 	window.location = $(this).data("href");
 	// });
+	$("[data-headoffice]").hide();
+	$("#table-user").on("change", "#level", function () {
+		var value = $("#level option:selected").val();
+		var id_user = $(this).attr("data-iduser");
+		alert(id_user);
+		if (value != 1) {
+			$("[name='id_cabang[" + id_user + "]']").val("46");
+			$("[name='id_cabang[" + id_user + "]']").removeAttr("disabled");
+			$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "line-through");
+			$("[data-headoffice='head_office[" + id_user + "]']").fadeIn();
+		} else {
+			$("[name='id_cabang[" + id_user + "]']").attr("disabled", "disabled")
+			$("[name='id_cabang[" + id_user + "]']").val("");
+			$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "");
+			$("[data-headoffice='head_office[" + id_user + "]']").fadeOut();
+		}
+	})
 
 	//Script untuk form lead management user, ketika memilih asal leads
 	$(".cross-branch-div").hide();
@@ -151,10 +172,17 @@ $(document).ready(function () {
 
 	});
 
+	// Animasi untuk melihat keterangan waktu di detail tiket
 	$('#hide-detail-ticket, .hr').hide();
 	$('#id-ticket').click(function () {
 		$('#hide-detail-ticket, .hr').slideToggle();
 	})
+
+	$("#submit-produk").on("submit", function () {
+		$("#submit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... ');
+		// $("#submit").attr("disabled", "disabled")
+	})
+
 
 	// Script untuk input produk 
 	$("#input_produk").change(function () {

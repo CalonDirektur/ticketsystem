@@ -14,12 +14,13 @@
           <table id="table-user" class="table responsive status" width="100%">
             <thead>
               <th class="all">Nama</th>
-              <th>Tanggal Daftar</th>
-              <th>NIK</th>
-              <th class="all">Email</th>
-              <th>Level</th>
-              <th>Active</th>
-              <th>ID Cabang</th>
+              <th class="all">Tanggal Daftar</th>
+              <th class="none">NIK</th>
+              <th class="none">Email</th>
+              <th class="none">Level</th>
+              <th class="all">Active</th>
+              <th class="desktop">ID Cabang</th>
+              <th class="none">Pilih Cabang</th>
             </thead>
             <tbody>
               <?php
@@ -28,10 +29,12 @@
               <tr>
                 <td><?= $user->name ?></td>
                 <td><?= $user->tanggal_daftar ?></td>
-                <td><?= $user->nik ?></td>
+                <td>
+                  <?= $user->nik ?>
+                </td>
                 <td><?= $user->email ?></td>
                 <td>
-                  <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
+                  <select class="form-control col-12" name="level[<?= $user->id_user ?>]" id="level" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?> data-iduser="<?= $user->id_user ?>">
                     <option value="1" <?= $user->level == 1 ? 'selected' : '' ?>>User Cabang</option>
                     <option value="2" <?= $user->level == 2 ? 'selected' : '' ?>>Admin Level 1</option>
                     <option value="3" <?= $user->level == 3 ? 'selected' : '' ?>>Admin level 2</option>
@@ -40,12 +43,22 @@
                   </select>
                 </td>
                 <td>
-                  <select class="form-control col-8" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
+                  <select class="form-control col-12" name="is_active[<?= $user->id_user ?>]" id="is_active" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
                     <option value="0" <?= $user->is_active == 0 ? 'selected' : '' ?>>Nonaktif</option>
                     <option value="1" <?= $user->is_active == 1 ? 'selected' : '' ?>>Aktif</option>
                   </select>
                 </td>
-                <td><?= $user->nama_cabang ?></td>
+                <td>
+                  <span data-namacabang="nama_cabang[<?= $user->id_user ?>]"><?= $user->nama_cabang ?></span> <span data-headoffice="head_office[<?= $user->id_user ?>]"> Head Office</span>
+                </td>
+                <td>
+                  <select name="cabang[<?= $user->id_user ?>]" id="cabang" class="form-control" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
+                    <option disabled selected value="">- Pilih Cabang -</option>
+                    <?php foreach ($list_cabang->result() as $cabang) { ?>
+                    <option <?= $cabang->id_cabang == 46 ? 'disabled' : '' ?> value="<?= $cabang->id_cabang ?>"><?= $cabang->nama_cabang ?></option>
+                    <?php }  ?>
+                  </select>
+                </td>
               </tr>
               <?php
                 $no++;
