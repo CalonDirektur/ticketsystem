@@ -313,6 +313,8 @@
 								<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
 								<input type="hidden" name="id_komentar" value="<?= $data->id_agent ?>">
 								<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+								<input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
+								<input type="hidden" name="id_ticket" value="<?= $data->id_ticket ?>">
 								<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 							</div>
 						</div>
@@ -367,6 +369,7 @@
 							<div class="img-push">
 								<input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
 								<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+								<input type="hidden" name="id_ticket_reply" value="<?= $data->id_ticket ?>">
 								<input name="id_komentar" type="hidden" value="<?= $data->id_agent ?>">
 								<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 								<input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">

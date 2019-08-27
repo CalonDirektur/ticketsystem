@@ -1,13 +1,4 @@
 $(document).ready(function () {
-	// alert(window.location.hash);
-	// $('table.status').DataTable({
-	// 	rowReorder: {
-	// 		selector: 'td:nth-child(2)'
-	// 	},
-	// 	fixedHeader: true,
-	// 	responsive: true
-	// });
-
 	$('table.status').DataTable({
 		"lengthMenu": [
 			[15, 25, 50, 10],
@@ -16,42 +7,75 @@ $(document).ready(function () {
 		"lengthChange": false,
 		stateSave: true
 	});
-	$('#table-user').DataTable()
+	$('#table-user').DataTable();
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();
 	// Script Halaman Formulir Pendaftaran Tiket My Hajat
+	$('.validasi').removeAttr('required');
 	$(".card.pertanyaan").hide();
 	$('.kategori').click(function () {
 		if ($("#renovasi").is(':checked')) {
-			$("#submit").attr('name', 'submit_renovasi')
+			$("#submit").attr('name', 'submit_renovasi');
 			$("#card-renovasi, .upload").fadeIn();
-			$("#card-sewa, #card-franchise, #card-wedding, #card-lainnya").fadeOut();
+			$("#card-sewa, #card-franchise, #card-wedding, #card-lainnya, #card-bangunan, #card-elektronik, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
 			validate_renovasi();
 		}
 		if ($("#sewa").is(':checked')) {
-			$("#submit").attr('name', 'submit_sewa')
+			$("#submit").attr('name', 'submit_sewa');
 			$("#card-sewa, .upload").fadeIn();
-			$("#card-renovasi, #card-franchise, #card-wedding, #card-lainnya").fadeOut();
+			$("#card-renovasi, #card-franchise, #card-wedding, #card-lainnya, #card-bangunan, #card-elektronik, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
 			validate_sewa();
 		}
 		if ($("#wedding").is(':checked')) {
-			$("#submit").attr('name', 'submit_wedding')
+			$("#submit").attr('name', 'submit_wedding');
 			$("#card-wedding, .upload").fadeIn();
-			$("#card-renovasi, #card-sewa, #card-franchise, #card-lainnya").fadeOut();
+			$("#card-renovasi, #card-sewa, #card-franchise, #card-lainnya, #card-bangunan, #card-elektronik, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
 			validate_wedding();
 		}
 		if ($("#franchise").is(':checked')) {
-			$("#submit").attr('name', 'submit_franchise')
+			$("#submit").attr('name', 'submit_franchise');
 			$("#card-franchise, .upload").fadeIn();
-			$("#card-renovasi, #card-wedding, #card-sewa, #card-lainnya").fadeOut();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-lainnya, #card-bangunan, #card-elektronik, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
 			validate_franchise();
 		}
 		if ($("#lainnya").is(':checked')) {
-			$("#submit").attr('name', 'submit_lainnya')
+			$("#submit").attr('name', 'submit_lainnya');
 			$("#card-lainnya, .upload").fadeIn();
-			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise").fadeOut();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise, #card-bangunan, #card-elektronik, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
 			validate_lainnya();
+		}
+
+		//// FORM DETAIL KATEGORI MY FAEDAH
+		if ($("#bangunan").is(':checked')) {
+			$("#submit").attr('name', 'submit_bangunan');
+			$("#card-bangunan, .upload").fadeIn();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise, #card-lainnya, #card-elektronik, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
+			validate_bangunan();
+		}
+		if ($("#elektronik").is(':checked')) {
+			$("#submit").attr('name', 'submit_elektronik');
+			$("#card-elektronik, .upload").fadeIn();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise, #card-lainnya, #card-bangunan, #card-modal, #card-qurban, #card-myfaedah-lainnya").fadeOut();
+			validate_elektronik();
+		}
+		if ($("#modal").is(':checked')) {
+			$("#submit").attr('name', 'submit_modal');
+			$("#card-modal, .upload").fadeIn();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise, #card-lainnya, #card-bangunan, #card-elektronik, #card-qurban, #card-myfaedah-lainnya").fadeOut();
+			validate_modal();
+		}
+		if ($("#qurban").is(':checked')) {
+			$("#submit").attr('name', 'submit_qurban');
+			$("#card-qurban, .upload").fadeIn();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise, #card-lainnya, #card-bangunan, #card-elektronik, #card-modal, #card-myfaedah-lainnya").fadeOut();
+			validate_qurban();
+		}
+		if ($("#myfaedah_lainnya").is(':checked')) {
+			$("#submit").attr('name', 'submit_myfaedah_lainnya');
+			$("#card-myfaedah-lainnya, .upload").fadeIn();
+			$("#card-renovasi, #card-wedding, #card-sewa, #card-franchise, #card-lainnya, #card-bangunan, #card-elektronik, #card-modal, #card-qurban").fadeOut();
+			validate_myfaedah_lainnya();
 		}
 	})
 
@@ -106,6 +130,14 @@ $(document).ready(function () {
 			$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "");
 			$("[data-headoffice='head_office[" + id_user + "]']").fadeOut();
 		}
+	});
+
+	$(".form-check-input").on("click, change", function () {
+		if ($("#others").is(":checked")) {
+			$("#other_jenis_barang_elektronik").removeAttr("disabled").attr("required", "required");
+		} else {
+			$("#other_jenis_barang_elektronik").attr("disabled", "disabled").removeAttr("required").val("");
+		}
 	})
 
 	//Script untuk form lead management user, ketika memilih asal leads
@@ -158,6 +190,7 @@ $(document).ready(function () {
 			}, 'fast');
 		});
 	});
+
 	$(".card-completed").click(function () {
 		$('html,body').animate({
 			scrollTop: $(".completed:first").offset().top - 500
@@ -178,9 +211,10 @@ $(document).ready(function () {
 		$('#hide-detail-ticket, .hr').slideToggle();
 	})
 
+	// button loading input form request support
 	$("#submit-produk").on("submit", function () {
 		$("#submit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... ');
-		// $("#submit").attr("disabled", "disabled")
+		$("#submit").css("pointer-events", "none")
 	})
 
 
@@ -190,32 +224,38 @@ $(document).ready(function () {
 		// alert(input);
 		if (input == "My Ta'lim") {
 			$("#card-mytalim, .upload").fadeIn();
-			$(".kategori-myhajat, #card-kategori-myhajat, #card-myihram, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
+			$(".kategori-myhajat, .kategori-myfaedah, #card-kategori-myhajat, #card-kategori-myfaedah, #card-myihram, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
 			$("#submit").attr('name', 'submit_mytalim');
+			$(".kategori").prop("checked", false);
 			validate_mytalim();
 		} else if (input == "My Hajat") {
 			$("#card-kategori-myhajat").fadeIn();
-			$(".kategori-myhajat, #card-mytalim, #card-myihram, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
+			$(".kategori-myhajat, .kategori-myfaedah, #card-kategori-myfaedah, #card-mytalim, #card-myihram, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
 			$(".validasi").removeAttr("required");
+			$(".kategori").prop("checked", false);
 		} else if (input == "My Ihram") {
 			$("#card-myihram, .upload").fadeIn();
-			$(".kategori-myhajat, #card-kategori-myhajat, #card-mytalim, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
+			$(".kategori-myhajat, .kategori-myfaedah, #card-kategori-myhajat, #card-kategori-myfaedah, #card-mytalim, #card-mysafar, #card-myfaedah, #card-mycars").fadeOut();
 			$("#submit").attr('name', 'submit_myihram');
+			$(".kategori").prop("checked", false);
 			validate_myihram();
 		} else if (input == "My Safar") {
 			$("#card-mysafar, .upload").fadeIn();
-			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-myfaedah, #card-mycars").fadeOut();
+			$(".kategori-myhajat, .kategori-myfaedah, #card-myihram, #card-kategori-myhajat, #card-kategori-myfaedah, #card-mytalim, #card-myfaedah, #card-mycars").fadeOut();
 			$("#submit").attr('name', 'submit_mysafar');
+			$(".kategori").prop("checked", false);
 			validate_mysafar();
 		} else if (input == "My Faedah") {
-			$("#card-myfaedah, .upload").fadeIn();
-			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-mycars").fadeOut();
+			$("#card-kategori-myfaedah").fadeIn();
+			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-mycars, #card-mysafar").fadeOut();
 			$("#submit").attr('name', 'submit_myfaedah');
-			validate_myfaedah();
+			$(".validasi").removeAttr("required");
+			$(".kategori").prop("checked", false);
 		} else if (input == "My Cars") {
 			$("#card-mycars, .upload").fadeIn();
-			$(".kategori-myhajat, #card-myihram, #card-kategori-myhajat, #card-mytalim, #card-myfaedah").fadeOut();
+			$(".kategori-myhajat, .kategori-myfaedah, #card-myihram, #card-kategori-myhajat, #card-kategori-myfaedah, #card-mytalim, #card-myfaedah, #card-mysafar").fadeOut();
 			$("#submit").attr('name', 'submit_mycars');
+			$(".kategori").prop("checked", false);
 			validate_mycars();
 		}
 
@@ -224,13 +264,13 @@ $(document).ready(function () {
 
 
 
-	// Method untuk My Ta'lim 
+	/////////// Method untuk My Ta'lim 
 	function validate_mytalim() {
 		$(".validasi").removeAttr("required");
 		$(".mytalim-required").attr("required", "required");
 	}
 
-	// Method untuk Kategori My Hajat 
+	//////////// Method untuk Kategori My Hajat 
 	function validate_renovasi() {
 		$(".validasi").removeAttr("required");
 		$(".renovasi-required").attr("required", "required");
@@ -276,4 +316,31 @@ $(document).ready(function () {
 		$(".validasi").removeAttr("required");
 		$(".mycars-required").attr("required", "required");
 	}
+
+	//////// method untuk kategori My Faedah
+	function validate_bangunan() {
+		$(".validasi").removeAttr("required");
+		$(".bangunan-required").attr("required", "required");
+	}
+
+	function validate_elektronik() {
+		$(".validasi").removeAttr("required");
+		$(".elektronik-required").attr("required", "required");
+	}
+
+	function validate_qurban() {
+		$(".validasi").removeAttr("required");
+		$(".qurban-required").attr("required", "required");
+	}
+
+	function validate_modal() {
+		$(".validasi").removeAttr("required");
+		$(".modal-required").attr("required", "required");
+	}
+
+	function validate_myfaedah_lainnya() {
+		$(".validasi").removeAttr("required");
+		$(".myfaedah-lainnya-required").attr("required", "required");
+	}
+
 })

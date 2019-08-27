@@ -128,10 +128,12 @@
 							<div class="form-group">
 								<label>Produk</label>
 								<select class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="produk" id="produk" disabled>
-									<option value="My Ihram" <?= $data->produk == 'My Ihram' ? 'selected' : ''  ?>> My Ihram</option>
+									<option disabled selected value="">- Pilih Produk -</option>
 									<option value="My Hajat" <?= $data->produk == 'My Hajat' ? 'selected' : ''  ?>> My Hajat</option>
 									<option value="My Talim" <?= $data->produk == 'My Talim' ? 'selected' : ''  ?>> My Talim</option>
 									<option value="My Faedah" <?= $data->produk == 'My Faedah' ? 'selected' : ''  ?>> My Faedah</option>
+									<option value="My Ihram" <?= $data->produk == 'My Ihram' ? 'selected' : ''  ?>> My Ihram</option>
+									<option value="My Safar" <?= $data->produk == 'My Safar' ? 'selected' : ''  ?>> My Safar</option>
 									<option value="My CarS" <?= $data->produk == 'My CarS' ? 'selected' : ''  ?>> My CarS</option>
 								</select>
 							</div>
@@ -243,6 +245,7 @@
 								<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
 								<input type="hidden" name="id_komentar" value="<?= $data->id_lead ?>">
 								<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+								<input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
 								<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 							</div>
 						</div>
@@ -304,6 +307,7 @@
 							<div class="img-push">
 								<input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
 								<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+								<input type="hidden" name="id_ticket_reply" value="<?= $data->id_ticket ?>">
 								<input name="id_komentar" type="hidden" value="<?= $data->id_lead ?>">
 								<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 								<input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">

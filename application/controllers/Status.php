@@ -145,6 +145,12 @@ class Status extends CI_Controller
     public function detail($produk, $kategori, $id)
     {
         //Menampilkan ticket yang telah COMPLETED pada produk my ta'lim dengan $id tertentu
+        if (isset($_GET['id'])) {
+            $id_komentar =  $_GET['id'];
+        } else {
+            $id_komentar = '';
+        }
+
         if ($produk == 'mytalim' && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_my_talim', ['id_mytalim' => $id, 'id_approval' => 3])->row();
             $data['data'] = $this->data_m->get_ticket_by_id('tb_my_talim', 'id_mytalim', $id);
@@ -153,6 +159,8 @@ class Status extends CI_Controller
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
         }
 
@@ -165,6 +173,8 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
         }
 
@@ -178,6 +188,8 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
         }
 
@@ -191,6 +203,8 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
         }
 
@@ -204,6 +218,8 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
         }
 
@@ -217,6 +233,8 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
         }
 
@@ -230,6 +248,8 @@ class Status extends CI_Controller
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
+            //ketika detail status request support di klik maka mark as read notifikasinya            
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
         }
         //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
@@ -241,6 +261,8 @@ class Status extends CI_Controller
                                                                 tb_my_safar.id_mysafar = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
         }
         if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
@@ -251,6 +273,8 @@ class Status extends CI_Controller
                                                                 tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
         }
         if ($produk == 'nst' && $kategori != NULL && $id != NULL) {
@@ -261,6 +285,8 @@ class Status extends CI_Controller
                                                                 tb_nst.id_nst = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'nst/detail_status_nst', $data);
         }
 
@@ -288,6 +314,8 @@ class Status extends CI_Controller
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
+            //ketika detail status request support di klik maka mark as read notifikasinya            
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
         }
 
@@ -299,9 +327,12 @@ class Status extends CI_Controller
                                                                 tb_mitra_kerjasama.id_mitra_kerjasama = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'mitra_kerjasama/detail_status_mitra_kerjasama', $data);
         }
-        if ($produk == 'myfaedah' && $kategori != NULL && $id != NULL) {
+
+        if ($produk == 'myfaedah' && $kategori == 'id' && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
             $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
             $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah', 'parent_comment_id = 0 AND 
@@ -309,8 +340,76 @@ class Status extends CI_Controller
                                                                 tb_my_faedah.id_myfaedah = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_faedah/detail_status_my_faedah', $data);
         }
+
+        if ($produk == 'myfaedah' && $kategori == 'bangunan' && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah_bangunan', 'id_bangunan', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah_bangunan', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_bangunan = tb_my_faedah_bangunan.id_bangunan AND 
+                                                                tb_my_faedah_bangunan.id_bangunan = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_bangunan', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'qurban' && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah_qurban', 'id_qurban', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah_qurban', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_qurban = tb_my_faedah_qurban.id_qurban AND 
+                                                                tb_my_faedah_qurban.id_qurban = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_qurban', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'elektronik' && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah_elektronik', 'id_elektronik', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah_elektronik', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_elektronik = tb_my_faedah_elektronik.id_elektronik AND 
+                                                                tb_my_faedah_elektronik.id_elektronik = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_elektronik', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'modal' && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah_modal', 'id_modal', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah_modal', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_modal = tb_my_faedah_modal.id_modal AND 
+                                                                tb_my_faedah_modal.id_modal = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_modal', $data);
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'lainnya' && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_my_faedah', ['id_myfaedah' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_my_faedah_lainnya', 'id_myfaedah_lainnya', $id);
+            $data['komentar'] = $this->comment_m->get_comment('tb_my_faedah_lainnya', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_myfaedah_lainnya = tb_my_faedah_lainnya.id_myfaedah_lainnya AND 
+                                                                tb_my_faedah_lainnya.id_myfaedah_lainnya = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_lainnya', $data);
+        }
+
         if ($produk == 'mycars' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_my_cars', ['id_mycars' => $id, 'id_approval' => 0])->row();
             $data['data'] = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
@@ -319,6 +418,8 @@ class Status extends CI_Controller
                                                                 tb_my_cars.id_mycars = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'my_cars/detail_status_my_cars', $data);
         }
     }

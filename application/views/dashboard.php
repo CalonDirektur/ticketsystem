@@ -6,7 +6,7 @@
     <?= $this->session->flashdata('berhasil_reject') ?>
     <?= $this->session->flashdata('update_profile_success') ?>
     <?= $this->session->flashdata('duplikat_input') ?>
-    <?php print_r($this->session->flashdata('upload_error')) ?>
+    <?= $this->session->flashdata('failed_request_support') ?>
     <h1 class="text-center">
       Dashboard
       <!-- <small>it all starts here</small> -->
@@ -141,276 +141,1954 @@
       <div class="table-responsive">
 
         <div class="card-body p-0">
-          <table class="table display status dt-responsive" width="100%">
-            <thead>
-              <tr>
-                <th class="all" width="1%">ID Ticket</th>
-                <th class="all">Konsumen</th>
-                <th class="all">Produk</th>
-                <th class="all">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-                $no = 1;
-                foreach ($ticket_records->result() as $tickets) {
-                  if ($tickets->id_mytalim != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_mytalim ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_mytalim == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#all-tickets">All</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#pending">Pending</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#approved">Approved</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#rejected">Rejected</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#completed">Completed</a>
+            </li>
+          </ul>
 
-                  if ($tickets->id_mysafar != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_mysafar ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_mysafar == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+          <div class="tab-content">
+            <div class="tab-pane container-fluid active" id="all-tickets">
+              <table class="table display status dt-responsive" width="100%">
+                <thead>
+                  <tr>
+                    <th class="all" width="1%">ID Ticket</th>
+                    <th class="all">Konsumen</th>
+                    <th class="all">Produk</th>
+                    <th>Date Modified</th>
+                    <th class="all">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $no = 1;
+                    foreach ($ticket_records->result() as $tickets) {
+                      if ($tickets->id_mytalim != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                    <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_myihram != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_myihram ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_myihram == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_mysafar != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                    <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_agent != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_aktivasi_agent ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_myihram != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myihram ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                    <?php if ($tickets->id_approval_myihram == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_nst != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_nst ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_nst == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_nst == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_nst == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin NST</span></td>
-                <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_agent != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_aktivasi_agent ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
+                      <?= $tickets->tanggal_diubah_aktivasi_agent ?>
+                    </td>
+                    <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_renovasi != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_renovasi ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_renovasi == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_renovasi != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                    <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_sewa != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_sewa ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_sewa == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_sewa != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_sewa ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                    <?php if ($tickets->id_approval_sewa == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_wedding != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_wedding ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_wedding == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_wedding != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_wedding ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                    <?php if ($tickets->id_approval_wedding == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_franchise != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_franchise ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_franchise == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
+                      if ($tickets->id_franchise != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_franchise ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                    <?php if ($tickets->id_approval_franchise == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
 
-                  if ($tickets->id_myhajat_lainnya != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_lainnya ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_lainnya == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                    $no++;
-                  }
-                  if ($tickets->id_mitra_kerjasama != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_mitra_kerjasama ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                  }
-                  if ($tickets->id_myfaedah != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_myfaedah ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_myfaedah == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                  }
-                  if ($tickets->id_mycars != NULL) {
-                    ?>
-              <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
-                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                <td><?= $tickets->nama_konsumen_mycars ?></td>
-                <td><?= $tickets->produk ?></td>
-                <?php if ($tickets->id_approval_mycars == 0) { ?>
-                <td><span class="badge badge-secondary pending">Pending</span></td>
-                <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-                <td><span class="badge badge-danger rejected">Ditolak</span></td>
-                <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-                <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-                <td><span class="badge badge-info completed">Selesai</span></td>
-                <?php } ?>
-              </tr>
-              <?php
-                  }
-                }
-                ?>
-            </tbody>
-          </table>
+                      if ($tickets->id_myhajat_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mitra_kerjasama != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>">
+                      <?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                    <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_nst != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_nst ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
+                    <?php if ($tickets->id_approval_nst == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+                      if ($tickets->id_myfaedah != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                    <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_bangunan != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_elektronik != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_qurban != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_modal != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_myfaedah_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_mycars != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mycars ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                    <?php if ($tickets->id_approval_mycars == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                    } ?>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container-fluid fade" id="pending">
+
+              <table class="table display status dt-responsive" width="100%">
+                <thead>
+                  <tr>
+                    <th class="all" width="1%">ID Ticket</th>
+                    <th class="all">Konsumen</th>
+                    <th class="all">Produk</th>
+                    <th>Date Modified</th>
+                    <th class="all">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $no = 1;
+                    foreach ($ticket_records_pending->result() as $tickets) {
+                      if ($tickets->id_mytalim != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                    <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mysafar != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                    <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myihram != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myihram ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                    <?php if ($tickets->id_approval_myihram == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_agent != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_aktivasi_agent ?></td>
+                    <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
+                      <?= $tickets->tanggal_diubah_aktivasi_agent ?>
+                    </td>
+                    <td><?= $tickets->produk ?></td>
+                    <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_renovasi != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                    <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_sewa != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_sewa ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                    <?php if ($tickets->id_approval_sewa == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_wedding != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_wedding ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                    <?php if ($tickets->id_approval_wedding == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_franchise != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_franchise ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                    <?php if ($tickets->id_approval_franchise == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myhajat_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_nst != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_nst ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
+                    <?php if ($tickets->id_approval_nst == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mitra_kerjasama != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                    <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_myfaedah != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                    <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      
+                      if ($tickets->id_bangunan != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_elektronik != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_qurban != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_modal != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_myfaedah_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_mycars != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mycars ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                    <?php if ($tickets->id_approval_mycars == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                    } ?>
+                </tbody>
+              </table>
+
+            </div>
+            <div class="tab-pane container-fluid fade" id="approved">
+
+              <table class="table display status dt-responsive" width="100%">
+                <thead>
+                  <tr>
+                    <th class="all" width="1%">ID Ticket</th>
+                    <th class="all">Konsumen</th>
+                    <th class="all">Produk</th>
+                    <th>Date Modified</th>
+                    <th class="all">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $no = 1;
+                    foreach ($ticket_records_approved->result() as $tickets) {
+                      if ($tickets->id_mytalim != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                    <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mysafar != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                    <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myihram != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myihram ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                    <?php if ($tickets->id_approval_myihram == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_agent != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_aktivasi_agent ?></td>
+                    <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
+                      <?= $tickets->tanggal_diubah_aktivasi_agent ?>
+                    </td>
+                    <td><?= $tickets->produk ?></td>
+                    <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_renovasi != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                    <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_sewa != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_sewa ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                    <?php if ($tickets->id_approval_sewa == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_wedding != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_wedding ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                    <?php if ($tickets->id_approval_wedding == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_franchise != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_franchise ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                    <?php if ($tickets->id_approval_franchise == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myhajat_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mitra_kerjasama != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                    <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+
+                      if ($tickets->id_nst != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_nst ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
+                    <?php if ($tickets->id_approval_nst == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+                      if ($tickets->id_myfaedah != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                    <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      
+                      if ($tickets->id_bangunan != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_elektronik != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_qurban != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_modal != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_myfaedah_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_mycars != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mycars ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                    <?php if ($tickets->id_approval_mycars == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                    } ?>
+                </tbody>
+              </table>
+
+            </div>
+            <div class="tab-pane container-fluid fade" id="rejected">
+              <table class="table display status dt-responsive" width="100%">
+                <thead>
+                  <tr>
+                    <th class="all" width="1%">ID Ticket</th>
+                    <th class="all">Konsumen</th>
+                    <th class="all">Produk</th>
+                    <th>Date Modified</th>
+                    <th class="all">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $no = 1;
+                    foreach ($ticket_records_rejected->result() as $tickets) {
+                      if ($tickets->id_mytalim != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                    <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mysafar != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                    <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myihram != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myihram ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                    <?php if ($tickets->id_approval_myihram == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_agent != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_aktivasi_agent ?></td>
+                    <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
+                      <?= $tickets->tanggal_diubah_aktivasi_agent ?>
+                    </td>
+                    <td><?= $tickets->produk ?></td>
+                    <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_renovasi != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                    <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_sewa != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_sewa ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                    <?php if ($tickets->id_approval_sewa == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_wedding != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_wedding ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                    <?php if ($tickets->id_approval_wedding == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_franchise != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_franchise ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                    <?php if ($tickets->id_approval_franchise == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myhajat_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mitra_kerjasama != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                    <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+
+                      if ($tickets->id_nst != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_nst ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
+                    <?php if ($tickets->id_approval_nst == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+                      if ($tickets->id_myfaedah != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                    <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      
+                      if ($tickets->id_bangunan != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_elektronik != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_qurban != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_modal != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_myfaedah_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_mycars != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mycars ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                    <?php if ($tickets->id_approval_mycars == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                    } ?>
+                </tbody>
+              </table>
+
+            </div>
+            <div class="tab-pane container-fluid fade" id="completed">
+              <table class="table display status dt-responsive" width="100%">
+                <thead>
+                  <tr>
+                    <th class="all" width="1%">ID Ticket</th>
+                    <th class="all">Konsumen</th>
+                    <th class="all">Produk</th>
+                    <th>Date Modified</th>
+                    <th class="all">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $no = 1;
+                    foreach ($ticket_records_completed->result() as $tickets) {
+                      if ($tickets->id_mytalim != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                    <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mysafar != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                    <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myihram != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myihram ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                    <?php if ($tickets->id_approval_myihram == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_agent != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_aktivasi_agent ?></td>
+                    <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
+                      <?= $tickets->tanggal_diubah_aktivasi_agent ?>
+                    </td>
+                    <td><?= $tickets->produk ?></td>
+                    <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_renovasi != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                    <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_sewa != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_sewa ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                    <?php if ($tickets->id_approval_sewa == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_wedding != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_wedding ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                    <?php if ($tickets->id_approval_wedding == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_franchise != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_franchise ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                    <?php if ($tickets->id_approval_franchise == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_myhajat_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+
+                      if ($tickets->id_mitra_kerjasama != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                    <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_nst != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_nst ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
+                    <?php if ($tickets->id_approval_nst == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_nst == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                        $no++;
+                      }
+                      if ($tickets->id_myfaedah != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                    <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      
+                      if ($tickets->id_bangunan != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_elektronik != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_qurban != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_modal != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_myfaedah_lainnya != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                    <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                      if ($tickets->id_mycars != NULL) {
+                        ?>
+                  <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                    <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                    <td><?= $tickets->nama_konsumen_mycars ?></td>
+                    <td><?= $tickets->produk ?></td>
+                    <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                    <?php if ($tickets->id_approval_mycars == 0) { ?>
+                    <td><span class="badge badge-secondary pending">Pending</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                    <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                    <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                    <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                    <td><span class="badge badge-info completed">Selesai</span></td>
+                    <?php } ?>
+                  </tr>
+                  <?php
+                      }
+                    } ?>
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -456,282 +2134,2010 @@
         <b class="card-title">Tabel Request Support</b>
       </div>
       <div class="card-body p-0">
-        <table class="table display status dt-responsive" width="100%">
-          <thead>
-            <tr>
-              <th class="all" width="1%">ID Ticket</th>
-              <th>Requester</th>
-              <th>Cabang</th>
-              <th class="all">Konsumen</th>
-              <th class="all">Produk</th>
-              <th class="all">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-              $no = 1;
-              foreach ($ticket_records->result() as $tickets) {
-                if ($tickets->id_mytalim != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_mytalim ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mytalim == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#all-tickets">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#pending">Pending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#approved">Approved</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#rejected">Rejected</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#completed">Completed</a>
+          </li>
+        </ul>
 
-                if ($tickets->id_mysafar != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_mysafar ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mysafar == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane container-fluid fade" id="all-tickets">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_myihram != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_myihram ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_myihram == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_agent != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_aktivasi_agent ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_renovasi != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_renovasi ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_renovasi == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_sewa != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_sewa ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_sewa == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_wedding != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_wedding ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_wedding == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_franchise != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_franchise ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_franchise == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_myhajat_lainnya != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_lainnya ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_lainnya == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_mitra_kerjasama != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_mitra_kerjasama ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                }
-                if ($tickets->id_myfaedah != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_myfaedah ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_myfaedah == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                }
-                if ($tickets->id_mycars != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_mycars ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mycars == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                }
-              } ?>
-          </tbody>
-        </table>
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid active" id="pending">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_pending->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid fade" id="approved">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_approved->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid fade" id="rejected">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_rejected->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid fade" id="completed">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_completed->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -778,282 +4184,2009 @@
         <b class="card-title">Tabel Request Support</b>
       </div>
       <div class="card-body p-0">
-        <table class="table display status dt-responsive nowrap" width="100%">
-          <thead>
-            <tr>
-              <th class="all" width="1%">ID Ticket</th>
-              <th>Requester</th>
-              <th>Cabang</th>
-              <th class="all">Konsumen</th>
-              <th class="all">Produk</th>
-              <th class="all">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-              $no = 1;
-              foreach ($ticket_records->result() as $tickets) {
-                if ($tickets->id_mytalim != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_mytalim ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mytalim == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#all-tickets">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#pending">Pending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#approved">Approved</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#rejected">Rejected</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#completed">Completed</a>
+          </li>
+        </ul>
 
-                if ($tickets->id_mysafar != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_mysafar ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mysafar == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane container-fluid fade" id="all-tickets">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_myihram != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_myihram ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_myihram == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_agent != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_aktivasi_agent ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_renovasi != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_renovasi ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_renovasi == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_sewa != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_sewa ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_sewa == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_wedding != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_wedding ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_wedding == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_franchise != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_franchise ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_franchise == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_myhajat_lainnya != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_lainnya ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_lainnya == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                  $no++;
-                }
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
 
-                if ($tickets->id_mitra_kerjasama != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_mitra_kerjasama ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                }
-                if ($tickets->id_myfaedah != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_myfaedah ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_myfaedah == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                }
-                if ($tickets->id_mycars != NULL) {
-                  ?>
-            <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
-              <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-              <td><?= $tickets->name ?></td>
-              <td><?= $tickets->nama_cabang ?></td>
-              <td><?= $tickets->nama_konsumen_mycars ?></td>
-              <td><?= $tickets->produk ?></td>
-              <?php if ($tickets->id_approval_mycars == 0) { ?>
-              <td><span class="badge badge-secondary pending">Pending</span></td>
-              <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-              <td><span class="badge badge-danger rejected">Ditolak</span></td>
-              <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-              <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
-              <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-              <td><span class="badge badge-info completed">Selesai</span></td>
-              <?php } ?>
-            </tr>
-            <?php
-                }
-              } ?>
-          </tbody>
-        </table>
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid fade" id="pending">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_pending->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid active" id="approved">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_approved->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid fade" id="rejected">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_rejected->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane container-fluid fade" id="completed">
+            <table class="table display status dt-responsive" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th>Date Modified</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_completed->result() as $tickets) {
+                    if ($tickets->id_mytalim != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mytalim/id/' . $tickets->id_mytalim) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mytalim  ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
+                  <td><?= $tickets->nama_konsumen_mytalim ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mytalim == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mysafar != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mysafar  ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
+                  <td><?= $tickets->nama_konsumen_mysafar ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mysafar == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myihram != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myihram/id/' . $tickets->id_myihram) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myihram  ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
+                  <td><?= $tickets->nama_konsumen_myihram ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myihram == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myihram == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_agent != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/aktivasi_agent/id/' . $tickets->id_agent) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_aktivasi_agent  ?>"><?= $tickets->tanggal_diubah_aktivasi_agent ?></td>
+                  <td><?= $tickets->nama_aktivasi_agent ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_renovasi != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/renovasi/' . $tickets->id_renovasi) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_renovasi  ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
+                  <td><?= $tickets->nama_konsumen_renovasi ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_renovasi == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_sewa != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/sewa/' . $tickets->id_sewa) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_sewa  ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
+                  <td><?= $tickets->nama_konsumen_sewa ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_sewa == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_sewa == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_wedding != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/wedding/' . $tickets->id_wedding) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_wedding  ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
+                  <td><?= $tickets->nama_konsumen_wedding ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_wedding == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_wedding == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_franchise != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/franchise/' . $tickets->id_franchise) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_franchise  ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
+                  <td><?= $tickets->nama_konsumen_franchise ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_franchise == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_franchise == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_myhajat_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myhajat/lainnya/' . $tickets->id_myhajat_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_lainnya  ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                      $no++;
+                    }
+
+                    if ($tickets->id_mitra_kerjasama != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mitra_kerjasama/id/' . $tickets->id_mitra_kerjasama) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mitra_kerjasama  ?>"><?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
+                  <td><?= $tickets->nama_mitra_kerjasama ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/id/' . $tickets->id_myfaedah) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah  ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_bangunan != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_elektronik != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_qurban != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_modal != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_myfaedah_lainnya != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                    if ($tickets->id_mycars != NULL) {
+                      ?>
+                <tr class="clickable-row" data-href="<?= base_url('status/detail/mycars/id/' . $tickets->id_mycars) ?>">
+                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                  <td><?= $tickets->name ?></td>
+                  <td><?= $tickets->nama_cabang ?></td>
+                  <td data-order="<?= $tickets->date_modified_mycars  ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
+                  <td><?= $tickets->nama_konsumen_mycars ?></td>
+                  <td><?= $tickets->produk ?></td>
+                  <?php if ($tickets->id_approval_mycars == 0) { ?>
+                  <td><span class="badge badge-secondary pending">Pending</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 1) { ?>
+                  <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 2) { ?>
+                  <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                  <?php } else if ($tickets->id_approval_mycars == 3) { ?>
+                  <td><span class="badge badge-info completed">Selesai</span></td>
+                  <?php } ?>
+                </tr>
+                <?php
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1423,6 +6556,111 @@
                 <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
                 <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
                 <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
+                <td><span class="badge badge-info completed">Selesai</span></td>
+                <?php } ?>
+              </tr>
+              <?php
+                  }
+                  if ($tickets->id_bangunan != NULL) {
+                    ?>
+              <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/bangunan/' . $tickets->id_bangunan) ?>">
+                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                <td><?= $tickets->name ?></td>
+                <td><?= $tickets->nama_cabang ?></td>
+                <td data-order="<?= $tickets->date_modified_myfaedah_bangunan  ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
+                <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
+                <td><?= $tickets->produk ?></td>
+                <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
+                <td><span class="badge badge-secondary pending">Pending</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
+                <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
+                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
+                <td><span class="badge badge-info completed">Selesai</span></td>
+                <?php } ?>
+              </tr>
+              <?php
+                  }
+                  if ($tickets->id_elektronik != NULL) {
+                    ?>
+              <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/elektronik/' . $tickets->id_elektronik) ?>">
+                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                <td><?= $tickets->name ?></td>
+                <td><?= $tickets->nama_cabang ?></td>
+                <td data-order="<?= $tickets->date_modified_myfaedah_elektronik  ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
+                <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
+                <td><?= $tickets->produk ?></td>
+                <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
+                <td><span class="badge badge-secondary pending">Pending</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
+                <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
+                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
+                <td><span class="badge badge-info completed">Selesai</span></td>
+                <?php } ?>
+              </tr>
+              <?php
+                  }
+                  if ($tickets->id_qurban != NULL) {
+                    ?>
+              <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/qurban/' . $tickets->id_qurban) ?>">
+                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                <td><?= $tickets->name ?></td>
+                <td><?= $tickets->nama_cabang ?></td>
+                <td data-order="<?= $tickets->date_modified_myfaedah_qurban  ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
+                <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
+                <td><?= $tickets->produk ?></td>
+                <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
+                <td><span class="badge badge-secondary pending">Pending</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
+                <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
+                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
+                <td><span class="badge badge-info completed">Selesai</span></td>
+                <?php } ?>
+              </tr>
+              <?php
+                  }
+                  if ($tickets->id_modal != NULL) {
+                    ?>
+              <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/modal/' . $tickets->id_modal) ?>">
+                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                <td><?= $tickets->name ?></td>
+                <td><?= $tickets->nama_cabang ?></td>
+                <td data-order="<?= $tickets->date_modified_myfaedah_modal  ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
+                <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
+                <td><?= $tickets->produk ?></td>
+                <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
+                <td><span class="badge badge-secondary pending">Pending</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
+                <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
+                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
+                <td><span class="badge badge-info completed">Selesai</span></td>
+                <?php } ?>
+              </tr>
+              <?php
+                  }
+                  if ($tickets->id_myfaedah_lainnya != NULL) {
+                    ?>
+              <tr class="clickable-row" data-href="<?= base_url('status/detail/myfaedah/lainnya/' . $tickets->id_myfaedah_lainnya) ?>">
+                <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                <td><?= $tickets->name ?></td>
+                <td><?= $tickets->nama_cabang ?></td>
+                <td data-order="<?= $tickets->date_modified_myfaedah_lainnya  ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
+                <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
+                <td><?= $tickets->produk ?></td>
+                <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
+                <td><span class="badge badge-secondary pending">Pending</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
+                <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
+                <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
                 <td><span class="badge badge-info completed">Selesai</span></td>
                 <?php } ?>
               </tr>

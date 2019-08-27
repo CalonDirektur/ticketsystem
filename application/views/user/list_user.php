@@ -20,7 +20,6 @@
               <th class="none">Level</th>
               <th class="all">Active</th>
               <th class="desktop">ID Cabang</th>
-              <th class="none">Pilih Cabang</th>
             </thead>
             <tbody>
               <?php
@@ -49,15 +48,7 @@
                   </select>
                 </td>
                 <td>
-                  <span data-namacabang="nama_cabang[<?= $user->id_user ?>]"><?= $user->nama_cabang ?></span> <span data-headoffice="head_office[<?= $user->id_user ?>]"> Head Office</span>
-                </td>
-                <td>
-                  <select name="cabang[<?= $user->id_user ?>]" id="cabang" class="form-control" <?= ($user->email == 'superuser@bfi.co.id') ? 'disabled' : '' ?>>
-                    <option disabled selected value="">- Pilih Cabang -</option>
-                    <?php foreach ($list_cabang->result() as $cabang) { ?>
-                    <option <?= $cabang->id_cabang == 46 ? 'disabled' : '' ?> value="<?= $cabang->id_cabang ?>"><?= $cabang->nama_cabang ?></option>
-                    <?php }  ?>
-                  </select>
+                  <span data-namacabang="nama_cabang[<?= $user->id_user ?>]"><?= $user->nama_cabang ?></span>
                 </td>
               </tr>
               <?php

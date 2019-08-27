@@ -21,7 +21,9 @@ class Comment extends CI_Controller
             'id_user' => $post['id_user'],
             $produk => $post['id_komentar'],
             'comment' => $post['post_comment'],
-            'date' => date('Y-m-d H:i:s')
+            'date' => date('Y-m-d H:i:s'),
+            'id_ticket' => $post['id_ticket_komentar'],
+            'has_read' => 0
         ];
         $success = $this->comment_m->add_comment($data);
         if ($success) {
@@ -42,7 +44,9 @@ class Comment extends CI_Controller
             'id_user' => $post['id_user'],
             $produk => $post['id_komentar'],
             'comment' => $post['post_reply'],
-            'date' => date('Y-m-d H:i:s')
+            'date' => date('Y-m-d H:i:s'),
+            'id_ticket' => $post['id_ticket_reply'],
+            'has_read' => 0
         ];
         $success = $this->comment_m->add_comment($data);
         if ($success) {

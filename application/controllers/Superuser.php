@@ -163,9 +163,39 @@ class Superuser extends CI_Controller
             redirect('/');
         }
 
-        if ($produk == 'myfaedah') {
+        if ($produk == 'myfaedah' && $kategori == 'id') {
             $this->Superuser_m->reject('tb_my_faedah', ['id_myfaedah' => $id]);
             $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'bangunan') {
+            $this->Superuser_m->reject('tb_my_faedah_bangunan', ['id_bangunan' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah kategori bangunan!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'qurban') {
+            $this->Superuser_m->reject('tb_my_faedah_qurban', ['id_qurban' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah kategori qurban!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'elektronik') {
+            $this->Superuser_m->reject('tb_my_faedah_elektronik', ['id_elektronik' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah kategori elektronik!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'modal') {
+            $this->Superuser_m->reject('tb_my_faedah_modal', ['id_modal' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah kategori modal!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'lainnya') {
+            $this->Superuser_m->reject('tb_my_faedah_lainnya', ['id_myfaedah_lainnya' => $id]);
+            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support My Faedah kategori lainnya!</div>');
             redirect('/');
         }
     }
@@ -255,9 +285,39 @@ class Superuser extends CI_Controller
             redirect('/');
         }
 
-        if ($produk == 'myfaedah') {
+        if ($produk == 'myfaedah' && $kategori == 'id') {
             $this->Superuser_m->complete('tb_my_faedah', ['id_myfaedah' => $id]);
             $this->session->set_flashdata('berhasil_completed', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support My Faedah!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'bangunan') {
+            $this->Superuser_m->complete('tb_my_faedah_bangunan', ['id_bangunan' => $id]);
+            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil menyelesaikan request support My Faedah kategori bangunan!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'qurban') {
+            $this->Superuser_m->complete('tb_my_faedah_qurban', ['id_qurban' => $id]);
+            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil menyelesaikan request support My Faedah kategori qurban!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'elektronik') {
+            $this->Superuser_m->complete('tb_my_faedah_elektronik', ['id_elektronik' => $id]);
+            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil menyelesaikan request support My Faedah kategori elektronik!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'modal') {
+            $this->Superuser_m->complete('tb_my_faedah_modal', ['id_modal' => $id]);
+            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil menyelesaikan request support My Faedah kategori modal!</div>');
+            redirect('/');
+        }
+
+        if ($produk == 'myfaedah' && $kategori == 'lainnya') {
+            $this->Superuser_m->complete('tb_my_faedah_lainnya', ['id_myfaedah_lainnya' => $id]);
+            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil menyelesaikan request support My Faedah kategori lainnya!</div>');
             redirect('/');
         }
     }

@@ -115,7 +115,7 @@
                   <option disabled selected value="">- Pilih Produk -</option>
                   <option value="My Ihram">My Ihram</option>
                   <option value="My Safar">My Safar</option>
-                  <option value="My Ta'lim">My Ta'lim</option>
+                  <option value="My Talim">My Talim</option>
                   <option value="My Hajat">My Hajat</option>
                   <option value="My Faedah">My Faedah</option>
                   <option value="My CarS">My CarS</option>

@@ -1,0 +1,24 @@
+select *
+from tb_comment
+INNER JOIN user ON user.id_user = tb_comment.id_user
+INNER JOIN tb_cabang ON tb_cabang.id_cabang = user.id_cabang
+where
+ (CASE 
+    WHEN tb_comment.id_mytalim IS NOT NULL THEN tb_comment.id_mytalim IS NOT NULL
+    WHEN tb_comment.id_renovasi IS NOT NULL THEN tb_comment.id_renovasi
+    WHEN tb_comment.id_sewa IS NOT NULL THEN tb_comment.id_sewa IS NOT NULL
+    WHEN tb_comment.id_wedding IS NOT NULL THEN tb_comment.id_wedding IS NOT NULL
+    WHEN tb_comment.id_franchise IS NOT NULL THEN tb_comment.id_franchise IS NOT NULL
+    WHEN tb_comment.id_myhajat_lainnya IS NOT NULL THEN tb_comment.id_myhajat_lainnya 
+    WHEN tb_comment.id_mysafar IS NOT NULL THEN tb_comment.id_mysafar IS NOT NULL
+    WHEN tb_comment.id_myihram IS NOT NULL THEN tb_comment.id_myihram IS NOT NULL
+    WHEN tb_comment.id_nst IS NOT NULL THEN tb_comment.id_nst IS NOT NULL
+    WHEN tb_comment.id_agent IS NOT NULL THEN tb_comment.id_agent IS NOT NULL
+    WHEN tb_comment.id_mitra_kerjasama IS NOT NULL THEN tb_comment.id_mitra_kerjasama IS NOT NULL
+    WHEN tb_comment.id_mycars IS NOT NULL THEN tb_comment.id_mycars IS NOT NULL
+    WHEN tb_comment.id_lead IS NOT NULL THEN tb_comment.id_lead IS NOT NULL
+    WHEN tb_comment.id_myfaedah IS NOT NULL THEN tb_comment.id_myfaedah IS NOT NULL
+    END
+    )
+ORDER BY id DESC
+limit 5

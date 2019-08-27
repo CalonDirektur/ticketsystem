@@ -89,13 +89,6 @@ class Ticket_register extends CI_Controller
 	}
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 
-	public function cek_duplikat()
-	{
-		$group_by = ['nama_konsumen', 'jenis_konsumen', 'pendidikan', 'nama_siswa', 'tahun_berdiri', 'akreditasi', 'periode', 'tujuan_pembiayaan', 'nilai_pembiayaan'];
-		$having = ['COUNT(nama_konsumen) > 1'];
-		$data = $this->data_m->cek_duplikat('tb_my_talim', $group_by, $having);
-		echo $data;
-	}
 
 	public function add()
 	{
@@ -106,126 +99,78 @@ class Ticket_register extends CI_Controller
 
 		//add form my ta'lim
 		if (isset($_POST['submit_mytalim'])) {
-			$where = [
+			// $where = [
+			// 	'nama_konsumen' 		=> $post['nama_konsumen'],
+			// 	'jenis_konsumen' 		=> $post['jenis_konsumen'],
+			// 	'pendidikan' 			=> $post['pendidikan'],
+			// 	'nama_siswa' 			=> $post['nama_siswa'],
+			// 	'tahun_berdiri' 		=> $post['tahun_berdiri'],
+			// 	'akreditasi' 			=> $post['akreditasi'],
+			// 	'periode' 				=> $post['periode'],
+			// 	'tujuan_pembiayaan' 	=> $post['tujuan_pembiayaan'],
+			// 	'nilai_pembiayaan'		=> $post['nilai_pembiayaan_mytalim']
+			// ];
+
+			// $duplikat = $this->data_m->cek_duplikat('tb_my_talim', $where);
+			// $kolom = $duplikat->row();
+			// if ($duplikat->num_rows() > 0 && $kolom->selisih_tanggal <= 7 && $kolom->selisih_tanggal > 0) {
+			// 	$this->session->set_flashdata("duplikat_input", "sepertinya Anda sudah mengajukan request support seperti tiket <a href='" . base_url("status/detail/mytalim/id/$kolom->id_mytalim") . "'>disini</a><br>Mohon tunggu selama " . (7 - $kolom->selisih_tanggal) . " hari");
+			// 	redirect("/");
+			// }
+
+			$data = [
 				'nama_konsumen' 		=> $post['nama_konsumen'],
-				'jenis_konsumen' 		=> $post['jenis_konsumen'],
-				'pendidikan' 			=> $post['pendidikan'],
+				'jenis_konsumen'	 	=> $post['jenis_konsumen'],
+				'id_cabang' 			=> $post['cabang'],
 				'nama_siswa' 			=> $post['nama_siswa'],
-				'tahun_berdiri' 		=> $post['tahun_berdiri'],
-				'akreditasi' 			=> $post['akreditasi'],
+				'pendidikan' 			=> $post['pendidikan'],
+				'nama_lembaga' 			=> $post['nama_lembaga'],
+				'tahun_berdiri'			=> $post['tahun_berdiri'],
+				'akreditasi'			=> $post['akreditasi'],
 				'periode' 				=> $post['periode'],
 				'tujuan_pembiayaan' 	=> $post['tujuan_pembiayaan'],
-				'nilai_pembiayaan'		=> $post['nilai_pembiayaan_mytalim']
+				'nilai_pembiayaan' 		=> $post['nilai_pembiayaan_mytalim'],
+				'informasi_tambahan'	=> $post['informasi_tambahan_mytalim'],
+
+				'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified' 		=> date('Y-m-d H:i:s'),
+				'id_user' 				=> $post['id_user'],
+				'id_approval' 			=> 0
 			];
 
-			$duplikat = $this->data_m->cek_duplikat('tb_my_talim', $where);
-			$kolom = $duplikat->row();
-			if ($duplikat->num_rows() > 0 && $kolom->selisih_tanggal <= 7) {
-				echo "sepertinya Anda sudah mengajukan request support seperti tiket <a href='" . base_url("status/detail/mytalim/id/$kolom->id_mytalim") . "'>disini</a><br>Mohon tunggu selama " . (7 - $kolom->selisih_tanggal) . " hari";
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/mytalim';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			//variabel untuk mengambil id data yg baru diinsert
+			$id = $this->data_m->add('tb_my_talim', $data);
+
+			$data2 = [
+				'id_mytalim' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$success = $this->data_m->add('tb_ticket', $data2);
+
+			if ($success && $id) {
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
 			} else {
-				$data = [
-					'nama_konsumen' 		=> $post['nama_konsumen'],
-					'jenis_konsumen'	 	=> $post['jenis_konsumen'],
-					'id_cabang' 			=> $post['cabang'],
-					'nama_siswa' 			=> $post['nama_siswa'],
-					'pendidikan' 			=> $post['pendidikan'],
-					'nama_lembaga' 			=> $post['nama_lembaga'],
-					'tahun_berdiri'			=> $post['tahun_berdiri'],
-					'akreditasi'			=> $post['akreditasi'],
-					'periode' 				=> $post['periode'],
-					'tujuan_pembiayaan' 	=> $post['tujuan_pembiayaan'],
-					'nilai_pembiayaan' 		=> $post['nilai_pembiayaan_mytalim'],
-					'informasi_tambahan'	=> $post['informasi_tambahan_mytalim'],
-					'date_created' 			=> date('Y-m-d H:i:s'),
-					'date_modified' 		=> date('Y-m-d H:i:s'),
-					'id_user' 				=> $post['id_user'],
-					'id_approval' 			=> 0
-				];
-
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/mytalim';
-				$config['allowed_types']        = '*';
-				$config['max_size']             = 25000;
-				$config['max_width']            = 10000;
-				$config['max_height']           = 10000;
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file6')) {
-					$data['upload_file6'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file7')) {
-					$data['upload_file7'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file8')) {
-					$data['upload_file8'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file9')) {
-					$data['upload_file9'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				if ($this->upload->do_upload('upload_file10')) {
-					$data['upload_file10'] = $this->upload->data('file_name');
-				} else {
-					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-				}
-
-				$id = $this->data_m->add('tb_my_talim', $data);
-
-				$data2 = [
-					'id_mytalim' => $id,
-					'id_cabang' => $post['cabang'],
-					'id_user' => $post['id_user']
-				];
-				$this->data_m->add('tb_ticket', $data2);
-
-				if ($id) {
-					echo "Data berhasil disimpan";
-					$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-					redirect('/');
-				} else {
-					echo "Data gagal disimpan";
-				}
+				$this->session->set_flashdata('failed_request_support', '<div class="alert alert-danger"><strong>Gagal menambahkan request support!</strong> Mohon cek kembali data yg baru saja diajukan <button class="btn" type="button" onclick="return window.history.back()">Klik disini</button>. </div>');
+				redirect('/');
 			}
 		}
 
@@ -255,49 +200,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
@@ -314,17 +227,18 @@ class Ticket_register extends CI_Controller
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data3);
+
+			$success = $this->data_m->add('tb_ticket', $data3);
 
 
-			if ($id > 0) {
-				echo "Data berhasil disimpan";
+			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 				redirect('/');
 			} else {
-				echo "Data gagal disimpan";
+				$this->session->set_flashdata('failed_request_support', '<div class="alert alert-danger"><strong>Gagal menambahkan request support!</strong> Mohon cek kembali data yg baru saja diajukan <button class="btn" type="button" onclick="return window.history.back()">Klik disini</button>. </div>');
+				redirect('/');
 			}
-			redirect('dashboard');
+			// redirect('dashboard');
 		}
 		// FORMULIR SEWA
 		if (isset($_POST['submit_sewa'])) {
@@ -347,49 +261,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			//mmendapatkan id insert terakhir
@@ -416,7 +298,6 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
-			redirect('dashboard');
 		}
 
 		// FORMULIR WEDDING
@@ -441,49 +322,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_wedding', $data);
@@ -535,49 +384,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_franchise', $data);
@@ -610,69 +427,37 @@ class Ticket_register extends CI_Controller
 		if (isset($_POST['submit_lainnya'])) {
 
 			$data = [
-				'nama_konsumen' => $post['nama_konsumen'],
-				'jenis_konsumen' => $post['jenis_konsumen'],
-				'id_cabang' => $post['cabang'],
-				'nama_penyedia_jasa' => $post['nama_penyedia_jasa'],
-				'jenis_penyedia_jasa' => $post['jenis_penyedia_jasa'],
-				'nilai_pembiayaan' => $post['nilai_pembiayaan_lainnya'],
-				'informasi_tambahan' => $post['informasi_tambahan_lainnya'],
-				'date_created' => date('Y-m-d H:i:s'),
-				'id_user' => $post['id_user'],
-				'id_approval' => 0
+				'nama_konsumen' 		=> $post['nama_konsumen'],
+				'jenis_konsumen' 		=> $post['jenis_konsumen'],
+				'id_cabang' 			=> $post['cabang'],
+				'nama_penyedia_jasa' 	=> $post['nama_penyedia_jasa'],
+				'jenis_penyedia_jasa' 	=> $post['jenis_penyedia_jasa'],
+				'nilai_pembiayaan' 		=> $post['nilai_pembiayaan_lainnya'],
+				'informasi_tambahan' 	=> $post['informasi_tambahan_lainnya'],
+				'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified'			=> date('Y-m-d H:i:s'),
+				'id_user' 				=> $post['id_user'],
+				'id_approval' 			=> 0
 			];
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
-			}
-
-
 
 			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
+
 			$data2 = [
 				'id_myhajat_lainnya' => $id,
 				'id_cabang' => $post['cabang'],
@@ -685,17 +470,13 @@ class Ticket_register extends CI_Controller
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data3);
 
-			if ($id) {
+			$success = $this->data_m->add('tb_ticket', $data3);
 
-				echo "Data berhasil disimpan";
+			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 				redirect('/');
-			} else {
-				echo "Data gagal disimpan";
 			}
-			redirect('dashboard');
 		}
 
 		// PROSES SUBMIT FORM MY IHRAM //
@@ -716,49 +497,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myihram';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -799,49 +548,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mysafar';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -867,7 +584,7 @@ class Ticket_register extends CI_Controller
 		// FORMULIR LEAD MANAGEMENT
 		if (isset($_POST['submit_lead_management'])) {
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required|is_unique[tb_lead_management.lead_id]');
+			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required|is_unique[tb_lead_management.lead_id]', ['is_unique' => 'Lead ID sudah dipakai']);
 
 			if ($this->form_validation->run() != FALSE) {
 
@@ -890,55 +607,6 @@ class Ticket_register extends CI_Controller
 					'id_approval'			=> 0
 				];
 
-				//Konfigurasi Upload
-				$config['upload_path']         = './uploads/lead_management';
-				$config['allowed_types']        = '*';
-				$config['max_size']             = 25000;
-				$config['max_width']            = 10000;
-				$config['max_height']           = 10000;
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('upload_file1')) {
-					$data['upload_file1'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file2')) {
-					$data['upload_file2'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file3')) {
-					$data['upload_file3'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file4')) {
-					$data['upload_file4'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file5')) {
-					$data['upload_file5'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file6')) {
-					$data['upload_file6'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file7')) {
-					$data['upload_file7'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file8')) {
-					$data['upload_file8'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file9')) {
-					$data['upload_file9'] = $this->upload->data('file_name');
-				}
-
-				if ($this->upload->do_upload('upload_file10')) {
-					$data['upload_file10'] = $this->upload->data('file_name');
-				}
-
-
 				$id = $this->data_m->add('tb_lead_management', $data);
 
 				$data3 = [
@@ -958,7 +626,11 @@ class Ticket_register extends CI_Controller
 				redirect('dashboard');
 			} else {
 				// Mengambil list cabang2 
+				$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+				$approval_tickets = 'IS NOT NULL';
+
 				$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+				$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
 				$this->template->load('template2', 'lead_management/form_lead_management', $data);
 			}
 		}
@@ -981,49 +653,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/aktivasi_agent';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -1068,9 +708,9 @@ class Ticket_register extends CI_Controller
 				//Konfigurasi Upload
 				$config['upload_path']         = './uploads/nst';
 				$config['allowed_types']        = '*';
-				$config['max_size']             = 25000;
-				$config['max_width']            = 10000;
-				$config['max_height']           = 10000;
+				$config['max_size']             = 0;
+				$config['max_width']            = 0;
+				$config['max_height']           = 0;
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('upload_file1')) {
@@ -1156,9 +796,9 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mitra_kerjasama';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 
 			$this->load->library('upload', $config);
 
@@ -1242,7 +882,7 @@ class Ticket_register extends CI_Controller
 			redirect('dashboard');
 		}
 
-		// FORMULIr MY FAEDAH
+		// FORMULIR MY FAEDAH
 		if (isset($_POST['submit_myfaedah'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
@@ -1271,49 +911,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myfaedah';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->add('tb_my_faedah', $data);
@@ -1323,89 +931,355 @@ class Ticket_register extends CI_Controller
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data2);
 
 
-			if ($id > 0) {
+			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 				redirect('/');
 			} else {
 				echo "Data gagal disimpan";
 			}
-			redirect('dashboard');
 		}
 
-		// FORMULIE MY CARS
+		//////// KATEGORI FORMULIR MY FAEDAH //////////////////
+
+		////////  FORMULIR MY FAEDAH BANGUNAN //////////////////
+		if (isset($_POST['submit_bangunan'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_bangunan'],
+				'jenis_penyedia' => $post['jenis_penyedia_bangunan'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_bangunan'],
+				'lokasi_pembangunan' => $post['lokasi_pembangunan'],
+				'luas_bangunan' => $post['luas_bangunan_bangunan'],
+				'waktu_pelaksanaan' => $post['waktu_pelaksanaan'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_bangunan'],
+				'informasi_tambahan' => $post['informasi_tambahan_bangunan'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			//variabel untuk mengambil ID insert
+			$id = $this->data_m->add('tb_my_faedah_bangunan', $data);
+
+			$data2 = [
+				'id_bangunan' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$success = $this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id && $success) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH ELEKTRONIK //////////////////
+		if (isset($_POST['submit_elektronik'])) {
+			if (isset($_POST['other_jenis_barang_elektronik'])) {
+				$post_jenis_barang = $post['other_jenis_barang_elektronik'];
+			} else {
+				$post_jenis_barang = $post['jenis_barang_elektronik'];
+			}
+
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_elektronik'],
+				'jenis_penyedia' => $post['jenis_penyedia_elektronik'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_elektronik'],
+				'lama_usaha' => $post['lama_usaha_elektronik'],
+				'jenis_barang' => $post_jenis_barang,
+				'jumlah_barang' => $post['jumlah_barang_elektronik'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_elektronik'],
+				'informasi_tambahan' => $post['informasi_tambahan_elektronik'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			//variabel untuk mengambil ID insert
+			$id = $this->data_m->add('tb_my_faedah_elektronik', $data);
+
+			$data2 = [
+				'id_elektronik' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$success = $this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id && $success) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH MODAL //////////////////
+		if (isset($_POST['submit_qurban'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_qurban'],
+				'jenis_penyedia' => $post['jenis_penyedia_qurban'],
+				'lama_usaha' => $post['lama_usaha_qurban'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_qurban'],
+				'jenis_hewan' => $post['jenis_hewan_qurban'],
+				'jumlah_hewan' => $post['jumlah_hewan_qurban'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_qurban'],
+				'informasi_tambahan' => $post['informasi_tambahan_qurban'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			//variabel untuk mengambil ID insert
+			$id = $this->data_m->add('tb_my_faedah_qurban', $data);
+
+			$data2 = [
+				'id_qurban' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$success = $this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id && $success) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH MODAL //////////////////
+		if (isset($_POST['submit_modal'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_modal'],
+				'jenis_penyedia' => $post['jenis_penyedia_modal'],
+				'jenis_barang' => $post['jenis_barang_modal'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_modal'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_modal'],
+				'informasi_tambahan' => $post['informasi_tambahan_modal'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			//variabel untuk mengambil ID insert
+			$id = $this->data_m->add('tb_my_faedah_modal', $data);
+
+			$data2 = [
+				'id_modal' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$success = $this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id && $success) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH LAINNYA //////////////////
+		if (isset($_POST['submit_myfaedah_lainnya'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_myfaedah_lainnya'],
+				'jenis_penyedia' => $post['jenis_penyedia_myfaedah_lainnya'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_myfaedah_lainnya'],
+				'informasi_tambahan' => $post['informasi_tambahan_myfaedah_lainnya'],
+
+				'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			//variabel untuk mengambil ID insert
+			$id = $this->data_m->add('tb_my_faedah_lainnya', $data);
+
+			$data2 = [
+				'id_myfaedah_lainnya' => $id,
+				'id_cabang' => $post['cabang'],
+				'id_user' => $post['id_user']
+			];
+			$success = $this->data_m->add('tb_ticket', $data2);
+
+
+			if ($id && $success) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		// FORMULIR MY CARS
 		if (isset($_POST['submit_mycars'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				'id_cabang' => $post['cabang'],
 
-				'nama_vendor' => $post['nama_vendor_mycars'],
-				'jenis_vendor' => $post['jenis_vendor_mycars'],
-				'lama_usaha' => $post['lama_usaha_vendor_mycars'],
-				'nama_mobil' => $post['nama_mobil'],
-				'kondisi_mobil' => $post['kondisi_mobil'],
-				'merek_mobil' => $post['merek_mobil'],
-				'transmisi' => $post['transmisi'],
-				'tahun' => $post['tahun_mobil'],
-				'harga_mobil' => $post['harga_mobil'],
+				'nama_penyedia' => $post['nama_penyedia_mycars'],
+				'jenis_penyedia' => $post['jenis_penyedia_mycars'],
+				'jenis_penyedia_detail' => $post['jenis_penyedia_detail_mycars'],
+				'kategori_aset' => $post['kategori_aset_mycars'],
+				'lama_usaha' => $post['lama_usaha_mycars'],
+				'kepemilikan_tempat' => $post['kepemilikan_tempat_mycars'],
+				'jumlah_stok' => $post['jumlah_stok_mycars'],
+				'tipe_kendaraan' => $post['tipe_kendaraan_mycars'],
+				'jenis_kendaraan' => $post['jenis_kendaraan_mycars'],
+				'tahun' => $post['tahun_mobil_mycars'],
+				'warna_kendaraan' => $post['warna_kendaraan_mycars'],
+				// 'nama_mobil' => $post['nama_mobil'],
+				// 'kondisi_mobil' => $post['kondisi_mobil'],
+				// 'merek_mobil' => $post['merek_mobil'],
+				// 'transmisi' => $post['transmisi'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_mycars'],
 				'informasi_tambahan' => $post['informasi_tambahan_mycars'],
 
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
 				'id_approval' => 0,
 			];
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mycars';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->add('tb_my_cars', $data);
@@ -1417,7 +1291,6 @@ class Ticket_register extends CI_Controller
 			];
 			$this->data_m->add('tb_ticket', $data2);
 
-
 			if ($id > 0) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1425,7 +1298,6 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
-			redirect('dashboard');
 		}
 	}
 
@@ -1455,49 +1327,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mytalim';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_talim', $data, ['id_mytalim' => $post['id_mytalim']]);
@@ -1505,7 +1345,6 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-
 				redirect('/');
 			} else {
 				echo "Data gagal disimpan";
@@ -1535,49 +1374,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_renovasi', $data, ['id_renovasi' => $post['id_renovasi']]);
@@ -1610,49 +1417,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_sewa', $data, ['id_sewa' => $post['id_sewa']]);
@@ -1687,49 +1462,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_wedding', $data, ['id_wedding' => $post['id_wedding']]);
@@ -1765,49 +1508,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_franchise', $data, ['id_franchise' => $post['id_franchise']]);
@@ -1839,57 +1550,66 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
 			if ($this->upload->do_upload('upload_file1')) {
 				$data['upload_file1'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file2')) {
 				$data['upload_file2'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file3')) {
 				$data['upload_file3'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file4')) {
 				$data['upload_file4'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file5')) {
 				$data['upload_file5'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file6')) {
 				$data['upload_file6'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file7')) {
 				$data['upload_file7'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file8')) {
 				$data['upload_file8'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file9')) {
 				$data['upload_file9'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			if ($this->upload->do_upload('upload_file10')) {
 				$data['upload_file10'] = $this->upload->data('file_name');
+			} else {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
 			}
-
 			$id = $this->data_m->update('tb_my_hajat_lainnya', $data, ['id_myhajat_lainnya' => $post['id_myhajat_lainnya']]);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-
 				redirect('/');
 			} else {
 				echo "Data gagal disimpan";
@@ -1910,49 +1630,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myihram';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_ihram', $data, ['id_myihram' => $post['id_myihram']]);
@@ -1981,49 +1669,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mysafar';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_safar', $data, ['id_mysafar' => $post['id_mysafar']]);
@@ -2100,49 +1756,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/aktivasi_agent';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_aktivasi_agent', $data, ['id_agent' => $post['id_agent']]);
@@ -2174,49 +1798,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/nst';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -2253,49 +1845,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mitra_kerjasama';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -2341,49 +1901,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myfaedah';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_faedah', $data, ['id_myfaedah' => $post['id_myfaedah']]);
@@ -2399,76 +1927,305 @@ class Ticket_register extends CI_Controller
 			redirect('dashboard');
 		}
 
-		// FORMULIE MY CARS
+		/////// KATEGORI MY FAEDAH //////
+		////////  FORMULIR MY FAEDAH BANGUNAN //////////////////
+		if (isset($_POST['edit_bangunan'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_bangunan'],
+				'jenis_penyedia' => $post['jenis_penyedia_bangunan'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_bangunan'],
+				'lokasi_pembangunan' => $post['lokasi_pembangunan'],
+				'luas_bangunan' => $post['luas_bangunan_bangunan'],
+				'waktu_pelaksanaan' => $post['waktu_pelaksanaan'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_bangunan'],
+				'informasi_tambahan' => $post['informasi_tambahan_bangunan'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_bangunan', $data, ['id_bangunan' => $post['id_bangunan']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		////////  FORMULIR MY FAEDAH ELEKTRONIK //////////////////
+		if (isset($_POST['edit_elektronik'])) {
+			if (isset($_POST['other_jenis_barang_elektronik'])) {
+				$post_jenis_barang = $post['other_jenis_barang_elektronik'];
+			} else {
+				$post_jenis_barang = $post['jenis_barang_elektronik'];
+			}
+
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_elektronik'],
+				'jenis_penyedia' => $post['jenis_penyedia_elektronik'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_elektronik'],
+				'lama_usaha' => $post['lama_usaha_elektronik'],
+				'jenis_barang' => $post_jenis_barang,
+				'jumlah_barang' => $post['jumlah_barang_elektronik'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_elektronik'],
+				'informasi_tambahan' => $post['informasi_tambahan_elektronik'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_elektronik', $data, ['id_elektronik' => $post['id_elektronik']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH MODAL //////////////////
+		if (isset($_POST['edit_qurban'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_qurban'],
+				'jenis_penyedia' => $post['jenis_penyedia_qurban'],
+				'lama_usaha' => $post['lama_usaha_qurban'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_qurban'],
+				'jenis_hewan' => $post['jenis_hewan_qurban'],
+				'jumlah_hewan' => $post['jumlah_hewan_qurban'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_qurban'],
+				'informasi_tambahan' => $post['informasi_tambahan_qurban'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_qurban', $data, ['id_qurban' => $post['id_qurban']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH MODAL //////////////////
+		if (isset($_POST['edit_modal'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_modal'],
+				'jenis_penyedia' => $post['jenis_penyedia_modal'],
+				'jenis_barang' => $post['jenis_barang_modal'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_modal'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_modal'],
+				'informasi_tambahan' => $post['informasi_tambahan_modal'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_modal', $data, ['id_modal' => $post['id_modal']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+
+
+		////////  FORMULIR MY FAEDAH LAINNYA //////////////////
+		if (isset($_POST['edit_myfaedah_lainnya'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_myfaedah_lainnya'],
+				'jenis_penyedia' => $post['jenis_penyedia_myfaedah_lainnya'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_myfaedah_lainnya'],
+				'informasi_tambahan' => $post['informasi_tambahan_myfaedah_lainnya'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_lainnya', $data, ['id_myfaedah_lainnya' => $post['id_myfaedah_lainnya']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		// FORMULIR MY CARS
 		if (isset($_POST['edit_mycars'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				// 'id_cabang' => $post['cabang'],
 
-				'nama_vendor' => $post['nama_vendor_mycars'],
-				'jenis_vendor' => $post['jenis_vendor_mycars'],
-				'lama_usaha' => $post['lama_usaha_vendor_mycars'],
-				'nama_mobil' => $post['nama_mobil'],
-				'kondisi_mobil' => $post['kondisi_mobil'],
-				'merek_mobil' => $post['merek_mobil'],
-				'transmisi' => $post['transmisi'],
-				'tahun' => $post['tahun_mobil'],
-				'harga_mobil' => $post['harga_mobil'],
+				'nama_penyedia' => $post['nama_penyedia_mycars'],
+				'jenis_penyedia' => $post['jenis_penyedia_mycars'],
+				'jenis_penyedia_detail' => $post['jenis_penyedia_detail_mycars'],
+				'kategori_aset' => $post['kategori_aset_mycars'],
+				'lama_usaha' => $post['lama_usaha_mycars'],
+				'kepemilikan_tempat' => $post['kepemilikan_tempat_mycars'],
+				'jumlah_stok' => $post['jumlah_stok_mycars'],
+				'tipe_kendaraan' => $post['tipe_kendaraan_mycars'],
+				'jenis_kendaraan' => $post['jenis_kendaraan_mycars'],
+				'tahun' => $post['tahun_mobil_mycars'],
+				'warna_kendaraan' => $post['warna_kendaraan_mycars'],
+				// 'nama_mobil' => $post['nama_mobil'],
+				// 'kondisi_mobil' => $post['kondisi_mobil'],
+				// 'merek_mobil' => $post['merek_mobil'],
+				// 'transmisi' => $post['transmisi'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_mycars'],
 				'informasi_tambahan' => $post['informasi_tambahan_mycars'],
 
 				// 'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
 				// 'id_user' => $post['id_user'],
-				'id_approval' => 0,
+				// 'id_cabang' => $post['cabang'],
+				// 'id_approval' => 0,
 			];
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mycars';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_cars', $data, ['id_mycars' => $post['id_mycars']]);
@@ -2481,7 +2238,6 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
-			redirect('dashboard');
 		}
 
 		//////////////////////////////// EDIT FROM UNTUK SUPERUSER //////////////////////////////
@@ -2508,49 +2264,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mytalim';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_talim', $data, ['id_mytalim' => $post['id_mytalim']]);
@@ -2587,49 +2311,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_renovasi', $data, ['id_renovasi' => $post['id_renovasi']]);
@@ -2662,49 +2354,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_sewa', $data, ['id_sewa' => $post['id_sewa']]);
@@ -2739,49 +2399,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_wedding', $data, ['id_wedding' => $post['id_wedding']]);
@@ -2817,49 +2445,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_franchise', $data, ['id_franchise' => $post['id_franchise']]);
@@ -2891,49 +2487,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myhajat';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_lainnya', $data, ['id_myhajat_lainnya' => $post['id_myhajat_lainnya']]);
@@ -2962,49 +2526,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myihram';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_ihram', $data, ['id_myihram' => $post['id_myihram']]);
@@ -3033,49 +2565,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mysafar';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_safar', $data, ['id_mysafar' => $post['id_mysafar']]);
@@ -3151,49 +2651,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/aktivasi_agent';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 100000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_aktivasi_agent', $data, ['id_agent' => $post['id_agent']]);
@@ -3225,49 +2693,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/nst';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -3345,49 +2781,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mitra_kerjasama';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 
@@ -3433,49 +2837,17 @@ class Ticket_register extends CI_Controller
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/myfaedah';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_faedah', $data, ['id_myfaedah' => $post['id_myfaedah']]);
@@ -3491,76 +2863,299 @@ class Ticket_register extends CI_Controller
 			redirect('dashboard');
 		}
 
+		/////// KATEGORI MY FAEDAH //////
+		////////  FORMULIR MY FAEDAH BANGUNAN //////////////////
+		if (isset($_POST['edit_bangunan_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_bangunan'],
+				'jenis_penyedia' => $post['jenis_penyedia_bangunan'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_bangunan'],
+				'lokasi_pembangunan' => $post['lokasi_pembangunan'],
+				'luas_bangunan' => $post['luas_bangunan'],
+				'waktu_pelaksanaan' => $post['waktu_pelaksanaan'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_bangunan'],
+				'informasi_tambahan' => $post['informasi_tambahan_bangunan'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_bangunan', $data, ['id_bangunan' => $post['id_bangunan']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+		}
+
+		////////  FORMULIR MY FAEDAH ELEKTRONIK //////////////////
+		if (isset($_POST['edit_elektronik_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_elektronik'],
+				'jenis_penyedia' => $post['jenis_penyedia_elektronik'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_elektronik'],
+				'lama_usaha' => $post['lama_usaha_elektronik'],
+				'jenis_barang' => $post['jenis_barang_elektronik'],
+				'jumlah_barang' => $post['jumlah_barang_elektronik'],
+				'waktu_pelaksanaan' => $post['waktu_pelaksanaan'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_elektronik'],
+				'informasi_tambahan' => $post['informasi_tambahan_elektronik'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_elektronik', $data, ['id_elektronik' => $post['id_elektronik']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH MODAL //////////////////
+		if (isset($_POST['edit_qurban_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_qurban'],
+				'jenis_penyedia' => $post['jenis_penyedia_qurban'],
+				'jenis_barang' => $post['jenis_barang_qurban'],
+				'lama_usaha' => $post['lama_usaha_qurban'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_qurban'],
+				'jenis_barang' => $post['jenis_barang_qurban'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_qurban'],
+				'informasi_tambahan' => $post['informasi_tambahan_qurban'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_qurban', $data, ['id_qurban' => $post['id_qurban']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH MODAL //////////////////
+		if (isset($_POST['edit_modal_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_modal'],
+				'jenis_penyedia' => $post['jenis_penyedia_modal'],
+				'jenis_barang' => $post['jenis_barang_modal'],
+				'tujuan_pembelian' => $post['tujuan_pembelian_modal'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_modal'],
+				'informasi_tambahan' => $post['informasi_tambahan_modal'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_modal', $data, ['id_modal' => $post['id_modal']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+		////////  FORMULIR MY FAEDAH LAINNYA //////////////////
+		if (isset($_POST['edit_myfaedah_lainnya_superuser'])) {
+			$data = [
+				'nama_konsumen' => $post['nama_konsumen'],
+				'jenis_konsumen' => $post['jenis_konsumen'],
+
+				'nama_penyedia' => $post['nama_penyedia_myfaedah_lainnya'],
+				'jenis_penyedia' => $post['jenis_penyedia_myfaedah_lainnya'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_myfaedah_lainnya'],
+				'informasi_tambahan' => $post['informasi_tambahan_myfaedah_lainnya'],
+
+				// 'date_created' => date('Y-m-d H:i:s'),
+				'date_modified' => date('Y-m-d H:i:s'),
+				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
+				// 'id_approval' => 0,
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/myfaedah';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
+			}
+
+			$id = $this->data_m->update('tb_my_faedah_lainnya', $data, ['id_myfaedah_lainnya' => $post['id_myfaedah_lainnya']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
+
+				redirect('/');
+			} else {
+				echo "Data gagal disimpan";
+			}
+		}
+
+
 		// FORMULIE MY CARS
 		if (isset($_POST['edit_mycars_superuser'])) {
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				// 'id_cabang' => $post['cabang'],
 
-				'nama_vendor' => $post['nama_vendor_mycars'],
-				'jenis_vendor' => $post['jenis_vendor_mycars'],
-				'lama_usaha' => $post['lama_usaha_vendor_mycars'],
-				'nama_mobil' => $post['nama_mobil'],
-				'kondisi_mobil' => $post['kondisi_mobil'],
-				'merek_mobil' => $post['merek_mobil'],
-				'transmisi' => $post['transmisi'],
+				'nama_penyedia' => $post['nama_penyedia_mycars'],
+				'jenis_penyedia' => $post['jenis_penyedia_mycars'],
+				'lama_usaha' => $post['lama_usaha_mycars'],
+				'kepemilikan_tempat' => $post['kepemilikan_tempat_mycars'],
+				'jumlah_stok' => $post['jumlah_stok_mycars'],
+				'tipe_kendaraan' => $post['tipe_kendaraan_mycars'],
+				'jenis_kendaraan' => $post['jenis_kendaraan_mycars'],
+				'tahun' => $post['tahun_mycars'],
+				'warna_kendaraan' => $post['warna_kendaraan_mycars'],
+				// 'nama_mobil' => $post['nama_mobil'],
+				// 'kondisi_mobil' => $post['kondisi_mobil'],
+				// 'merek_mobil' => $post['merek_mobil'],
+				// 'transmisi' => $post['transmisi'],
 				'tahun' => $post['tahun_mobil'],
 				'harga_mobil' => $post['harga_mobil'],
+				'nilai_pembiayaan' => $post['nilai_pembiayaan_mycars'],
 				'informasi_tambahan' => $post['informasi_tambahan_mycars'],
 
 				// 'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
 				// 'id_user' => $post['id_user'],
+				// 'id_cabang' => $post['cabang'],
 				// 'id_approval' => 0,
 			];
 
 			//Konfigurasi Upload
 			$config['upload_path']         = './uploads/mycars';
 			$config['allowed_types']        = '*';
-			$config['max_size']             = 25000;
-			$config['max_width']            = 10000;
-			$config['max_height']           = 10000;
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
-			if ($this->upload->do_upload('upload_file1')) {
-				$data['upload_file1'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file2')) {
-				$data['upload_file2'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file3')) {
-				$data['upload_file3'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file4')) {
-				$data['upload_file4'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file5')) {
-				$data['upload_file5'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file6')) {
-				$data['upload_file6'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file7')) {
-				$data['upload_file7'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file8')) {
-				$data['upload_file8'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file9')) {
-				$data['upload_file9'] = $this->upload->data('file_name');
-			}
-
-			if ($this->upload->do_upload('upload_file10')) {
-				$data['upload_file10'] = $this->upload->data('file_name');
+			for ($i = 1; $i <= 10; $i++) {
+				if (!$this->upload->do_upload('upload_file' . $i)) {
+					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+				} else {
+					$data['upload_file' . $i] = $this->upload->data('file_name');
+				}
 			}
 
 			$id = $this->data_m->update('tb_my_cars', $data, ['id_mycars' => $post['id_mycars']]);

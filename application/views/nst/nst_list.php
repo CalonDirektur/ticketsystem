@@ -25,7 +25,7 @@
                         $no = 1;
                         foreach ($data->result() as $d) {  ?>
                         <tr>
-                            <td>#<?= $d->id_ticket ?></td>
+                            <td><?= $d->id_ticket ?></td>
                             <td><?= $d->lead_id ?></td>
                             <td><?= $d->nama_konsumen ?></td>
                             <td><?= $d->produk ?></td>

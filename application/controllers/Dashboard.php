@@ -156,7 +156,14 @@ class Dashboard extends CI_Controller
 			'pending_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 0 $id_cabang"),
 			'pending_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
 			'pending_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+
 			'pending_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
+			'pending_myfaedah_bangunan'		=> $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 0 $id_cabang"),
+			'pending_myfaedah_elektronik'	=> $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 0 $id_cabang"),
+			'pending_myfaedah_qurban'		=> $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 0 $id_cabang"),
+			'pending_myfaedah_modal'		=> $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 0 $id_cabang"),
+			'pending_myfaedah_lainnya'		=> $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 0 $id_cabang"),
+
 			'total_pending_myhajat' 		=> $total_pending_myhajat,
 
 			//Approved Status
@@ -171,9 +178,15 @@ class Dashboard extends CI_Controller
 			'approved_aktivasi_agent' 		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang"),
 			'approved_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 2 $id_cabang"),
 			'approved_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 2 $id_cabang"),
-			'approved_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
-			'approved_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
-			'approved_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
+			'approved_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 2 $id_cabang"),
+			'approved_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 2 $id_cabang"),
+
+			'approved_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 2 $id_cabang"),
+			'approved_myfaedah_bangunan'	=> $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 2 $id_cabang"),
+			'approved_myfaedah_elektronik'	=> $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 2 $id_cabang"),
+			'approved_myfaedah_qurban'		=> $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 2 $id_cabang"),
+			'approved_myfaedah_modal'		=> $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 2 $id_cabang"),
+			'approved_myfaedah_lainnya'		=> $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 2 $id_cabang"),
 			'total_approved_myhajat' 		=> $total_approved_myhajat,
 
 			//Rejected Status
@@ -190,6 +203,7 @@ class Dashboard extends CI_Controller
 			'rejected_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 1 $id_cabang"),
 			'rejected_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
 			'rejected_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+
 			'rejected_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
 			'total_rejected_myhajat' 		=> $total_rejected_myhajat,
 
@@ -207,6 +221,7 @@ class Dashboard extends CI_Controller
 			'completed_lead_management' 	=> $this->data_m->count_data("tb_lead_management", "id_approval = 3 $id_cabang"),
 			'completed_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
 			'completed_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
+
 			'completed_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
 			'total_completed_myhajat' 		=> $total_completed_myhajat,
 
@@ -235,6 +250,8 @@ class Dashboard extends CI_Controller
 		$data['ticket_records_rejected'] = $this->data_m->get_tickets($id_user_tickets, ' = 1');
 		$data['ticket_records_approved'] = $this->data_m->get_tickets($id_user_tickets, ' = 2');
 		$data['ticket_records_completed'] = $this->data_m->get_tickets($id_user_tickets, ' = 3');
+
+
 
 		$this->template->load('template2', 'dashboard', $data);
 	}

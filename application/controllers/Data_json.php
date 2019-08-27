@@ -35,5 +35,7 @@ class Data_json extends CI_Controller
         } else {
             echo "Difference is $fullDays days.";
         }
+
+        echo "<button onclick='return window.history.back()'>back</button>";
     }
 }

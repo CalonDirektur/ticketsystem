@@ -90,84 +90,110 @@
                   <option value="Eksternal" <?= $data->jenis_konsumen == 'Eksternal' ? 'selected' : ''  ?>>Eksternal</option>
                 </select>
               </div>
-              <!-- Nama Vendor -->
+
+              <!-- Nama Penyedia Barang -->
               <div class="form-group">
-                <label for="nama_vendor_mycars">Nama Vendor </label>
-                <input name="nama_vendor_mycars" id="nama_vendor_mycars" type="text" class="form-control enable" value="<?= $data->nama_vendor ?>" placeholder="Nama Vendor" required disabled>
+                <label for="nama_penyedia_mycars">Nama Penyedia Barang </label>
+                <input name="nama_penyedia_mycars" id="nama_penyedia_mycars" type="text" value="<?= $data->nama_penyedia ?>" class="form-control enable" required readonly>
               </div>
 
-              <!-- Jenis Vendor -->
+              <!-- Jenis Penyedia Barang -->
               <div class="form-group">
-                <label for="jenis_vendor_mycars">Jenis Vendor</label>
+                <label for="jenis_penyedia_mycars">Jenis Penyedia Barang </label>
                 <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="form-check-input enable" <?= $data->jenis_vendor == 'Perorangan' ? 'checked' : '' ?> id="perorangan" type="radio" name="jenis_vendor_mycars" value="Perorangan" required disabled>Perorangan</label>
+                  <label class="form-check-label"><input class="kategori form-check-input enable" id="authorized" type="radio" name="jenis_penyedia_mycars" <?= $data->jenis_penyedia == 'Authorized' ? 'checked' : '' ?> value="Authorized" required disabled>Authorized</label>
                 </div>
                 <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="form-check-input enable" <?= $data->jenis_vendor == 'Badan Usaha' ? 'checked' : '' ?> id="badan_usaha" type="radio" name="jenis_vendor_mycars" value="Badan Usaha" required disabled>Badan Usaha</label>
+                  <label class="form-check-label"><input class="kategori form-check-input enable" id="non-authorized" type="radio" name="jenis_penyedia_mycars" <?= $data->jenis_penyedia == 'Non-Authorized' ? 'checked' : '' ?> value="Non-Authorized" required disabled>Non-Authorized</label>
+                </div>
+              </div>
+
+              <!-- Kategori Penyedia Barang Detail -->
+              <div class="form-group">
+                <label for="jenis_penyedia_detail_mycars">Kategori Penyedia Barang Detail</label>
+                <select class="form-control enable" name="jenis_penyedia_detail_mycars" id="jenis_penyedia_detail_mycars" required disabled>
+                  <option selected disabled value="">- Pilih Kategori Penyedia Barang Detail -</option>
+                  <option <?= $data->jenis_penyedia_detail == 'Dealer ATPM' ? 'selected' : '' ?> value="Dealer ATPM">Dealer ATPM</option>
+                  <option <?= $data->jenis_penyedia_detail == 'Penjual Perorangan' ? 'selected' : '' ?> value="Penjual Perorangan">Penjual Perorangan</option>
+                  <option <?= $data->jenis_penyedia_detail == 'Pemilik Langsung' ? 'selected' : '' ?> value="Pemilik Langsung">Pemilik Langsung</option>
+                  <option <?= $data->jenis_penyedia_detail == 'Showroom tanpa izin usaha' ? 'selected' : '' ?> value="Showroom tanpa izin usaha">Showroom tanpa izin usaha</option>
+                  <option <?= $data->jenis_penyedia_detail == 'Showroom dengan izin usaha' ? 'selected' : '' ?> value="Showroom dengan izin usaha">Showroom dengan izin usaha</option>
+                </select>
+              </div>
+
+              <!-- Kategori Aset -->
+              <div class="form-group">
+                <label for="kategori_aset_mycars">Kategori Aset </label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input enable" id="NewCar" type="radio" name="kategori_aset_mycars" <?= $data->kategori_aset == 'New Car' ? 'checked' : '' ?> value="New Car" required disabled>New Car</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input enable" id="UsedCar" type="radio" name="kategori_aset_mycars" <?= $data->kategori_aset == 'Used Car' ? 'checked' : '' ?> value="Used Car" required disabled>Used Car</label>
                 </div>
               </div>
 
               <!-- Lama Usaha -->
               <div class="form-group">
-                <label for="lama_usaha_vendor_mycars">Lama Usaha </label>
-                <input name="lama_usaha_vendor_mycars" id="lama_usaha_vendor_mycars" type="text" class="form-control enable" value="<?= $data->lama_usaha ?>" placeholder="Lama Usaha" required disabled>
+                <label for="lama_usaha_mycars">Lama Usaha</label>
+                <input name="lama_usaha_mycars" id="lama_usaha_mycars" type="text" value="<?= $data->lama_usaha ?>" class="form-control enable" required readonly>
               </div>
 
-              <!-- Nama mobil -->
+              <!-- Kepemilikan Tempat Usaha -->
               <div class="form-group">
-                <label for="nama_mobil">Nama Mobil </label>
-                <input name="nama_mobil" id="nama_mobil" type="text" class="form-control enable" value="<?= $data->nama_mobil ?>" placeholder="Nama Mobil" required disabled>
-              </div>
-
-              <!-- Kondisi mobil -->
-              <div class="form-group">
-                <label for="kondisi_mobil">Kondisi Mobil</label>
+                <label for="kepemilikan_tempat_mycars">Kepemilikan Tempat Usaha </label>
                 <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="form-check-input enable" value="Baru" <?= $data->kondisi_mobil == 'Baru' ? 'checked' : '' ?> id="baru" type="radio" name="kondisi_mobil" value="Baru" required disabled>Baru</label>
+                  <label class="form-check-label"><input class="kategori form-check-input enable" id="" type="radio" name="kepemilikan_tempat_mycars" <?= $data->kepemilikan_tempat == 'Milik Sendiri' ? 'checked' : '' ?> value="Milik Sendiri" required disabled>Milik Sendiri</label>
                 </div>
                 <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="form-check-input enable" value="Bekas" <?= $data->kondisi_mobil == 'Bekas' ? 'checked' : '' ?> id="bekas" type="radio" name="kondisi_mobil" value="Bekas" required disabled>Bekas</label>
+                  <label class="form-check-label"><input class="kategori form-check-input enable" id="" type="radio" name="kepemilikan_tempat_mycars" <?= $data->kepemilikan_tempat == 'Sewa' ? 'checked' : '' ?> value="Sewa" required disabled>Sewa</label>
                 </div>
               </div>
 
-              <!-- Merek & Tipe -->
+              <!-- Jumlah Stok Unit -->
               <div class="form-group">
-                <label for="merek_mobil">Merek & Tipe Mobil</label>
-                <input name="merek_mobil" id="merek_mobil" type="text" class="form-control enable" value="<?= $data->merek_mobil ?>" placeholder="Merek & Tipe Mobil" required disabled>
+                <label for="jumlah_stok_mycars">Jumlah Stok Unit</label>
+                <input name="jumlah_stok_mycars" id="jumlah_stok_mycars" type="number" value="<?= $data->jumlah_stok ?>" class="form-control enable" required readonly>
               </div>
 
-              <!-- Transimisi -->
+              <!-- Tipe Kendaraan -->
               <div class="form-group">
-                <label for="transmisi">Transmisi</label>
-                <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="form-check-input enable" value="AT" <?= $data->transmisi == 'AT' ? 'checked' : '' ?> id="AT" type="radio" name="transmisi" value="AT" required disabled>AT</label>
-                </div>
-                <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="form-check-input enable" value="MT" <?= $data->transmisi == 'MT' ? 'checked' : '' ?> id="MT" type="radio" name="transmisi" value="MT" required disabled>MT</label>
-                </div>
+                <label for="tipe_kendaraan_mycars">Tipe Kendaraan</label>
+                <input name="tipe_kendaraan_mycars" id="tipe_kendaraan_mycars" type="text" value="<?= $data->tipe_kendaraan ?>" class="form-control enable" required readonly>
+              </div>
+
+              <!-- Jenis Kendaraan -->
+              <div class="form-group">
+                <label for="jenis_kendaraan_mycars">Jenis Kendaraan</label>
+                <input name="jenis_kendaraan_mycars" id="jenis_kendaraan_mycars" type="text" value="<?= $data->jenis_kendaraan ?>" class="form-control enable" required readonly>
               </div>
 
               <!-- Tahun -->
               <div class="form-group">
-                <label for="tahun_mobil">Tahun</label>
-                <input name="tahun_mobil" id="tahun_mobil" type="number" class="form-control enable" value="<?= $data->tahun ?>" placeholder="Tahun" required disabled>
+                <label for="tahun_mobil_mycars">Tahun</label>
+                <input name="tahun_mobil_mycars" id="tahun_mobil_mycars" type="number" value="<?= $data->tahun ?>" class="form-control enable" required readonly>
               </div>
 
-              <!-- Harga mobil -->
+              <!-- Warna Kendaraan -->
               <div class="form-group">
-                <label for="harga_mobil">Harga Mobil</label>
+                <label for="warna_kendaraan_mycars">Warna Kendaraan</label>
+                <input name="warna_kendaraan_mycars" id="warna_kendaraan_mycars" type="text" value="<?= $data->warna_kendaraan ?>" class="form-control enable" required readonly>
+              </div>
+
+              <!-- Nilai Pengajuan Pembiayaan -->
+              <div class="form-group">
+                <label for="nilai_pembiayaan_mycars">Nilai Pengajuan Pembiayaan </label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text bg-success text-white">Rp.</span>
                   </div>
-                  <input name="harga_mobil" id="harga_mobil" type="number" class="form-control enable" value="<?= $data->harga_mobil ?>" placeholder="Harga mobil" required disabled>
+                  <input name="nilai_pembiayaan_mycars" id="nilai_pembiayaan_mycars" type="number" value="<?= $data->nilai_pembiayaan ?>" class="form-control enable" required readonly>
                 </div>
               </div>
 
               <!-- Informasi Tambahan -->
               <div class="form-group">
                 <label for="informasi_tambahan_mycars">Informasi Tambahan</label>
-                <textarea name="informasi_tambahan_mycars" id="informasi_tambahan_mycars" cols="30" rows="10" class="form-control enable" disabled><?= $data->informasi_tambahan ?></textarea>
+                <textarea name="informasi_tambahan_mycars" id="informasi_tambahan_mycars" cols="30" rows="10" class="form-control enable" readonly><?= $data->informasi_tambahan ?></textarea>
               </div>
 
               <!-- Tombol ini muncul khusus untuk user -->
@@ -428,6 +454,7 @@
                 <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
                 <input type="hidden" name="id_komentar" value="<?= $data->id_mycars ?>">
                 <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+                <input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
                 <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
               </div>
             </div>
@@ -483,6 +510,7 @@
           <div class="img-push">
             <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
             <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+            <input type="hidden" name="id_ticket_reply" value="<?= $data->id_ticket ?>">
             <input name="id_komentar" type="hidden" value="<?= $data->id_mycars ?>">
             <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
             <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">

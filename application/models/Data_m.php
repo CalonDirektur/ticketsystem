@@ -77,6 +77,24 @@ class Data_m extends CI_Model
         return $query;
     }
 
+    public function get_comment($id_user = NULL)
+    {
+        $this->db->from("tb_comment");
+        $this->db->join("user", "tb_comment.id_user = user.id_user", "inner");
+        $this->db->join("tb_cabang", "user.id_cabang = tb_cabang.id_cabang", "inner");
+        $this->db->join("tb_ticket", "tb_ticket.id_ticket = tb_comment.id_ticket", "inner");
+        if ($id_user != NULL) {
+            $this->db->where("has_read = 0 AND tb_ticket.id_user = $id_user AND (level = 2 OR level = 3 OR level = 4 OR level = 5)");
+        } else {
+            $this->db->where("has_read = 0 AND level = 1");
+        }
+        $this->db->order_by("id", "DESC");
+        // $this->db->limit(5);
+
+        $query = $this->db->get();
+        return $query;
+    }
+
     // PENGECUALIAN xD
     public function get_myhajat($id_user, $id_approval)
     {
@@ -176,6 +194,11 @@ class Data_m extends CI_Model
         H.nama_konsumen as nama_konsumen_myihram,
         I.nama_mitra as nama_mitra_kerjasama,
         J.nama_konsumen as nama_konsumen_myfaedah,
+        JA.nama_konsumen as nama_konsumen_myfaedah_bangunan,
+        JB.nama_konsumen as nama_konsumen_myfaedah_elektronik,
+        JC.nama_konsumen as nama_konsumen_myfaedah_qurban,
+        JD.nama_konsumen as nama_konsumen_myfaedah_modal,
+        JE.nama_konsumen as nama_konsumen_myfaedah_lainnya,
         K.nama_konsumen as nama_konsumen_mycars,
 
         BA.id_approval as id_approval_renovasi,
@@ -191,7 +214,32 @@ class Data_m extends CI_Model
         H.id_approval as id_approval_myihram,
         I.id_approval as id_approval_mitra_kerjasama,
         J.id_approval as id_approval_myfaedah,
+        JA.id_approval as id_approval_myfaedah_bangunan,
+        JB.id_approval as id_approval_myfaedah_elektronik,
+        JC.id_approval as id_approval_myfaedah_qurban,
+        JD.id_approval as id_approval_myfaedah_modal,
+        JE.id_approval as id_approval_myfaedah_lainnya,
         K.id_approval as id_approval_mycars,
+
+        BA.date_modified as date_modified_renovasi, DATE_FORMAT(BA.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_renovasi,
+        BB.date_modified as date_modified_sewa, DATE_FORMAT(BB.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_sewa,
+        BC.date_modified as date_modified_wedding, DATE_FORMAT(BC.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_wedding,
+        BD.date_modified as date_modified_franchise, DATE_FORMAT(BD.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_franchise,
+        BE.date_modified as date_modified_lainnya, DATE_FORMAT(BE.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_lainnya,
+        C.date_modified as date_modified_mytalim, DATE_FORMAT(C.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_mytalim,
+        D.date_modified as date_modified_mysafar, DATE_FORMAT(D.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_mysafar,
+        E.date_modified as date_modified_aktivasi_agent, DATE_FORMAT(E.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_aktivasi_agent,
+        F.date_modified as date_modified_nst, DATE_FORMAT(F.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_nst,
+        G.date_modified as date_modified_lead_management, DATE_FORMAT(G.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_lead_management,
+        H.date_modified as date_modified_myihram, DATE_FORMAT(H.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myihram,
+        I.date_modified as date_modified_mitra_kerjasama, DATE_FORMAT(I.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_mitra_kerjasama,
+        J.date_modified as date_modified_myfaedah, DATE_FORMAT(J.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myfaedah,
+        JA.date_modified as date_modified_myfaedah_bangunan, DATE_FORMAT(JA.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myfaedah_bangunan,
+        JB.date_modified as date_modified_myfaedah_elektronik, DATE_FORMAT(JB.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myfaedah_elektronik,
+        JC.date_modified as date_modified_myfaedah_qurban, DATE_FORMAT(JC.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myfaedah_qurban,
+        JD.date_modified as date_modified_myfaedah_modal, DATE_FORMAT(JD.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myfaedah_modal,
+        JE.date_modified as date_modified_myfaedah_lainnya, DATE_FORMAT(JE.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_myfaedah_lainnya,
+        K.date_modified as date_modified_mycars, DATE_FORMAT(K.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_mycars,
         
         
         CASE
@@ -208,6 +256,11 @@ class Data_m extends CI_Model
         WHEN A.id_myihram IS NOT NULL THEN 'My Ihram'
         WHEN A.id_mitra_kerjasama IS NOT NULL THEN 'Mitra Kerja sama'
         WHEN A.id_myfaedah IS NOT NULL THEN 'My Faedah'
+        WHEN A.id_bangunan IS NOT NULL THEN 'My Faedah Bangunan'
+        WHEN A.id_elektronik IS NOT NULL THEN 'My Faedah Elektronik'
+        WHEN A.id_qurban IS NOT NULL THEN 'My Faedah Qurban'
+        WHEN A.id_modal IS NOT NULL THEN 'My Faedah Modal'
+        WHEN A.id_myfaedah_lainnya IS NOT NULL THEN 'My Faedah Lainnya'
         WHEN A.id_mycars IS NOT NULL THEN 'My Cars'
         END AS produk
         
@@ -251,6 +304,21 @@ class Data_m extends CI_Model
         LEFT JOIN tb_my_faedah as J
         ON A.id_myfaedah = J.id_myfaedah
 
+        LEFT JOIN tb_my_faedah_bangunan as JA
+        ON A.id_bangunan = JA.id_bangunan
+
+        LEFT JOIN tb_my_faedah_elektronik as JB
+        ON A.id_elektronik = JB.id_elektronik
+
+        LEFT JOIN tb_my_faedah_qurban as JC
+        ON A.id_qurban = JC.id_qurban
+
+        LEFT JOIN tb_my_faedah_modal as JD
+        ON A.id_modal = JD.id_modal
+
+        LEFT JOIN tb_my_faedah_lainnya as JE
+        ON A.id_myfaedah_lainnya = JE.id_myfaedah_lainnya
+
         LEFT JOIN tb_my_cars as K
         ON A.id_mycars = K.id_mycars
         
@@ -275,6 +343,11 @@ class Data_m extends CI_Model
         WHEN H.id_approval IS NOT NULL THEN H.id_approval $id_approval
         WHEN I.id_approval IS NOT NULL THEN I.id_approval $id_approval
         WHEN J.id_approval IS NOT NULL THEN J.id_approval $id_approval
+        WHEN JA.id_approval IS NOT NULL THEN JA.id_approval $id_approval
+        WHEN JB.id_approval IS NOT NULL THEN JB.id_approval $id_approval
+        WHEN JC.id_approval IS NOT NULL THEN JC.id_approval $id_approval
+        WHEN JD.id_approval IS NOT NULL THEN JD.id_approval $id_approval
+        WHEN JE.id_approval IS NOT NULL THEN JE.id_approval $id_approval
         WHEN K.id_approval IS NOT NULL THEN K.id_approval $id_approval
         END
         )
