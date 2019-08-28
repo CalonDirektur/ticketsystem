@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('table.status').DataTable({
+	$('table.status, table.status-admin').DataTable({
 		"lengthMenu": [
 			[15, 25, 50, 10],
 			["15", 25, 50, 10]
@@ -7,6 +7,46 @@ $(document).ready(function () {
 		"lengthChange": false,
 		stateSave: true
 	});
+
+
+
+	//fungsi untuk cari data di datatable
+	oTable = $('table.status').DataTable();
+	tableAdmin = $('table.status-admin').DataTable();
+	$('.cariTiket').on("keyup click", function () {
+		oTable.search($(this).val()).draw();
+		tableAdmin.search($(this).val()).draw();
+	});
+
+	// Combobox sort by tiket di dashboard
+	$('#statusTiket').change(function () {
+		oTable.columns(4).search($(this).val()).draw();
+		//meyimpan tulisan dropdown sort by ticket
+		localStorage.setItem("statusTiket", $(this).val());
+	});
+
+	$('#statusTiketAdmin').change(function () {
+		tableAdmin.columns(6).search($(this).val()).draw();
+		//meyimpan tulisan dropdown sort by ticket
+		localStorage.setItem("statusTiket", $(this).val());
+	});
+
+	//mengambil tulisan dropdown sort by ticket
+	var statusTiket = localStorage.getItem("statusTiket");
+	if (statusTiket == "Pending") {
+		$("#pending").attr("selected", "selected")
+	} else if (statusTiket == "Disetujui") {
+		$("#approved").attr("selected", "selected")
+	} else if (statusTiket == "Ditolak") {
+		$("#rejected").attr("selected", "selected")
+	} else if (statusTiket == "Selesai") {
+		$("#completed").attr("selected", "selected")
+	} else if (statusTiket == "") {
+		$("#all-tickets").attr("selected", "selected")
+	}
+
+	$("[id='DataTables_Table_0_filter']").hide();
+
 	$('#table-user').DataTable();
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
@@ -115,22 +155,33 @@ $(document).ready(function () {
 	// 	window.location = $(this).data("href");
 	// });
 	$("[data-headoffice]").hide();
-	$("#table-user").on("change", "#level", function () {
-		var value = $("#level option:selected").val();
-		var id_user = $(this).attr("data-iduser");
-		alert(id_user);
-		if (value != 1) {
-			$("[name='id_cabang[" + id_user + "]']").val("46");
-			$("[name='id_cabang[" + id_user + "]']").removeAttr("disabled");
-			$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "line-through");
-			$("[data-headoffice='head_office[" + id_user + "]']").fadeIn();
+	// $("#table-user").on("change", "#level", function () {
+	// 	var value = $("#level option:selected").val();
+	// 	var id_user = $(this).attr("data-iduser");
+	// 	alert(id_user);
+	// 	if (value != 1) {
+	// 		$("[name='id_cabang[" + id_user + "]']").val("46");
+	// 		$("[name='id_cabang[" + id_user + "]']").removeAttr("disabled");
+	// 		$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "line-through");
+	// 		$("[data-headoffice='head_office[" + id_user + "]']").fadeIn();
+	// 	} else {
+	// 		$("[name='id_cabang[" + id_user + "]']").attr("disabled", "disabled")
+	// 		$("[name='id_cabang[" + id_user + "]']").val("");
+	// 		$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "");
+	// 		$("[data-headoffice='head_office[" + id_user + "]']").fadeOut();
+	// 	}
+	// });
+
+	$("#table-user").on('change', '#jabatan', function () {
+		var value = $("#jabatan option:selected").val();
+		var id_user = $(this).attr('data-jabatan');
+		alert(value + " " + id_user);
+		if (value == 'CMS') {
+			$("[data-level='" + id_user + "']").val("1");
 		} else {
-			$("[name='id_cabang[" + id_user + "]']").attr("disabled", "disabled")
-			$("[name='id_cabang[" + id_user + "]']").val("");
-			$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "");
-			$("[data-headoffice='head_office[" + id_user + "]']").fadeOut();
+			$("[data-level='" + id_user + "']").val("6");
 		}
-	});
+	})
 
 	$(".form-check-input").on("click, change", function () {
 		if ($("#others").is(":checked")) {

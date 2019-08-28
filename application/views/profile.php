@@ -23,14 +23,25 @@
                             <input name="nik" type="number" class="form-control" id="nik" value="<?= $data->nik ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <?= form_error('name') ?>
-                            <input name="name" type="text" class="form-control" id="name" value="<?= $data->name ?>">
+                            <label for="jabatan">Jabatan</label>
+                            <?= form_error('jabatan') ?>
+                            <select class="form-control" name="jabatan" id="jabatan" <?= $data->id_cabang == 46 ? 'disabled' : '' ?>>
+                                <option disabled selected value="">- Pilih Jabatan -</option>
+                                <option <?= $data->jabatan == 'Sharia Manager' ? 'selected' : '' ?> value="Sharia Manager">Sharia Manager</option>
+                                <option <?= $data->jabatan == 'Sharia Head' ? 'selected' : '' ?> value="Sharia Head">Sharia Head</option>
+                                <option <?= $data->jabatan == 'CMS' ? 'selected' : '' ?> value="CMS">CMS</option>
+                            </select>
+                            <input type="hidden" id="level" name="level" value="<?= $data->level ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail</label>
                             <?= form_error('email') ?>
                             <input name="email" type="email" class="form-control" id="email" value="<?= $data->email ?>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <?= form_error('name') ?>
+                            <input name="name" type="text" class="form-control" id="name" value="<?= $data->name ?>">
                         </div>
                         <div class="form-group">
                             <label for="password">Password Baru</label>
@@ -42,7 +53,6 @@
                             <?= form_error('passconf') ?>
                             <input name="passconf" type="password" class="form-control" id="passwordconf">
                         </div>
-
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Submit</button>

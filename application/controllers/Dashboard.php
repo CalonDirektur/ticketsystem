@@ -15,26 +15,30 @@ class Dashboard extends CI_Controller
 		// Jika bukan admin maka tampilkan data sesuai dengan cabang masing-masing
 		if ($this->fungsi->user_login()->id_cabang != 46) {
 			$where = 'id_user = ' . $this->fungsi->user_login()->id_user;
-			$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
-
+			if ($this->fungsi->user_login()->level == 6) {
+				$id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
+			} else {
+				$id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
+			}
 			$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+			$id_cabang_tickets = '= ' . $this->fungsi->user_login()->id_cabang;
 			$approval_tickets = 'IS NOT NULL';
 		} else {
 			if ($this->fungsi->user_login()->level == 2) {
 				$where = 'id_approval IS NOT NULL';
 				$approval_tickets = 'IS NOT NULL';
-
 				$id_user_tickets = 'IS NOT NULL';
+				$id_cabang_tickets = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 3) {
 				$where = 'id_approval = 2';
 				$approval_tickets = 'IS NOT NULL';
-
 				$id_user_tickets = 'IS NOT NULL';
+				$id_cabang_tickets = 'IS NOT NULL';
 			} else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5) {
 				$where = 'id_approval IS NOT NULL ';
 				$approval_tickets = 'IS NOT NULL';
-
 				$id_user_tickets = 'IS NOT NULL';
+				$id_cabang_tickets = 'IS NOT NULL';
 			}
 			$id_cabang = '';
 		}
@@ -71,10 +75,10 @@ class Dashboard extends CI_Controller
 		$total_completed_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 3 $id_cabang");
 
 		//Total Status My faedah
-		$total_pending_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang");
-		$total_approved_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 2 $id_cabang");
-		$total_rejected_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 1 $id_cabang");
-		$total_completed_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 3 $id_cabang");
+		$total_pending_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 0 $id_cabang");
+		$total_approved_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 2 $id_cabang");
+		$total_rejected_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 1 $id_cabang");
+		$total_completed_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 3 $id_cabang");
 
 		//Total Status My cars
 		$total_pending_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang");
@@ -107,7 +111,7 @@ class Dashboard extends CI_Controller
 		$total_completed_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 3 $id_cabang");
 
 		//Total Pending
-		if ($this->session->userdata('level') == 1) {
+		if ($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) {
 			$total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
 			//Total Approved
 			$total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
@@ -142,89 +146,6 @@ class Dashboard extends CI_Controller
 		}
 
 		$data = [
-			//Pending Status
-			'pending_myhajat_renovasi' 		=> $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 0 $id_cabang"),
-			'pending_myhajat_sewa' 			=> $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 0 $id_cabang"),
-			'pending_myhajat_wedding' 		=> $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 0 $id_cabang"),
-			'pending_myhajat_franchise' 	=> $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 0 $id_cabang"),
-			'pending_myhajat_lainnya' 		=> $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 0 $id_cabang"),
-			'pending_mytalim' 				=> $this->data_m->count_data("tb_my_talim", "id_approval = 0 $id_cabang"),
-			'pending_myihram' 				=> $this->data_m->count_data("tb_my_ihram", "id_approval = 0 $id_cabang"),
-			'pending_mysafar' 				=> $this->data_m->count_data("tb_my_safar", "id_approval = 0 $id_cabang"),
-			'pending_aktivasi_agent' 		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 0 $id_cabang"),
-			'pending_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang"),
-			'pending_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 0 $id_cabang"),
-			'pending_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
-			'pending_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
-
-			'pending_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
-			'pending_myfaedah_bangunan'		=> $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 0 $id_cabang"),
-			'pending_myfaedah_elektronik'	=> $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 0 $id_cabang"),
-			'pending_myfaedah_qurban'		=> $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 0 $id_cabang"),
-			'pending_myfaedah_modal'		=> $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 0 $id_cabang"),
-			'pending_myfaedah_lainnya'		=> $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 0 $id_cabang"),
-
-			'total_pending_myhajat' 		=> $total_pending_myhajat,
-
-			//Approved Status
-			'approved_myhajat_renovasi' 	=> $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 2 $id_cabang"),
-			'approved_myhajat_sewa' 		=> $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 2 $id_cabang"),
-			'approved_myhajat_wedding' 		=> $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 2 $id_cabang"),
-			'approved_myhajat_franchise' 	=> $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 2 $id_cabang"),
-			'approved_myhajat_lainnya' 		=> $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 2 $id_cabang"),
-			'approved_mytalim' 				=> $this->data_m->count_data("tb_my_talim", "id_approval = 2 $id_cabang"),
-			'approved_myihram' 				=> $this->data_m->count_data("tb_my_ihram", "id_approval = 2 $id_cabang"),
-			'approved_mysafar' 				=> $this->data_m->count_data("tb_my_safar", "id_approval = 2 $id_cabang"),
-			'approved_aktivasi_agent' 		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang"),
-			'approved_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 2 $id_cabang"),
-			'approved_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 2 $id_cabang"),
-			'approved_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 2 $id_cabang"),
-			'approved_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 2 $id_cabang"),
-
-			'approved_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 2 $id_cabang"),
-			'approved_myfaedah_bangunan'	=> $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 2 $id_cabang"),
-			'approved_myfaedah_elektronik'	=> $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 2 $id_cabang"),
-			'approved_myfaedah_qurban'		=> $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 2 $id_cabang"),
-			'approved_myfaedah_modal'		=> $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 2 $id_cabang"),
-			'approved_myfaedah_lainnya'		=> $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 2 $id_cabang"),
-			'total_approved_myhajat' 		=> $total_approved_myhajat,
-
-			//Rejected Status
-			'rejected_myhajat_renovasi' 	=> $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 1 $id_cabang"),
-			'rejected_myhajat_sewa' 		=> $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 1 $id_cabang"),
-			'rejected_myhajat_wedding' 		=> $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 1 $id_cabang"),
-			'rejected_myhajat_franchise' 	=> $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 1 $id_cabang"),
-			'rejected_myhajat_lainnya' 		=> $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 1 $id_cabang"),
-			'rejected_mytalim' 				=> $this->data_m->count_data("tb_my_talim", "id_approval = 1 $id_cabang"),
-			'rejected_myihram' 				=> $this->data_m->count_data("tb_my_ihram", "id_approval = 1 $id_cabang"),
-			'rejected_mysafar' 				=> $this->data_m->count_data("tb_my_safar", "id_approval = 1 $id_cabang"),
-			'rejected_aktivasi_agent'		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 1 $id_cabang"),
-			'rejected_nst' 					=> $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang"),
-			'rejected_lead_management' 		=> $this->data_m->count_data("tb_lead_management", "id_approval = 1 $id_cabang"),
-			'rejected_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
-			'rejected_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
-
-			'rejected_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
-			'total_rejected_myhajat' 		=> $total_rejected_myhajat,
-
-			//Completed Status
-			'completed_myhajat_renovasi' 	=> $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 3 $id_cabang"),
-			'completed_myhajat_sewa' 		=> $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 3 $id_cabang"),
-			'completed_myhajat_wedding' 	=> $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 3 $id_cabang"),
-			'completed_myhajat_franchise' 	=> $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 3 $id_cabang"),
-			'completed_myhajat_lainnya' 	=> $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 3 $id_cabang"),
-			'completed_mytalim' 			=> $this->data_m->count_data("tb_my_talim", "id_approval = 3 $id_cabang"),
-			'completed_myihram' 			=> $this->data_m->count_data("tb_my_ihram", "id_approval = 3 $id_cabang"),
-			'completed_mysafar' 			=> $this->data_m->count_data("tb_my_safar", "id_approval = 3 $id_cabang"),
-			'completed_aktivasi_agent'		=> $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 3 $id_cabang"),
-			'completed_nst' 				=> $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang"),
-			'completed_lead_management' 	=> $this->data_m->count_data("tb_lead_management", "id_approval = 3 $id_cabang"),
-			'completed_mitra_kerjasama' 		=> $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang"),
-			'completed_mycars' 				=> $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang"),
-
-			'completed_myfaedah'		 		=> $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang"),
-			'total_completed_myhajat' 		=> $total_completed_myhajat,
-
 			//Total
 			'total_pending' => $total_pending,
 			'total_approved' => $total_approved,
@@ -246,6 +167,7 @@ class Dashboard extends CI_Controller
 		$data['lead_management_records'] 	= $this->data_m->get_product('tb_lead_management', 'tb_lead_management.' . $where, 'id_lead DESC');
 
 		$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
+		$data['ticket_records_head_syariah'] = $this->data_m->get_tickets_head_syariah($id_cabang_tickets, $approval_tickets);
 		$data['ticket_records_pending'] = $this->data_m->get_tickets($id_user_tickets, ' = 0');
 		$data['ticket_records_rejected'] = $this->data_m->get_tickets($id_user_tickets, ' = 1');
 		$data['ticket_records_approved'] = $this->data_m->get_tickets($id_user_tickets, ' = 2');

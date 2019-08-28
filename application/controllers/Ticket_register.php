@@ -2209,7 +2209,7 @@ class Ticket_register extends CI_Controller
 				'date_modified' => date('Y-m-d H:i:s'),
 				// 'id_user' => $post['id_user'],
 				// 'id_cabang' => $post['cabang'],
-				// 'id_approval' => 0,
+				'id_approval' => 0,
 			];
 
 			//Konfigurasi Upload
@@ -2258,7 +2258,7 @@ class Ticket_register extends CI_Controller
 				'nilai_pembiayaan'         => $post['nilai_pembiayaan'],
 				'informasi_tambahan'     => $post['informasi_tambahan'],
 				'date_modified'         => date('Y-m-d H:i:s'),
-				'id_approval'             => 0
+				// 'id_approval'             => 0
 			];
 
 			//Konfigurasi Upload
@@ -2305,7 +2305,6 @@ class Ticket_register extends CI_Controller
 				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
 				'informasi_tambahan' => $post['informasi_tambahan'],
 				'date_modified' => date('Y-m-d H:i:s'),
-
 			];
 
 			//Konfigurasi Upload

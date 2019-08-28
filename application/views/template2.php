@@ -93,6 +93,10 @@
     .nonhighlighted {
       background: white;
     }
+
+    .form-rounded {
+      border-radius: 1rem;
+    }
   </style>
 
 
@@ -209,6 +213,9 @@
                 echo "Admin NST";
               } else if ($this->fungsi->user_login()->level == 5) {
                 echo "Superuser";
+              } else if ($this->fungsi->user_login()->level == 6) {
+                echo ucfirst($this->fungsi->user_login()->nama_cabang) . "<br>";
+                echo ucfirst($this->fungsi->user_login()->jabatan);
               }
               ?>
           </div>

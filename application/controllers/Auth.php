@@ -179,6 +179,7 @@ class Auth extends CI_Controller
 		$post = $this->input->post(null, TRUE);
 
 		$is_active = $post['is_active'];
+		$jabatan = $post['jabatan'];
 		$level = $post['level'];
 
 		foreach ($is_active as $activate => $val) {
@@ -187,6 +188,10 @@ class Auth extends CI_Controller
 
 		foreach ($level as $lv => $val) {
 			$this->user_m->update(['level' => $val], ['id_user' => $lv]);
+		}
+
+		foreach ($jabatan as $key => $val) {
+			$this->user_m->update(['jabatan' => $val], ['id_user' => $key]);
 		}
 		redirect('auth/list_user');
 	}
@@ -216,12 +221,10 @@ class Auth extends CI_Controller
 			$data['data'] = $query->row();
 			$this->template->load('template2', 'profile', $data);
 		} else {
-
 			$where = ['nik' => $post['nik']];
-
 			if ($post['password'] == NULL) {
 				$data = [
-					'name' => $post['name']
+					'name' => $post['name'], x
 				];
 			} else {
 				$data = [

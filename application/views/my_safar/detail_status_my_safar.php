@@ -146,7 +146,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/myihram/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?>
+											<?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mysafar/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?>
 										</td>
 										<td>
 											<div class="form-group">

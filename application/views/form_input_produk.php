@@ -994,6 +994,7 @@
               <div class="form-group">
                 <label for="jenis_penyedia_detail_mycars">Kategori Penyedia Barang Detail</label>
                 <select class="form-control validasi mycars-required" name="jenis_penyedia_detail_mycars" id="jenis_penyedia_detail_mycars">
+                  <option selected disabled value="">- Kategori Penyedia Barang Detail -</option>
                   <option value="Dealer ATPM">Dealer ATPM</option>
                   <option value="Penjual Perorangan">Penjual Perorangan</option>
                   <option value="Pemilik Langsung">Pemilik Langsung</option>

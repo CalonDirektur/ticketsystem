@@ -28,7 +28,7 @@
 											echo '<label class="badge badge-danger">Ditolak</label>';
 										}
 										if ($data->id_approval == 2) {
-											echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+											echo '<label class="badge badge-success">Disetujui</label>';
 										}
 										if ($data->id_approval == 3) {
 											echo '<label class="badge badge-info">Selesai</label>';
@@ -82,23 +82,6 @@
 									<option value="My Faedah" <?= $data->produk == 'My Faedah' ? 'selected' : ''  ?>> My Faedah</option>
 									<option value="My CarS" <?= $data->produk == 'My CarS' ? 'selected' : ''  ?>> My CarS</option>
 								</select>
-							</div>
-							<div id="status-ticket" class="pull-right">
-								<label for="">Status:</label>
-								<?php
-								if ($data->id_approval == 0) {
-									echo '<label class="badge badge-secondary">Pending</label>';
-								}
-								if ($data->id_approval == 1) {
-									echo '<label class="badge badge-danger">Ditolak</label>';
-								}
-								if ($data->id_approval == 2) {
-									echo '<label class="badge badge-success">Disetujui Admin NST</label>';
-								}
-								if ($data->id_approval == 3) {
-									echo '<label class="badge badge-success">Selesai</label>';
-								}
-								?>
 							</div>
 							<!-- Tombol ini muncul khusus untuk user -->
 							<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
