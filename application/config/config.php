@@ -23,7 +23,7 @@ date_default_timezone_set('Asia/Jakarta');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'http://172.16.24.50/helpdesk/';
+// $config['base_url'] = 'http://192.168.137.1/helpdesk/';
 $config['base_url'] = 'http://localhost/helpdesk/';
 
 /*

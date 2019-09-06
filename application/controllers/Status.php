@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Status extends CI_Controller
 {
     public $id_user;
+    public $id_cabang;
 
     //Variabel memilih Data my hajat milik user 
     public $id_user_myhajat;
@@ -19,11 +20,15 @@ class Status extends CI_Controller
         $id_user = NULL;
         if ($this->fungsi->user_login()->id_cabang != 46) {
             $this->id_user = $this->fungsi->user_login()->id_user;
+            $this->id_cabang = '= ' . $this->fungsi->user_login()->id_cabang;
 
             $this->id_user_myhajat = '= ' . $this->fungsi->user_login()->id_user;
             $this->approval_myhajat = 'IS NOT NULL';
+        } else if ($this->fungsi->user_login()->level == 6) {
+            $this->id_cabang = '= ' . $this->fungsi->user_login()->id_cabang;
         } else {
             $this->id_user = NULL;
+            $this->id_cabang = 'IS NOT NULL';
 
             $this->id_user_myhajat = 'IS NOT NULL';
             $this->approval_myhajat = 'IS NOT NULL';
@@ -34,22 +39,38 @@ class Status extends CI_Controller
 
     public function list($produk, $kategori = NULL, $id = NULL)
     {
-        if ($produk == "lead_management") {
-            $data['data'] = $this->data_m->query("SELECT * 
+        if ($produk == "lead_management_list") {
+            // Menampilkan data untuk CMS
+            if ($this->fungsi->user_login()->level == 1) {
+                $data['data'] = $this->data_m->get('tb_lead_management', 'list', $this->id_user);
+            }
+            // Menampilkan data untuk Head Syariah/Manager
+            else if ($this->fungsi->user_login()->level == 6) {
+                $data['data'] = $this->data_m->query("SELECT * 
                                                     FROM 
                                                 tb_lead_management as A
-                                                INNER JOIN tb_ticket as B
-                                                ON A.id_lead = B.id_lead 
+                                                INNER JOIN user as C ON C.id_user = A.id_user
+                                                INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+                                                WHERE A.id_cabang " . $this->id_cabang . "
                                                 ");
+            } else {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                        FROM 
+                                                    tb_lead_management as A
+                                                    INNER JOIN user as C ON C.id_user = A.id_user
+                                                    INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+                                                    ");
+            }
             $this->template->load('template2', 'lead_management/lead_management_list', $data);
         }
 
-        if ($produk == "nst") {
+        if ($produk == "nst_list") {
             $data['data'] = $this->data_m->query("SELECT * 
-                                                    FROM 
+                                                 FROM 
                                                 tb_nst as A
                                                 INNER JOIN tb_ticket as B
                                                 ON A.id_nst = B.id_nst 
+                                                WHERE A.id_cabang " . $this->id_cabang . "
                                                 ");
             $this->template->load('template2', 'nst/nst_list', $data);
         }
@@ -293,16 +314,11 @@ class Status extends CI_Controller
         // Detail Lead Management 
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
-            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan,
-            DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
-                            DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
-                            DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,
-                            DATE_FORMAT(date_completed, '%d %M %Y %H:%i:%s') AS tanggal_diselesaikan,
-                            DATE_FORMAT(date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah                                               
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan                                               
                             FROM tb_lead_management A
                                                 INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
-                                                INNER JOIN tb_ticket as D ON D.id_lead = A.id_lead
                                                 LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
+                                                INNER JOIN user as D ON D.id_user = A.id_user
                                                 WHERE A.id_lead = $id
             ")->row();
 

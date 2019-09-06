@@ -53,7 +53,7 @@
           </div>
 
           <!-- Card Pilih Input Produk -->
-          <!-- <label id="card-produk" class="card mt-4">
+          <!-- <div id="card-produk" class="card mt-4">
             <div class="card-header">
               <b>Pilih Input Produk</b>
             </div>
@@ -201,21 +201,29 @@
               <!-- <p>Informasikan secara detail pengjaun pembiayaaan renovasi rumah</p> -->
             </div>
             <div class="card-body">
+              <!-- ID Vendor -->
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_renovasi" readonly>
               <!-- Nama Vendor -->
               <div class="form-group">
-                <label for="nama_vendor">Nama Vendor Renovasi </label>
-                <input name="nama_vendor" id="nama_vendor" type="text" class="form-control validasi renovasi-required" placeholder="Nama Vendor">
+                <label for="nama_vendor">Nama Vendor Renovasi</label><br>
+                <div class="input-group">
+                  <input name="nama_vendor" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
               <!-- Jenis Vendor -->
-              <div class="form-group">
+              <div class="form-group jenis-vendor">
                 <label for="jenis_vendor">Jenis Vendor Renovasi </label>
                 <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required" id="perorangan" type="radio" name="jenis_vendor" value="Perorangan">Perorangan</label>
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required perorangan" type="radio" name="jenis_vendor" value="Perorangan">Perorangan</label>
                 </div>
                 <div class="form-check form-check-info">
-                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required" id="badan_usaha" type="radio" name="jenis_vendor" value="Badan Usaha">Badan Usaha</label>
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required badan_usaha" type="radio" name="jenis_vendor" value="Badan Usaha">Badan Usaha</label>
                 </div>
               </div>
+
               <!-- Jenis Pekerjaan -->
               <div class="form-group">
                 <label for="jenis_pekerjaan">Jenis Pekerjaan </label>
@@ -276,24 +284,43 @@
             </div>
             <div class="card-body">
               <!-- Nama Pemilik -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_pemilik">Nama Pemilik </label>
-                <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control validasi sewa-required" placeholder="Nama Konsumen">
-              </div>
+                <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control validasi sewa-required" placeholder="Nama Pemilik">
+              </div> -->
               <!-- Jenis Pemilik -->
-              <div class="form-group">
+              <!-- <div class="form-group jenis-vendor">
                 <label for="jenis_pemilik">Jenis Calon Konsumen </label>
-                <!-- <select name="jenis_pemilik" id="jenis_pemilik" class="form-control validasi sewa-required">
-                  <option value="Perorangan">Perorangan</option>
-                  <option value="Perusahaan">Perusahaan/Badan Usaha</option>
-                </select> -->
                 <div class="form-check form-check-info">
                   <label class="form-check-label"><input name="jenis_pemilik" class="validasi sewa-required form-check-input" type="radio" value="Perorangan" required>Perorangan</label>
                 </div>
                 <div class="form-check form-check-info">
                   <label class="form-check-label"><input name="jenis_pemilik" class="validasi sewa-required form-check-input" type="radio" value="Perusahaan/Badan Usaha" required>Perusahaan/Badan Usaha</label>
                 </div>
+              </div> -->
+
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_sewa" readonly>
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_vendor">Nama Pemilik</label><br>
+                <div class="input-group">
+                  <input name="nama_pemilik" id="nama_pemilik" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
+              <!-- Jenis Vendor -->
+              <div class="form-group jenis-vendor">
+                <label for="jenis_vendor">Jenis Pemilik </label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required perorangan" type="radio" name="jenis_pemilik" value="Perorangan">Perorangan</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required badan_usaha" type="radio" name="jenis_pemilik" value="Perusahaan/Badan Usaha">Badan Usaha</label>
+                </div>
+              </div>
+
               <!-- Hubungan dengan pemohon -->
               <div class="form-group">
                 <label for="hubungan_pemohon">Hubungan dengan pemohon </label>
@@ -330,13 +357,12 @@
             </div>
             <div class="card-body">
               <!-- Nama WO -->
-              <div class="form-group">
-
+              <!-- <div class="form-group">
                 <label for="nama_wo">Nama Wedding Organizer </label>
                 <input name="nama_wo" id="nama_wo" type="text" class="form-control validasi wedding-required" placeholder="Nama WO">
-              </div>
+              </div> -->
               <!-- Jenis WO -->
-              <div class="form-group">
+              <!-- <div class="form-group jenis-vendor">
                 <label for="jenis_wo">Jenis Wedding Organizer </label>
                 <div class="form-check form-check-info">
                   <label class="form-check-label"><input name="jenis_wo" class="validasi wedding-required form-check-input" type="radio" value="Perorangan" required>Perorangan</label>
@@ -344,7 +370,30 @@
                 <div class="form-check form-check-info">
                   <label class="form-check-label"><input name="jenis_wo" class="validasi wedding-required form-check-input" type="radio" value="Perusahaan/Badan Usaha" required>Perusahaan/Badan Usaha</label>
                 </div>
+              </div> -->
+
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_wo" readonly>
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_wo">Nama Pemilik</label><br>
+                <div class="input-group">
+                  <input name="nama_wo" id="nama_wo" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
+              <!-- Jenis Vendor -->
+              <div class="form-group jenis-vendor">
+                <label for="jenis_vendor">Jenis Pemilik </label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required perorangan" type="radio" name="jenis_wo" value="Perorangan">Perorangan</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required badan_usaha" type="radio" name="jenis_wo" value="Perusahaan/Badan Usaha">Badan Usaha</label>
+                </div>
+              </div>
+
               <!-- Lama Usaha Berdiri -->
               <div class="form-group">
                 <label for="lama_berdiri">Lama Usaha Berdiri </label>
@@ -392,10 +441,33 @@
             </div>
             <div class="card-body">
               <!-- Nama Franchise -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_franchise">Nama Franchise </label>
                 <input name="nama_franchise" id="nama_franchise" type="text" class="form-control validasi franchise-required" placeholder="Nama Franchise">
+              </div> -->
+
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_franchise" readonly>
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_franchise">Nama Franchise</label><br>
+                <div class="input-group">
+                  <input name="nama_franchise" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
+
+              <!-- Jenis Vendor -->
+              <!-- <div class="form-group jenis-vendor">
+                <label for="jenis_vendor">Jenis Vendor Renovasi </label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required perorangan" type="radio" name="jenis_vendor" value="Perorangan">Perorangan</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required badan_usaha" type="radio" name="jenis_vendor" value="Badan Usaha">Badan Usaha</label>
+                </div>
+              </div> -->
               <!-- Jumlah Cabang -->
               <div class="form-group">
                 <label for="jumlah_cabang">Jumlah Cabang Yang Dimiliki</label>
@@ -465,17 +537,48 @@
             </div>
             <div class="card-body">
               <!-- Nama Penyedia Jasa -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_penyedia_jasa">Nama Penyedia Jasa </label>
                 <input name="nama_penyedia_jasa" id="nama_penyedia_jasa" type="text" class="form-control validasi lainnya-required" placeholder="Nama Penyedia Jasa">
-              </div>
+              </div> -->
               <!-- Jenis Penyedia Jasa -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa </label>
                 <select name="jenis_penyedia_jasa" id="jenis_penyedia_jasa" class="form-control validasi lainnya-required">
                   <option value="Perorangan">Perorangan</option>
                   <option value="Badan Usaha">Badan Usaha</option>
                 </select>
+              </div> -->
+              <!-- Jenis Vendor -->
+              <!-- <div class="form-group jenis-vendor">
+                <label for="jenis_penyedia_jasa">Jenis Penyedia Jasa </label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi lainnya-required" type="radio" name="jenis_penyedia_jasa" value="Perorangan">Perorangan</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi lainnya-required" type="radio" name="jenis_penyedia_jasa" value="Badan Usaha">Badan Usaha</label>
+                </div>
+              </div> -->
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_lainnya" readonly>
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_penyedia_jasa">Nama Penyedia Jasa</label><br>
+                <div class="input-group">
+                  <input name="nama_penyedia_jasa" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
+              </div>
+              <!-- Jenis Vendor -->
+              <div class="form-group jenis-vendor">
+                <label for="jenis_vendor">Jenis Vendor Renovasi </label>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required perorangan" type="radio" name="jenis_penyedia_jasa" value="Perorangan">Perorangan</label>
+                </div>
+                <div class="form-check form-check-info">
+                  <label class="form-check-label"><input class="kategori form-check-input validasi renovasi-required badan_usaha" type="radio" name="jenis_penyedia_jasa" value="Badan Usaha">Badan Usaha</label>
+                </div>
               </div>
               <!-- Nilai Pengajuan Pembiayaan -->
               <div class="form-group">
@@ -504,15 +607,29 @@
               <!-- <p>Informasikan secara detail pengjaun pembiayaaan renovasi rumah</p> -->
             </div>
             <div class="card-body">
+
               <!-- Nama Penyedia Bangunan -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_penyedia_bangunan">Nama Penyedia Barang </label>
                 <input name="nama_penyedia_bangunan" id="nama_penyedia_bangunan" type="text" class="form-control validasi bangunan-required" placeholder="Nama Penyedia Barang">
+              </div> -->
+
+              <!-- ID Vendor -->
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_bangunan" readonly>
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_penyedia_bangunan">Nama Penyedia Barang</label><br>
+                <div class="input-group">
+                  <input name="nama_penyedia_bangunan" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
               <!-- Jenis Penyedia Barang -->
               <div class="form-group">
                 <label for="jenis_penyedia_bangunan">Jenis Penyedia Barang </label>
-                <select class="form-control validasi myhajat-lainnya-required" name="jenis_penyedia_bangunan" id="jenis_penyedia_bangunan">
+                <select class="form-control validasi bangunan-required jenis-penyedia" name="jenis_penyedia_bangunan" id="jenis_penyedia_bangunan">
                   <option selected disabled value="">- Pilih Jenis Penyedia Barang -</option>
                   <option value="Toko/Agen">Toko / AGEN</option>
                   <option value="Authorized Distributor">Authorized Distributor</option>
@@ -570,15 +687,27 @@
               <b>Detail Elektronik</b>
             </div>
             <div class="card-body">
+              <!-- ID Vendor -->
+              <input class="form-control id_vendor" type="hidden" name="id_vendor_elektronik" readonly>
               <!-- Nama Penyedia elektronik -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_penyedia_elektronik">Nama Penyedia Barang </label>
                 <input name="nama_penyedia_elektronik" id="nama_penyedia_elektronik" type="text" class="form-control validasi elektronik-required" placeholder="Nama Penyedia Barang">
+              </div> -->
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_penyedia_elektronik">Nama Penyedia Barang</label><br>
+                <div class="input-group">
+                  <input name="nama_penyedia_elektronik" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
               <!-- Jenis Penyedia Barang -->
               <div class="form-group">
                 <label for="jenis_penyedia_elektronik">Jenis Penyedia Barang </label>
-                <select class="form-control validasi elektronik-required" name="jenis_penyedia_elektronik" id="jenis_penyedia_elektronik">
+                <select class="form-control validasi elektronik-required jenis-penyedia" name="jenis_penyedia_elektronik" id="jenis_penyedia_elektronik">
                   <option selected disabled value="">- Pilih Jenis Penyedia Barang -</option>
                   <option value="Toko/Agen">Toko / AGEN</option>
                   <option value="Authorized Distributor">Authorized Distributor</option>
@@ -657,14 +786,24 @@
             </div>
             <div class="card-body">
               <!-- Nama Penyedia modal -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_penyedia_modal">Nama Penyedia Barang </label>
                 <input name="nama_penyedia_modal" id="nama_penyedia_modal" type="text" class="form-control validasi modal-required" placeholder="Nama Penyedia Barang">
+              </div> -->
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_penyedia_modal">Nama Penyedia Barang</label><br>
+                <div class="input-group">
+                  <input name="nama_penyedia_modal" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
               <!-- Jenis Penyedia Barang -->
               <div class="form-group">
                 <label for="jenis_penyedia_modal">Jenis Penyedia Barang </label>
-                <select class="form-control validasi modal-required" name="jenis_penyedia_modal" id="jenis_penyedia_modal">
+                <select class="form-control validasi modal-required jenis-penyedia" name="jenis_penyedia_modal" id="jenis_penyedia_modal">
                   <option selected disabled value="">- Pilih Jenis Penyedia Barang -</option>
                   <option value="Toko/Agen">Toko / AGEN</option>
                   <option value="Authorized Distributor">Authorized Distributor</option>
@@ -713,15 +852,26 @@
             </div>
             <div class="card-body">
               <!-- Nama Penyedia modal -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_penyedia_qurban">Nama Penyedia Barang </label>
                 <input name="nama_penyedia_qurban" id="nama_penyedia_qurban" type="text" class="form-control validasi qurban-required" placeholder="Nama Penyedia Barang">
+              </div> -->
+
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_penyedia_qurban">Nama Penyedia Barang</label><br>
+                <div class="input-group">
+                  <input name="nama_penyedia_qurban" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
 
               <!-- Jenis Penyedia Barang -->
               <div class="form-group">
                 <label for="jenis_penyedia_qurban">Jenis Penyedia Barang </label>
-                <select class="form-control validasi qurban-required" name="jenis_penyedia_qurban" id="jenis_penyedia_qurban">
+                <select class="form-control validasi qurban-required jenis-penyedia" name="jenis_penyedia_qurban" id="jenis_penyedia_qurban">
                   <option selected disabled value="">- Pilih Jenis Penyedia Barang -</option>
                   <option value="Toko/Agen">Toko / AGEN</option>
                   <option value="Authorized Distributor">Authorized Distributor</option>
@@ -782,15 +932,24 @@
             </div>
             <div class="card-body">
               <!-- Nama Penyedia modal -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="nama_penyedia_myfaedah_lainnya">Nama Penyedia Barang </label>
                 <input name="nama_penyedia_myfaedah_lainnya" id="nama_penyedia_myfaedah_lainnya" type="text" class="form-control validasi myfaedah-lainnya-required" placeholder="Nama Penyedia Barang">
+              </div> -->
+              <!-- Nama Vendor -->
+              <div class="form-group">
+                <label for="nama_penyedia_myfaedah_lainnya">Nama Penyedia Barang</label><br>
+                <div class="input-group">
+                  <input name="nama_penyedia_myfaedah_lainnya" type="text" class="form-control validasi renovasi-required nama_vendor" placeholder="Nama Vendor">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-nama-vendor">x</button>
+                  </div>
+                </div>
               </div>
-
               <!-- Jenis Penyedia Barang -->
               <div class="form-group">
                 <label for="jenis_penyedia_myfaedah_lainnya">Jenis Penyedia Barang </label>
-                <select class="form-control validasi myfaedah-lainnya-required" name="jenis_penyedia_myfaedah_lainnya" id="jenis_penyedia_myfaedah_lainnya">
+                <select class="form-control validasi myfaedah-lainnya-required jenis-penyedia" name="jenis_penyedia_myfaedah_lainnya" id="jenis_penyedia_myfaedah_lainnya">
                   <option selected disabled value="">- Pilih Jenis Penyedia Barang -</option>
                   <option value="Toko/Agen">Toko / AGEN</option>
                   <option value="Authorized Distributor">Authorized Distributor</option>

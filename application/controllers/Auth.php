@@ -14,14 +14,14 @@ class Auth extends CI_Controller
 	public function index()
 	{
 		check_already_login();
-		$this->load->view('login');
+		$this->load->view('login-2');
 	}
 
 	// Halaman Daftar Akun
 	public function daftar_akun()
 	{
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
-		$this->template->load('template2', 'user/daftar_akun', $data);
+		$this->load->view('user/daftar_akun2', $data);
 	}
 
 	//method proses pendaftaran akun user
@@ -31,15 +31,15 @@ class Auth extends CI_Controller
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
 		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[6]|max_length[7]|is_unique[user.nik]', ['is_unique' => 'NIK sudah dipakai']);
-		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required', ['required' => 'Nama Lengkap Wajib diisi']);
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]', ['is_unique' => 'Email sudah dipakai']);
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
-		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
-		$this->form_validation->set_rules('id_cabang', 'ID Cabang', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]', ['required' => 'Kata Sandi Wajib diisi']);
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]', ['matches' => 'Konfirmasi Kata Sandi wajib sama', 'required' => 'Konfirmasi Kata Sandi wajib diisi']);
+		$this->form_validation->set_rules('id_cabang', 'ID Cabang', 'trim|required', ['required' => 'Cabang Wajib diisi']);
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
-			$this->template->load('template2', 'user/daftar_akun', $data);
+			$this->load->view('user/daftar_akun2', $data);
 		} else {
 			// $this->load->view('formsuccess');
 			$data = [

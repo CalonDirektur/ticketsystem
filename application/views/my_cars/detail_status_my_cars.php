@@ -197,11 +197,11 @@
               </div>
 
               <!-- Tombol ini muncul khusus untuk user -->
-              <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-              <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+              <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
               <?php } ?>
               <?php if ($this->session->userdata('level') == 5) { ?>
-              <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
+                <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
               <?php } ?>
               <div id="status-ticket" class="pull-right">
                 <label for="">Status:</label>
@@ -225,19 +225,19 @@
               <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
               <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
 
-              <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYETUJUI request support?')" href="<?= base_url('Admin1/approve/mycars/id/' . $data->id_mycars) ?>">Approve</a>
-              <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin1/reject/mycars/id/' . $data->id_mycars) ?>">Reject</a>
+                <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYETUJUI request support?')" href="<?= base_url('Admin1/approve/mycars/id/' . $data->id_mycars) ?>">Approve</a>
+                <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin1/reject/mycars/id/' . $data->id_mycars) ?>">Reject</a>
               <?php } ?>
               <?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
 
-              <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Admin2/complete/mycars/id/' . $data->id_mycars) ?>">Approve</a>
-              <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin2/reject/mycars/id/' . $data->id_mycars) ?>">Reject</a>
+                <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Admin2/complete/mycars/id/' . $data->id_mycars) ?>">Approve</a>
+                <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Admin2/reject/mycars/id/' . $data->id_mycars) ?>">Reject</a>
               <?php } ?>
               <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
               <?php if ($this->session->userdata('level') == 5) { ?>
 
-              <a class="btn btn-info mt-1" href="<?= base_url('Superuser/complete/mycars/id/' . $data->id_mycars) ?>">Complete</a>
-              <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/mycars/id/' . $data->id_mycars) ?>">Reject</a>
+                <a class="btn btn-info mt-1" href="<?= base_url('Superuser/complete/mycars/id/' . $data->id_mycars) ?>">Complete</a>
+                <a class="btn btn-danger mt-1" href="<?= base_url('Superuser/reject/mycars/id/' . $data->id_mycars) ?>">Reject</a>
               <?php } ?>
             </div>
           </div>
@@ -421,18 +421,18 @@
                 </tbody>
               </table>
             </div>
-            <?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
-            <div class="card-footer text-center">
-              <!-- Tombol ini muncul khusus untuk user -->
-              <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
-              <button type="submit" id="edit_mycars" class="btn btn-info enable" name="edit_mycars" disabled>Update Data!</button>
-            </div>
+            <?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+              <div class="card-footer text-center">
+                <!-- Tombol ini muncul khusus untuk user -->
+                <!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->
+                <button type="submit" id="edit_mycars" class="btn btn-info enable" name="edit_mycars" disabled>Update Data!</button>
+              </div>
             <?php } ?>
             <?php if ($this->session->userdata('level') == 5) { ?>
-            <div class="card-footer text-center">
-              <!-- Tombol ini muncul khusus untuk SUPERUSER -->
-              <button type="submit" id="edit_mycars_superuser" class="btn btn-info enable" name="edit_mycars_superuser" disabled>Update Data!</button>
-            </div>
+              <div class="card-footer text-center">
+                <!-- Tombol ini muncul khusus untuk SUPERUSER -->
+                <button type="submit" id="edit_mycars_superuser" class="btn btn-info enable" name="edit_mycars_superuser" disabled>Update Data!</button>
+              </div>
             <?php } ?>
           </div>
         </div>
@@ -441,85 +441,85 @@
     </form>
 
     <?php if ($komentar->num_rows() == 0) { ?>
-    <!-- Post Komentar -->
-    <div class="row mt-4">
-      <div class="col-lg-12 col-md-6">
-        <form method="post" action="<?= base_url('comment/post_comment/id_mycars') ?>">
-          <div class="card">
-            <div class="card-header with-border">
-              <label for="">Post Komentar</label>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-                <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
-                <input type="hidden" name="id_komentar" value="<?= $data->id_mycars ?>">
-                <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-                <input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
-                <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+      <!-- Post Komentar -->
+      <div class="row mt-4">
+        <div class="col-lg-12 col-md-6">
+          <form method="post" action="<?= base_url('comment/post_comment/id_mycars') ?>">
+            <div class="card">
+              <div class="card-header with-border">
+                <label for="">Post Komentar</label>
               </div>
-            </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-info pull-right" name="submit_komentar">Post Komentar</button>
-            </div>
-        </form>
+              <div class="card-body">
+                <div class="form-group">
+                  <textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
+                  <input type="hidden" name="id_komentar" value="<?= $data->id_mycars ?>">
+                  <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+                  <input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
+                  <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info pull-right" name="submit_komentar">Post Komentar</button>
+              </div>
+          </form>
+        </div>
       </div>
-    </div>
 </div>
 <?php } ?>
 
 
 <?php foreach ($komentar->result() as $komen) { ?>
-<div class="row mt-4">
-  <div class="col-lg-12 col-md-12">
+  <div class="row mt-4">
+    <div class="col-lg-12 col-md-12">
 
-    <div class="card">
-      <div class="card-header">
-        <div class="user-block"> <span class="username"><label for=""><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></label><br>
-          <span class="description">Diposting: <?= $komen->date ?></span>
+      <div class="card">
+        <div class="card-header">
+          <div class="user-block"> <span class="username"><label for=""><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></label><br>
+            <span class="description">Diposting: <?= $komen->date ?></span>
+          </div>
         </div>
-      </div>
-      <div class="card-body">
-        <p><?= $komen->comment ?></p>
-      </div>
-      <!-- Reply card Comment -->
-      <div class="card-footer card-comments">
-        <?php
-          $this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
-          $this->db->from('tb_comment, user, tb_cabang');
-          $this->db->where('parent_comment_id = ' . $komen->id . ' AND
+        <div class="card-body">
+          <p><?= $komen->comment ?></p>
+        </div>
+        <!-- Reply card Comment -->
+        <div class="card-footer card-comments">
+          <?php
+            $this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
+            $this->db->from('tb_comment, user, tb_cabang');
+            $this->db->where('parent_comment_id = ' . $komen->id . ' AND
                               user.id_user = tb_comment.id_user AND
                               user.id_cabang = tb_cabang.id_cabang');
-          $reply = $this->db->get();
-          ?>
-        <?php foreach ($reply->result() as $balasan) { ?>
-        <div class="card-comment">
-          <div class="comment-text">
-            <span class="username">
-              <label for=""><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</label>:
-              <span class="text-muted pull-right"> <?= $balasan->date ?></span>
-            </span>
-            <?= $balasan->comment ?>
-          </div>
+            $reply = $this->db->get();
+            ?>
+          <?php foreach ($reply->result() as $balasan) { ?>
+            <div class="card-comment">
+              <div class="comment-text">
+                <span class="username">
+                  <label for=""><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</label>:
+                  <span class="text-muted pull-right"> <?= $balasan->date ?></span>
+                </span>
+                <?= $balasan->comment ?>
+              </div>
+            </div>
+            <hr>
+          <?php } ?>
         </div>
-        <hr>
-        <?php } ?>
-      </div>
-      <div class="card-footer">
-        <!-- Reply comment form -->
-        <form action="<?= base_url('comment/post_reply/id_mycars'); ?>" method="post">
-          <div class="img-push">
-            <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
-            <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-            <input type="hidden" name="id_ticket_reply" value="<?= $data->id_ticket ?>">
-            <input name="id_komentar" type="hidden" value="<?= $data->id_mycars ?>">
-            <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
-            <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-          </div>
-        </form>
+        <div class="card-footer">
+          <!-- Reply comment form -->
+          <form action="<?= base_url('comment/post_reply/id_mycars'); ?>" method="post">
+            <div class="img-push">
+              <input name="parent_comment" type="hidden" value="<?= $komen->id ?>">
+              <input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+              <input type="hidden" name="id_ticket_reply" value="<?= $data->id_ticket ?>">
+              <input name="id_komentar" type="hidden" value="<?= $data->id_mycars ?>">
+              <input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+              <input name="post_reply" type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 <?php } ?>
 

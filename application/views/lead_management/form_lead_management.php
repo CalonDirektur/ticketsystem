@@ -25,7 +25,7 @@
                   <?php
                   foreach ($pertanyaan as $p) {
                     ?>
-                  <option value="<?= $p->id_cabang ?>" <?= $this->fungsi->user_login()->id_cabang == $p->id_cabang ? 'selected' : '' ?>><?= $p->nama_cabang ?></option>
+                    <option value="<?= $p->id_cabang ?>" <?= $this->fungsi->user_login()->id_cabang == $p->id_cabang ? 'selected' : '' ?>><?= $p->nama_cabang ?></option>
                   <?php }  ?>
                 </select>
                 <input type="hidden" name="cabang" value="<?= $this->fungsi->user_login()->id_cabang ?>">
@@ -57,7 +57,7 @@
                     <?php
                     foreach ($pertanyaan as $p) {
                       ?>
-                    <option value="<?= $p->id_cabang ?>" <?= $p->id_cabang == 46 ? 'disabled' : '' ?>><?= $p->nama_cabang ?></option>
+                      <option value="<?= $p->id_cabang ?>" <?= $p->id_cabang == 46 ? 'disabled' : '' ?>><?= $p->nama_cabang ?></option>
                     <?php }  ?>
                   </select>
                 </div>
@@ -79,6 +79,11 @@
                 <label for="lead_id">Lead ID </label><br>
                 <!-- <small>Masukkan nomor Lead ID customer Anda</small> -->
                 <input required name="lead_id" id="lead_id" type="text" class="form-control" maxlength="16" value="<?= set_value('lead_id') ?>" placeholder="201908SLOS123456" required>
+              </div>
+              <!-- No. KTP -->
+              <div class="form-group">
+                <label for="no_ktp">No. KTP</label>
+                <input type="number" name="no_ktp" id="no_ktp" class="form-control" maxlength="16" value="<?= set_value('no_ktp') ?>" required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
@@ -145,43 +150,5 @@
         </div>
       </div>
     </form>
-
-    <div class="row mt-4">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="text-center">List Lead Management</h4>
-          </div>
-          <div class="card-body">
-            <table class="table display status responsive" width="100%">
-              <thead>
-                <tr>
-                  <th class="all" width="1%">ID Ticket</th>
-                  <th class="all">Konsumen</th>
-                  <th>Produk</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $no = 1;
-                foreach ($ticket_records->result() as $tickets) {
-                  if ($tickets->id_lead != NULL) {
-                    ?>
-                <tr class="clickable-row" data-href="<?= base_url('status/detail/lead_management/id/' . $tickets->id_lead) ?>">
-                  <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
-                  <td><?= $tickets->nama_konsumen_lead_management ?></td>
-                  <td><?= $tickets->produk ?></td>
-                </tr>
-                <?php
-                  }
-                } ?>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
   </section>
 </div>

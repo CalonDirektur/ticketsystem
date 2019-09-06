@@ -77,6 +77,15 @@ class Data_m extends CI_Model
         return $query;
     }
 
+    public function cek_vendor($table, $where)
+    {
+        $this->db->from($table);
+        $this->db->where($where);
+
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_comment($id_user = NULL)
     {
         $this->db->from("tb_comment");

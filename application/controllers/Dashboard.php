@@ -128,7 +128,7 @@ class Dashboard extends CI_Controller
 			//Total Completed
 			$total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
 		} else if ($this->session->userdata('level') == 4) {
-			$total_pending = $total_pending_nst + $total_pending_lead_management;
+			$total_pending = $total_pending_nst;
 			//Total Approved
 			$total_approved = $total_approved_nst;
 			//Total Rejected
@@ -178,8 +178,8 @@ class Dashboard extends CI_Controller
 		$this->template->load('template2', 'dashboard', $data);
 	}
 
-	public function template()
+	public function stats()
 	{
-		$this->template->load('template2', 'dashboard');
+		$this->template->load('template2', 'stats');
 	}
 }

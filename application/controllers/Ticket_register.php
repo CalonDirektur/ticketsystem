@@ -38,11 +38,13 @@ class Ticket_register extends CI_Controller
 	{
 
 		$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+		$id_user_tickets = '= ' . $this->fungsi->user_login()->id_cabang;
 		$approval_tickets = 'IS NOT NULL';
 
 		// Mengambil list cabang2 
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
+		$data['get_tickets_head_syariah'] = $this->data_m->get_tickets_head_syariah($id_user_tickets, $approval_tickets);
 		$this->template->load('template2', 'lead_management/form_lead_management', $data);
 	}
 
@@ -180,9 +182,7 @@ class Ticket_register extends CI_Controller
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				'id_cabang' => $post['cabang'],
-				'nama_vendor' => $post['nama_vendor'],
-				'jenis_vendor' => $post['jenis_vendor'],
+
 				'jenis_pekerjaan' => $post['jenis_pekerjaan'],
 				'bagian_bangunan' => $post['bagian_bangunan'],
 				'luas_bangunan' => $post['luas_bangunan'],
@@ -193,8 +193,15 @@ class Ticket_register extends CI_Controller
 
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
+
 				'id_user' => $post['id_user'],
-				'id_approval' => 0,
+				'id_cabang' => $post['cabang'],
+
+				'nama_vendor' => $post['nama_vendor'],
+				'jenis_vendor' => $post['jenis_vendor'],
+				'id_vendor' => $post['id_vendor_renovasi'],
+
+				'id_approval' => 0
 			];
 
 			//Konfigurasi Upload
@@ -205,6 +212,7 @@ class Ticket_register extends CI_Controller
 			$config['max_height']           = 0;
 			$this->load->library('upload', $config);
 
+			// Proses Upload File 1 - 10
 			for ($i = 1; $i <= 10; $i++) {
 				if (!$this->upload->do_upload('upload_file' . $i)) {
 					$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
@@ -213,24 +221,31 @@ class Ticket_register extends CI_Controller
 				}
 			}
 
+			// Memasukkan data vendor ke dalam tb_vendor jika id vendor tidak diisi (tidak memilih auto select)
+			if (!isset($post['id_vendor_renovasi']) || $post['id_vendor_renovasi'] == '' || $post['id_vendor_renovasi'] == NULL) {
+				$data_vendor = [
+					'nama_vendor' => $post['nama_vendor'],
+					'jenis_vendor' => $post['jenis_vendor'],
+					'kategori_vendor' => 'Renovasi Bangunan'
+				];
+				$data['id_vendor'] = $this->data_m->add('tb_vendor', $data_vendor); // Memasukkan data vendor ke dalam tb_vendor jika nama vendor belum ada di tb_vendor
+			}
+
+			//Memasukkan data my hajat renovasi ke dalam tabel tb_my_hajat_renovasi			
 			$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
 
-			$data2 = [
-				'id_renovasi' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_my_hajat', $data2);
-
-			$data3 = [
+			$data_tiket = [
 				'id_renovasi' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
 
-			$success = $this->data_m->add('tb_ticket', $data3);
+			//Memasukkan data my hajat renovasi ke dalam antrian tiket request support
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
+
+			// Jika data berhasil disubmit/masuk ke database maka tampil pesan berhasil di bagian dashboard
 			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 				redirect('/');
@@ -245,16 +260,22 @@ class Ticket_register extends CI_Controller
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				'id_cabang' => $post['cabang'],
-				'nama_pemilik' => $post['nama_pemilik'],
-				'jenis_pemilik' => $post['jenis_pemilik'],
+
 				'hubungan_pemohon' => $post['hubungan_pemohon'],
 				'luas_panjang' => $post['luas_panjang'],
 				'biaya_tahunan' => $post['biaya_pertahun'],
 				'informasi_tambahan' => $post['informasi_tambahan_sewa'],
+
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
+
+				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user'],
+
+				'id_vendor' => $post['id_vendor_sewa'],
+				'nama_pemilik' => $post['nama_pemilik'],
+				'jenis_pemilik' => $post['jenis_pemilik'],
+
 				'id_approval' => 0
 			];
 
@@ -274,6 +295,16 @@ class Ticket_register extends CI_Controller
 				}
 			}
 
+			// Memasukkan data vendor ke dalam tb_vendor jika id vendor tidak diisi (tidak memilih auto select)
+			if (!isset($post['id_vendor_sewa']) || $post['id_vendor_sewa'] == '' || $post['id_vendor_sewa'] == NULL) {
+				$data_vendor = [
+					'nama_vendor' => $post['nama_vendor'],
+					'jenis_vendor' => $post['jenis_vendor'],
+					'kategori_vendor' => 'Sewa Bangunan'
+				];
+				$data['id_vendor'] = $this->data_m->add('tb_vendor', $data_vendor); // Memasukkan data vendor ke dalam tb_vendor jika nama vendor belum ada di tb_vendor
+			}
+
 			//mmendapatkan id insert terakhir
 			$id = $this->data_m->add('tb_my_hajat_sewa', $data);
 
@@ -284,12 +315,12 @@ class Ticket_register extends CI_Controller
 			];
 			$this->data_m->add('tb_my_hajat', $data2);
 
-			$data3 = [
+			$data_tiket = [
 				'id_sewa' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data3);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -305,17 +336,23 @@ class Ticket_register extends CI_Controller
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				'id_cabang' => $post['cabang'],
-				'nama_wo' => $post['nama_wo'],
-				'jenis_wo' => $post['jenis_wo'],
+
 				'lama_berdiri' => $post['lama_berdiri'],
 				'jumlah_biaya' => $post['jumlah_biaya'],
 				'jumlah_undangan' => $post['jumlah_undangan'],
 				'akun_sosmed' => $post['akun_sosmed'],
 				'informasi_tambahan' => $post['informasi_tambahan_wedding'],
+
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
+
 				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+
+				'id_vendor' => $post['id_vendor_wo'],
+				'nama_wo' => $post['nama_wo'],
+				'jenis_wo' => $post['jenis_wo'],
+
 				'id_approval' => 0
 			];
 
@@ -333,6 +370,16 @@ class Ticket_register extends CI_Controller
 				} else {
 					$data['upload_file' . $i] = $this->upload->data('file_name');
 				}
+			}
+
+			// Memasukkan data vendor ke dalam tb_vendor jika id vendor tidak diisi (tidak memilih auto select)
+			if (!isset($post['id_vendor_wo']) || $post['id_vendor_wo'] == '' || $post['id_vendor_wo'] == NULL) {
+				$data_vendor = [
+					'nama_vendor' => $post['nama_vendor'],
+					'jenis_vendor' => $post['jenis_vendor'],
+					'kategori_vendor' => 'My Hajat Wedding'
+				];
+				$data['id_vendor'] = $this->data_m->add('tb_vendor', $data_vendor); // Memasukkan data vendor ke dalam tb_vendor jika nama vendor belum ada di tb_vendor
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_wedding', $data);
@@ -366,8 +413,7 @@ class Ticket_register extends CI_Controller
 			$data = [
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
-				'id_cabang' => $post['cabang'],
-				'nama_franchise' => $post['nama_franchise'],
+
 				'jumlah_cabang' => $post['jumlah_cabang'],
 				'jenis_franchise' => $post['jenis_franchise'],
 				'tahun_berdiri_franchise' => $post['tahun_berdiri_franchise'],
@@ -375,9 +421,16 @@ class Ticket_register extends CI_Controller
 				'jangka_waktu_franchise' => $post['jangka_waktu_franchise'],
 				'akun_sosmed_website' => $post['akun_sosmed_website'],
 				'informasi_tambahan' => $post['informasi_tambahan_franchise'],
+
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
+
 				'id_user' => $post['id_user'],
+				'id_cabang' => $post['cabang'],
+
+				'id_vendor' => $post['id_vendor_franchise'],
+				'nama_franchise' => $post['nama_franchise'],
+
 				'id_approval' => 0
 			];
 
@@ -395,6 +448,16 @@ class Ticket_register extends CI_Controller
 				} else {
 					$data['upload_file' . $i] = $this->upload->data('file_name');
 				}
+			}
+
+			// Memasukkan data vendor ke dalam tb_vendor jika id vendor tidak diisi (tidak memilih auto select)
+			if (!isset($post['id_vendor_franchise']) || $post['id_vendor_franchise'] == '' || $post['id_vendor_franchise'] == NULL) {
+				$data_vendor = [
+					'nama_vendor' => $post['nama_vendor'],
+					'jenis_vendor' => $post['jenis_vendor'],
+					'kategori_vendor' => 'My Hajat Franchise'
+				];
+				$data['id_vendor'] = $this->data_m->add('tb_vendor', $data_vendor); // Memasukkan data vendor ke dalam tb_vendor jika nama vendor belum ada di tb_vendor
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_franchise', $data);
@@ -429,14 +492,20 @@ class Ticket_register extends CI_Controller
 			$data = [
 				'nama_konsumen' 		=> $post['nama_konsumen'],
 				'jenis_konsumen' 		=> $post['jenis_konsumen'],
-				'id_cabang' 			=> $post['cabang'],
-				'nama_penyedia_jasa' 	=> $post['nama_penyedia_jasa'],
-				'jenis_penyedia_jasa' 	=> $post['jenis_penyedia_jasa'],
+
 				'nilai_pembiayaan' 		=> $post['nilai_pembiayaan_lainnya'],
 				'informasi_tambahan' 	=> $post['informasi_tambahan_lainnya'],
+
 				'date_created' 			=> date('Y-m-d H:i:s'),
 				'date_modified'			=> date('Y-m-d H:i:s'),
+
+				'id_cabang' 			=> $post['cabang'],
 				'id_user' 				=> $post['id_user'],
+
+				'id_vendor' 			=> $post['id_vendor_lainnya'],
+				'nama_penyedia_jasa' 	=> $post['nama_penyedia_jasa'],
+				'jenis_penyedia_jasa' 	=> $post['jenis_penyedia_jasa'],
+
 				'id_approval' 			=> 0
 			];
 
@@ -454,6 +523,16 @@ class Ticket_register extends CI_Controller
 				} else {
 					$data['upload_file' . $i] = $this->upload->data('file_name');
 				}
+			}
+
+			// Memasukkan data vendor ke dalam tb_vendor jika id vendor tidak diisi (tidak memilih auto select)
+			if (!isset($post['id_vendor_lainnya']) || $post['id_vendor_lainnya'] == '' || $post['id_vendor_lainnya'] == NULL) {
+				$data_vendor = [
+					'nama_vendor' => $post['nama_vendor'],
+					'jenis_vendor' => $post['jenis_vendor'],
+					'kategori_vendor' => 'My Hajat Wedding'
+				];
+				$data['id_vendor'] = $this->data_m->add('tb_vendor', $data_vendor); // Memasukkan data vendor ke dalam tb_vendor jika nama vendor belum ada di tb_vendor
 			}
 
 			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
@@ -590,6 +669,7 @@ class Ticket_register extends CI_Controller
 
 				$data = [
 					'lead_id' 				=> $post['lead_id'],
+					'no_ktp' 				=> $post['no_ktp'],
 					'asal_leads' 			=> $post['asal_leads'],
 					'cabang_tujuan'			=> $post['cabang_tujuan'],
 					'surveyor'				=> $post['surveyor'],
@@ -951,8 +1031,10 @@ class Ticket_register extends CI_Controller
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
 
+				// 'id_vendor' => $post['id_vendor_franchise'],
 				'nama_penyedia' => $post['nama_penyedia_bangunan'],
 				'jenis_penyedia' => $post['jenis_penyedia_bangunan'],
+
 				'tujuan_pembelian' => $post['tujuan_pembelian_bangunan'],
 				'lokasi_pembangunan' => $post['lokasi_pembangunan'],
 				'luas_bangunan' => $post['luas_bangunan_bangunan'],
@@ -962,6 +1044,7 @@ class Ticket_register extends CI_Controller
 
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
+
 				'id_user' => $post['id_user'],
 				'id_cabang' => $post['cabang'],
 				'id_approval' => 0,
@@ -1707,27 +1790,28 @@ class Ticket_register extends CI_Controller
 
 			$data = [
 				'lead_id' 				=> $post['lead_id'],
+				'no_ktp' 				=> $post['no_ktp'],
 				'asal_leads' 			=> $post['asal_leads'],
 				'cabang_tujuan'			=> $post['cabang_tujuan'],
 				'surveyor'				=> $post['surveyor'],
 				'ttd_pic'				=> $post['ttd_pic'],
 				'nama_konsumen'			=> $post['nama_konsumen'],
-
 				// 'id_cabang' 			=> $post['cabang'],
 				'sumber_lead' 			=> $post['sumber_lead'],
 				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
-				'produk' 				=> $post['produk'],
 				'object_price' 			=> $post['object_price'],
-				'tahap_reject' 			=> $post['tahap_reject'],
-				'tipe_pefindo' 			=> $post['tipe_pefindo'],
-				'max_past_due' 			=> $post['max_past_due'],
-				'dsr' 					=> $post['dsr'],
-				'status' 				=> $post['status'],
-				'sla_branch' 			=> $post['sla_branch'],
-				'cabang_survey' 		=> $post['cabang_survey'],
-				'informasi_tambahan'	=> $post['informasi_tambahan'],
+				'produk' 				=> $post['produk'],
+
+				// 'tahap_reject' 			=> $post['tahap_reject'],
+				// 'tipe_pefindo' 			=> $post['tipe_pefindo'],
+				// 'max_past_due' 			=> $post['max_past_due'],
+				// 'dsr' 					=> $post['dsr'],
+				// 'status' 				=> $post['status'],
+				// 'sla_branch' 			=> $post['sla_branch'],
+				// 'cabang_survey' 		=> $post['cabang_survey'],
+				// 'informasi_tambahan'	=> $post['informasi_tambahan'],
 				'date_modified' 		=> date('Y-m-d H:i:s'),
-				'id_approval'			=> 3
+				// 'id_approval'			=> 3
 			];
 
 			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
@@ -2603,24 +2687,25 @@ class Ticket_register extends CI_Controller
 
 			$data = [
 				'lead_id'                 => $post['lead_id'],
+				'no_ktp' 				=> $post['no_ktp'],
 				'asal_leads' 			=> $post['asal_leads'],
 				'cabang_tujuan'			=> $post['cabang_tujuan'],
 				'surveyor'				=> $post['surveyor'],
 				'ttd_pic'				=> $post['ttd_pic'],
 				'nama_konsumen'            => $post['nama_konsumen'],
 				// 'id_cabang' 			=> $post['cabang'],
-				'sumber_lead'             => $post['sumber_lead'],
-				'nama_pemberi_lead'     => $post['nama_pemberi_lead'],
-				'produk'                 => $post['produk'],
-				'object_price'             => $post['object_price'],
-				'tahap_reject'             => $post['tahap_reject'],
-				'tipe_pefindo'             => $post['tipe_pefindo'],
-				'max_past_due'             => $post['max_past_due'],
-				'dsr'                     => $post['dsr'],
-				'status'                 => $post['status'],
-				'sla_branch'             => $post['sla_branch'],
-				'cabang_survey'         => $post['cabang_survey'],
-				'informasi_tambahan'    => $post['informasi_tambahan'],
+				// 'sumber_lead'             => $post['sumber_lead'],
+				// 'nama_pemberi_lead'     => $post['nama_pemberi_lead'],
+				// 'produk'                 => $post['produk'],
+				// 'object_price'             => $post['object_price'],
+				// 'tahap_reject'             => $post['tahap_reject'],
+				// 'tipe_pefindo'             => $post['tipe_pefindo'],
+				// 'max_past_due'             => $post['max_past_due'],
+				// 'dsr'                     => $post['dsr'],
+				// 'status'                 => $post['status'],
+				// 'sla_branch'             => $post['sla_branch'],
+				// 'cabang_survey'         => $post['cabang_survey'],
+				// 'informasi_tambahan'    => $post['informasi_tambahan'],
 				'date_modified'         => date('Y-m-d H:i:s'),
 			];
 

@@ -16,7 +16,17 @@ $(document).ready(function () {
 	$('.cariTiket').on("keyup click", function () {
 		oTable.search($(this).val()).draw();
 		tableAdmin.search($(this).val()).draw();
+		//menyimpan keyword cari tiket
+		localStorage.setItem("cariTiket", $(this).val());
 	});
+	//jika keyword cari sudah diketik, maka keyword cari tiket tetap tersimpan walaupun sudah direfresh
+	if (localStorage.getItem("cariTiket") != '') {
+		$("#cariTiket").val(localStorage.getItem("cariTiket"));
+	}
+
+	$("#logout").click(function () {
+		localStorage.removeItem("cariTiket");
+	})
 
 	// Combobox sort by tiket di dashboard
 	$('#statusTiket').change(function () {
@@ -172,10 +182,13 @@ $(document).ready(function () {
 	// 	}
 	// });
 
-	$("#table-user").on('change', '#jabatan', function () {
-		var value = $("#jabatan option:selected").val();
+
+	// Jika jabatan bukan CMS maka level di set ke head syariah atau manager syariah
+	$("#table-user").on('change', '.jabatan', function () {
+		// var value = $(".jabatan option:selected").val();
+		var value = $(this).val();
 		var id_user = $(this).attr('data-jabatan');
-		alert(value + " " + id_user);
+		// alert(value + " " + id_user);
 		if (value == 'CMS') {
 			$("[data-level='" + id_user + "']").val("1");
 		} else {
@@ -266,7 +279,7 @@ $(document).ready(function () {
 	$("#submit-produk").on("submit", function () {
 		$("#submit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... ');
 		$("#submit").css("pointer-events", "none")
-	})
+	});
 
 
 	// Script untuk input produk 
@@ -393,5 +406,7 @@ $(document).ready(function () {
 		$(".validasi").removeAttr("required");
 		$(".myfaedah-lainnya-required").attr("required", "required");
 	}
+
+
 
 })
