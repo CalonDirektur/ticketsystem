@@ -13,7 +13,6 @@ class Status extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Aksi_Admin2_m');
         $this->load->model('data_m');
         $this->load->model('comment_m');
 
@@ -40,11 +39,11 @@ class Status extends CI_Controller
     public function list($produk, $kategori = NULL, $id = NULL)
     {
         if ($produk == "lead_management_list") {
-            // Menampilkan data untuk CMS
+            // Menampilkan data lead management untuk CMS
             if ($this->fungsi->user_login()->level == 1) {
                 $data['data'] = $this->data_m->get('tb_lead_management', 'list', $this->id_user);
             }
-            // Menampilkan data untuk Head Syariah/Manager
+            // Menampilkan data lead management untuk Head Syariah/Manager
             else if ($this->fungsi->user_login()->level == 6) {
                 $data['data'] = $this->data_m->query("SELECT * 
                                                     FROM 
@@ -61,105 +60,41 @@ class Status extends CI_Controller
                                                     INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
                                                     ");
             }
-            $this->template->load('template2', 'lead_management/lead_management_list', $data);
+            $this->template->load('template2', 'request_support_list/lead_management_list', $data);
         }
 
         if ($produk == "nst_list") {
-            $data['data'] = $this->data_m->query("SELECT * 
-                                                 FROM 
+            // Menampilkan data lead management untuk CMS
+            if ($this->fungsi->user_login()->level == 1) {
+                $data['data'] = $this->data_m->get('tb_nst', 'list', $this->id_user);
+            }
+            // Menampilkan data lead management untuk Head Syariah/Manager
+            else if ($this->fungsi->user_login()->level == 6) {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                    FROM 
                                                 tb_nst as A
-                                                INNER JOIN tb_ticket as B
-                                                ON A.id_nst = B.id_nst 
+                                                INNER JOIN tb_ticket as B ON B.id_nst = A.id_nst
+                                                INNER JOIN user as C ON C.id_user = A.id_user
+                                                INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
                                                 WHERE A.id_cabang " . $this->id_cabang . "
                                                 ");
-            $this->template->load('template2', 'nst/nst_list', $data);
-        }
-
-        ////////////////////////////// MY TA'LIM /////////////////////////////////////////
-        //menampilkan status tiket produk mytalim yang telah COMPLETED oleh dan admin 2
-        if ($produk == 'mytalim' && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_talim', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_talim/my_talim_list', $data);
-        }
-
-        ////////////////////////////// MY HAJAT /////////////////////////////////////////
-        if ($produk == 'myhajat' && $id == NULL) {
-            $data['data'] = $this->data_m->get_myhajat($this->id_user_myhajat, '= 3');
-            $this->template->load('template2', 'my_hajat/my_hajat_list', $data);
-        }
-        ///////////////// RENOVASI //////////////////
-        //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori renovasi jika $id tidak diisi
-        if ($produk == 'myhajat' && $kategori == 'renovasi' && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_hajat_renovasi', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_hajat/renovasi/my_hajat_renovasi_list', $data);
-        }
-
-        ///////////////// SEWA //////////////////
-        //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori sewa jika $id tidak diisi
-        if ($produk == 'myhajat' && $kategori == 'sewa' && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_hajat_sewa', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_hajat/sewa/my_hajat_sewa_list', $data);
-        }
-
-        ///////////////// WEDDING //////////////////
-        //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori wedding jika $id tidak diisi
-        if ($produk == 'myhajat' && $kategori == 'wedding' && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_hajat_wedding', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_hajat/wedding/my_hajat_wedding_list', $data);
-        }
-
-        ///////////////// FRANCHISE //////////////////
-        //Menampilkan semua ticket yang COMPLETED pada produk my hajat kategori franchise jika $id tidak diisi
-        if ($produk == 'myhajat' && $kategori == 'franchise' && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_hajat_franchise', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_hajat/franchise/my_hajat_franchise_list', $data);
-        }
-
-        ///////////////// LAINNYA //////////////////
-        //Menampilkan semua ticket COMPLETED pada produk my hajat kategori lainnya jika $id tidak diisi
-        if ($produk == 'myhajat' && $kategori == 'lainnya' && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_hajat_lainnya', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_hajat/franchise/my_hajat_lainnya_list', $data);
-        }
-
-        ////////////////////////////// MY IHRAM /////////////////////////////////////////
-
-        //menampilkan status tiket produk Ihram yang telah diapprove oleh admin 1 dan admin 2
-        if ($produk == 'myihram' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_ihram', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_ihram/my_ihram_list', $data);
-        }
-
-        ////////////////////////////// MY Safar /////////////////////////////////////////
-
-        //menampilkan status tiket produk Safar yang telah diapprove oleh admin 1 dan admin 2
-        if ($produk == 'mysafar' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_safar', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'my_safar/my_safar_list', $data);
-        }
-
-        ////////////////////////////// Aktivasi Agent /////////////////////////////////////////
-        if ($produk == 'aktivasi_agent' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_aktivasi_agent', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'aktivasi_agent/aktivasi_agent_list', $data);
-        }
-
-        ////////////////////////////// Mitra Kerja sama /////////////////////////////////////////
-        if ($produk == 'mitra_kerjasama' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_mitra_kerjasama', 'list', $this->id_user)->result();
-            $this->template->load('template2', 'mitra_kerjasama/mitra_kerjasama_list', $data);
-        }
-
-        ////////////////////////////// My Faedah /////////////////////////////////////////
-        if ($produk == 'myfaedah' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_faedah', 'list ', $this->id_user)->result();
-            $this->template->load('template2', 'my_faedah/my_faedah_list', $data);
-        }
-
-        ////////////////////////////// My cars /////////////////////////////////////////
-        if ($produk == 'mycars' && $kategori == NULL && $id == NULL) {
-            $data['data'] = $this->data_m->get('tb_my_cars', 'list ', $this->id_user)->result();
-            $this->template->load('template2', 'my_cars/my_cars_list', $data);
+            } else {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                        FROM 
+                                                    tb_nst as A
+                                                    INNER JOIN tb_ticket as B ON B.id_nst = A.id_nst
+                                                    INNER JOIN user as C ON C.id_user = B.id_user
+                                                    INNER JOIN tb_cabang as D ON D.id_cabang = B.id_cabang
+            ");
+            }
+            // $data['data'] = $this->data_m->query("SELECT * 
+            //                                      FROM 
+            //                                     tb_nst as A
+            //                                     INNER JOIN tb_ticket as B
+            //                                     ON A.id_nst = B.id_nst 
+            //                                     WHERE A.id_cabang " . $this->id_cabang . "
+            //                                     ");
+            $this->template->load('template2', 'request_support_list/nst_list', $data);
         }
     }
 
@@ -182,7 +117,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_talim/detail_status_my_talim', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_talim', $data);
         }
 
         //Menampilkan ticket yang COMPLETED pada produk my hajat dengan $id tertentu
@@ -196,7 +131,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_hajat/renovasi/detail_status_my_hajat_renovasi', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_renovasi', $data);
         }
 
         //Menampilkan halaman ticket yang COMPLETED pada produk my hajat kategori sewa dengan $id tertentu
@@ -211,7 +146,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_hajat/sewa/detail_status_my_hajat_sewa', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_sewa', $data);
         }
 
         //Menampilkan ticket yang COMPLETED pada produk my hajat kategori wedding dengan $id tertentu
@@ -226,7 +161,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_hajat/wedding/detail_status_my_hajat_wedding', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_wedding', $data);
         }
 
         //Menampilkan ticket yang COMPLETED pada produk my hajat kategori franchise dengan $id tertentu
@@ -241,7 +176,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_hajat/franchise/detail_status_my_hajat_franchise', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_franchise', $data);
         }
 
         //Menampilkan ticket COMPLETED pada produk my hajat kategori franchise dengan $id tertentu
@@ -256,7 +191,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_hajat/lainnya/detail_status_my_hajat_lainnya', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_lainnya', $data);
         }
 
         //Menampilkan ticket apprvoed pada produk Ihram dengan $id tertentu
@@ -271,7 +206,7 @@ class Status extends CI_Controller
 
             //ketika detail status request support di klik maka mark as read notifikasinya            
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_ihram/detail_status_my_ihram', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_ihram', $data);
         }
         //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
         if ($produk == 'mysafar' && $kategori != NULL && $id != NULL) {
@@ -284,7 +219,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_safar/detail_status_my_safar', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_safar', $data);
         }
         if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_agent' => $id, 'id_approval' => 3])->row();
@@ -296,7 +231,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'aktivasi_agent/detail_status_aktivasi_agent', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_aktivasi_agent', $data);
         }
         if ($produk == 'nst' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_nst', ['id_nst' => $id, 'id_approval' => 3])->row();
@@ -308,7 +243,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'nst/detail_status_nst', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_nst', $data);
         }
 
         // Detail Lead Management 
@@ -332,7 +267,7 @@ class Status extends CI_Controller
 
             //ketika detail status request support di klik maka mark as read notifikasinya            
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'lead_management/detail_status_lead_management', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_lead_management', $data);
         }
 
         if ($produk == 'mitra_kerjasama' && $kategori != NULL && $id != NULL) {
@@ -345,7 +280,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'mitra_kerjasama/detail_status_mitra_kerjasama', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_mitra_kerjasama', $data);
         }
 
         if ($produk == 'myfaedah' && $kategori == 'id' && $id != NULL) {
@@ -358,7 +293,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_faedah/detail_status_my_faedah', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_faedah', $data);
         }
 
         if ($produk == 'myfaedah' && $kategori == 'bangunan' && $id != NULL) {
@@ -371,7 +306,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_bangunan', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_bangunan', $data);
         }
 
         if ($produk == 'myfaedah' && $kategori == 'qurban' && $id != NULL) {
@@ -384,7 +319,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_qurban', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_qurban', $data);
         }
 
         if ($produk == 'myfaedah' && $kategori == 'elektronik' && $id != NULL) {
@@ -397,7 +332,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_elektronik', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_elektronik', $data);
         }
 
         if ($produk == 'myfaedah' && $kategori == 'modal' && $id != NULL) {
@@ -410,7 +345,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_modal', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_modal', $data);
         }
 
         if ($produk == 'myfaedah' && $kategori == 'lainnya' && $id != NULL) {
@@ -423,7 +358,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_faedah/detail_status_my_faedah_lainnya', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_lainnya', $data);
         }
 
         if ($produk == 'mycars' && $kategori != NULL && $id != NULL) {
@@ -436,7 +371,7 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
-            $this->template->load('template2', 'my_cars/detail_status_my_cars', $data);
+            $this->template->load('template2', 'request_support_detail/detail_status_my_cars', $data);
         }
     }
 }

@@ -15,11 +15,52 @@ class Data_json extends CI_Controller
         echo json_encode($data->result());
     }
 
-    public function get_vendor()
+    public function get_vendor_myhajat()
     {
         // $data = $this->data_m->get('tb_vendor');
         $keyword = $_GET['term'];
-        $query = $this->data_m->query("SELECT * FROM tb_vendor WHERE nama_vendor LIKE '%$keyword%' ORDER BY nama_vendor ASC");
+
+        $query = $this->data_m->query(
+            "SELECT * 
+            FROM 
+            tb_vendor
+        WHERE nama_vendor LIKE '%$keyword%' AND
+        (jenis_vendor = 'Perorangan'
+        OR jenis_vendor = 'Perusahaan/Badan Usaha'
+        OR jenis_vendor = 'Badan Usaha')
+        GROUP BY nama_vendor
+        ORDER BY nama_vendor ASC"
+        );
+
+        $output = [];
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $vendor) {
+                $data['id'] = $vendor['id_vendor'];
+                $data['value'] = $vendor['nama_vendor'];
+                $data['jenis_vendor'] = $vendor['jenis_vendor'];
+                array_push($output, $data);
+            }
+            echo json_encode($output);
+        }
+    }
+
+    public function get_vendor_myfaedah()
+    {
+        // $data = $this->data_m->get('tb_vendor');
+        $keyword = $_GET['term'];
+
+        $query = $this->data_m->query("SELECT *
+        FROM 
+            tb_vendor
+        WHERE nama_vendor
+        LIKE '%$keyword%' AND 
+        (jenis_vendor = 'Authorized Distributor'
+        OR jenis_vendor = 'Toko/Agen'
+        OR jenis_vendor = 'Penjual Perorangan'
+        OR jenis_vendor = 'Modern Store/Supermarket')
+        GROUP BY nama_vendor
+        ORDER BY nama_vendor ASC");
+
         $output = [];
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $vendor) {

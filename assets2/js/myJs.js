@@ -161,26 +161,8 @@ $(document).ready(function () {
 		$("tr.clickable-row").not("tr > td.not-clickable").css('cursor', 'pointer');
 		window.location = $(this).data("href");
 	})
-	// $(".clickable-row").not("tr td:first-child").click(function () {
-	// 	window.location = $(this).data("href");
-	// });
+
 	$("[data-headoffice]").hide();
-	// $("#table-user").on("change", "#level", function () {
-	// 	var value = $("#level option:selected").val();
-	// 	var id_user = $(this).attr("data-iduser");
-	// 	alert(id_user);
-	// 	if (value != 1) {
-	// 		$("[name='id_cabang[" + id_user + "]']").val("46");
-	// 		$("[name='id_cabang[" + id_user + "]']").removeAttr("disabled");
-	// 		$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "line-through");
-	// 		$("[data-headoffice='head_office[" + id_user + "]']").fadeIn();
-	// 	} else {
-	// 		$("[name='id_cabang[" + id_user + "]']").attr("disabled", "disabled")
-	// 		$("[name='id_cabang[" + id_user + "]']").val("");
-	// 		$("[data-namacabang='nama_cabang[" + id_user + "]']").css("text-decoration", "");
-	// 		$("[data-headoffice='head_office[" + id_user + "]']").fadeOut();
-	// 	}
-	// });
 
 
 	// Jika jabatan bukan CMS maka level di set ke head syariah atau manager syariah
@@ -194,7 +176,7 @@ $(document).ready(function () {
 		} else {
 			$("[data-level='" + id_user + "']").val("6");
 		}
-	})
+	});
 
 	$(".form-check-input").on("click, change", function () {
 		if ($("#others").is(":checked")) {
@@ -202,7 +184,7 @@ $(document).ready(function () {
 		} else {
 			$("#other_jenis_barang_elektronik").attr("disabled", "disabled").removeAttr("required").val("");
 		}
-	})
+	});
 
 	//Script untuk form lead management user, ketika memilih asal leads
 	$(".cross-branch-div").hide();
@@ -279,6 +261,11 @@ $(document).ready(function () {
 	$("#submit-produk").on("submit", function () {
 		$("#submit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... ');
 		$("#submit").css("pointer-events", "none")
+	});
+
+	$("#accordion").accordion({
+		collapsible: true,
+		active: false
 	});
 
 

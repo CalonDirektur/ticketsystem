@@ -272,8 +272,8 @@
                 </a>
                 <div class="collapse" id="faq">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Input Pertanyaan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= site_url('faq/input_pertanyaan') ?>">Input Pertanyaan</a></li>
                   </ul>
                 </div>
               </li>
@@ -315,26 +315,17 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
+                <a class="nav-link" data-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
                   <i class="icon-disc menu-icon"></i>
-                  <span class="menu-title">Request Ticket</span>
+                  <span class="menu-title">Bantuan</span>
                   <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="daftar-tiket">
+                <div class="collapse" id="faq">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Input Produk</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Aktivasi Agent</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">NST</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_mitra_kerjasama') ?>">Mitra Kerja sama</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= site_url('faq/input_pertanyaan') ?>">Pesan</a></li>
                   </ul>
                 </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="icon-disc menu-icon"></i>
-                  <span class="menu-title">FAQ</span>
-                </a>
               </li>
             <?php } ?>
 
@@ -376,7 +367,7 @@
                 </a>
                 <div class="collapse" id="faq">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Input Pertanyaan</a></li>
                   </ul>
                 </div>
@@ -433,28 +424,35 @@
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-  <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
-  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script> -->
+  <!-- <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script> -->
+  <script src="<?= base_url('assets2/plugin/ckeditor/ckeditor.js') ?>"></script>
   <script>
     $(document).ready(function() {
       // Script untuk plugin CKEditor di halaman FAQ
       CKEDITOR.replace('content', {
         height: 500,
-        filebrowserUploadUrl: "http://localhost/helpdesk/faq/upload",
+        filebrowserUploadUrl: "<?= base_url('faq/upload') ?>",
         filebrowserUploadMethod: 'form'
       });
 
+      $("img").addClass("img-fluid");
+
       // Menyembunyikan tombol reset input text nama vendor
       $(".clear-nama-vendor").hide();
+      // if ($(".nama_vendor_myhajat, .nama_vendor_myfaedah").val('') != '') {
+      $(".clear-nama-vendor").show();
+      // }
+      // alert($(".nama_vendor_myhajat, .nama_vendor_myfaedah").val(''))
       // Smart search cari nama vendor
-      $(".nama_vendor").autocomplete({
+      // Memasang form autocomplete untuk form input produk my hajat yang terhubung ke MYSQL
+      $(".nama_vendor_myhajat").autocomplete({
         delay: 0,
-        source: "<?= base_url('data_json/get_vendor') ?>",
+        source: "<?= base_url('data_json/get_vendor_myhajat') ?>",
         select: function(event, ui) {
           // event.preventDefault();
           $(".id_vendor").val(ui.item.id);
           $(".clear-nama-vendor").show();
-          $(".nama_vendor").attr('readonly', 'readonly');
+          $(".nama_vendor_myhajat").attr('readonly', 'readonly');
 
           // Untuk pertanyaan vendor My Hajat
           if (ui.item.jenis_vendor == "Perorangan") {
@@ -466,6 +464,19 @@
             $(".badan_usaha").prop("checked", true);
             $("div.jenis-vendor").addClass('disable'); // ini untuk radio button jenis vendor my hajat
           }
+          console.log(ui.item.id);
+        }
+      });
+
+      // Memasang form autocomplete untuk form input produk my faedah yang terhubung ke MYSQL
+      $(".nama_vendor_myfaedah").autocomplete({
+        delay: 0,
+        source: "<?= base_url('data_json/get_vendor_myfaedah') ?>",
+        select: function(event, ui) {
+          // event.preventDefault();
+          $(".id_vendor").val(ui.item.id);
+          $(".clear-nama-vendor").show();
+          $(".nama_vendor_myfaedah").attr('readonly', 'readonly');
 
           // Untuk pertanyaan vendor My Faedah
           if (ui.item.jenis_vendor == "Toko/Agen") {
@@ -487,9 +498,9 @@
 
       // ketika tombol clear nama vendor di click, maka
       $(".clear-nama-vendor").on("click", function() {
-        $(".nama_vendor, .id_vendor, .jenis-penyedia").val('').removeAttr('readonly');
+        $(".nama_vendor_myfaedah, .nama_vendor_myhajat, .id_vendor, .jenis-penyedia").val('').removeAttr('readonly disabled');
         $("div.jenis-vendor, .jenis-penyedia").removeClass('disable');
-        $(".perorangan, .badan_usaha").prop("checked", false);
+        $(".perorangan, .badan_usaha").prop("checked", false).removeAttr('disabled');
         $(".clear-nama-vendor").hide();
       })
     })

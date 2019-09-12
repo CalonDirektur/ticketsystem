@@ -10,22 +10,17 @@
             </div>
             <div class="col-lg-8">
                 <?php
-                $no = 1;
-                foreach ($data->result() as $faq) {
-                    ?>
-                    <div class="card mt-2">
-                        <div class="card-header">
-                            <?= $no++ . '. ' . $faq->pertanyaan ?>
-                        </div>
-                        <div class="card-body">
-                            <?= $faq->jawaban ?>
-                        </div>
+                ?>
+                <div class="card p-2 mt-2 shadow-sm rounded">
+                    <h3><?= $faq->pertanyaan ?></h3>
+                    <div class="jawaban mt-2">
+                        <p><?= $faq->jawaban ?></p>
                     </div>
-                <?php } ?>
+                </div>
             </div>
-            <div class="col-lg-2">
+        </div>
+        <div class="col-lg-2">
 
-            </div>
         </div>
     </section>
 </div>
