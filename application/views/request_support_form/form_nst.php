@@ -7,7 +7,7 @@
   <!-- Main content -->
   <section class="content">
 
-    <form id="ticket_form" method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data">
+    <form id="ticket_form" method="post" action="<?= site_url('Ticket_register/add') ?>" enctype="multipart/form-data" autocomplete="off">
 
       <div class="row">
         <div class="col-lg-12">
@@ -25,26 +25,43 @@
               <!-- Lead ID -->
               <div class="form-group">
                 <?= form_error('lead_id') ?>
-                <label for="lead_id">Lead ID </label>
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" placeholder="201908SLOS123456" maxlength="16" value="<?= set_value('lead_id') ?>" required>
+                <label for="lead_id">Lead ID</label><br>
+                <div class="input-group">
+                  <input id="lead_id" name="lead_id" type="text" class="form-control lead_id" placeholder="201908SLOS123456" maxlength="16" required>
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-danger clear-lead-id">x</button>
+                  </div>
+                </div>
+              </div>
+              <!-- Requester -->
+              <div class="form-group">
+                <label for="nama_user">Requester</label>
+                <input id="nama_user" type="text" class="form-control" placeholder="Requester" readonly required>
+              </div>
+
+              <!-- Cabang -->
+              <div class="form-group">
+                <label for="nama_cabang">Cabang</label>
+                <input id="nama_cabang" type="text" class="form-control" placeholder="Cabang" readonly required>
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
                 <label for="nama_konsumen">Nama Konsumen </label>
-                <input required name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" value="<?= set_value('nama_konsumen') ?>" required>
+                <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" value="<?= set_value('nama_konsumen') ?>" readonly required>
               </div>
               <!-- Product -->
               <div class="form-group">
                 <label for="produk">Produk </label>
-                <select required name="produk" id="produk" class="form-control" required>
+                <select required name="produk" id="produk" class="form-control" disabled required>
                   <option disabled selected value="">- Pilih Produk -</option>
                   <option value="My Ihram">My Ihram</option>
                   <option value="My Safar">My Safar</option>
-                  <option value="My Ta'lim">My Ta'lim</option>
+                  <option value="My Talim">My Talim</option>
                   <option value="My Hajat">My Hajat</option>
                   <option value="My CarS">My CarS</option>
                   <option value="My Faedah">My Faedah</option>
                 </select>
+                <input id="nama_produk" type="hidden" name="produk">
               </div>
             </div>
           </div>
@@ -165,7 +182,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button type="submit" id="submit" class="btn btn-info pull-right" name="submit_nst">Kirim Data!</button>
+              <button type="submit" id="submit_nst" class="btn btn-info pull-right" name="submit_nst">Kirim Data!</button>
             </div>
           </div>
 

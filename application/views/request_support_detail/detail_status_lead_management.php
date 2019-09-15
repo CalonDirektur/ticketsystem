@@ -32,13 +32,13 @@
 							</div>
 							<!-- Lead ID -->
 							<div class="form-group">
-								<label for="lead_id">Lead ID</label>
-								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="lead_id" id="lead_id" value="<?= $data->lead_id ?>" readonly required>
+								<label for="leads_id">Lead ID</label>
+								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="lead_id" id="leads_id" value="<?= $data->lead_id ?>" readonly required>
 							</div>
 							<!-- No KTP -->
 							<div class="form-group">
 								<label for="lead_id">No KTP</label>
-								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="no_ktp" id="no_ktp" value="<?= $data->no_ktp ?>" readonly required>
+								<input type="number" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="no_ktp" id="no_ktp" maxlength="16" value="<?= $data->no_ktp ?>" readonly required>
 							</div>
 							<!-- Asal Leads -->
 							<div class="form-group">

@@ -39,49 +39,51 @@
                         </form>
                     </div>
                 </div>
-                <table class="table status dt-responsive">
-                    <thead>
-                        <tr>
-                            <th>ID Ticket</th>
-                            <th>Requester</th>
-                            <th>Cabang</th>
-                            <th>Lead ID</th>
-                            <th>Nama Konsumen</th>
-                            <th>Produk</th>
-                            <th>Ticket Status</th>
-                            <th class="all"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $no = 1;
-                        foreach ($data->result() as $d) {  ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered display status dt-responsive nowrap">
+                        <thead>
                             <tr>
-                                <td><?= $d->id_ticket ?></td>
-                                <td><?= $d->lead_id ?></td>
-                                <td><?= $d->name ?></td>
-                                <td><?= $d->nama_cabang ?></td>
-                                <td><?= $d->nama_konsumen ?></td>
-                                <td><?= $d->produk ?></td>
-                                <?php if ($d->id_approval == 0) { ?>
-                                    <td><label class="badge badge-secondary">Pending</span></td>
-                                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
-                                <?php } else if ($d->id_approval == 1) { ?>
-                                    <td><label class="badge badge-danger">Ditolak</span></td>
-                                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
-                                <?php } else if ($d->id_approval == 2) { ?>
-                                    <td><label class="badge badge-success">Disetujui</span></td>
-                                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
-                                <?php } else if ($d->id_approval == 3) { ?>
-                                    <td><label class="badge badge-primary">Selesai</label></td>
-                                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
-                                <?php } ?>
+                                <th class="all">ID Ticket</th>
+                                <th>Requester</th>
+                                <th class="none">Cabang</th>
+                                <th class="none">Lead ID</th>
+                                <th class="all">Nama Konsumen</th>
+                                <th class="all">Produk</th>
+                                <th class="all">Ticket Status</th>
+                                <th class="all"></th>
                             </tr>
-                        <?php
-                            $no++;
-                        } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            foreach ($data->result() as $d) {  ?>
+                                <tr>
+                                    <td><?= $d->id_ticket ?></td>
+                                    <td><?= $d->name ?></td>
+                                    <td><?= $d->nama_cabang ?></td>
+                                    <td><?= $d->lead_id ?></td>
+                                    <td><?= $d->nama_konsumen ?></td>
+                                    <td><?= $d->produk ?></td>
+                                    <?php if ($d->id_approval == 0) { ?>
+                                        <td><label class="badge badge-secondary">Pending</span></td>
+                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                                    <?php } else if ($d->id_approval == 1) { ?>
+                                        <td><label class="badge badge-danger">Ditolak</span></td>
+                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                                    <?php } else if ($d->id_approval == 2) { ?>
+                                        <td><label class="badge badge-success">Disetujui</span></td>
+                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                                    <?php } else if ($d->id_approval == 3) { ?>
+                                        <td><label class="badge badge-primary">Selesai</label></td>
+                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                                    <?php } ?>
+                                </tr>
+                            <?php
+                                $no++;
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

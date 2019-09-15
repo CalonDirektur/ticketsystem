@@ -1,18 +1,49 @@
 <?php
 class Data_json extends CI_Controller
 {
+
+    public $id_cabang;
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('data_m');
 
         date_default_timezone_set('Asia/Jakarta');
+
+        $this->id_cabang =  $this->fungsi->user_login()->id_cabang;
     }
 
-    public function get_lead_management()
+    public function get_lead_id()
     {
-        $data = $this->data_m->get('tb_lead_management');
-        echo json_encode($data->result());
+        // $data = $this->data_m->get('tb_vendor');
+        $keyword = $_GET['term'];
+
+        $query = $this->data_m->query(
+            "SELECT * 
+            FROM 
+                tb_lead_management
+            INNER JOIN user ON user.id_user = tb_lead_management.id_user
+            INNER JOIN tb_cabang ON tb_cabang.id_cabang = tb_lead_management.id_cabang
+            WHERE tb_lead_management.lead_id LIKE '%$keyword%' AND tb_lead_management.id_cabang = $this->id_cabang
+            ORDER BY lead_id ASC
+            LIMIT 5
+        "
+        );
+
+        $output = [];
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $vendor) {
+                $data['id'] = $vendor['id_lead'];
+                $data['value'] = $vendor['lead_id'];
+                $data['nama_konsumen'] = $vendor['nama_konsumen'];
+                $data['produk'] = $vendor['produk'];
+                $data['name'] = $vendor['name'];
+                $data['nama_cabang'] = $vendor['nama_cabang'];
+                array_push($output, $data);
+            }
+            echo json_encode($output);
+        }
     }
 
     public function get_vendor_myhajat()

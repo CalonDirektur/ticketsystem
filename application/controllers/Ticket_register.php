@@ -657,8 +657,10 @@ class Ticket_register extends CI_Controller
 					'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
 					'produk' 				=> $post['produk'],
 					'object_price' 			=> $post['object_price'],
+
 					'date_created' 			=> date('Y-m-d H:i:s'),
 					'date_modified' 		=> date('Y-m-d H:i:s'),
+
 					'id_user' 				=> $post['id_user'],
 					'id_approval'			=> 0
 				];
@@ -687,7 +689,7 @@ class Ticket_register extends CI_Controller
 
 				$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 				$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
-				$this->template->load('template2', 'lead_management/form_lead_management', $data);
+				$this->template->load('template2', 'request_support_form/form_lead_management', $data);
 			}
 		}
 
@@ -924,7 +926,7 @@ class Ticket_register extends CI_Controller
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
 
-				// 'id_vendor' => $post['id_vendor_franchise'],
+				'id_vendor' => $post['id_vendor_bangunan'],
 				'nama_penyedia' => $post['nama_penyedia_bangunan'],
 				'jenis_penyedia' => $post['jenis_penyedia_bangunan'],
 
@@ -1755,50 +1757,71 @@ class Ticket_register extends CI_Controller
 		if (isset($_POST['edit_lead_management'])) {
 			$this->form_validation->set_rules('nama_konsumen', 'Nama Konsumen', 'required');
 			$this->form_validation->set_rules('cabang', 'Cabang', 'required');
-			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
+			// $this->form_validation->set_rules('lead_id', 'Lead ID', 'required');
 			$this->form_validation->set_rules('sumber_lead', 'Jenis Penyedia Jasa', 'required');
 			$this->form_validation->set_rules('nama_pemberi_lead', 'Nilai Pengajuan Pembiayaan', 'required');
 			$this->form_validation->set_rules('produk', 'Nilai Pengajuan Pembiayaan', 'required');
 			$this->form_validation->set_rules('object_price', 'Nilai Pengajuan Pembiayaan', 'required');
-			// $this->form_validation->set_rules('upload_file1', 'Upload File 1', 'required');
 
-			$data = [
-				'lead_id' 				=> $post['lead_id'],
-				'no_ktp' 				=> $post['no_ktp'],
-				'asal_leads' 			=> $post['asal_leads'],
-				'cabang_tujuan'			=> $post['cabang_tujuan'],
-				'surveyor'				=> $post['surveyor'],
-				'ttd_pic'				=> $post['ttd_pic'],
-				'nama_konsumen'			=> $post['nama_konsumen'],
-				// 'id_cabang' 			=> $post['cabang'],
-				'sumber_lead' 			=> $post['sumber_lead'],
-				'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
-				'object_price' 			=> $post['object_price'],
-				'produk' 				=> $post['produk'],
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+			$this->form_validation->set_rules('lead_id', 'Lead ID', 'required|is_unique[tb_lead_management.lead_id]', ['is_unique' => 'Lead ID sudah dipakai']);
 
-				// 'tahap_reject' 			=> $post['tahap_reject'],
-				// 'tipe_pefindo' 			=> $post['tipe_pefindo'],
-				// 'max_past_due' 			=> $post['max_past_due'],
-				// 'dsr' 					=> $post['dsr'],
-				// 'status' 				=> $post['status'],
-				// 'sla_branch' 			=> $post['sla_branch'],
-				// 'cabang_survey' 		=> $post['cabang_survey'],
-				// 'informasi_tambahan'	=> $post['informasi_tambahan'],
-				'date_modified' 		=> date('Y-m-d H:i:s'),
-				// 'id_approval'			=> 3
-			];
+			if ($this->form_validation->run() != FALSE) {
+				$data = [
+					'lead_id' 				=> $post['lead_id'],
+					'no_ktp' 				=> $post['no_ktp'],
+					'asal_leads' 			=> $post['asal_leads'],
+					'cabang_tujuan'			=> $post['cabang_tujuan'],
+					'surveyor'				=> $post['surveyor'],
+					'ttd_pic'				=> $post['ttd_pic'],
+					'nama_konsumen'			=> $post['nama_konsumen'],
+					// 'id_cabang' 			=> $post['cabang'],
+					'sumber_lead' 			=> $post['sumber_lead'],
+					'nama_pemberi_lead' 	=> $post['nama_pemberi_lead'],
+					'object_price' 			=> $post['object_price'],
+					'produk' 				=> $post['produk'],
 
-			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
+					// 'tahap_reject' 		=> $post['tahap_reject'],
+					// 'tipe_pefindo' 		=> $post['tipe_pefindo'],
+					// 'max_past_due' 		=> $post['max_past_due'],
+					// 'dsr' 				=> $post['dsr'],
+					// 'status' 			=> $post['status'],
+					// 'sla_branch' 		=> $post['sla_branch'],
+					// 'cabang_survey' 		=> $post['cabang_survey'],
+					// 'informasi_tambahan'	=> $post['informasi_tambahan'],
+					'date_modified' 		=> date('Y-m-d H:i:s'),
+					// 'id_approval'			=> 3
+				];
 
-			if ($id) {
-				echo "Data berhasil disimpan";
-				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil Update data request support!</strong></div>');
+				$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
 
-				redirect('/');
+				if ($id) {
+					echo "Data berhasil disimpan";
+					$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil Update data request support!</strong></div>');
+
+					redirect('/');
+				} else {
+					echo "Data gagal disimpan";
+				}
+				redirect('dashboard');
 			} else {
-				echo "Data gagal disimpan";
+				$data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan                                               
+                            FROM tb_lead_management A
+                                                INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
+                                                LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
+                                                INNER JOIN user as D ON D.id_user = A.id_user
+                                                WHERE A.id_lead = $id
+            ")->row();
+
+				$data['cabang_tujuan'] = $this->data_m->get('tb_cabang');
+
+				$data['komentar'] = $this->comment_m->get_comment('tb_lead_management', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_lead = tb_lead_management.id_lead AND 
+                                                                tb_lead_management.id_lead = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+				$this->template->load('template2', 'detail_support_request/detail_status_lead_management');
 			}
-			redirect('dashboard');
 		}
 
 		// EDIT FORM AKTIVASI AGENT //

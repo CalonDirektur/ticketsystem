@@ -35,6 +35,9 @@
                     if ($data->id_approval == 3) {
                       echo '<label class="badge badge-info">Selesai</label>';
                     }
+                    if ($data->id_approval == 4) {
+                      echo '<label class="badge badge-warning">In Process</label>';
+                    }
                     ?>
                   </div>
                 </div>
@@ -150,7 +153,7 @@
             </div>
             <div class="card-footer">
               <!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-              <?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+              <?php if ($this->session->userdata('level') == 2 && ($data->id_approval == 0 || $data->id_approval == 4)) { ?>
 
                 <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support?')" href="<?= base_url('Aksi/approve/myhajat/sewa/' . $data->id_sewa) ?>">Approve</a>
                 <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/myhajat/sewa/' . $data->id_sewa) ?>">Reject</a>
@@ -174,7 +177,7 @@
         <div class="col-lg-6">
           <div id="upload" class="card">
             <div class="card-header">
-              <h3 class="card-title text-center">Lampiran (Attachment)</h3>
+              <h3 class="card-title text-center">Lampiran (Attachment) <a class="btn btn-info float-right" href="<?= base_url('zip/createzip/tb_my_hajat_sewa/id_sewa/myhajat/' . $data->id_sewa) ?>">Download All</a></h3>
             </div>
             <div class="card-body p-0" id="dynamic-field">
               <table class="table text-center" width="100%">

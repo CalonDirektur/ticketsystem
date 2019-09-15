@@ -76,9 +76,9 @@
               <!-- Lead ID -->
               <div class="form-group">
                 <?= form_error('lead_id') ?>
-                <label for="lead_id">Lead ID </label><br>
+                <label for="leads_id">Lead ID </label><br>
                 <!-- <small>Masukkan nomor Lead ID customer Anda</small> -->
-                <input required name="lead_id" id="lead_id" type="text" class="form-control" maxlength="16" value="<?= set_value('lead_id') ?>" placeholder="201908SLOS123456" autocomplete="off" required>
+                <input required name="lead_id" id="leads_id" type="text" class="form-control" maxlength="16" value="<?= set_value('lead_id') ?>" placeholder="201908SLOS123456" autocomplete="off" required>
               </div>
               <!-- No. KTP -->
               <div class="form-group">

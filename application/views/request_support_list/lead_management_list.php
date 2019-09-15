@@ -26,58 +26,46 @@
           </div>
         </div>
         <hr>
-        <!-- <div class="row">
-          <div class="input-group row ml-3">
-            <form class="form-inline">
-              <label for="statusTiket"><b>Sort by:</b></label>
-              <select class="form-control form-rounded ml-3" id="statusTiket">
-                <option id="all-tickets" value="">All</option>
-                <option id="pending" value="Pending">Pending</option>
-                <option id="approved" value="Disetujui">Disetujui</option>
-                <option id="rejected" value="Ditolak">Ditolak</option>
-                <option id="completed" value="Selesai">Selesai</option>
-              </select>
-            </form>
-          </div>
-        </div> -->
-        <table class="table display status dt-responsive" width="100%">
-          <thead>
-            <th>ID Lead Mgmt.</th>
-            <th>Requester</th>
-            <th>Cabang</th>
-            <th>Lead ID</th>
-            <th>Nama Konsumen</th>
-            <th>Sumber Lead</th>
-            <th>Produk</th>
-            <th></th>
-          </thead>
-          <tbody>
-            <?php
-            $no = 1;
-            foreach ($data->result() as $d) {  ?>
-              <tr>
-                <td><?= $d->id_lead ?></td>
-                <td><?= $d->name ?></td>
-                <td><?= $d->nama_cabang ?></td>
-                <td><?= $d->lead_id ?></td>
-                <td><?= $d->nama_konsumen ?></td>
-                <td><?= $d->sumber_lead ?></td>
-                <td><?= $d->produk ?></td>
-                <?php if ($d->id_approval == 0) { ?>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
-                <?php } else if ($d->id_approval == 1) { ?>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
-                <?php } else if ($d->id_approval == 2) { ?>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
-                <?php } else if ($d->id_approval == 3) { ?>
-                  <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
-                <?php } ?>
-              </tr>
-            <?php
-              $no++;
-            } ?>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered display status dt-responsive nowrap width=" 100%">
+            <thead>
+              <th class="all">ID Lead Mgmt.</th>
+              <th>Requester</th>
+              <th>Cabang</th>
+              <th>Lead ID</th>
+              <th class="all">Nama Konsumen</th>
+              <th class="all">Sumber Lead</th>
+              <th>Produk</th>
+              <th class="all"></th>
+            </thead>
+            <tbody>
+              <?php
+              $no = 1;
+              foreach ($data->result() as $d) {  ?>
+                <tr>
+                  <td><?= $d->id_lead ?></td>
+                  <td><?= $d->name ?></td>
+                  <td><?= $d->nama_cabang ?></td>
+                  <td><?= $d->lead_id ?></td>
+                  <td><?= $d->nama_konsumen ?></td>
+                  <td><?= $d->sumber_lead ?></td>
+                  <td><?= $d->produk ?></td>
+                  <?php if ($d->id_approval == 0) { ?>
+                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                  <?php } else if ($d->id_approval == 1) { ?>
+                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                  <?php } else if ($d->id_approval == 2) { ?>
+                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                  <?php } else if ($d->id_approval == 3) { ?>
+                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/lead_management/id/' . $d->id_lead) ?>">Detail</a></td>
+                  <?php } ?>
+                </tr>
+              <?php
+                $no++;
+              } ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

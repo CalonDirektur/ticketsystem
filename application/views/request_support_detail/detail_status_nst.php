@@ -33,6 +33,9 @@
 										if ($data->id_approval == 3) {
 											echo '<label class="badge badge-info">Selesai</label>';
 										}
+										if ($data->id_approval == 4) {
+											echo '<label class="badge badge-warning">In Process</label>';
+										}
 										?>
 									</div>
 								</div>
@@ -66,37 +69,41 @@
 							</div>
 							<div class="form-group">
 								<label for="">Nama Konsumen</label>
-								<input type="text" class="form-control enable" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
+								<input type="text" class="form-control" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
 							</div>
 							<div class="form-group">
-								<label for="">Lead ID</label>
-								<input type="text" class="form-control enable" name="lead_id" id="lead_id" minlength="16" value="<?= $data->lead_id ?>" readonly required>
+								<label for="lead_id">Lead ID</label><br>
+								<div class="input-group">
+									<input id="lead_id" name="lead_id" type="text" class="form-control lead_id" placeholder="201908SLOS123456" maxlength="16" value="<?= $data->lead_id ?>" readonly required>
+									<div class="input-group-append">
+										<button type="button" class="btn btn-danger enable clear-lead-id" disabled>x</button>
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="">Produk</label>
-								<select class="form-control enable" name="produk" id="produk" disabled>
-									<option value="My Ihram" <?= $data->produk == 'My Ihram' ? 'selected' : ''  ?>> My Ihram</option>
-									<option value="My Hajat" <?= $data->produk == 'My Hajat' ? 'selected' : ''  ?>> My Hajat</option>
-									<option value="My Cars" <?= $data->produk == 'My Cars' ? 'selected' : ''  ?>> My Cars</option>
-									<option value="My Talim" <?= $data->produk == 'My Talim' ? 'selected' : ''  ?>> My Talim</option>
-									<option value="My Faedah" <?= $data->produk == 'My Faedah' ? 'selected' : ''  ?>> My Faedah</option>
-									<option value="My CarS" <?= $data->produk == 'My CarS' ? 'selected' : ''  ?>> My CarS</option>
+								<select class="form-control" name="produk" id="produk" disabled>
+									<option disabled selected value="">- Pilih Produk -</option>
+									<option value="My Ihram" <?= $data->produk == "My Ihram" ? "selected" : ""  ?>> My Ihram</option>
+									<option value="My Hajat" <?= $data->produk == "My Hajat" ? "selected" : ""  ?>> My Hajat</option>
+									<option value="My Cars" <?= $data->produk == "My Cars" ? "selected" : ""  ?>> My Cars</option>
+									<option value="My Talim" <?= $data->produk == "My Talim" ? "selected" : ""  ?>> My Talim</option>
+									<option value="My Faedah" <?= $data->produk == "My Faedah" ? "selected" : ""  ?>> My Faedah</option>
+									<option value="My CarS" <?= $data->produk == "My CarS" ? "selected" : ""  ?>> My CarS</option>
 								</select>
+								<input id="nama_produk" type="hidden" name="produk">
+
 							</div>
 							<!-- Tombol ini muncul khusus untuk user -->
-							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1 || $data->id_approval == 2)) { ?>
+							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 								<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
 							<?php } ?>
 						</div>
 						<div class="card-footer">
-							<!-- Tombol ini muncul untuk menyelesaikan support dan  khusus untuk user -->
-							<?php if ($this->session->userdata('level') == 1 && $data->id_approval == 2) { ?>
-								<a onclick="return confirm('Apakah Anda yakin menyelesaikan request support ini?')" id="selesaikan" class="btn btn-info" href="<?= base_url('Aksi/complete/nst/id/' . $data->id_nst) ?>">Selesaikan</a>
-							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
-							<?php if (($this->session->userdata('level') == 5 || $this->session->userdata('level') == 4)) { ?>
-								<a onclick="return confirm('Apakah Anda yakin menyetujui request support ini?')" class="btn btn-info" href="<?= base_url('Aksi/approve/nst/id/' . $data->id_nst) ?>">Approve</a>
-								<a onclick="return confirm('Apakah Anda yakin menyetujui request support ini?')" class="btn btn-danger" href="<?= base_url('Aksi/reject/nst/id/' . $data->id_nst) ?>">Reject</a>
+							<?php if (($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5)) { ?>
+								<a onclick="return confirm('Apakah Anda yakin MENYETUJUI request support ini?')" class="btn btn-info" href="<?= base_url('Aksi/complete/nst/id/' . $data->id_nst) ?>">Approve</a>
+								<a onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" class="btn btn-danger" href="<?= base_url('Aksi/reject/nst/id/' . $data->id_nst) ?>">Reject</a>
 							<?php } ?>
 						</div>
 					</div>
@@ -106,7 +113,7 @@
 					<!-- Form Upload Lampiran -->
 					<div id="upload" class="card">
 						<div class="card-header">
-							<h3 class="card-title text-center">Lampiran (Attachment)</h3>
+							<h3 class="card-title text-center">Lampiran (Attachment) <a class="btn btn-info float-right" href="<?= base_url('zip/createzip/tb_nst/id_nst/nst/' . $data->id_nst) ?>">Download All</a></h3>
 						</div>
 						<div class="card-body p-0" id="dynamic-field">
 							<table class="table text-center" width="100%">
@@ -353,7 +360,7 @@
 									<div class="comment-text">
 										<span class="username">
 											<label for=""><?= $balasan->name ?> (<?= $balasan->nama_cabang ?>)</label><br>
-											<p class="text-muted pull-right"><?= $komen->date ?></p>
+											<p class="text-muted pull-right"><?= $balasan->date ?></p>
 										</span>
 										<?= $balasan->comment ?>
 									</div>

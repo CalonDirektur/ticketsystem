@@ -14,6 +14,7 @@ class Status extends CI_Controller
     {
         parent::__construct();
         $this->load->model('data_m');
+        $this->load->model('aksi_m');
         $this->load->model('comment_m');
 
         $id_user = NULL;
@@ -66,7 +67,15 @@ class Status extends CI_Controller
         if ($produk == "nst_list") {
             // Menampilkan data lead management untuk CMS
             if ($this->fungsi->user_login()->level == 1) {
-                $data['data'] = $this->data_m->get('tb_nst', 'list', $this->id_user);
+                // $data['data'] = $this->data_m->get('tb_nst', 'list', $this->id_user);
+                $data['data'] = $this->data_m->query("SELECT * 
+                FROM 
+            tb_nst as A
+            INNER JOIN tb_ticket as B ON B.id_nst = A.id_nst
+            INNER JOIN user as C ON C.id_user = A.id_user
+            INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+            WHERE A.id_user = " . $this->id_user . "
+            ");
             }
             // Menampilkan data lead management untuk Head Syariah/Manager
             else if ($this->fungsi->user_login()->level == 6) {
@@ -115,6 +124,11 @@ class Status extends CI_Controller
                                                                 tb_my_talim.id_mytalim = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_talim', 'id_mytalim', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_talim', ['id_mytalim' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_talim', $data);
@@ -129,6 +143,11 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_renovasi.id_renovasi = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_renovasi', 'id_renovasi', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_hajat_renovasi', ['id_renovasi' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_renovasi', $data);
@@ -144,6 +163,11 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_sewa.id_sewa = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_sewa', 'id_sewa', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_hajat_sewa', ['id_sewa' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_sewa', $data);
@@ -159,6 +183,11 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_wedding.id_wedding = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_wedding', 'id_wedding', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_hajat_wedding', ['id_wedding' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_wedding', $data);
@@ -174,6 +203,11 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_franchise.id_franchise = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_franchise', 'id_franchise', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_hajat_franchise', ['id_franchise' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_franchise', $data);
@@ -189,6 +223,11 @@ class Status extends CI_Controller
                                                                 tb_my_hajat_lainnya.id_myhajat_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_lainnya', 'id_myhajat_lainnya', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_hajat_lainnya', ['id_myhajat_lainnya' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_hajat_lainnya', $data);
@@ -204,10 +243,16 @@ class Status extends CI_Controller
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
 
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_ihram', 'id_myihram', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_ihram', ['id_myihram' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya            
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_ihram', $data);
         }
+
         //Menampilkan ticket apprvoed pada produk safar dengan $id tertentu
         if ($produk == 'mysafar' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_my_safar', ['id_mysafar' => $id, 'id_approval' => 3])->row();
@@ -217,10 +262,16 @@ class Status extends CI_Controller
                                                                 tb_my_safar.id_mysafar = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_safar', 'id_mysafar', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_safar', ['id_mysafar' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_safar', $data);
         }
+
         if ($produk == 'aktivasi_agent' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_aktivasi_agent', ['id_agent' => $id, 'id_approval' => 3])->row();
             $data['data'] = $this->data_m->get_ticket_by_id('tb_aktivasi_agent', 'id_agent', $id);
@@ -229,6 +280,11 @@ class Status extends CI_Controller
                                                                 tb_aktivasi_agent.id_agent = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_aktivasi_agent', 'id_agent', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_aktivasi_agent', ['id_agent' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_aktivasi_agent', $data);
@@ -241,6 +297,12 @@ class Status extends CI_Controller
                                                                 tb_nst.id_nst = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_nst', 'id_nst', $id);
+            if ($this->fungsi->user_login()->level == 4 && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_nst', ['id_nst' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_nst', $data);
@@ -249,7 +311,7 @@ class Status extends CI_Controller
         // Detail Lead Management 
         if ($produk == 'lead_management' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
-            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan                                               
+            $data['data'] = $this->data_m->query("SELECT *, C.nama_cabang as cabang_tujuan, B.nama_cabang as cabang_user, B.id_cabang as id_cabang_user, C.id_cabang as id_cabang_tujuan                                             
                             FROM tb_lead_management A
                                                 INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
                                                 LEFT JOIN tb_cabang as C ON A.cabang_tujuan = C.id_cabang
@@ -264,7 +326,6 @@ class Status extends CI_Controller
                                                                 tb_lead_management.id_lead = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
-
             //ketika detail status request support di klik maka mark as read notifikasinya            
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_lead_management', $data);
@@ -278,6 +339,11 @@ class Status extends CI_Controller
                                                                 tb_mitra_kerjasama.id_mitra_kerjasama = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_mitra_kerjasama', 'id_mitra_kerjasama', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_mitra_kerjasama', $data);
@@ -291,6 +357,11 @@ class Status extends CI_Controller
                                                                 tb_my_faedah.id_myfaedah = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_faedah', ['id_myfaedah' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_faedah', $data);
@@ -304,6 +375,11 @@ class Status extends CI_Controller
                                                                 tb_my_faedah_bangunan.id_bangunan = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_bangunan', 'id_bangunan', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_faedah_bangunan', ['id_bangunan' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_bangunan', $data);
@@ -317,6 +393,11 @@ class Status extends CI_Controller
                                                                 tb_my_faedah_qurban.id_qurban = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_qurban', 'id_qurban', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_faedah_qurban', ['id_qurban' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_qurban', $data);
@@ -330,6 +411,11 @@ class Status extends CI_Controller
                                                                 tb_my_faedah_elektronik.id_elektronik = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_elektronik', 'id_elektronik', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_faedah_elektronik', ['id_elektronik' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_elektronik', $data);
@@ -343,6 +429,11 @@ class Status extends CI_Controller
                                                                 tb_my_faedah_modal.id_modal = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_modal', 'id_modal', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_faedah_modal', ['id_modal' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_modal', $data);
@@ -356,6 +447,11 @@ class Status extends CI_Controller
                                                                 tb_my_faedah_lainnya.id_myfaedah_lainnya = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_lainnya', 'id_myfaedah_lainnya', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_faedah_lainnya', ['id_myfaedah_lainnya' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_faedah_lainnya', $data);
@@ -369,6 +465,11 @@ class Status extends CI_Controller
                                                                 tb_my_cars.id_mycars = ' . $id . ' AND
                                                                 tb_comment.id_user = user.id_user AND
                                                                 user.id_cabang = tb_cabang.id_cabang');
+            // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
+            $ticket = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
+                $this->aksi_m->in_progress('tb_my_cars', ['id_mycars' => $id]);
+            }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_cars', $data);

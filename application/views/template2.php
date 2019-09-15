@@ -37,6 +37,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>BFI Syariah Helpdesk</title>
   <!-- base:css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/jquery-ui.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/mdi/css/materialdesignicons.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/feather/feather.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/base/vendor.bundle.base.css') ?>">
@@ -48,12 +55,6 @@
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/jquery-bar-rating/fontawesome-stars.css') ?>">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?= base_url('assets2/css/jquery-ui.min.css') ?>">
 
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets2/img/bfi.jpg') ?>" />
@@ -502,6 +503,53 @@
         $("div.jenis-vendor, .jenis-penyedia").removeClass('disable');
         $(".perorangan, .badan_usaha").prop("checked", false).removeAttr('disabled');
         $(".clear-nama-vendor").hide();
+      })
+
+      // $("[name='submit_nst']").attr("disabled", "disabled");
+      $("#lead_id").autocomplete({
+        delay: 0,
+        source: "<?= base_url('data_json/get_lead_id') ?>",
+        select: function(event, ui) {
+          $("#lead_id").val(ui.item.value).attr("readonly", "readonly");
+          $("#nama_konsumen").val(ui.item.nama_konsumen).attr("readonly", "readonly");
+          $("#nama_user").val(ui.item.name).attr("readonly", "readonly");
+          $("#nama_cabang").val(ui.item.nama_cabang).attr("readonly", "readonly");
+          // $("#lead_id").attr("disabled", "disabled");
+
+          $(".clear-lead-id").fadeIn();
+          if (ui.item.produk == "My Ihram") {
+            $("#produk").val("My Ihram").attr('disabled', 'disabled');
+            $("#nama_produk").val("My Ihram");
+
+          } else if (ui.item.produk == "My Safar") {
+            $("#produk").val("My Safar").attr('disabled', 'disabled');
+            $("#nama_produk").val("My Safar");
+
+          } else if (ui.item.produk == "My Talim") {
+            $("#produk").val("My Talim").attr('disabled', 'disabled');
+            $("#nama_produk").val("My Talim");
+
+          } else if (ui.item.produk == "My Hajat") {
+            $("#produk").val("My Hajat").attr('disabled', 'disabled');
+            $("#nama_produk").val("My Hajat");
+
+          } else if (ui.item.produk == "My CarS") {
+            $("#produk").val("My CarS").attr('disabled', 'disabled');
+            $("#nama_produk").val("My CarS");
+
+          } else if (ui.item.produk == "My Faedah") {
+            $("#produk").val("My Faedah").attr('disabled', 'disabled');
+            $("#nama_produk").val("My Faedah");
+
+          }
+        }
+      });
+
+      $(".clear-lead-id").show();
+      $(".clear-lead-id").on("click", function() {
+        $("#lead_id").removeAttr("readonly").val("");
+        $("#nama_konsumen, #nama_user, #nama_cabang, #produk").val("");
+        $(".clear-lead-id").fadeOut("fast");
       })
     })
   </script>

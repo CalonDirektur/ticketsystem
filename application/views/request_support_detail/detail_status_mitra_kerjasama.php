@@ -34,6 +34,9 @@
 										if ($data->id_approval == 3) {
 											echo '<label class="badge badge-info">Selesai</label>';
 										}
+										if ($data->id_approval == 4) {
+											echo '<label class="badge badge-warning">In Process</label>';
+										}
 										?>
 									</div>
 								</div>
@@ -144,7 +147,7 @@
 				<div class="col-lg-6 col-md-12 mt-2">
 					<div id="upload" class="card">
 						<div class="card-header">
-							<h3 class="card-title text-center">Lampiran (Attachment)</h3>
+							<h3 class="card-title text-center">Lampiran (Attachment) <a class="btn btn-info float-right" href="<?= base_url('zip/createzip/tb_mitra_kerjasama/id_mitra_kerjasama/mitra_kerjasama/' . $data->id_mitra_kerjasama) ?>">Download All</a></h3>
 						</div>
 						<div class="card-body p-0" id="dynamic-field">
 							<table class="table text-center" width="100%">
