@@ -25,13 +25,13 @@
 											echo '<label class="badge badge-secondary">Pending</label>';
 										}
 										if ($data->id_approval == 1) {
-											echo '<label class="badge badge-danger">Ditolak</label>';
+											echo '<label class="badge badge-danger">Rejected</label>';
 										}
 										if ($data->id_approval == 2) {
 											echo '<label class="badge badge-success">Disetujui</label>';
 										}
 										if ($data->id_approval == 3) {
-											echo '<label class="badge badge-info">Selesai</label>';
+											echo '<label class="badge badge-info">Completed</label>';
 										}
 										if ($data->id_approval == 4) {
 											echo '<label class="badge badge-warning">In Process</label>';
@@ -92,8 +92,8 @@
 									<option value="My CarS" <?= $data->produk == "My CarS" ? "selected" : ""  ?>> My CarS</option>
 								</select>
 								<input id="nama_produk" type="hidden" name="produk">
-
 							</div>
+
 							<!-- Tombol ini muncul khusus untuk user -->
 							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 								<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
@@ -103,7 +103,9 @@
 							<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
 							<?php if (($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5)) { ?>
 								<a onclick="return confirm('Apakah Anda yakin MENYETUJUI request support ini?')" class="btn btn-info" href="<?= base_url('Aksi/complete/nst/id/' . $data->id_nst) ?>">Approve</a>
-								<a onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" class="btn btn-danger" href="<?= base_url('Aksi/reject/nst/id/' . $data->id_nst) ?>">Reject</a>
+								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+									Reject
+								</button>
 							<?php } ?>
 						</div>
 					</div>
@@ -386,4 +388,38 @@
 		<?php } ?>
 
 	</section>
+	<!-- Modal -->
+	<form method="post" action="<?= base_url('Aksi/reject/nst/' . $data->id_nst) ?>">
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Alasan Reject</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="hidden" class="form-control" name="id_nst_reject" id="id_nst_reject" value="<?= $data->id_nst ?>" readonly required>
+							<label for="">Alasan Reject</label>
+							<select class="form-control" name="alasan_reject" id="alasan_reject">
+								<option disabled selected value="">- Pilih Alasan Reject -</option>
+								<option value="Administration">Administration</option>
+								<option value="Capacity">Capacity</option>
+								<option value="Pefindo">Pefindo</option>
+								<option value="Others">Others</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+						<button type="submit" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" class="btn btn-danger">Reject</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
+
+<!-- Button trigger modal -->

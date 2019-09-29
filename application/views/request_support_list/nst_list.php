@@ -32,6 +32,7 @@
                             <select class="form-control form-rounded ml-3" id="statusTiket">
                                 <option id="all-tickets" value="">All</option>
                                 <option id="pending" value="Pending">Pending</option>
+                                <option id="inprocess" value="In Process">In Process</option>
                                 <option id="approved" value="Disetujui">Disetujui</option>
                                 <option id="rejected" value="Ditolak">Ditolak</option>
                                 <option id="completed" value="Selesai">Selesai</option>
@@ -40,15 +41,17 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered display status dt-responsive nowrap">
+
+                    <table class="table table-striped table-bordered display status dt-responsive nowrap" style="width: 100%">
                         <thead>
                             <tr>
                                 <th class="all">ID Ticket</th>
-                                <th>Requester</th>
+                                <th class="none">Requester</th>
                                 <th class="none">Cabang</th>
-                                <th class="none">Lead ID</th>
+                                <th>Lead ID</th>
                                 <th class="all">Nama Konsumen</th>
-                                <th class="all">Produk</th>
+                                <th>Produk</th>
+                                <th>Date Modified</th>
                                 <th class="all">Ticket Status</th>
                                 <th class="all"></th>
                             </tr>
@@ -64,19 +67,19 @@
                                     <td><?= $d->lead_id ?></td>
                                     <td><?= $d->nama_konsumen ?></td>
                                     <td><?= $d->produk ?></td>
+                                    <td><?= $d->date_modified ?></td>
                                     <?php if ($d->id_approval == 0) { ?>
                                         <td><label class="badge badge-secondary">Pending</span></td>
-                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                                     <?php } else if ($d->id_approval == 1) { ?>
                                         <td><label class="badge badge-danger">Ditolak</span></td>
-                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                                     <?php } else if ($d->id_approval == 2) { ?>
                                         <td><label class="badge badge-success">Disetujui</span></td>
-                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                                     <?php } else if ($d->id_approval == 3) { ?>
                                         <td><label class="badge badge-primary">Selesai</label></td>
-                                        <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
+                                    <?php } else if ($d->id_approval == 4) { ?>
+                                        <td><label class="badge badge-warning">In Process</label></td>
                                     <?php } ?>
+                                    <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                                 </tr>
                             <?php
                                 $no++;

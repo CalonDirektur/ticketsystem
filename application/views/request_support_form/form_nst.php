@@ -46,11 +46,13 @@
               </div>
               <!-- Nama Konsumen -->
               <div class="form-group">
+                <?= form_error('nama_konsumen') ?>
                 <label for="nama_konsumen">Nama Konsumen </label>
                 <input name="nama_konsumen" id="nama_konsumen" type="text" class="form-control" placeholder="Nama Konsumen" value="<?= set_value('nama_konsumen') ?>" readonly required>
               </div>
               <!-- Product -->
               <div class="form-group">
+                <?= form_error('produk') ?>
                 <label for="produk">Produk </label>
                 <select required name="produk" id="produk" class="form-control" disabled required>
                   <option disabled selected value="">- Pilih Produk -</option>
@@ -182,7 +184,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button type="submit" id="submit_nst" class="btn btn-info pull-right" name="submit_nst">Kirim Data!</button>
+              <button type="submit" id="submit_nst" class="btn btn-info pull-right" name="submit_nst" disabled>Kirim Data!</button>
             </div>
           </div>
 

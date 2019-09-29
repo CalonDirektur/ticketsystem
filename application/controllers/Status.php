@@ -85,8 +85,17 @@ class Status extends CI_Controller
                                                 INNER JOIN tb_ticket as B ON B.id_nst = A.id_nst
                                                 INNER JOIN user as C ON C.id_user = A.id_user
                                                 INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
-                                                WHERE A.id_cabang " . $this->id_cabang . "
+                                                WHERE A.id_cabang " . $this->id_cabang . " 
                                                 ");
+            } else if ($this->fungsi->user_login()->level == 4) {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                        FROM 
+                                                    tb_nst as A
+                                                    INNER JOIN tb_ticket as B ON B.id_nst = A.id_nst
+                                                    INNER JOIN user as C ON C.id_user = B.id_user
+                                                    INNER JOIN tb_cabang as D ON D.id_cabang = B.id_cabang
+                                                    WHERE produk = 'My Ihram' OR produk = 'My Safar' OR produk = 'My Talim' OR produk = 'My Hajat'
+            ");
             } else {
                 $data['data'] = $this->data_m->query("SELECT * 
                                                         FROM 
@@ -94,6 +103,7 @@ class Status extends CI_Controller
                                                     INNER JOIN tb_ticket as B ON B.id_nst = A.id_nst
                                                     INNER JOIN user as C ON C.id_user = B.id_user
                                                     INNER JOIN tb_cabang as D ON D.id_cabang = B.id_cabang
+                                                    WHERE produk = 'My Cars' OR produk = 'My Faedah'
             ");
             }
             // $data['data'] = $this->data_m->query("SELECT * 

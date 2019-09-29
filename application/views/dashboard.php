@@ -27,7 +27,7 @@
       <!-- Card Approved -->
       <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-approved" style="cursor: pointer">
         <div class="card text-center p-5">
-          <h3 class="card-title">Approved</h3><br>
+          <h3 class="card-title">Reviewed</h3><br>
           <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
         </div>
       </div>
@@ -154,10 +154,10 @@
             <select class="form-control form-rounded ml-3" id="statusTiket">
               <option id="all-tickets" value="">All</option>
               <option id="pending" value="Pending">Pending</option>
-              <option id="inprogress" value="In progress">In Progress</option>
-              <option id="approved" value="Disetujui">Disetujui</option>
-              <option id="rejected" value="Ditolak">Ditolak</option>
-              <option id="completed" value="Selesai">Selesai</option>
+              <option id="inprogress" value="In Progress">In Progress</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
             </select>
           </form>
         </div>
@@ -190,11 +190,11 @@
                       <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -202,7 +202,6 @@
                   <?php
                         $no++;
                       }
-
                       if ($tickets->id_mysafar != NULL) {
                         ?>
                     <tr class="clickable-row" data-href="<?= base_url('status/detail/mysafar/id/' . $tickets->id_mysafar) ?>">
@@ -213,11 +212,11 @@
                       <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -236,11 +235,11 @@
                       <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -261,11 +260,11 @@
                       <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -284,11 +283,11 @@
                       <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -307,11 +306,11 @@
                       <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -330,11 +329,11 @@
                       <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -353,11 +352,11 @@
                       <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -376,11 +375,11 @@
                       <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -400,11 +399,11 @@
                       <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
@@ -423,11 +422,11 @@
                       <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_nst == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
                       <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } else if ($tickets->id_approval_nst == 4) { ?>
@@ -447,11 +446,11 @@
                       <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -468,11 +467,11 @@
                       <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -489,11 +488,11 @@
                       <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -510,11 +509,11 @@
                       <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -531,11 +530,11 @@
                       <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -552,11 +551,11 @@
                       <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -573,11 +572,11 @@
                       <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -607,7 +606,7 @@
 
       <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-approved mt-2" style="cursor: pointer">
         <div class="card text-center p-5">
-          <h3 class="card-title">Approved</h3><br>
+          <h3 class="card-title">Reviewed</h3><br>
           <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
         </div>
       </div>
@@ -655,9 +654,9 @@
               <option id="all-tickets" value="">All</option>
               <option id="pending" value="Pending">Pending</option>
               <option id="inprogress" value="In progress">In Progress</option>
-              <option id="approved" value="Disetujui">Disetujui</option>
-              <option id="rejected" value="Ditolak">Ditolak</option>
-              <option id="completed" value="Selesai">Selesai</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
             </select>
           </form>
         </div>
@@ -694,11 +693,11 @@
                       <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -719,11 +718,11 @@
                       <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -744,11 +743,11 @@
                       <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -771,11 +770,11 @@
                       <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -796,11 +795,11 @@
                       <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -821,11 +820,11 @@
                       <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -846,11 +845,11 @@
                       <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -871,11 +870,11 @@
                       <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -896,11 +895,11 @@
                       <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -922,11 +921,11 @@
                       <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -945,11 +944,11 @@
                       <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -968,11 +967,11 @@
                       <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -991,11 +990,11 @@
                       <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1014,11 +1013,11 @@
                       <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1037,11 +1036,11 @@
                       <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1060,11 +1059,11 @@
                       <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1083,11 +1082,11 @@
                       <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1167,9 +1166,9 @@
               <option id="all-tickets" value="">All</option>
               <option id="pending" value="Pending">Pending</option>
               <option id="inprogress" value="In progress">In Progress</option>
-              <option id="approved" value="Disetujui">Disetujui</option>
-              <option id="rejected" value="Ditolak">Ditolak</option>
-              <option id="completed" value="Selesai">Selesai</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
             </select>
           </form>
         </div>
@@ -1206,11 +1205,11 @@
                       <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1231,11 +1230,11 @@
                       <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1256,11 +1255,11 @@
                       <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1283,11 +1282,11 @@
                       <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1308,11 +1307,11 @@
                       <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1333,11 +1332,11 @@
                       <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1358,11 +1357,11 @@
                       <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1383,11 +1382,11 @@
                       <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1408,11 +1407,11 @@
                       <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1434,11 +1433,11 @@
                       <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1457,11 +1456,11 @@
                       <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1480,11 +1479,11 @@
                       <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1503,11 +1502,11 @@
                       <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1526,11 +1525,11 @@
                       <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1549,11 +1548,11 @@
                       <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1572,11 +1571,11 @@
                       <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1595,11 +1594,11 @@
                       <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1629,7 +1628,7 @@
 
       <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-approved mt-2" style="cursor: pointer">
         <div class="card text-center p-5">
-          <h3 class="card-title">Approved</h3><br>
+          <h3 class="card-title">Reviewed</h3><br>
           <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
         </div>
       </div>
@@ -1668,7 +1667,9 @@
           </form>
         </div>
       </div>
+
       <hr>
+
       <div class="row">
         <div class="input-group row ml-3">
           <form class="form-inline">
@@ -1677,9 +1678,9 @@
               <option id="all-tickets" value="">All</option>
               <option id="pending" value="Pending">Pending</option>
               <option id="inprogress" value="In progress">In Progress</option>
-              <option id="approved" value="Disetujui">Disetujui</option>
-              <option id="rejected" value="Ditolak">Ditolak</option>
-              <option id="completed" value="Selesai">Selesai</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
             </select>
           </form>
         </div>
@@ -1703,7 +1704,7 @@
               <tbody>
                 <?php
                   $no = 1;
-                  foreach ($ticket_records->result() as $tickets) {
+                  foreach ($ticket_records_nst->result() as $tickets) {
                     if ($tickets->id_nst != NULL) {
                       ?>
                     <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
@@ -1716,11 +1717,11 @@
                       <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_nst == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
                       <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1753,7 +1754,7 @@
       <!-- Card Approved -->
       <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-approved" style="cursor: pointer">
         <div class="card text-center p-5">
-          <h3 class="card-title">Approved</h3><br>
+          <h3 class="card-title">Reviewed</h3><br>
           <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
         </div>
       </div>
@@ -1801,9 +1802,9 @@
               <option id="all-tickets" value="">All</option>
               <option id="pending" value="Pending">Pending</option>
               <option id="inprogress" value="In progress">In Progress</option>
-              <option id="approved" value="Disetujui">Disetujui</option>
-              <option id="rejected" value="Ditolak">Ditolak</option>
-              <option id="completed" value="Selesai">Selesai</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
             </select>
           </form>
         </div>
@@ -1839,11 +1840,11 @@
                       <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1864,11 +1865,11 @@
                       <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1889,11 +1890,11 @@
                       <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1916,11 +1917,11 @@
                       <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1941,11 +1942,11 @@
                       <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1966,11 +1967,11 @@
                       <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -1990,11 +1991,11 @@
                       <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2015,11 +2016,11 @@
                       <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2040,11 +2041,11 @@
                       <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2066,11 +2067,11 @@
                       <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2089,11 +2090,11 @@
                       <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_nst == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
                       <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2113,11 +2114,11 @@
                       <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2136,11 +2137,11 @@
                       <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2159,11 +2160,11 @@
                       <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2182,11 +2183,11 @@
                       <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2205,11 +2206,11 @@
                       <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2228,11 +2229,11 @@
                       <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2251,11 +2252,11 @@
                       <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2286,7 +2287,7 @@
       <!-- Card Approved -->
       <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-approved" style="cursor: pointer">
         <div class="card text-center p-5">
-          <h3 class="card-title">Approved</h3><br>
+          <h3 class="card-title">Reviewed</h3><br>
           <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
         </div>
       </div>
@@ -2414,9 +2415,9 @@
               <option id="all-tickets" value="">All</option>
               <option id="pending" value="Pending">Pending</option>
               <option id="inprogress" value="In progress">In Progress</option>
-              <option id="approved" value="Disetujui">Disetujui</option>
-              <option id="rejected" value="Ditolak">Ditolak</option>
-              <option id="completed" value="Selesai">Selesai</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
             </select>
           </form>
         </div>
@@ -2453,11 +2454,11 @@
                       <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2478,11 +2479,11 @@
                       <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2503,11 +2504,11 @@
                       <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2530,11 +2531,11 @@
                       <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2555,11 +2556,11 @@
                       <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2580,11 +2581,11 @@
                       <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2605,11 +2606,11 @@
                       <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2630,11 +2631,11 @@
                       <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2655,11 +2656,11 @@
                       <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2681,11 +2682,11 @@
                       <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2704,11 +2705,11 @@
                       <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_nst == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
                       <?php } else if ($tickets->id_approval_nst == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2728,11 +2729,11 @@
                       <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2751,11 +2752,11 @@
                       <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2774,11 +2775,11 @@
                       <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2797,11 +2798,11 @@
                       <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2820,11 +2821,11 @@
                       <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2843,11 +2844,11 @@
                       <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2866,11 +2867,11 @@
                       <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 1) { ?>
-                        <td><span class="badge badge-danger rejected">Ditolak</span></td>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 2) { ?>
-                        <td><span class="badge badge-success approved">Disetujui Admin 1</span></td>
+                        <td><span class="badge badge-success approved">Reviewed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 3) { ?>
-                        <td><span class="badge badge-info completed">Selesai</span></td>
+                        <td><span class="badge badge-info completed">Completed</span></td>
                       <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
@@ -2887,4 +2888,127 @@
 
   <?php }  ?>
 
+  <!-- Admin NST 2 (Adhine) -->
+  <?php if ($this->session->userdata('level') == 7) { ?>
+    <!-- Report Status Request Support -->
+    <div class="row mt-4">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-pending mt-2" style="cursor: pointer">
+        <div class="card text-center p-5">
+          <h3 class="card-title">Pending</h3><br>
+          <h3><span class="badge badge-secondary"><?= $total_pending ?></span></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-approved mt-2" style="cursor: pointer">
+        <div class="card text-center p-5">
+          <h3 class="card-title">Reviewed</h3><br>
+          <h3><span class="badge badge-success"><?= $total_approved ?></span></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-rejected mt-2" style="cursor: pointer">
+        <div class="card text-center p-5">
+          <h3 class="card-title">Rejected</h3><br>
+          <h3><span class="badge badge-danger"><?= $total_rejected ?></span></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 status-card card-completed mt-2" style="cursor: pointer">
+        <div class="card text-center p-5">
+          <h3 class="card-title">Completed</h3><br>
+          <h3><span class="badge badge-info"><?= $total_completed ?></span></h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Status Request Support -->
+    <div class="container-fluid">
+      <div class="row mt-4 m-1">
+        <div class="col-lg-6">
+          <h4>Tabel Request Support</h4>
+        </div>
+        <div class="col-lg-6">
+          <form action="#" method="get" class="form-inline my-2 my-lg-0 pull-right">
+            <div class="form-group">
+              <div class="input-group">
+                <input id="cariTiket" class="form-control form-rounded cariTiket" type="text" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-sm btn-outline-secondary input-group-text form-rounded" type="button"><i class="icon-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="input-group row ml-3">
+          <form class="form-inline">
+            <label for="statusTiketAdmin"><b>Sort by:</b></label>
+            <select class="form-control form-rounded ml-3" id="statusTiketAdmin">
+              <option id="all-tickets" value="">All</option>
+              <option id="pending" value="Pending">Pending</option>
+              <option id="inprogress" value="In progress">In Progress</option>
+              <option id="reviewed" value="Reviewed">Reviewed</option>
+              <option id="rejected" value="Rejected">Rejected</option>
+              <option id="completed" value="Completed">Completed</option>
+            </select>
+          </form>
+        </div>
+      </div>
+
+      <div class="card shadow rounded mt-3">
+        <div class="table-responsive">
+          <div class="card-body p-0">
+            <table class="table table-striped table-bordered display status-admin dt-responsive nowrap" width="100%">
+              <thead>
+                <tr>
+                  <th class="all" width="1%">ID Ticket</th>
+                  <th>Requester</th>
+                  <th>Cabang</th>
+                  <th class="all">Konsumen</th>
+                  <th class="all">Produk</th>
+                  <th>Date Modified</th>
+                  <th class="all">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($ticket_records_nst->result() as $tickets) {
+                    if ($tickets->id_nst != NULL) {
+                      ?>
+                    <tr class="clickable-row" data-href="<?= base_url('status/detail/nst/id/' . $tickets->id_nst) ?>">
+                      <td class="not-clickable" width="10%"><?= $tickets->id_ticket ?></td>
+                      <td><?= $tickets->name ?></td>
+                      <td><?= $tickets->nama_cabang ?></td>
+                      <td><?= $tickets->nama_konsumen_nst ?></td>
+                      <td><?= $tickets->produk ?></td>
+                      <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
+                      <?php if ($tickets->id_approval_nst == 0) { ?>
+                        <td><span class="badge badge-secondary pending">Pending</span></td>
+                      <?php } else if ($tickets->id_approval_nst == 1) { ?>
+                        <td><span class="badge badge-danger rejected">Rejected</span></td>
+                      <?php } else if ($tickets->id_approval_nst == 2) { ?>
+                        <td><span class="badge badge-success approved">Disetujui</span></td>
+                      <?php } else if ($tickets->id_approval_nst == 3) { ?>
+                        <td><span class="badge badge-info completed">Completed</span></td>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
+                        <td><span class="badge badge-warning inprogress">In Progress</span></td>
+                      <?php } ?>
+                    </tr>
+                <?php
+                      $no++;
+                    }
+                  } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <?php }  ?>
 </section>

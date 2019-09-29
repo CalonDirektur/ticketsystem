@@ -28,13 +28,13 @@
 											echo '<label class="badge badge-secondary">Pending</label>';
 										}
 										if ($data->id_approval == 1) {
-											echo '<label class="badge badge-danger">Ditolak</label>';
+											echo '<label class="badge badge-danger">Rejected</label>';
 										}
 										if ($data->id_approval == 2) {
-											echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+											echo '<label class="badge badge-success">Reviewed</label>';
 										}
 										if ($data->id_approval == 3) {
-											echo '<label class="badge badge-info">Selesai</label>';
+											echo '<label class="badge badge-info">Completed</label>';
 										}
 										if ($data->id_approval == 4) {
 											echo '<label class="badge badge-warning">In Process</label>';
@@ -60,6 +60,7 @@
 							</div>
 						</div>
 						<div class="card-body">
+							<input type="hidden" class="form-control" name="id_ticket" id="id_ticket" value="<?= $data->id_ticket ?>" readonly required>
 							<input type="hidden" class="form-control" name="id_mytalim" id="id_mytalim" value="<?= $data->id_mytalim ?>" readonly required>
 							<div class="form-group">
 								<label for="">Nama Cabang</label>
@@ -125,13 +126,13 @@
 									echo '<label class="badge badge-secondary">Pending</label>';
 								}
 								if ($data->id_approval == 1) {
-									echo '<label class="badge badge-danger">Ditolak</label>';
+									echo '<label class="badge badge-danger">Rejected</label>';
 								}
 								if ($data->id_approval == 2) {
-									echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+									echo '<label class="badge badge-success">Reviewed</label>';
 								}
 								if ($data->id_approval == 3) {
-									echo '<label class="badge badge-info">Selesai</label>';
+									echo '<label class="badge badge-danger">Completed</label>';
 								}
 								?>
 							</div>

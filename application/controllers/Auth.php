@@ -224,7 +224,7 @@ class Auth extends CI_Controller
 			$where = ['nik' => $post['nik']];
 			if ($post['password'] == NULL) {
 				$data = [
-					'name' => $post['name'], x
+					'name' => $post['name']
 				];
 			} else {
 				$data = [

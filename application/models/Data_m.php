@@ -104,92 +104,44 @@ class Data_m extends CI_Model
         return $query;
     }
 
-    // PENGECUALIAN xD
-    public function get_myhajat($id_user, $id_approval)
+    public function get_tickets_nst($id_user, $id_approval, $produk)
     {
-        $query = $this->db->query('SELECT *,
-                                A.id_my_hajat,
-                                U.name as nama,
-                                CBG.nama_cabang as nama_cabang,
-                                B.nama_konsumen as nama_konsumen_renovasi,
-                                C.nama_konsumen as nama_konsumen_sewa,
-                                D.nama_konsumen as nama_konsumen_wedding,
-                                E.nama_konsumen as nama_konsumen_franchise,
-                                F.nama_konsumen as nama_konsumen_lainnya,
-                                
-                                B.jenis_konsumen as jenis_konsumen_renovasi,
-                                C.jenis_konsumen as jenis_konsumen_sewa,
-                                D.jenis_konsumen as jenis_konsumen_wedding,
-                                E.jenis_konsumen as jenis_konsumen_franchise,
-                                F.jenis_konsumen as jenis_konsumen_lainnya,
+        $query = $this->db->query(
+            "SELECT *, 
+            A.id_ticket as id_ticket,
+            F.nama_konsumen as nama_konsumen_nst,
+            F.id_approval as id_approval_nst,
+            F.date_modified as date_modified_nst, DATE_FORMAT(F.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_nst,
+                    
+            CASE
+            WHEN A.id_nst IS NOT NULL THEN 'NST'
+            END AS produk
+            
+            FROM tb_ticket as A
+            
+            LEFT JOIN tb_nst as F
+            ON A.id_nst = F.id_nst
 
-                                B.id_approval as id_approval_renovasi,
-                                C.id_approval as id_approval_sewa,
-                                D.id_approval as id_approval_wedding,
-                                E.id_approval as id_approval_franchise,
-                                F.id_approval as id_approval_lainnya,
-
-                                CASE
-                                    WHEN A.id_renovasi IS NOT NULL THEN "My Hajat Renovasi"
-                                    WHEN A.id_sewa IS NOT NULL THEN "My Hajat Sewa"
-                                    WHEN A.id_wedding IS NOT NULL THEN "My Hajat Wedding"
-                                    WHEN A.id_franchise IS NOT NULL THEN "My Hajat Franchise"
-                                    WHEN A.id_myhajat_lainnya IS NOT NULL THEN "My Hajat Lainnya"
-                                END AS produk
-
-                                FROM tb_my_hajat as A
-
-                                LEFT JOIN tb_my_hajat_renovasi as B
-                                ON A.id_renovasi = B.id_renovasi
-
-                                LEFT JOIN tb_my_hajat_sewa as C
-                                ON A.id_sewa = C.id_sewa
-
-                                LEFT JOIN tb_my_hajat_wedding as D
-                                ON A.id_wedding = D.id_wedding
-
-                                LEFT JOIN tb_my_hajat_franchise as E
-                                ON A.id_franchise = E.id_franchise
-
-                                LEFT JOIN tb_my_hajat_lainnya as F
-                                ON A.id_myhajat_lainnya = F.id_myhajat_lainnya
-
-                                LEFT JOIN user as U
-                                ON U.id_user = A.id_user
-
-                                LEFT JOIN tb_cabang as CBG
-                                ON CBG.id_cabang = A.id_cabang
-
-                                WHERE U.id_user ' . $id_user . '
-                                AND CASE 
-                                WHEN B.id_approval IS NOT NULL THEN B.id_approval ' . $id_approval . '
-                                WHEN C.id_approval IS NOT NULL THEN C.id_approval ' . $id_approval . '
-                                WHEN D.id_approval IS NOT NULL THEN D.id_approval ' . $id_approval . '
-                                WHEN E.id_approval IS NOT NULL THEN E.id_approval ' . $id_approval . '
-                                WHEN F.id_approval IS NOT NULL THEN F.id_approval ' . $id_approval . '
-                                END
-                                ');
-
+            LEFT JOIN user as U
+            ON U.id_user = A.id_user
+        
+            LEFT JOIN tb_cabang as CBG
+            ON CBG.id_cabang = A.id_cabang
+            
+            WHERE U.id_user $id_user AND $produk AND
+            (CASE 
+                WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
+            END
+            )
+            "
+        );
         return $query;
     }
-
-    public function get_myhajat_by_id($table, $col, $id)
-    {
-        $this->db->from('tb_my_hajat A');
-        $this->db->join($table . ' B', 'A.' . $col . ' = B.' . $col, 'inner');
-        $this->db->join('tb_cabang T', 'T.id_cabang = A.id_cabang', 'inner');
-        $this->db->join('user U', 'U.id_user = A.id_user', 'inner');
-        $this->db->where('B.' . $col . ' = ' . $id);
-        $query = $this->db->get();
-
-        return $query->row();
-    }
-
     public function get_tickets($id_user, $id_approval)
     {
-        $query = $this->db->query("
-      SELECT *, 
-      A.id_ticket as id_ticket,
+        $query = $this->db->query(
+            "SELECT *, 
+        A.id_ticket as id_ticket,
         BA.nama_konsumen as nama_konsumen_renovasi,
         BB.nama_konsumen as nama_konsumen_sewa,
         BC.nama_konsumen as nama_konsumen_wedding,
@@ -339,28 +291,29 @@ class Data_m extends CI_Model
         
         WHERE U.id_user $id_user  AND
         (CASE 
-        WHEN BA.id_approval IS NOT NULL THEN BA.id_approval $id_approval
-        WHEN BB.id_approval IS NOT NULL THEN BB.id_approval $id_approval
-        WHEN BC.id_approval IS NOT NULL THEN BC.id_approval $id_approval
-        WHEN BD.id_approval IS NOT NULL THEN BD.id_approval $id_approval
-        WHEN BE.id_approval IS NOT NULL THEN BE.id_approval $id_approval
-        WHEN C.id_approval IS NOT NULL THEN C.id_approval $id_approval
-        WHEN D.id_approval IS NOT NULL THEN D.id_approval $id_approval
-        WHEN E.id_approval IS NOT NULL THEN E.id_approval $id_approval
-        WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
-        WHEN G.id_approval IS NOT NULL THEN G.id_approval $id_approval
-        WHEN H.id_approval IS NOT NULL THEN H.id_approval $id_approval
-        WHEN I.id_approval IS NOT NULL THEN I.id_approval $id_approval
-        WHEN J.id_approval IS NOT NULL THEN J.id_approval $id_approval
-        WHEN JA.id_approval IS NOT NULL THEN JA.id_approval $id_approval
-        WHEN JB.id_approval IS NOT NULL THEN JB.id_approval $id_approval
-        WHEN JC.id_approval IS NOT NULL THEN JC.id_approval $id_approval
-        WHEN JD.id_approval IS NOT NULL THEN JD.id_approval $id_approval
-        WHEN JE.id_approval IS NOT NULL THEN JE.id_approval $id_approval
-        WHEN K.id_approval IS NOT NULL THEN K.id_approval $id_approval
+            WHEN BA.id_approval IS NOT NULL THEN BA.id_approval $id_approval
+            WHEN BB.id_approval IS NOT NULL THEN BB.id_approval $id_approval
+            WHEN BC.id_approval IS NOT NULL THEN BC.id_approval $id_approval
+            WHEN BD.id_approval IS NOT NULL THEN BD.id_approval $id_approval
+            WHEN BE.id_approval IS NOT NULL THEN BE.id_approval $id_approval
+            WHEN C.id_approval IS NOT NULL THEN C.id_approval $id_approval
+            WHEN D.id_approval IS NOT NULL THEN D.id_approval $id_approval
+            WHEN E.id_approval IS NOT NULL THEN E.id_approval $id_approval
+            WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
+            WHEN G.id_approval IS NOT NULL THEN G.id_approval $id_approval
+            WHEN H.id_approval IS NOT NULL THEN H.id_approval $id_approval
+            WHEN I.id_approval IS NOT NULL THEN I.id_approval $id_approval
+            WHEN J.id_approval IS NOT NULL THEN J.id_approval $id_approval
+            WHEN JA.id_approval IS NOT NULL THEN JA.id_approval $id_approval
+            WHEN JB.id_approval IS NOT NULL THEN JB.id_approval $id_approval
+            WHEN JC.id_approval IS NOT NULL THEN JC.id_approval $id_approval
+            WHEN JD.id_approval IS NOT NULL THEN JD.id_approval $id_approval
+            WHEN JE.id_approval IS NOT NULL THEN JE.id_approval $id_approval
+            WHEN K.id_approval IS NOT NULL THEN K.id_approval $id_approval
         END
         )
-        ");
+        "
+        );
         return $query;
     }
 

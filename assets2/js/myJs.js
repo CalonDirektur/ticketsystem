@@ -394,6 +394,42 @@ $(document).ready(function () {
 		$(".myfaedah-lainnya-required").attr("required", "required");
 	}
 
+	$("#pilih-status").change(function () {
+		// $("#jumlah-nst").show();
+		var val = $(this).val();
+		if (val == "NST") {
+			$("#jumlah-produk").fadeOut('fast', function () {
+				$("#jumlah-nst").fadeIn();
+			});
+		} else {
+			$("#jumlah-nst").fadeOut('fast', function () {
+				$("#jumlah-produk").fadeIn();
+			});
+		}
+	})
 
-
+	$(".owl-carousel").owlCarousel({
+		margin: 10,
+		items: 1,
+		autoplay: true,
+		autoplayTimeout: 500,
+		autoplayHoverPause: false,
+		responsive: {
+			0: {
+				loop: true,
+				items: 1,
+				autoWidth: false,
+				stagePadding: 20
+			},
+			600: {
+				items: 2,
+				autoWidth: false
+			},
+			1000: {
+				loop: false,
+				items: 3,
+				autoWidth: false
+			}
+		}
+	});
 })

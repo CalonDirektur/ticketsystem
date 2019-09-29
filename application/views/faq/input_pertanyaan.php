@@ -7,10 +7,7 @@
         <?php if ($this->session->userdata('level') != 5) { ?>
 
             <div class="row p-2">
-                <div class="col-lg-2">
-
-                </div>
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="card p-5">
                         <form method="post" action="<?= site_urL('faq/add_input_pertanyaan') ?>">
                             <input name="id_user" type="hidden" value="<?= $this->fungsi->user_login()->id_user ?>">
@@ -40,9 +37,7 @@
         <?php } ?>
         <?php if ($this->session->userdata('level') == 5) { ?>
             <div class="row mt-2">
-                <div class="col-lg-2">
-                </div>
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="card">
                         <table class="table">
                             <thead>
@@ -54,16 +49,15 @@
                                 <?php $no = 1;
                                     foreach ($data->result() as $pesan) {
                                         ?>
-                                    <td><?= $no++ ?></td>
-                                    <td><?= $pesan->isi_pesan ?></td>
-                                    <td><?= $pesan->jenis_pesan ?></td>
+                                    <tr>
+                                        <td><?= $no++ ?>. </td>
+                                        <td><?= $pesan->isi_pesan ?></td>
+                                        <td><?= $pesan->jenis_pesan ?></td>
+                                    </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="col-lg-2">
-
                 </div>
             </div>
         <?php } ?>

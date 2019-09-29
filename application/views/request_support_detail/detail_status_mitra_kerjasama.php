@@ -26,13 +26,13 @@
 											echo '<label class="badge badge-secondary">Pending</label>';
 										}
 										if ($data->id_approval == 1) {
-											echo '<label class="badge badge-danger">Ditolak</label>';
+											echo '<label class="badge badge-danger">Rejected</label>';
 										}
 										if ($data->id_approval == 2) {
-											echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+											echo '<label class="badge badge-success">Reviewed</label>';
 										}
 										if ($data->id_approval == 3) {
-											echo '<label class="badge badge-info">Selesai</label>';
+											echo '<label class="badge badge-info">Completed</label>';
 										}
 										if ($data->id_approval == 4) {
 											echo '<label class="badge badge-warning">In Process</label>';
@@ -105,13 +105,13 @@
 									echo '<label class="badge badge-secondary">Pending</label>';
 								}
 								if ($data->id_approval == 1) {
-									echo '<label class="badge badge-danger">Ditolak</label>';
+									echo '<label class="badge badge-danger">Rejected</label>';
 								}
 								if ($data->id_approval == 2) {
-									echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+									echo '<label class="badge badge-success">Reviewed</label>';
 								}
 								if ($data->id_approval == 3) {
-									echo '<label class="badge badge-success">Selesai</label>';
+									echo '<label class="badge badge-info">Completed</label>';
 								}
 								?>
 							</div>
@@ -126,7 +126,7 @@
 						</div>
 						<div class="card-footer">
 							<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-							<?php if ($this->session->userdata('level') == 2 && $data->id_approval == 0) { ?>
+							<?php if ($this->session->userdata('level') == 2 && ($data->id_approval == 0 || $data->id_approval == 4)) { ?>
 								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYETUJUI request support ini?')" href="<?= base_url('Aksi/approve/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Approve</a>
 								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/mitra_kerjasama/id/' . $data->id_mitra_kerjasama) ?>">Reject</a>
 							<?php } ?>

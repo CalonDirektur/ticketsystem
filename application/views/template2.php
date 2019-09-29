@@ -37,12 +37,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>BFI Syariah Helpdesk</title>
   <!-- base:css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/bootstrap.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/bootstrap-horizon.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/dataTables.bootstrap4.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.bootstrap4.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/jquery-ui.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/mdi/css/materialdesignicons.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/feather/feather.css') ?>">
@@ -53,6 +54,9 @@
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/font-awesome/css/font-awesome.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/jquery-bar-rating/fontawesome-stars-o.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/jquery-bar-rating/fontawesome-stars.css') ?>">
+
+  <link rel="stylesheet" href="<?= base_url('assets2/css/owl.carousel.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/owl.theme.default.min.css') ?>">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
 
@@ -105,6 +109,13 @@
       pointer-events: none;
       opacity: 0.5
     }
+
+    select.form-control {
+      border: 0px;
+      outline: 0px;
+    }
+
+    /* } */
   </style>
 
 </head>
@@ -202,7 +213,7 @@
         <?php if ($this->session->userdata('userid') != NULL) { ?>
           <div class="user-profile">
             <div class="user-image">
-              <img src="<?= base_url('assets2/img/profile-pic.jpg') ?>">
+              <img src="<?= $this->fungsi->user_login()->foto != NULL ? base_url('uploads/foto_profil/' . $this->fungsi->user_login()->foto) : base_url('assets2/img/profile-pic.jpg') ?>">
             </div>
             <div class="user-name">
               <?= ucfirst($this->fungsi->user_login()->name) ?>
@@ -216,12 +227,15 @@
                 } else if ($this->fungsi->user_login()->level == 3) {
                   echo "Admin level 2";
                 } else if ($this->fungsi->user_login()->level == 4) {
-                  echo "Admin NST";
+                  echo "Admin NST 1";
                 } else if ($this->fungsi->user_login()->level == 5) {
                   echo "Superuser";
                 } else if ($this->fungsi->user_login()->level == 6) {
                   echo ucfirst($this->fungsi->user_login()->nama_cabang) . "<br>";
                   echo ucfirst($this->fungsi->user_login()->jabatan);
+                } else if ($this->fungsi->user_login()->level == 7) {
+                  echo ucfirst($this->fungsi->user_login()->nama_cabang) . "<br>";
+                  echo "Admin NST 2";
                 }
                 ?>
             </div>
@@ -406,27 +420,26 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+  <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets2/vendors/base/vendor.bundle.base.js') ?>"></script>
   <script src="<?= base_url('assets2/js/off-canvas.js') ?>"></script>
   <script src="<?= base_url('assets2/js/hoverable-collapse.js') ?>"></script>
   <script src="<?= base_url('assets2/js/template.js') ?>"></script>
   <script src="<?= base_url('assets2/vendors/chart.js/Chart.min.js') ?>"></script>
   <script src="<?= base_url('assets2/vendors/jquery-bar-rating/jquery.barrating.min.js') ?>"></script>
-  <script src="<?= base_url('assets2/js/dashboard.js') ?>"></script>
   <script src="<?= base_url('assets2/js/file-upload.js') ?>"></script>
 
   <!-- ANEKA JAVASCRIPT IBRAHIM -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dataTables.rowReorder.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-  <!-- <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script> -->
+  <script src="<?= base_url('assets2/js/jquery-ui.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/dataTables.responsive.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/responsive.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/dataTables.bootstrap4.min.js') ?>"></script>
   <script src="<?= base_url('assets2/plugin/ckeditor/ckeditor.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/owl.carousel.js') ?>"></script>
   <script>
     $(document).ready(function() {
       // Script untuk plugin CKEditor di halaman FAQ
@@ -514,6 +527,7 @@
           $("#nama_konsumen").val(ui.item.nama_konsumen).attr("readonly", "readonly");
           $("#nama_user").val(ui.item.name).attr("readonly", "readonly");
           $("#nama_cabang").val(ui.item.nama_cabang).attr("readonly", "readonly");
+          $("#submit_nst").removeAttr("disabled");
           // $("#lead_id").attr("disabled", "disabled");
 
           $(".clear-lead-id").fadeIn();
@@ -547,11 +561,308 @@
 
       $(".clear-lead-id").show();
       $(".clear-lead-id").on("click", function() {
+        $("#submit_nst").attr("disabled", "disabled");
         $("#lead_id").removeAttr("readonly").val("");
         $("#nama_konsumen, #nama_user, #nama_cabang, #produk").val("");
         $(".clear-lead-id").fadeOut("fast");
       })
+
+
+
     })
+  </script>
+
+  <script>
+    (function($) {
+      'use strict';
+      $(function() {
+        if ($("#customers").length) {
+          var barChartCanvas = $("#customers").get(0).getContext("2d");
+          // This will get the first returned node in the jQuery collection.
+          var ctx = document.getElementById("customers");
+          ctx.height = 60;
+          var monthlyTickets = new Chart(barChartCanvas, {
+            type: 'bar',
+            data: {
+              labels: [<?php foreach ($ticket_weekly as $weekly) echo "'$weekly->hari'" . ","; ?>],
+              datasets: [{
+                label: 'Ticket',
+                data: [<?php foreach ($ticket_weekly as $weekly) echo $weekly->jumlah . ","; ?>],
+                backgroundColor: [<?php foreach ($ticket_weekly as $weekly) echo $weekly->hari == date("D") ? "'#2196f3'," : "'#dee5ef',";; ?>],
+                borderColor: [<?php foreach ($ticket_weekly as $weekly) echo $weekly->hari == date("D") ? "'#2196f3'," : "'#dee5ef',";; ?>],
+                borderWidth: 3,
+                fill: false
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                    display: false,
+
+                  },
+                  gridLines: {
+                    display: false,
+                    drawBorder: false
+                  }
+                }],
+                xAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                    display: true,
+                  },
+                  gridLines: {
+                    display: false,
+                    drawBorder: false
+                  }
+                }]
+              },
+              legend: {
+                display: false
+              },
+              elements: {
+                point: {
+                  radius: 0
+                }
+              },
+              tooltips: {
+                enabled: true
+              }
+
+            }
+          });
+        }
+
+        $("#monthly-tickets").change(function() {
+          var totalTiket = $("#total-tiket");
+          var id = $(this).val();
+
+          $.ajax({
+            url: "<?= site_url('data_json/monthly_tickets_ajax/') ?>" + id,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+              id: id
+            },
+            async: true,
+            success: function(value) {
+              var total = 0;
+              monthlyTickets.data.labels = [];
+              monthlyTickets.data.datasets[0].data = [];
+              for (var i = 0; i < value.length; i++) {
+                monthlyTickets.data.labels.push(value[i].hari);
+                monthlyTickets.data.datasets[0].data.push(value[i].jumlah);
+                monthlyTickets.data.datasets[0].backgroundColor.push(("#2196f3"));
+                monthlyTickets.data.datasets[0].borderColor.push(("#2196f3"));
+                total = total + parseInt(value[i].jumlah);
+              }
+              totalTiket.text(total);
+              monthlyTickets.update();
+            }
+          })
+          monthlyTickets.update();
+        })
+
+        if ($("#orders").length) {
+          var barChartCanvas = $("#orders").get(0).getContext("2d");
+          // This will get the first returned node in the jQuery collection.
+          var ctx = document.getElementById("orders");
+          ctx.height = 60;
+          var LeadsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: [<?php foreach ($monthly_leads as $leads) echo "'$leads->bulan'" . ","; ?>],
+              datasets: [{
+                label: 'Leads',
+                data: [<?php foreach ($monthly_leads as $leads) echo "'$leads->jumlah'" . ","; ?>],
+                backgroundColor: [<?php foreach ($monthly_leads as $leads) echo "'#2196f3'" . ","; ?>],
+                borderColor: [<?php foreach ($monthly_leads as $leads) echo "'#2196f3'" . ","; ?>],
+                borderWidth: 1,
+                fill: false
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                    display: false,
+
+                  },
+                  gridLines: {
+                    display: false,
+                    drawBorder: true
+                  }
+                }],
+                xAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                    display: true,
+                  },
+                  gridLines: {
+                    display: false,
+                    drawBorder: false
+                  }
+                }]
+              },
+              legend: {
+                display: false
+              },
+              elements: {
+                point: {
+                  radius: 0
+                }
+              },
+              tooltips: {
+                enabled: true
+              }
+            }
+          });
+        }
+        // alert(barChart.data.datasets[0].label);
+
+        $("#tahun-leads").change(function() {
+          var id = $(this).val();
+          // alert(id)
+          // var getAnnuallyLeads = function() {
+          $.ajax({
+            url: "<?= site_url('data_json/anually_leads_ajax/') ?>" + id,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+              id: id
+            },
+            async: true,
+            success: function(value) {
+              LeadsChart.data.labels = [];
+              LeadsChart.data.datasets[0].data = [];
+              for (var i = 0; i < value.length; i++) {
+                LeadsChart.data.labels.push(value[i].bulan);
+                LeadsChart.data.datasets[0].data.push(value[i].jumlah);
+                LeadsChart.data.datasets[0].backgroundColor.push(("#2196f3"));
+                LeadsChart.data.datasets[0].borderColor.push(("#2196f3"));
+                // arr.push(value[i].jumlah);
+              }
+              // alert(dataBarOrder.labels);
+              // alert(LeadsChart.data.datasets[0].data);
+              LeadsChart.update();
+            }
+          })
+        })
+
+        // Produk Yang Paling Banyak Disupport
+        var webAudienceMetricsSatackedData = {
+          labels: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->bulan'" . ","; ?>],
+          datasets: [{
+              label: 'My Talim',
+              data: [<?php foreach ($monthly_product as $monthly) echo $monthly->my_talim . ","; ?>],
+              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#3794fc'" . ","; ?>],
+              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#3794fc'" . ","; ?>],
+              borderWidth: 1,
+              fill: false
+            },
+            {
+              label: 'My Hajat',
+              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_hajat'" . ","; ?>],
+              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#a037fc'" . ","; ?>],
+              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#a037fc'" . ","; ?>],
+              borderWidth: 1,
+              fill: false
+            },
+            {
+              label: 'My Cars',
+              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_cars'" . ","; ?>],
+              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#cddc39'" . ","; ?>],
+              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#cddc39'" . ","; ?>],
+              borderWidth: 1,
+              fill: false
+            },
+            {
+              label: 'My Ihram',
+              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_ihram'" . ","; ?>],
+              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#607d8b'" . ","; ?>],
+              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#607d8b'" . ","; ?>],
+              borderWidth: 1,
+              fill: false
+            },
+            {
+              label: 'My Safar',
+              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_safar'" . ","; ?>],
+              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#f44336'" . ","; ?>],
+              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#f44336'" . ","; ?>],
+              borderWidth: 1,
+              fill: false
+            },
+            {
+              label: 'My Faedah',
+              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_faedah'" . ","; ?>],
+              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#8bc34a'" . ","; ?>],
+              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#8bc34a'" . ","; ?>],
+              borderWidth: 1,
+              fill: false
+            },
+          ]
+        };
+        var webAudienceMetricsSatackedOptions = {
+          scales: {
+            xAxes: [{
+              barPercentage: 0.2,
+              stacked: true,
+              gridLines: {
+                display: true, //this will remove only the label
+                drawBorder: false,
+                color: "#e5e9f2",
+              },
+            }],
+            yAxes: [{
+              stacked: true,
+              display: false,
+              gridLines: {
+                display: false, //this will remove only the label
+                drawBorder: false
+              },
+            }]
+          },
+          legend: {
+            display: true,
+            position: "bottom"
+          },
+          legendCallback: function(chart) {
+            var text = [];
+            text.push('<div class="row">');
+            for (var i = 0; i < chart.data.datasets.length; i++) {
+              text.push('<div class="col-lg-4"><div class="row"><div class="col-sm-12"><h5 class="font-weight-bold text-dark mb-1">' + chart.data.datasets[i].data[1].toLocaleString() + '</h5></div></div><div class="row align-items-center"><div class="col-2"><span class="legend-label" style="background-color:' + chart.data.datasets[i].backgroundColor[i] + '"></span></div><div class="col-9 pl-0"><p class="text-muted m-0 ml-1">' + chart.data.datasets[i].label + '</p></div></div>');
+              text.push('</div>');
+            }
+            text.push('</div>');
+            return text.join("");
+          },
+          elements: {
+            point: {
+              radius: 0
+            }
+          }
+        };
+        if ($("#web-audience-metrics-satacked").length) {
+          var barChartCanvas = $("#web-audience-metrics-satacked").get(0).getContext("2d");
+          // This will get the first returned node in the jQuery collection.
+          var ctx = document.getElementById("web-audience-metrics-satacked");
+          ctx.height = 88;
+          var barChart = new Chart(barChartCanvas, {
+            type: 'bar',
+            height: '200',
+            data: webAudienceMetricsSatackedData,
+            options: webAudienceMetricsSatackedOptions
+          });
+          document.getElementById('chart-legends').innerHTML = barChart.generateLegend();
+        }
+        $('#over-all-rating').barrating({
+          theme: 'fontawesome-stars',
+          showSelectedRating: false
+        });
+      });
+    })(jQuery);
   </script>
 </body>
 

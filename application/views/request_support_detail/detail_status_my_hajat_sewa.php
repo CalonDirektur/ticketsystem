@@ -27,13 +27,13 @@
                       echo '<label class="badge badge-secondary">Pending</label>';
                     }
                     if ($data->id_approval == 1) {
-                      echo '<label class="badge badge-danger">Ditolak</label>';
+                      echo '<label class="badge badge-danger">Rejected</label>';
                     }
                     if ($data->id_approval == 2) {
-                      echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+                      echo '<label class="badge badge-success">Reviewed</label>';
                     }
                     if ($data->id_approval == 3) {
-                      echo '<label class="badge badge-info">Selesai</label>';
+                      echo '<label class="badge badge-info">Completed</label>';
                     }
                     if ($data->id_approval == 4) {
                       echo '<label class="badge badge-warning">In Process</label>';
@@ -140,13 +140,13 @@
                   echo '<label class="badge badge-secondary">Pending</label>';
                 }
                 if ($data->id_approval == 1) {
-                  echo '<label class="badge badge-danger">Ditolak</label>';
+                  echo '<label class="badge badge-danger">Rejected</label>';
                 }
                 if ($data->id_approval == 2) {
-                  echo '<label class="badge badge-success">Disetujui Admin 1</label>';
+                  echo '<label class="badge badge-success">Reviewed</label>';
                 }
                 if ($data->id_approval == 3) {
-                  echo '<label class="badge badge-success">Selesai</label>';
+                  echo '<label class="badge badge-info">Completed</label>';
                 }
                 ?>
               </div>
