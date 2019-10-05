@@ -166,7 +166,11 @@ class Auth extends CI_Controller
 					'id_cabang' => $row->id_cabang
 				];
 				$this->session->set_userdata($params);
-				echo "<script>window.location='" . site_url("dashboard") . "'</script>";
+				if ($this->session->userdata('level') != 5) {
+					echo "<script>window.location='" . site_url("status") . "'</script>";
+				} else {
+					echo "<script>window.location='" . site_url("dashboard") . "'</script>";
+				}
 			} else {
 				echo "<script>alert('Akun tidak cocok/belum diaktivasi'); window.location='" . site_url("auth") . "'</script>";
 			}

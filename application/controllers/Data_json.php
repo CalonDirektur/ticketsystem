@@ -138,4 +138,65 @@ class Data_json extends CI_Controller
         $count = $query->result();
         echo json_encode($count);
     }
+
+    public function anually_product_ajax($year)
+    {
+        $query = $this->db->query(
+            "SELECT MONTHNAME(STR_TO_DATE(Months.m, '%m')) as nama_bulan,
+            COUNT(id_renovasi) + COUNT(id_sewa) + COUNT(id_wedding) + COUNT(id_franchise) + COUNT(id_myhajat_lainnya) as my_hajat,
+            COUNT(id_bangunan) + COUNT(id_elektronik) + COUNT(id_modal) + COUNT(id_qurban) + COUNT(id_myfaedah_lainnya) as my_faedah,
+            COUNT(id_mytalim) as my_talim,
+            COUNT(id_mysafar) as my_safar,
+            COUNT(id_myihram) as my_ihram,
+            COUNT(id_mycars) as my_cars,
+            COUNT(id_nst) as nst,
+            (DATE_FORMAT(tanggal_dibuat, '%b')) as bulan
+            FROM
+            (
+                SELECT 1 as m 
+                UNION SELECT 2 as m 
+                UNION SELECT 3 as m 
+                UNION SELECT 4 as m 
+                UNION SELECT 5 as m 
+                UNION SELECT 6 as m 
+                UNION SELECT 7 as m 
+                UNION SELECT 8 as m 
+                UNION SELECT 9 as m 
+                UNION SELECT 10 as m 
+                UNION SELECT 11 as m 
+                UNION SELECT 12 as m
+            ) as Months
+            LEFT JOIN tb_ticket on Months.m = MONTH(DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d'))
+            AND YEAR(tanggal_dibuat) = '$year'
+                GROUP BY Months.m"
+        );
+        echo json_encode($query->result());
+    }
+
+    public function get_user_cabang($id_cabang)
+    {
+        // $data = $this->data_m->get('tb_vendor');
+        $keyword = $_GET['term'];
+
+        $query = $this->data_m->query(
+            "SELECT *
+         FROM 
+             user
+         WHERE name
+         LIKE '%$keyword%' AND
+         id_cabang = $id_cabang
+         "
+        );
+
+        $output = [];
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $user) {
+                $data['id'] = $user['id_user'];
+                $data['value'] = $user['name'];
+                // $data['jenis_vendor'] = $user['jenis_vendor'];
+                array_push($output, $data);
+            }
+            echo json_encode($output);
+        }
+    }
 }

@@ -58,7 +58,7 @@
                             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit amet cumque cupiditate</p> -->
                         </div>
                         <div class="col-lg-7">
-                            <select class="form-control pull-right col-3" id="anually-leads">
+                            <select class="form-control pull-right col-3" id="anually-product">
                                 <?php
                                 $year = $this->db->query("SELECT DISTINCT DATE_FORMAT(tanggal_dibuat, '%Y') as year FROM tb_ticket");
                                 foreach ($year->result() as $tahun) {
@@ -158,8 +158,12 @@
                             <td><?= secondsToWords(round($penyelesaian_admin2)) ?></td>
                         </tr>
                         <tr>
-                            <td>Admin NST</td>
-                            <td><?= secondsToWords(round($penyelesaian_admin_nst)) ?></td>
+                            <td>Admin NST Ijarah</td>
+                            <td><?= secondsToWords(round($penyelesaian_admin_nst_1)) ?></td>
+                        </tr>
+                        <tr>
+                            <td>Admin NST Murabahah</td>
+                            <td><?= secondsToWords(round($penyelesaian_admin_nst_2)) ?></td>
                         </tr>
                     </tbody>
                 </table>

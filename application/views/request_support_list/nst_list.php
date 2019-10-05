@@ -28,11 +28,11 @@
                 <div class="row">
                     <div class="input-group row ml-3">
                         <form class="form-inline">
-                            <label for="statusTiket"><b>Sort by:</b></label>
+                            <label for="statusTiketAdmin"><b>Sort by:</b></label>
                             <select class="form-control form-rounded ml-3" id="statusTiket">
                                 <option id="all-tickets" value="">All</option>
                                 <option id="pending" value="Pending">Pending</option>
-                                <option id="inprocess" value="In Process">In Process</option>
+                                <option id="inprogress" value="In Progress">In Progress</option>
                                 <option id="approved" value="Disetujui">Disetujui</option>
                                 <option id="rejected" value="Ditolak">Ditolak</option>
                                 <option id="completed" value="Selesai">Selesai</option>
@@ -41,13 +41,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-
-                    <table class="table table-striped table-bordered display status dt-responsive nowrap" style="width: 100%">
+                    <table class="table table-striped table-bordered display status-admin dt-responsive nowrap" style="width: 100%">
                         <thead>
                             <tr>
                                 <th class="all">ID Ticket</th>
                                 <th class="none">Requester</th>
-                                <th class="none">Cabang</th>
+                                <th>Cabang</th>
                                 <th>Lead ID</th>
                                 <th class="all">Nama Konsumen</th>
                                 <th>Produk</th>
@@ -75,9 +74,9 @@
                                     <?php } else if ($d->id_approval == 2) { ?>
                                         <td><label class="badge badge-success">Disetujui</span></td>
                                     <?php } else if ($d->id_approval == 3) { ?>
-                                        <td><label class="badge badge-primary">Selesai</label></td>
+                                        <td><label class="badge badge-info">Selesai</label></td>
                                     <?php } else if ($d->id_approval == 4) { ?>
-                                        <td><label class="badge badge-warning">In Process</label></td>
+                                        <td><label class="badge badge-warning">In Progress</label></td>
                                     <?php } ?>
                                     <td><a class="btn btn-secondary" href="<?= base_url('status/detail/nst/id/' . $d->id_nst) ?>">Detail</a></td>
                                 </tr>

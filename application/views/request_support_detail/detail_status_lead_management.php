@@ -8,7 +8,7 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data">
+		<form method="post" action="<?= base_url('ticket_register/edit') ?>" enctype="multipart/form-data" autocomplete="off">
 			<div class="row">
 				<div class="col-lg-2">
 
@@ -20,6 +20,7 @@
 							<h3 class="card-title">Data Ticket</h3>
 						</div>
 						<div class="card-body">
+							<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
 							<!-- ID Ticket -->
 							<div class="form-group">
 								<label for="id_ticket">ID Lead Management</label>
@@ -28,22 +29,29 @@
 							<!-- Nama Cabang -->
 							<div class="form-group">
 								<label for="nama_cabang">Nama Cabang</label>
-								<input type="text" class="form-control" name="nama_cabang" id="nama_cabang" value="<?= $data->cabang_user ?>" readonly required>
+								<input type="hidden" class="form-control" id="id_cabang" name="nama_cabang" value="<?= $data->id_cabang_user ?>" data-cabang="<?= $data->id_user ?>" readonly required>
+								<input type="text" class="form-control" id="nama_cabang" value="<?= $data->cabang_user ?>" data-cabang="<?= $data->id_cabang ?>" readonly required>
+							</div>
+							<!-- Requester -->
+							<div class="form-group">
+								<label for="requester">Requester</label>
+								<input type="hidden" name="requester" id="id_requester" class="form-control" value="<?= $data->id_user ?>" readonly required>
+								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" id="requester" value="<?= $data->name ?>" data-user="<?= $data->id_user ?>" readonly required>
 							</div>
 							<!-- Lead ID -->
 							<div class="form-group">
 								<label for="leads_id">Lead ID</label>
-								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="lead_id" id="leads_id" value="<?= $data->lead_id ?>" readonly required>
+								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" name="lead_id" id="leads_id" value="<?= $data->lead_id ?>" readonly required>
 							</div>
 							<!-- No KTP -->
 							<div class="form-group">
 								<label for="lead_id">No KTP</label>
-								<input type="number" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="no_ktp" id="no_ktp" maxlength="16" value="<?= $data->no_ktp ?>" readonly required>
+								<input type="number" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" name="no_ktp" id="no_ktp" maxlength="16" value="<?= $data->no_ktp ?>" readonly required>
 							</div>
 							<!-- Asal Leads -->
 							<div class="form-group">
 								<label for="asal_leads">Asal Leads</label>
-								<select required name="asal_leads" id="asal_leads" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" required disabled>
+								<select required name="asal_leads" id="asal_leads" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" required disabled>
 									<option disabled selected value="">- Pilih Sumber Lead -</option>
 									<option value="In Branch" <?= $data->asal_leads == 'In Branch' ? 'selected' : ''  ?>>In Branch</option>
 									<option value="Cross-Branch" <?= $data->asal_leads == 'Cross-Branch' ? 'selected' : ''  ?>>Cross-Branch</option>
@@ -53,7 +61,7 @@
 							<div class="cross-branch">
 								<div class="form-group">
 									<label for="cabang_tujuan">Cabang Tujuan</label>
-									<select name="cabang_tujuan" id="cabang_tujuan" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?> cross-branch" disabled>
+									<select name="cabang_tujuan" id="cabang_tujuan" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?> cross-branch" disabled>
 										<option selected value="">- Tidak Ada Cabang Tujuan -</option>
 										<?php
 										foreach ($cabang_tujuan->result() as $p) {
@@ -65,23 +73,23 @@
 								<!-- Surveyor -->
 								<div class="form-group">
 									<label for="surveyor">Surveyor</label>
-									<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?> cross-branch" name="surveyor" id="surveyor" value="<?= $data->surveyor ?>" readonly>
+									<input type="text" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?> cross-branch" name="surveyor" id="surveyor" value="<?= $data->surveyor ?>" readonly>
 								</div>
 								<!-- TTD PIC -->
 								<div class="form-group">
 									<label for="ttd_pic">TTD PIC</label>
-									<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="ttd_pic" id="ttd_pic" value="<?= $data->ttd_pic ?>" readonly>
+									<input type="text" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" name="ttd_pic" id="ttd_pic" value="<?= $data->ttd_pic ?>" readonly>
 								</div>
 								<!-- Nama Konsumen -->
 								<div class="form-group">
 									<b>Nama Konsumen</b>
-									<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?> cross-branch" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
+									<input type="text" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?> cross-branch" name="nama_konsumen" id="nama_konsumen" value="<?= $data->nama_konsumen ?>" readonly required>
 								</div>
 							</div>
 							<!-- Sumber Lead -->
 							<div class="form-group">
 								<label for="sumber_lead">Sumber Lead</label>
-								<select required name="sumber_lead" id="sumber_lead" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" required disabled>
+								<select required name="sumber_lead" id="sumber_lead" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" required disabled>
 									<option disabled selected value="">- Pilih Sumber Lead -</option>
 									<option value="Direct Selling" <?= $data->sumber_lead == 'Direct Selling' ? 'selected' : ''  ?>>Direct Selling</option>
 									<option value="Tour & Travel / Penyedia Jasa" <?= $data->sumber_lead == 'Tour & Travel / Penyedia Jasa' ? 'selected' : ''  ?>>Tour & Travel / Penyedia Jasa</option>
@@ -98,17 +106,17 @@
 							<!-- Nama Pemberi Lead -->
 							<div class="form-group">
 								<label for="nama_pemeberi_lead">Nama Pemberi Lead</label>
-								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="nama_pemberi_lead" id="nama_pemberi_lead" value="<?= $data->nama_pemberi_lead ?>" readonly required>
+								<input type="text" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" name="nama_pemberi_lead" id="nama_pemberi_lead" value="<?= $data->nama_pemberi_lead ?>" readonly required>
 							</div>
 							<!-- Object Price -->
 							<div class="form-group">
 								<label for="object_price">Object Price</label>
-								<input type="number" class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="object_price" id="object_price" value="<?= $data->object_price ?>" readonly required>
+								<input type="number" class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" name="object_price" id="object_price" value="<?= $data->object_price ?>" readonly required>
 							</div>
 							<!-- Produk -->
 							<div class="form-group">
 								<label>Produk</label>
-								<select class="form-control <?= ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5) ? '' : 'enable' ?>" name="produk" id="produk" disabled>
+								<select class="form-control <?= ($this->session->userdata('level') == 4) ? '' : 'enable' ?>" name="produk" id="produk" disabled>
 									<option disabled selected value="">- Pilih Produk -</option>
 									<option value="My Hajat" <?= $data->produk == 'My Hajat' ? 'selected' : ''  ?>> My Hajat</option>
 									<option value="My Talim" <?= $data->produk == 'My Talim' ? 'selected' : ''  ?>> My Talim</option>

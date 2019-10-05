@@ -227,7 +227,7 @@
                 } else if ($this->fungsi->user_login()->level == 3) {
                   echo "Admin level 2";
                 } else if ($this->fungsi->user_login()->level == 4) {
-                  echo "Admin NST 1";
+                  echo "PIC NST Ijarah";
                 } else if ($this->fungsi->user_login()->level == 5) {
                   echo "Superuser";
                 } else if ($this->fungsi->user_login()->level == 6) {
@@ -235,7 +235,7 @@
                   echo ucfirst($this->fungsi->user_login()->jabatan);
                 } else if ($this->fungsi->user_login()->level == 7) {
                   echo ucfirst($this->fungsi->user_login()->nama_cabang) . "<br>";
-                  echo "Admin NST 2";
+                  echo "PIC NST Murabahah";
                 }
                 ?>
             </div>
@@ -243,21 +243,24 @@
         <?php } ?>
         <ul class="nav">
           <?php if ($this->session->userdata('userid') != NULL) { ?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= site_url('dashboard') ?>">
-                <i class="icon-box menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-              </a>
-            </li>
-            <?php if ($this->session->userdata('level') == 1) { ?>
+            <?php if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 3 || $this->session->userdata('level') == 4 || $this->session->userdata('level') == 5 || $this->session->userdata('level') == 7) { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('dashboard') ?>">
+                  <i class="icon-bar-graph menu-icon"></i>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>
+            <?php } ?>
+            <?php if ($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) { ?>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#datatabel" aria-expanded="false" aria-controls="datatabel">
-                  <i class="icon-head menu-icon"></i>
+                  <i class="icon-box menu-icon"></i>
                   <span class="menu-title">Data Tabel</span>
                   <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="datatabel">
                   <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
                   </ul>
@@ -280,6 +283,12 @@
                 </div>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Materi_Promosi') ?>">
+                  <i class="icon-paper menu-icon"></i>
+                  <span class="menu-title">Materi Promosi</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
                   <i class="icon-disc menu-icon"></i>
                   <span class="menu-title">Bantuan</span>
@@ -293,7 +302,22 @@
                 </div>
               </li>
             <?php } ?>
-
+            <?php if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 3 || $this->session->userdata('level') == 4 || $this->session->userdata('level') == 7) { ?>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#datatabel" aria-expanded="false" aria-controls="datatabel">
+                  <i class="icon-box menu-icon"></i>
+                  <span class="menu-title">Data Tabel</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="datatabel">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
+                  </ul>
+                </div>
+              </li>
+            <?php } ?>
             <?php if ($this->session->userdata('level') == 4) { ?>
               <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('status/list/lead_management_list/') ?>">
@@ -318,16 +342,23 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#datatabel" aria-expanded="false" aria-controls="datatabel">
-                  <i class="icon-head menu-icon"></i>
+                  <i class="icon-box menu-icon"></i>
                   <span class="menu-title">Data Tabel</span>
                   <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="datatabel">
                   <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
                   </ul>
                 </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Materi_Promosi') ?>">
+                  <i class="icon-paper menu-icon"></i>
+                  <span class="menu-title">Materi Promosi</span>
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
@@ -339,51 +370,6 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('faq/input_pertanyaan') ?>">Pesan</a></li>
-                  </ul>
-                </div>
-              </li>
-            <?php } ?>
-
-            <?php if ($this->session->userdata('level') == 6) { ?>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#datatabel" aria-expanded="false" aria-controls="datatabel">
-                  <i class="icon-head menu-icon"></i>
-                  <span class="menu-title">Data Tabel</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="datatabel">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#daftar-tiket" aria-expanded="false" aria-controls="daftar-tiket">
-                  <i class="icon-disc menu-icon"></i>
-                  <span class="menu-title">Request Ticket</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="daftar-tiket">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Input Produk</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Aktivasi Agent</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">NST</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_mitra_kerjasama') ?>">Mitra Kerja sama</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
-                  <i class="icon-disc menu-icon"></i>
-                  <span class="menu-title">Bantuan</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="faq">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Input Pertanyaan</a></li>
                   </ul>
                 </div>
               </li>
@@ -482,30 +468,14 @@
         }
       });
 
-      // Memasang form autocomplete untuk form input produk my faedah yang terhubung ke MYSQL
-      $(".nama_vendor_myfaedah").autocomplete({
+      // Memasang form autocomplete untuk form lead management mengganti nama requester di cabang itu sendiri yang terhubung ke MYSQL
+      var id_cabang = $("#id_cabang").val();
+      $("#requester").autocomplete({
         delay: 0,
-        source: "<?= base_url('data_json/get_vendor_myfaedah') ?>",
+        source: "<?= base_url('data_json/get_user_cabang/') ?>" + id_cabang,
         select: function(event, ui) {
           // event.preventDefault();
-          $(".id_vendor").val(ui.item.id);
-          $(".clear-nama-vendor").show();
-          $(".nama_vendor_myfaedah").attr('readonly', 'readonly');
-
-          // Untuk pertanyaan vendor My Faedah
-          if (ui.item.jenis_vendor == "Toko/Agen") {
-            $(".jenis-penyedia").val("Toko/Agen").addClass('disable');
-
-          } else if (ui.item.jenis_vendor == "Authorized Distributor") {
-            $(".jenis-penyedia").val("Authorized Distributor").addClass('disable');
-
-          } else if (ui.item.jenis_vendor == "Penjual Perorangan") {
-            $(".jenis-penyedia").val("Penjual Perorangan").addClass('disable');
-
-          } else if (ui.item.jenis_vendor == "Modern Store/Supermarket") {
-            $(".jenis-penyedia").val("Modern Store/Supermarket").addClass('disable');
-
-          }
+          $("#id_requester").val(ui.item.id);
           console.log(ui.item.id);
         }
       });
@@ -676,8 +646,8 @@
               datasets: [{
                 label: 'Leads',
                 data: [<?php foreach ($monthly_leads as $leads) echo "'$leads->jumlah'" . ","; ?>],
-                backgroundColor: [<?php foreach ($monthly_leads as $leads) echo "'#2196f3'" . ","; ?>],
-                borderColor: [<?php foreach ($monthly_leads as $leads) echo "'#2196f3'" . ","; ?>],
+                backgroundColor: [<?php foreach ($monthly_leads as $leads) echo $leads->bulan == date("M") ? "'#2196f3'," : "'#dee5ef',";; ?>],
+                borderColor: [<?php foreach ($monthly_leads as $leads) echo $leads->bulan == date("M") ? "'#2196f3'," : "'#dee5ef',";; ?>],
                 borderWidth: 1,
                 fill: false
               }]
@@ -751,116 +721,170 @@
           })
         })
 
+        $("#anually-product").change(function() {
+          var id = $(this).val();
+          // alert(id)
+          // var getAnnuallyLeads = function() {
+          $.ajax({
+            url: "<?= site_url('data_json/anually_product_ajax/') ?>" + id,
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+              id: id
+            },
+            async: true,
+            success: function(value) {
+              for (var i = 0; i < AnuallyProduct.data.datasets.length; i++) {
+                AnuallyProduct.data.labels = [];
+                AnuallyProduct.data.datasets[i].data = [];
+                AnuallyProduct.data.datasets[i].backgroundColor = [];
+                AnuallyProduct.data.datasets[i].borderColor = [];
+              }
+              for (var i = 0; i < value.length; i++) {
+                // AnuallyProduct.data.labels.push(value[i].bulan);
+                // alert(value[i].nama_bulan);
+                AnuallyProduct.data.labels.push(value[i].nama_bulan);
+
+                AnuallyProduct.data.datasets[0].data.push(value[i].my_talim);
+                AnuallyProduct.data.datasets[0].backgroundColor.push(("#3794fc"));
+                AnuallyProduct.data.datasets[0].borderColor.push(("#3794fc"));
+
+                AnuallyProduct.data.datasets[1].data.push(value[i].my_hajat);
+                AnuallyProduct.data.datasets[1].backgroundColor.push(("#a037fc"));
+                AnuallyProduct.data.datasets[1].borderColor.push(("#a037fc"));
+
+                AnuallyProduct.data.datasets[2].data.push(value[i].my_cars);
+                AnuallyProduct.data.datasets[2].backgroundColor.push(("#cddc39"));
+                AnuallyProduct.data.datasets[2].borderColor.push(("#cddc39"));
+
+                AnuallyProduct.data.datasets[3].data.push(value[i].my_ihram);
+                AnuallyProduct.data.datasets[3].backgroundColor.push(("#607d8b"));
+                AnuallyProduct.data.datasets[3].borderColor.push(("#607d8b"));
+
+                AnuallyProduct.data.datasets[4].data.push(value[i].my_safar);
+                AnuallyProduct.data.datasets[4].backgroundColor.push(("#f44336"));
+                AnuallyProduct.data.datasets[4].borderColor.push(("#f44336"));
+
+                AnuallyProduct.data.datasets[5].data.push(value[i].my_faedah);
+                AnuallyProduct.data.datasets[5].backgroundColor.push(("#8bc34a"));
+                AnuallyProduct.data.datasets[5].borderColor.push(("#8bc34a"));
+                // arr.push(value[i].jumlah);
+              }
+              // alert(dataBarOrder.labels);
+              // alert(AnuallyProduct.data.datasets[0].data);
+              AnuallyProduct.update();
+            }
+          })
+
+        })
+
         // Produk Yang Paling Banyak Disupport
-        var webAudienceMetricsSatackedData = {
-          labels: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->bulan'" . ","; ?>],
-          datasets: [{
-              label: 'My Talim',
-              data: [<?php foreach ($monthly_product as $monthly) echo $monthly->my_talim . ","; ?>],
-              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#3794fc'" . ","; ?>],
-              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#3794fc'" . ","; ?>],
-              borderWidth: 1,
-              fill: false
-            },
-            {
-              label: 'My Hajat',
-              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_hajat'" . ","; ?>],
-              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#a037fc'" . ","; ?>],
-              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#a037fc'" . ","; ?>],
-              borderWidth: 1,
-              fill: false
-            },
-            {
-              label: 'My Cars',
-              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_cars'" . ","; ?>],
-              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#cddc39'" . ","; ?>],
-              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#cddc39'" . ","; ?>],
-              borderWidth: 1,
-              fill: false
-            },
-            {
-              label: 'My Ihram',
-              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_ihram'" . ","; ?>],
-              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#607d8b'" . ","; ?>],
-              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#607d8b'" . ","; ?>],
-              borderWidth: 1,
-              fill: false
-            },
-            {
-              label: 'My Safar',
-              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_safar'" . ","; ?>],
-              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#f44336'" . ","; ?>],
-              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#f44336'" . ","; ?>],
-              borderWidth: 1,
-              fill: false
-            },
-            {
-              label: 'My Faedah',
-              data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_faedah'" . ","; ?>],
-              backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#8bc34a'" . ","; ?>],
-              borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#8bc34a'" . ","; ?>],
-              borderWidth: 1,
-              fill: false
-            },
-          ]
-        };
-        var webAudienceMetricsSatackedOptions = {
-          scales: {
-            xAxes: [{
-              barPercentage: 0.2,
-              stacked: true,
-              gridLines: {
-                display: true, //this will remove only the label
-                drawBorder: false,
-                color: "#e5e9f2",
-              },
-            }],
-            yAxes: [{
-              stacked: true,
-              display: false,
-              gridLines: {
-                display: false, //this will remove only the label
-                drawBorder: false
-              },
-            }]
-          },
-          legend: {
-            display: true,
-            position: "bottom"
-          },
-          legendCallback: function(chart) {
-            var text = [];
-            text.push('<div class="row">');
-            for (var i = 0; i < chart.data.datasets.length; i++) {
-              text.push('<div class="col-lg-4"><div class="row"><div class="col-sm-12"><h5 class="font-weight-bold text-dark mb-1">' + chart.data.datasets[i].data[1].toLocaleString() + '</h5></div></div><div class="row align-items-center"><div class="col-2"><span class="legend-label" style="background-color:' + chart.data.datasets[i].backgroundColor[i] + '"></span></div><div class="col-9 pl-0"><p class="text-muted m-0 ml-1">' + chart.data.datasets[i].label + '</p></div></div>');
-              text.push('</div>');
-            }
-            text.push('</div>');
-            return text.join("");
-          },
-          elements: {
-            point: {
-              radius: 0
-            }
-          }
-        };
         if ($("#web-audience-metrics-satacked").length) {
           var barChartCanvas = $("#web-audience-metrics-satacked").get(0).getContext("2d");
           // This will get the first returned node in the jQuery collection.
           var ctx = document.getElementById("web-audience-metrics-satacked");
           ctx.height = 88;
-          var barChart = new Chart(barChartCanvas, {
+          var AnuallyProduct = new Chart(barChartCanvas, {
             type: 'bar',
             height: '200',
-            data: webAudienceMetricsSatackedData,
-            options: webAudienceMetricsSatackedOptions
+            data: {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
+              datasets: [{
+                  label: 'My Talim',
+                  data: [<?php foreach ($monthly_product as $monthly) echo $monthly->my_talim . ","; ?>],
+                  backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#3794fc'" . ","; ?>],
+                  borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#3794fc'" . ","; ?>],
+                  borderWidth: 1,
+                  fill: false
+                },
+                {
+                  label: 'My Hajat',
+                  data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_hajat'" . ","; ?>],
+                  backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#a037fc'" . ","; ?>],
+                  borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#a037fc'" . ","; ?>],
+                  borderWidth: 1,
+                  fill: false
+                },
+                {
+                  label: 'My Cars',
+                  data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_cars'" . ","; ?>],
+                  backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#cddc39'" . ","; ?>],
+                  borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#cddc39'" . ","; ?>],
+                  borderWidth: 1,
+                  fill: false
+                },
+                {
+                  label: 'My Ihram',
+                  data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_ihram'" . ","; ?>],
+                  backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#607d8b'" . ","; ?>],
+                  borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#607d8b'" . ","; ?>],
+                  borderWidth: 1,
+                  fill: false
+                },
+                {
+                  label: 'My Safar',
+                  data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_safar'" . ","; ?>],
+                  backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#f44336'" . ","; ?>],
+                  borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#f44336'" . ","; ?>],
+                  borderWidth: 1,
+                  fill: false
+                },
+                {
+                  label: 'My Faedah',
+                  data: [<?php foreach ($monthly_product as $monthly) echo "'$monthly->my_faedah'" . ","; ?>],
+                  backgroundColor: [<?php foreach ($monthly_product as $monthly) echo "'#8bc34a'" . ","; ?>],
+                  borderColor: [<?php foreach ($monthly_product as $monthly) echo "'#8bc34a'" . ","; ?>],
+                  borderWidth: 1,
+                  fill: false
+                },
+              ]
+            },
+            options: {
+              scales: {
+                xAxes: [{
+                  barPercentage: 1.0,
+                  stacked: true,
+                  gridLines: {
+                    display: false, //this will remove only the label
+                    drawBorder: false,
+                    color: "#e5e9f2",
+                  },
+                }],
+                yAxes: [{
+                  stacked: true,
+                  display: false,
+                  gridLines: {
+                    display: false, //this will remove only the label
+                    drawBorder: false
+                  },
+                }]
+              },
+              legend: {
+                display: false,
+                position: "bottom"
+              },
+              legendCallback: function(chart) {
+                var text = [];
+                text.push('<div class="row">');
+                for (var i = 0; i < chart.data.datasets.length; i++) {
+                  text.push('<div class="col-lg-4"><div class="row"><div class="col-sm-12"><h5 class="font-weight-bold text-dark mb-1">' + chart.data.datasets[i].data[1].toLocaleString() + '</h5></div></div><div class="row align-items-center"><div class="col-2"><span class="legend-label" style="background-color:' + chart.data.datasets[i].backgroundColor[i] + '"></span></div><div class="col-9 pl-0"><p class="text-muted m-0 ml-1">' + chart.data.datasets[i].label + '</p></div></div>');
+                  text.push('</div>');
+                }
+                text.push('</div>');
+                return text.join("");
+              },
+              elements: {
+                point: {
+                  radius: 0
+                }
+              }
+            }
           });
           document.getElementById('chart-legends').innerHTML = barChart.generateLegend();
         }
-        $('#over-all-rating').barrating({
-          theme: 'fontawesome-stars',
-          showSelectedRating: false
-        });
+
+
+
       });
     })(jQuery);
   </script>

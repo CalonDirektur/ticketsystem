@@ -1,0 +1,63 @@
+UPDATE tb_ticket A
+INNER JOIN tb_my_faedah_bangunan B ON A.id_bangunan = B.id_bangunan
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_faedah_modal B ON A.id_modal = B.id_modal
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_faedah_elektronik B ON A.id_elektronik = B.id_elektronik
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_faedah_lainnya B ON A.id_myfaedah_lainnya = B.id_myfaedah_lainnya
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_faedah_qurban B ON A.id_qurban = B.id_qurban
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_safar B ON A.id_mysafar = B.id_mysafar
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_my_hajat_renovasi B ON A.id_renovasi = B.id_renovasi
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_my_hajat_sewa B ON A.id_sewa = B.id_sewa
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_my_hajat_franchise B ON A.id_franchise = B.id_franchise
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_my_hajat_wedding B ON A.id_wedding = B.id_wedding
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_hajat_lainnya B ON A.id_myhajat_lainnya = B.id_myhajat_lainnya
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_aktivasi_agent B ON A.id_agent = B.id_agent
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_nst B ON A.id_nst = B.id_nst
+SET A.id_approval = B.id_approval
+ 
+UPDATE tb_ticket A
+INNER JOIN tb_mitra_kerjasama B ON A.id_mitra_kerjasama = B.id_mitra_kerjasama
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_ihram B ON A.id_myihram = B.id_myihram
+SET A.id_approval = B.id_approval
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_talim B ON A.id_mytalim = B.id_mytalim
+SET A.id_approval = B.id_approval

@@ -299,7 +299,7 @@
 								</tbody>
 							</table>
 						</div>
-						<?php if (($this->session->userdata('level') == 1) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
 								<button type="submit" id="edit_mitra_kerjasama" class="btn btn-primary enable" name="edit_mitra_kerjasama" disabled>Update Data!</button>

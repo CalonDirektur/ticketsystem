@@ -419,7 +419,7 @@ $(document).ready(function () {
 				loop: true,
 				items: 1,
 				autoWidth: false,
-				stagePadding: 20
+				stagePadding: 30
 			},
 			600: {
 				items: 2,

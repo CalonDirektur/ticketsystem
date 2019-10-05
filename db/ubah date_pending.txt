@@ -1,0 +1,9 @@
+ SELECT date_created, date_modified, date_pending
+from tb_ticket A
+INNER JOIN tb_my_hajat_lainnya B ON A.id_myhajat_lainnya = B.id_myhajat_lainnya
+where A.date_pending != B.date_modified 
+
+UPDATE tb_ticket A
+INNER JOIN tb_my_hajat_lainnya B ON A.id_myhajat_lainnya = B.id_myhajat_lainnya
+SET date_pending = date_modified
+where date_pending != date_modified

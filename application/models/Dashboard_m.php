@@ -23,22 +23,51 @@ class Dashboard_m extends CI_Model
 
     public function monthly_product()
     {
-        $this->db->select(
-            "COUNT(id_renovasi) + COUNT(id_sewa) + COUNT(id_wedding) + COUNT(id_franchise) + COUNT(id_myhajat_lainnya) as my_hajat,
+        // $this->db->select(
+        //     "COUNT(id_renovasi) + COUNT(id_sewa) + COUNT(id_wedding) + COUNT(id_franchise) + COUNT(id_myhajat_lainnya) as my_hajat,
+        //     COUNT(id_bangunan) + COUNT(id_elektronik) + COUNT(id_modal) + COUNT(id_qurban) + COUNT(id_myfaedah_lainnya) as my_faedah,
+        //     COUNT(id_mytalim) as my_talim,
+        //     COUNT(id_mysafar) as my_safar,
+        //     COUNT(id_myihram) as my_ihram,
+        //     COUNT(id_mycars) as my_cars,
+        //     COUNT(id_nst) as nst,
+        //     (DATE_FORMAT(tanggal_dibuat, '%b')) as bulan"
+        // );
+
+        // $this->db->from("tb_ticket");
+        // $this->db->where("tanggal_dibuat IS NOT NULL AND tanggal_dibuat != '0000-00-00'");
+        // $this->db->group_by("MONTH(DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d'))");
+
+        // $query = $this->db->get();
+
+        $query = $this->db->query(
+            "SELECT MONTHNAME(STR_TO_DATE(Months.m, '%m')) as bulan,
+            COUNT(id_renovasi) + COUNT(id_sewa) + COUNT(id_wedding) + COUNT(id_franchise) + COUNT(id_myhajat_lainnya) as my_hajat,
             COUNT(id_bangunan) + COUNT(id_elektronik) + COUNT(id_modal) + COUNT(id_qurban) + COUNT(id_myfaedah_lainnya) as my_faedah,
             COUNT(id_mytalim) as my_talim,
             COUNT(id_mysafar) as my_safar,
             COUNT(id_myihram) as my_ihram,
             COUNT(id_mycars) as my_cars,
             COUNT(id_nst) as nst,
-            (DATE_FORMAT(tanggal_dibuat, '%b')) as bulan"
+            (DATE_FORMAT(tanggal_dibuat, '%b')) as bulan
+            FROM
+            (
+                SELECT 1 as m 
+                UNION SELECT 2 as m 
+                UNION SELECT 3 as m 
+                UNION SELECT 4 as m 
+                UNION SELECT 5 as m 
+                UNION SELECT 6 as m 
+                UNION SELECT 7 as m 
+                UNION SELECT 8 as m 
+                UNION SELECT 9 as m 
+                UNION SELECT 10 as m 
+                UNION SELECT 11 as m 
+                UNION SELECT 12 as m
+                ) as Months
+            LEFT JOIN tb_ticket on Months.m = MONTH(DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d'))
+                GROUP BY Months.m"
         );
-
-        $this->db->from("tb_ticket");
-        $this->db->where("tanggal_dibuat IS NOT NULL AND tanggal_dibuat != '0000-00-00'");
-        $this->db->group_by("MONTH(DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d'))");
-
-        $query = $this->db->get();
         return $query->result();
     }
 
@@ -301,12 +330,13 @@ class Dashboard_m extends CI_Model
         return $data->ratarata;
     }
 
-    public function penyelesaian_admin_nst()
+    public function penyelesaian_admin_nst($where)
     {
         $query = $this->db->query(
-            "SELECT AVG(TIMESTAMPDIFF(SECOND, date_inprogress, date_completed)) as ratarata 
-            FROM tb_ticket 
-            WHERE id_nst IS NOT NULL AND date_inprogress IS NOT NULL AND date_completed IS NOT NULL
+            "SELECT AVG(TIMESTAMPDIFF(SECOND, date_inprogress, date_completed)) as ratarata, produk
+            FROM tb_ticket A
+            INNER JOIN tb_nst B ON B.id_nst = A.id_nst
+            WHERE A.id_nst IS NOT NULL AND date_inprogress IS NOT NULL AND date_completed IS NOT NULL AND (produk IS NOT NULL AND produk != '') AND $where
             AND WEEKDAY(date_inprogress) < 5 AND HOUR(date_inprogress) BETWEEN 8 AND 17"
         );
 
