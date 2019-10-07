@@ -318,21 +318,6 @@
                 </div>
               </li>
             <?php } ?>
-            <?php if ($this->session->userdata('level') == 4) { ?>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('status/list/lead_management_list/') ?>">
-                  <i class="icon-box menu-icon"></i>
-                  <span class="menu-title">Lead Management</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('status/list/nst_list') ?>">
-                  <i class="icon-box menu-icon"></i>
-                  <span class="menu-title">NST</span>
-                </a>
-              </li>
-            <?php } ?>
-
             <?php if ($this->session->userdata('level') == 5) { ?>
               <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('auth/list_user') ?>">

@@ -6,41 +6,52 @@
             materi promosi ke HO dan telah mendapat approval <b>sebelum</b> memakai file yang tersedia dibawah ke vendor percetakan. Desain materi
             promosi seawaktu-waktu dapat berubah.
         </p>
-
-        <div class="card p-4">
-            <?php if ($this->session->userdata('level') == 5) { ?>
-                <div class="row">
-                    <div class="col-12">
-                        <!-- <button class="btn btn-info float-right">+ Tambah</button> -->
-                        <button type="button" class="btn btn-info float-left" data-toggle="modal" data-target="#myModal">
-                            + Tambah
-                        </button>
+        <div class="row">
+            <div class="card col-lg-12 p-4">
+                <?php if ($this->session->userdata('level') == 5) { ?>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-info float-left" data-toggle="modal" data-target="#myModal">
+                                + Tambah
+                            </button>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-            <div class="row">
-                <?php foreach ($data->result() as $materi) { ?>
-                    <div class="col-md-4 col-sm-4 col-12 mt-1 mt-2">
-                        <div class="card shadow-sm" style="width: 16rem">
-                            <div class="card-header p-0 text-center">
-                                <img class="img-fluid" src="<?= base_url('uploads/materi_promosi/' . $materi->thumb) ?>" style="width: 100%; object-fit: cover;" alt="">
-                            </div>
-                            <div class="card-body p-2 p-2">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p><b><?= $materi->judul ?></b></p>
-                                        <p><?= $materi->ukuran ?></p>
-                                    </div>
-                                    <div class="col-6">
-                                        <a target="_blank" href="<?= $materi->link ?>"><button class="btn btn-info btn-rounded btn-icon shadow-sm pull-right"><i class="icon-download"></i></button></a>
+                <?php } ?>
+                <?php
+                //Columns must be a factor of 12 (1,2,3,4,6,12)
+                $numOfCols = 3;
+                $rowCount = 0;
+                $bootstrapColWidth = 12 / $numOfCols;
+                ?>
+                <div class="row mt-4">
+                    <?php foreach ($data->result() as $materi) { ?>
+                        <div class="col-lg-<?= $bootstrapColWidth ?>">
+                            <div class="card shadow-sm" style="width: 16rem">
+                                <div class="card-header p-0 text-center">
+                                    <img class="img-fluid" src="<?= base_url('uploads/materi_promosi/' . $materi->thumb) ?>" style="width: 100%; object-fit: cover;" alt="">
+                                </div>
+                                <div class="card-body p-2 p-2">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p><b><?= $materi->judul ?></b></p>
+                                            <p><?= $materi->ukuran ?></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a target="_blank" href="<?= $materi->link ?>"><button class="btn btn-info btn-rounded btn-icon shadow-sm pull-right"><i class="icon-download"></i></button></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php } ?>
+                    <?php
+                        $rowCount++;
+                        if ($rowCount % $numOfCols == 0) echo '</div><div class="row mt-4">';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
