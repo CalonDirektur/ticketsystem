@@ -1,20 +1,37 @@
-<div class="container-fluid">
-  <section class="content-header">
-
+<div class="container-fluid mt-4 mb-4">
+  <section class="content-header text-center">
+    <h4>
+      Daftar Akun User
+    </h4>
+    <p><?= date('d F, Y'); ?></p>
   </section>
 
   <!-- Main content -->
   <section class="content">
+    <div class="row mt-4 m-1">
+      <div class="col-lg-6">
+        <h4>Tabel Request Support</h4>
+      </div>
+      <div class="col-lg-6">
+        <form action="#" method="get" class="form-inline my-2 my-lg-0 pull-right">
+          <div class="form-group">
+            <div class="input-group">
+              <input id="cariTiket" class="form-control form-rounded cariTiket" type="text" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-sm btn-outline-secondary input-group-text form-rounded" type="button"><i class="icon-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-12">
         <form method="post" action="<?= base_url('auth/update_user') ?>">
           <div class="card">
-            <div class="card-header">
-              <b>Daftar Akun User</b>
-            </div>
-            <div class="card-body">
+            <div class="card-body p-0">
               <div class="table-responsive">
-                <table id="table-user" class="table responsive status" width="100%">
+                <table id="table-user" class="table table-striped table-bordered responsive status" width="100%">
                   <thead>
                     <th class="all">Nama</th>
                     <th class="all">Tanggal Daftar</th>

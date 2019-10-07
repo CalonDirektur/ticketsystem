@@ -55,9 +55,11 @@ $(document).ready(function () {
 		$("#all-tickets").attr("selected", "selected")
 	}
 
-	$("[id='DataTables_Table_0_filter']").hide();
-
 	$('#table-user').DataTable();
+
+	$("[id='DataTables_Table_0_filter']").hide();
+	$("[id='table-user_filter']").hide();
+
 	//Menyembunyikan tombol submit di halaman tiket yang direject
 	// $('#edit_mytalim').hide();
 	// $('table').DataTable();

@@ -145,10 +145,10 @@ class Ticket_register extends CI_Controller
 
 			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				$this->session->set_flashdata('failed_request_support', '<div class="alert alert-danger"><strong>Gagal menambahkan request support!</strong> Mohon cek kembali data yg baru saja diajukan <button class="btn" type="button" onclick="return window.history.back()">Klik disini</button>. </div>');
-				redirect('/');
+				redirect('status');
 			}
 		}
 
@@ -224,10 +224,10 @@ class Ticket_register extends CI_Controller
 			// Jika data berhasil disubmit/masuk ke database maka tampil pesan berhasil di bagian dashboard
 			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				$this->session->set_flashdata('failed_request_support', '<div class="alert alert-danger"><strong>Gagal menambahkan request support!</strong> Mohon cek kembali data yg baru saja diajukan <button class="btn" type="button" onclick="return window.history.back()">Klik disini</button>. </div>');
-				redirect('/');
+				redirect('status');
 			}
 			// redirect('dashboard');
 		}
@@ -301,7 +301,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -377,7 +377,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -455,7 +455,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -530,7 +530,7 @@ class Ticket_register extends CI_Controller
 
 			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			}
 		}
 
@@ -579,7 +579,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -629,7 +629,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -677,7 +677,7 @@ class Ticket_register extends CI_Controller
 				if ($id) {
 					echo "Data berhasil disimpan";
 					$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan data lead management.!</strong></div>');
-					redirect('/');
+					redirect('status');
 				} else {
 					echo "Data gagal disimpan";
 				}
@@ -736,7 +736,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -795,7 +795,7 @@ class Ticket_register extends CI_Controller
 					echo "Data berhasil disimpan";
 					$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-					redirect('/');
+					redirect('status');
 				} else {
 					echo "Data gagal disimpan";
 				}
@@ -852,7 +852,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -914,7 +914,7 @@ class Ticket_register extends CI_Controller
 			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -987,7 +987,7 @@ class Ticket_register extends CI_Controller
 			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1061,7 +1061,7 @@ class Ticket_register extends CI_Controller
 			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1129,7 +1129,7 @@ class Ticket_register extends CI_Controller
 			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1195,7 +1195,7 @@ class Ticket_register extends CI_Controller
 			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1259,7 +1259,7 @@ class Ticket_register extends CI_Controller
 			if ($id && $success) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1327,7 +1327,7 @@ class Ticket_register extends CI_Controller
 			if ($id > 0) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1378,7 +1378,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1440,7 +1440,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1498,7 +1498,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1557,7 +1557,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1617,7 +1617,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1636,6 +1636,7 @@ class Ticket_register extends CI_Controller
 
 				'nilai_pembiayaan' => $post['nilai_pembiayaan'],
 				'informasi_tambahan' => $post['informasi_tambahan'],
+
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_approval' => 0
 			];
@@ -1671,7 +1672,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1684,6 +1685,7 @@ class Ticket_register extends CI_Controller
 				'jenis_konsumen' => $post['jenis_konsumen'],
 				// 'id_cabang' => $post['cabang'],
 				'nama_travel' => $post['nama_travel'],
+
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_approval' => 0
 			];
@@ -1710,7 +1712,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1723,6 +1725,7 @@ class Ticket_register extends CI_Controller
 				'jenis_konsumen' => $post['jenis_konsumen'],
 				// 'id_cabang' => $post['cabang'],
 				'nama_travel' => $post['nama_travel'],
+
 				'date_modified' => date('Y-m-d H:i:s'),
 				'id_approval' => 0
 			];
@@ -1749,7 +1752,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1802,7 +1805,7 @@ class Ticket_register extends CI_Controller
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil Update data request support!</strong></div>');
 				// echo "Data berhasil disimpan";
 				redirect('status/list/lead_management_list');
-				// redirect('/');
+				// redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1814,8 +1817,9 @@ class Ticket_register extends CI_Controller
 				// 'id_cabang' => $post['cabang'],
 				'nama_agent' => $post['nama_agent'],
 				'jenis_agent' => $post['jenis_agent'],
-				'date_modified' => date('Y-m-d H:i:s')
-				// 'id_approval' => 0
+
+				'date_modified' => date('Y-m-d H:i:s'),
+				'id_approval' => 0
 			];
 
 			//Konfigurasi Upload
@@ -1840,7 +1844,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1879,12 +1883,12 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->update('tb_nst', $data, ['id_nst' => $post['id_nst']]);
-
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1931,7 +1935,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -1986,7 +1990,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2051,7 +2055,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2120,7 +2124,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2182,7 +2186,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2242,7 +2246,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2300,7 +2304,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2335,7 +2339,7 @@ class Ticket_register extends CI_Controller
 				'date_modified' => date('Y-m-d H:i:s'),
 				// 'id_user' => $post['id_user'],
 				// 'id_cabang' => $post['cabang'],
-				'id_approval' => 0,
+				'id_approval' => 0
 			];
 
 			//Konfigurasi Upload
@@ -2360,7 +2364,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2408,7 +2412,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2470,7 +2474,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2528,7 +2532,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2587,7 +2591,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2647,7 +2651,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2701,7 +2705,7 @@ class Ticket_register extends CI_Controller
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2740,7 +2744,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2779,7 +2783,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2827,7 +2831,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2866,7 +2870,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2909,7 +2913,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2950,7 +2954,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -2997,7 +3001,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3052,7 +3056,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3104,7 +3108,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3173,7 +3177,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3235,7 +3239,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3295,7 +3299,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3353,7 +3357,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
@@ -3413,7 +3417,7 @@ class Ticket_register extends CI_Controller
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
 
-				redirect('/');
+				redirect('status');
 			} else {
 				echo "Data gagal disimpan";
 			}
