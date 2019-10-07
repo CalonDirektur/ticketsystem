@@ -408,7 +408,7 @@ $(document).ready(function () {
 		}
 	})
 
-	$(".owl-carousel").owlCarousel({
+	$(".stats-carousel").owlCarousel({
 		margin: 10,
 		items: 1,
 		autoplay: true,
@@ -431,5 +431,13 @@ $(document).ready(function () {
 				autoWidth: false
 			}
 		}
+	});
+
+	$(".chart-owl").owlCarousel({
+		margin: 10,
+		items: 1,
+		stagePadding: 30,
+		loop: false,
+		center: true
 	});
 })
