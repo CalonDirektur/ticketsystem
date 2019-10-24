@@ -27,7 +27,7 @@
         </div>
         <hr>
         <div class="table-responsive">
-          <table class="table table-striped table-bordered display status dt-responsive nowrap" width="100%">
+          <table class="table table-striped table-bordered display status dt-responsive nowrap width=" 100%">
             <thead>
               <th class="all">ID Lead Mgmt.</th>
               <th>Requester</th>

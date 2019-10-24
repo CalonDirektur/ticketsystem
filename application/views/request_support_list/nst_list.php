@@ -8,40 +8,7 @@
 
 <!-- Main content -->
 <section class="content m-2">
-    <!-- Angka Status Tiket -->
-    <div class="row mt-4">
-        <!-- Card Pending -->
-        <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-pending">
-            <div class="card text-center p-5">
-                <h3 class="card-title">Pending</h3><br>
-                <h3><span class="badge badge-secondary"><?= $total_pending ?></span></h3>
-            </div>
-        </div>
-        <!-- Card inprogress -->
-        <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-inprogress">
-            <div class="card text-center p-5">
-                <h3 class="card-title">In Progress</h3><br>
-                <h3><span class="badge badge-warning"><?= $total_inprogress ?></span></h3>
-            </div>
-        </div>
-        <!-- Card Rejected -->
-        <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-rejected">
-            <div class="card text-center p-5">
-                <h3 class="card-title">Rejected</h3><br>
-                <h3><span class="badge badge-danger"><?= $total_rejected ?></span></h3>
-            </div>
-        </div>
-        <!-- Card Completed -->
-        <div class="col-md-3 col-sm-6 col-6 mt-2 status-card card-completed">
-            <div class="card text-center p-5">
-                <h3 class="card-title">Completed</h3><br>
-                <h3><span class="badge badge-info"><?= $total_completed ?></span></h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tabel NST -->
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="row mt-4 m-1">
@@ -61,12 +28,12 @@
                 <div class="row">
                     <div class="input-group row ml-3">
                         <form class="form-inline">
-                            <label for="statusTiketAdminNst"><b>Sort by:</b></label>
-                            <select class="form-control form-rounded ml-3" id="statusTiketAdminNst">
+                            <label for="statusTiketAdmin"><b>Sort by:</b></label>
+                            <select class="form-control form-rounded ml-3" id="statusTiket">
                                 <option id="all-tickets" value="">All</option>
                                 <option id="pending" value="Pending">Pending</option>
                                 <option id="inprogress" value="In Progress">In Progress</option>
-                                <!-- <option id="approved" value="Disetujui">Disetujui</option> -->
+                                <option id="approved" value="Disetujui">Disetujui</option>
                                 <option id="rejected" value="Ditolak">Ditolak</option>
                                 <option id="completed" value="Selesai">Selesai</option>
                             </select>

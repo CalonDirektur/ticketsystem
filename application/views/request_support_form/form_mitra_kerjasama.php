@@ -176,7 +176,7 @@
               </div>
             </div>
             <div class="card-footer text-center">
-              <button onclick="return confirm('Apakah data-data yang diisi sudah valid? \nMohon periksa kembali data yang diinput.')" type="submit" id="submit" class="btn btn-info pull-right" name="submit_mitra_kerjasama">Kirim Data!</button>
+              <button type="submit" id="submit" class="btn btn-info pull-right" name="submit_mitra_kerjasama">Kirim Data!</button>
             </div>
           </div>
         </div>

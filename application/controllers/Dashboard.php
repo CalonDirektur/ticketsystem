@@ -16,7 +16,6 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		check_not_login();
-		check_access_level_superuser();
 		// rata2 waktu penyelesaian ticket dari awal hingga akhir
 		$myihram = "(id_myihram IS NOT NULL)";
 		$penyelesaian_myihram = $this->dashboard_m->penyelesaian_ticket($myihram);

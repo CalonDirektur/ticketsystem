@@ -15,12 +15,6 @@ class Data_m extends CI_Model
         return $query;
     }
 
-    public function delete($table, $where)
-    {
-        $query = $this->db->delete($table, $where);
-        return $query;
-    }
-
     public function get($table, $where = NULL, $id_user = NULL)
     {
         $this->db->select('*');
@@ -98,9 +92,8 @@ class Data_m extends CI_Model
         $this->db->join("user", "tb_comment.id_user = user.id_user", "inner");
         $this->db->join("tb_cabang", "user.id_cabang = tb_cabang.id_cabang", "inner");
         $this->db->join("tb_ticket", "tb_ticket.id_ticket = tb_comment.id_ticket", "inner");
-        // Jika user 
         if ($id_user != NULL) {
-            $this->db->where("has_read = 0 AND tb_ticket.id_user = $id_user AND (level = 2 OR level = 3 OR level = 4 OR level = 5 OR level = 7)");
+            $this->db->where("has_read = 0 AND tb_ticket.id_user = $id_user AND (level = 2 OR level = 3 OR level = 4 OR level = 5)");
         } else {
             $this->db->where("has_read = 0 AND level = 1");
         }
@@ -147,7 +140,7 @@ class Data_m extends CI_Model
     public function get_tickets($id_user, $id_approval)
     {
         $query = $this->db->query(
-            "SELECT *, A.id_approval as status,
+            "SELECT *, 
         A.id_ticket as id_ticket,
         BA.nama_konsumen as nama_konsumen_renovasi,
         BB.nama_konsumen as nama_konsumen_sewa,
@@ -296,8 +289,7 @@ class Data_m extends CI_Model
         LEFT JOIN tb_cabang as CBG
         ON CBG.id_cabang = A.id_cabang
         
-        WHERE U.id_user $id_user  
-        AND
+        WHERE U.id_user $id_user  AND
         (CASE 
             WHEN BA.id_approval IS NOT NULL THEN BA.id_approval $id_approval
             WHEN BB.id_approval IS NOT NULL THEN BB.id_approval $id_approval

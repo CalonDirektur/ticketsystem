@@ -68,12 +68,6 @@ class Aksi extends CI_Controller
             redirect('status/');
         }
 
-        if ($produk == 'lead_interest') {
-            $this->Aksi_m->approve('tb_lead_interest', ['id_lead_interest' => $id]);
-            $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support Lead Interest!</div>');
-            redirect('status/');
-        }
-
         if ($produk == 'mitra_kerjasama') {
             $this->Aksi_m->approve('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
             $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support Mitra Kerjasama!</div>');
@@ -191,12 +185,6 @@ class Aksi extends CI_Controller
             redirect('status/');
         }
 
-        if ($produk == 'lead_interest') {
-            $this->Aksi_m->reject('tb_lead_interest', ['id_lead_interest' => $id]);
-            $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support Lead Interest!</div>');
-            redirect('status/');
-        }
-
         if ($produk == 'mitra_kerjasama') {
             $this->Aksi_m->reject('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
             $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support Mitra Kerjasama!</div>');
@@ -310,12 +298,6 @@ class Aksi extends CI_Controller
         if ($produk == 'lead_management') {
             $this->Aksi_m->complete('tb_lead_management', ['id_lead' => $id]);
             $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Lead Management!</div>');
-            redirect('status/');
-        }
-
-        if ($produk == 'lead_interest') {
-            $this->Aksi_m->complete('tb_lead_interest', ['id_lead_interest' => $id]);
-            $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support Lead Interest!</div>');
             redirect('status/');
         }
 

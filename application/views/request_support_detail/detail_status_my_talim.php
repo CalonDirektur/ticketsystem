@@ -344,7 +344,6 @@
 								</tbody>
 							</table>
 						</div>
-
 						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
@@ -363,6 +362,7 @@
 			</div>
 		</form>
 		<?php if ($komentar->num_rows() == 0) { ?>
+
 			<!-- Post Komentar -->
 			<div class="row mt-4">
 				<div class="col-lg-12 col-md-12">
@@ -393,6 +393,7 @@
 		<?php foreach ($komentar->result() as $komen) { ?>
 			<div class="row mt-4">
 				<div class="col-lg-12 col-md-12">
+
 					<div class="card card-widget">
 						<div class="card-header with-border">
 							<div class="user-block"><label for=""><span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></label><br>

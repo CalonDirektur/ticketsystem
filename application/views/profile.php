@@ -1,5 +1,3 @@
-<?= $this->session->flashdata('update_profile_success') ?>
-<?= $this->session->flashdata('upload_error') ?>
 <section class="content-header mt-4 text-center">
     <h4>Profile</h4>
     <p><?= date('d F, Y'); ?></p>
@@ -13,20 +11,11 @@
         <div class="col-lg-8">
 
             <div class="card card-primary">
-                <form method="post" action="<?= base_url('Auth/update_profil') ?>" autocomplete="off" enctype="multipart/form-data">
+                <div class="card-header">
+                    <h3></h3>
+                </div>
+                <form method="post" action="<?= base_url('Auth/update_profil') ?>" autocomplete="off">
                     <div class="card-body">
-                        <div class="user-image text-center">
-                            <img class="rounded-circle" width="100" width="100" src="<?= $this->fungsi->user_login()->foto != NULL ? base_url('uploads/foto_profil/' . $this->fungsi->user_login()->foto) : base_url('assets2/img/profile-pic.jpg') ?>">
-                            <div class="form-group">
-                                <input type="file" name="foto_profil" class="file-upload-default">
-                                <div class="input-group col-3 mx-auto mt-2">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Ganti Foto Profil">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label for="nik">Nomor Induk Karyawan (NIK)</label>
                             <small></small>

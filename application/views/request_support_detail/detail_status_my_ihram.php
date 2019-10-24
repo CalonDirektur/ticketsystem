@@ -32,7 +32,7 @@
 											echo '<label class="badge badge-success">Reviewed</label>';
 										}
 										if ($data->id_approval == 3) {
-											echo '<label class="badge badge-info">Completed</label>';
+											echo '<label class="badge badge-danger">Completed</label>';
 										}
 										if ($data->id_approval == 4) {
 											echo '<label class="badge badge-warning">In Process</label>';

@@ -115,7 +115,7 @@
             </div>
             <div class="form-group">
               <label>Jumlah Biaya Acara</label>
-              <input type="number" class="form-control enable" name="jumlah_biaya" id="jumlah_biaya" value="<?= $data->jumlah_biaya ?>" readonly required>
+              <input type="text" class="form-control enable" name="jumlah_biaya" id="jumlah_biaya" value="<?= $data->jumlah_biaya ?>" readonly required>
             </div>
             <div class="form-group">
               <label>Jumlah Undangan</label>

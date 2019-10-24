@@ -20,7 +20,7 @@ class Fungsi
     {
         $this->ci->load->model('data_m');
         // $userid = $this->ci->session->userdata('userid');
-        if ($this->ci->session->userdata('level') == 1 || $this->ci->session->userdata('level') == 6) {
+        if ($this->ci->session->userdata('level') == 1) {
             $user_data = $this->ci->data_m->get_comment($id_user);
         } else {
             $user_data = $this->ci->data_m->get_comment();

@@ -197,8 +197,6 @@ class Auth extends CI_Controller
 		foreach ($jabatan as $key => $val) {
 			$this->user_m->update(['jabatan' => $val], ['id_user' => $key]);
 		}
-
-		$this->session->set_flashdata('update_user_success', '<div class="alert alert-success" role="alert"> Berhasil mengupdate User!</div>');
 		redirect('auth/list_user');
 	}
 
@@ -223,44 +221,24 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|matches[password]');
 
 		if ($this->form_validation->run() == FALSE) {
-
 			$query = $this->user_m->get($this->fungsi->user_login()->nik);
 			$data['data'] = $query->row();
 			$this->template->load('template2', 'profile', $data);
 		} else {
 			$where = ['nik' => $post['nik']];
-
-
-			//Jika password tidak diisi, maka password tidak akan digantikan
 			if ($post['password'] == NULL) {
 				$data = [
 					'name' => $post['name']
 				];
-				//Jika password diisi, maka password akan digantikan
 			} else {
 				$data = [
 					'name' => $post['name'],
 					'password' => md5($post['password'])
 				];
 			}
-
-			//Konfigurasi Upload
-			$config['upload_path']         = './uploads/foto_profil';
-			$config['allowed_types']        = 'jpg|png|jpeg';
-			$config['max_size']             = 2048;
-			$config['max_width']            = 0;
-			$config['max_height']           = 0;
-
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('foto_profil')) {
-				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
-			} else {
-				$data['foto'] = $this->upload->data('file_name');
-			}
 			$this->user_m->update($data, $where);
 			$this->session->set_flashdata('update_profile_success', '<div class="alert alert-success" role="alert"> Berhasil mengubah profil Anda!</div>');
-			redirect("auth/profile");
+			redirect("dashboard");
 		}
 	}
 

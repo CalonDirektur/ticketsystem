@@ -52,6 +52,16 @@
             </div>
           </div>
 
+          <!-- Card Pilih Input Produk -->
+          <!-- <div id="card-produk" class="card mt-4">
+            <div class="card-header">
+              <b>Pilih Input Produk</b>
+            </div>
+            <div class="card-body">
+              
+            </div>
+          </!-->
+
           <!-- CARD FORM MY TA'LIM -->
           <div id="card-mytalim" class="card mt-4 pertanyaan">
             <div class="card-header">
@@ -1274,11 +1284,9 @@
               </div>
             </div>
             <div class="card-footer">
-              <button onclick="return confirm('Apakah data-data yang diisi sudah valid? \nMohon periksa kembali data yang diinput.')" type="submit" id="submit" class="btn btn-info pull-right" name="">Kirim Data!</button>
+              <button type="submit" id="submit" class="btn btn-info pull-right" name="">Kirim Data!</button>
             </div>
           </div>
-
-          <!-- <div id="map" style="width:100%;height:300px"></div> -->
 
         </div>
       </div>

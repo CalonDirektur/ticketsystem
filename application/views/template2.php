@@ -37,12 +37,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>BFI Syariah Helpdesk</title>
   <!-- base:css -->
-  <link rel="stylesheet" href="<?= base_url('assets2/css/bootstrap.min.css') ?>">
-  <link rel=" stylesheet" href="<?= base_url('assets2/css/dataTables.bootstrap4.min.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.bootstrap4.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/bootstrap.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/rowReorder.dataTables.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.dataTables.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/bootstrap-horizon.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets2/css/style.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/dataTables.bootstrap4.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets2/css/responsive.bootstrap4.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/css/jquery-ui.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/mdi/css/materialdesignicons.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets2/vendors/feather/feather.css') ?>">
@@ -151,244 +152,52 @@
               <?php foreach ($this->fungsi->comments($this->fungsi->user_login()->id_user)->result() as $komentar) { ?>
                 <?php if ($komentar->id_mytalim != NULL) { ?>
                   <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/mytalim/id/' . $komentar->id_mytalim . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_renovasi != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/renovasi/' . $komentar->id_renovasi . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_sewa != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/sewa/' . $komentar->id_sewa . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_wedding != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/wedding/' . $komentar->id_wedding . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_franchise != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/franchise/' . $komentar->id_franchise . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_myhajat_lainnya != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/lainnya/' . $komentar->id_myhajat_lainnya . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_bangunan != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/bangunan/' . $komentar->id_bangunan . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_modal != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/modal/' . $komentar->id_modal . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_qurban != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/qurban/' . $komentar->id_qurban . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_elektronik != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/elektronik/' . $komentar->id_elektronik . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_myfaedah_lainnya != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/lainnya/' . $komentar->id_myfaedah_lainnya . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_mysafar != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/mysafar/id/' . $komentar->id_mysafar . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_myihram != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myihram/id/' . $komentar->id_myihram . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_agent != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/aktivasi_agent/id/' . $komentar->id_agent . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_nst != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/nst/id/' . $komentar->id_nst . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php
-                  }
-                  if ($komentar->id_mitra_kerjasama != NULL) {
-                    ?>
-                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/mitra_kerjasama/id/' . $komentar->id_mitra_kerjasama . '?id=' . $komentar->id) ?>">
-                    <div class="preview-item-content flex-grow">
-                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
-                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
-                      </h6>
-                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
-                      <p class="font-weight-light small-text text-muted mb-0">
-                        <?= substr($komentar->comment, 0, 100) ?>...
-                      </p>
-                    </div>
-                  </a>
-                <?php } ?>
-
-              <?php } ?>
+                  <?php } else if ($komentar->id_renovasi != NULL) { ?>
+                    <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/renovasi/' . $komentar->id_renovasi . '?id=' . $komentar->id) ?>">
+                    <?php } else if ($komentar->id_sewa != NULL) { ?>
+                      <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/sewa/' . $komentar->id_sewa . '?id=' . $komentar->id) ?>">
+                      <?php } else if ($komentar->id_wedding != NULL) { ?>
+                        <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/wedding/' . $komentar->id_wedding . '?id=' . $komentar->id) ?>">
+                        <?php } else if ($komentar->id_franchise != NULL) { ?>
+                          <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/franchise/' . $komentar->id_franchise . '?id=' . $komentar->id) ?>">
+                          <?php } else if ($komentar->id_myhajat_lainnya != NULL) { ?>
+                            <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myhajat/lainnya/' . $komentar->id_myhajat_lainnya . '?id=' . $komentar->id) ?>">
+                            <?php } else if ($komentar->id_mysafar != NULL) { ?>
+                              <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/mysafar/id/' . $komentar->id_mysafar . '?id=' . $komentar->id) ?>">
+                              <?php } else if ($komentar->id_myihram != NULL) { ?>
+                                <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myihram/id/' . $komentar->id_myihram . '?id=' . $komentar->id) ?>">
+                                <?php } else if ($komentar->id_mycars != NULL) { ?>
+                                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/mycars/id/' . $komentar->id_mycars . '?id=' . $komentar->id) ?>">
+                                  <?php } else if ($komentar->id_agent != NULL) { ?>
+                                    <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/aktivasi_agent/id/' . $komentar->id_agent . '?id=' . $komentar->id) ?>">
+                                    <?php } else if ($komentar->id_nst != NULL) { ?>
+                                      <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/nst/id/' . $komentar->id_nst . '?id=' . $komentar->id) ?>">
+                                      <?php } else if ($komentar->id_mitra_kerjasama != NULL) { ?>
+                                        <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/mitra_kerjasama/id/' . $komentar->id_mitra_kerjasama . '?id=' . $komentar->id) ?>">
+                                        <?php } else if ($komentar->id_myfaedah != NULL) { ?>
+                                          <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/id/' . $komentar->id_myfaedah . '?id=' . $komentar->id) ?>">
+                                          <?php } else if ($komentar->id_bangunan != NULL) { ?>
+                                            <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/bangunan/' . $komentar->id_bangunan . '?id=' . $komentar->id) ?>">
+                                            <?php } else if ($komentar->id_elektronik != NULL) { ?>
+                                              <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/elektronik/' . $komentar->id_elektronik . '?id=' . $komentar->id) ?>">
+                                              <?php } else if ($komentar->id_qurban != NULL) { ?>
+                                                <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/qurban/' . $komentar->id_qurban . '?id=' . $komentar->id) ?>">
+                                                <?php } else if ($komentar->id_modal != NULL) { ?>
+                                                  <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/modal/' . $komentar->id_modal . '?id=' . $komentar->id) ?>">
+                                                  <?php } else if ($komentar->id_myfaedah_lainnya != NULL) { ?>
+                                                    <a class="dropdown-item preview-item <?= ($komentar->has_read == 0) ? 'bg-secondary' : '' ?>" href="<?= base_url('status/detail/myfaedah/lainnya/' . $komentar->id_myfaedah_lainnya . '?id=' . $komentar->id) ?>">
+                                                    <?php } ?>
+                                                    <div class="preview-item-content flex-grow">
+                                                      <h6 class="preview-subject ellipsis font-weight-normal mt-0">
+                                                        <?= $komentar->name ?> <br>(<?= $komentar->nama_cabang ?>)
+                                                      </h6>
+                                                      <small>ID Ticket #<?= $komentar->id_ticket ?></small>
+                                                      <p class="font-weight-light small-text text-muted mb-0">
+                                                        <?= $komentar->comment ?>
+                                                      </p>
+                                                    </div>
+                                                    </a>
+                                                  <?php } ?>
             </div>
           </li>
         </ul>
@@ -453,7 +262,6 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_interest_list') ?>">Lead Interest</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
                   </ul>
                 </div>
@@ -468,7 +276,6 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_input_produk') ?>">Input Produk</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_management') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_lead_interest') ?>">Lead Interest</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Aktivasi Agent</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">NST</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_mitra_kerjasama') ?>">Mitra Kerja sama</a></li>
@@ -506,7 +313,6 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_interest_list') ?>">Lead Interest</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
                   </ul>
                 </div>
@@ -529,7 +335,6 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_interest_list') ?>">Lead Interest</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
                   </ul>
                 </div>
@@ -550,19 +355,6 @@
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('faq/input_pertanyaan') ?>">Pesan</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#api" aria-expanded="false" aria-controls="api">
-                  <i class="icon-ribbon menu-icon"></i>
-                  <span class="menu-title">API</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="api">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('api') ?>">Daftar Token</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= site_url('api/list_token') ?>">List Token</a></li>
                   </ul>
                 </div>
               </li>
@@ -599,7 +391,7 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-  <script src="<?= base_url('assets2/js/jquery.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/jquery-3.4.1.min.js') ?>"></script>
   <script src="<?= base_url('assets2/vendors/base/vendor.bundle.base.js') ?>"></script>
   <script src="<?= base_url('assets2/js/off-canvas.js') ?>"></script>
   <script src="<?= base_url('assets2/js/hoverable-collapse.js') ?>"></script>
@@ -610,11 +402,11 @@
 
   <!-- ANEKA JAVASCRIPT IBRAHIM -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="<?= base_url('assets2/js/dataTables.responsive.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dataTables.rowReorder.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/myJs.js') ?>"></script>
   <script src="<?= base_url('assets2/js/jquery-ui.min.js') ?>"></script>
+  <script src="<?= base_url('assets2/js/dataTables.responsive.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/responsive.bootstrap4.min.js') ?>"></script>
   <script src="<?= base_url('assets2/js/dataTables.bootstrap4.min.js') ?>"></script>
   <script src="<?= base_url('assets2/plugin/ckeditor/ckeditor.js') ?>"></script>
@@ -720,60 +512,6 @@
 
           }
         }
-      });
-
-      $("#lead_id").on('keypress focusout', function(e) {
-        // if (e.keyCode == 13) {
-        var lead_id = $("#lead_id").val();
-        // alert(lead_id);
-        $.ajax({
-          url: "<?= base_url('data_json/get_leads_id/') ?>" + lead_id,
-          method: 'POST',
-          dataType: 'JSON',
-          data: {
-            lead_id: lead_id
-          },
-          async: true,
-          success: function(data) {
-            console.log(lead_id);
-            $.each(data, function(i, val) {
-              $("#lead_id").val(data.lead_id).attr("readonly", "readonly");
-              $("#nama_konsumen").val(data.nama_konsumen).attr("readonly", "readonly");
-              $("#nama_user").val(data.name).attr("readonly", "readonly");
-              $("#nama_cabang").val(data.nama_cabang).attr("readonly", "readonly");
-              $("#submit_nst").removeAttr("disabled");
-              // $("#lead_id").attr("disabled", "disabled");
-
-              $(".clear-lead-id").fadeIn();
-              if (data.produk == "My Ihram") {
-                $("#produk").val("My Ihram").attr('disabled', 'disabled');
-                $("#nama_produk").val("My Ihram");
-
-              } else if (data.produk == "My Safar") {
-                $("#produk").val("My Safar").attr('disabled', 'disabled');
-                $("#nama_produk").val("My Safar");
-
-              } else if (data.produk == "My Talim") {
-                $("#produk").val("My Talim").attr('disabled', 'disabled');
-                $("#nama_produk").val("My Talim");
-
-              } else if (data.produk == "My Hajat") {
-                $("#produk").val("My Hajat").attr('disabled', 'disabled');
-                $("#nama_produk").val("My Hajat");
-
-              } else if (data.produk == "My CarS") {
-                $("#produk").val("My CarS").attr('disabled', 'disabled');
-                $("#nama_produk").val("My CarS");
-
-              } else if (data.produk == "My Faedah") {
-                $("#produk").val("My Faedah").attr('disabled', 'disabled');
-                $("#nama_produk").val("My Faedah");
-
-              }
-            })
-          }
-        })
-        // }
       });
 
       $(".clear-lead-id").show();
@@ -1135,21 +873,6 @@
       });
     })(jQuery);
   </script>
-  <script>
-    // Google Maps Script
-    var map;
-
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-          lat: -34.397,
-          lng: 150.644
-        },
-        zoom: 8
-      });
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAVxLb_WQntXfKVk9fodF_8uVEA_MHrXs&callback=initMap" async defer></script>
 </body>
 
 </html>

@@ -6,6 +6,9 @@
 <?= $this->session->flashdata('update_profile_success') ?>
 <?= $this->session->flashdata('duplikat_input') ?>
 <?= $this->session->flashdata('failed_request_support') ?>
+<h1 class="text-center">
+  Dashboard
+</h1>
 </section>
 <!-- Main content -->
 <section class="content p-2">
@@ -83,7 +86,7 @@
             <a href="<?= base_url('ticket_register/form_aktivasi_agent') ?>">
               <div class="card">
                 <div class="card-header text-center">
-                  <img class="img-fluid" src="<?= base_url('assets2/img/aktivasi agent_blue.png') ?>" width="100" height="82" alt="">
+                  <img class="img-fluid" src="<?= base_url('assets2/img/Aktivasi Agent_Blue.png') ?>" width="100" height="82" alt="">
                 </div>
                 <div class="card-body text-center p-2 p-2">
                   Form Aktivasi Agent
@@ -111,7 +114,7 @@
             <a href="<?= base_url('ticket_register/form_mitra_kerjasama') ?>">
               <div class="card">
                 <div class="card-header text-center">
-                  <img class="img-fluid" src="<?= base_url('assets2/img/Aktivasi_Agent_Blue.png') ?>" width="100" height="82" alt="">
+                  <img class="img-fluid" src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                 </div>
                 <div class="card-body text-center p-2 p-2">
                   Form Mitra Kerja sama
@@ -184,15 +187,15 @@
                       <td><?= $tickets->nama_konsumen_mytalim ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -206,15 +209,15 @@
                       <td><?= $tickets->nama_konsumen_mysafar ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -229,15 +232,15 @@
                       <td><?= $tickets->nama_konsumen_myihram ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -254,15 +257,15 @@
                       <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
                         <?= $tickets->tanggal_diubah_aktivasi_agent ?>
                       </td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -277,15 +280,15 @@
                       <td><?= $tickets->nama_konsumen_renovasi ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -300,15 +303,15 @@
                       <td><?= $tickets->nama_konsumen_sewa ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -323,15 +326,15 @@
                       <td><?= $tickets->nama_konsumen_wedding ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -346,15 +349,15 @@
                       <td><?= $tickets->nama_konsumen_franchise ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -369,15 +372,15 @@
                       <td><?= $tickets->nama_konsumen_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -393,17 +396,17 @@
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>">
                         <?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -416,17 +419,17 @@
                       <td><?= $tickets->nama_konsumen_nst ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -440,15 +443,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -461,15 +464,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -482,15 +485,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -503,15 +506,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -524,15 +527,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -545,15 +548,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -566,15 +569,15 @@
                       <td><?= $tickets->nama_konsumen_mycars ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -687,15 +690,15 @@
                       <td><?= $tickets->nama_konsumen_mytalim ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -712,15 +715,15 @@
                       <td><?= $tickets->nama_konsumen_mysafar ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -737,15 +740,15 @@
                       <td><?= $tickets->nama_konsumen_myihram ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -764,15 +767,15 @@
                       <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
                         <?= $tickets->tanggal_diubah_aktivasi_agent ?>
                       </td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -789,15 +792,15 @@
                       <td><?= $tickets->nama_konsumen_renovasi ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -814,15 +817,15 @@
                       <td><?= $tickets->nama_konsumen_sewa ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -839,15 +842,15 @@
                       <td><?= $tickets->nama_konsumen_wedding ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -864,15 +867,15 @@
                       <td><?= $tickets->nama_konsumen_franchise ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -889,15 +892,15 @@
                       <td><?= $tickets->nama_konsumen_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -915,15 +918,15 @@
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>">
                         <?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -938,15 +941,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -961,15 +964,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -984,15 +987,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1007,15 +1010,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1030,15 +1033,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1053,15 +1056,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1076,15 +1079,15 @@
                       <td><?= $tickets->nama_konsumen_mycars ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1199,15 +1202,15 @@
                       <td><?= $tickets->nama_konsumen_mytalim ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1224,15 +1227,15 @@
                       <td><?= $tickets->nama_konsumen_mysafar ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1249,15 +1252,15 @@
                       <td><?= $tickets->nama_konsumen_myihram ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1276,15 +1279,15 @@
                       <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
                         <?= $tickets->tanggal_diubah_aktivasi_agent ?>
                       </td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1301,15 +1304,15 @@
                       <td><?= $tickets->nama_konsumen_renovasi ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1326,15 +1329,15 @@
                       <td><?= $tickets->nama_konsumen_sewa ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1351,15 +1354,15 @@
                       <td><?= $tickets->nama_konsumen_wedding ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1376,15 +1379,15 @@
                       <td><?= $tickets->nama_konsumen_franchise ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1401,15 +1404,15 @@
                       <td><?= $tickets->nama_konsumen_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1427,15 +1430,15 @@
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>">
                         <?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1450,15 +1453,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1473,15 +1476,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1496,15 +1499,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1519,15 +1522,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1542,15 +1545,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1565,15 +1568,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1588,15 +1591,15 @@
                       <td><?= $tickets->nama_konsumen_mycars ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1711,15 +1714,15 @@
                       <td><?= $tickets->nama_konsumen_nst ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1834,15 +1837,15 @@
                       <td><?= $tickets->nama_konsumen_mytalim ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1859,15 +1862,15 @@
                       <td><?= $tickets->nama_konsumen_mysafar ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1884,15 +1887,15 @@
                       <td><?= $tickets->nama_konsumen_myihram ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1911,15 +1914,15 @@
                       <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
                         <?= $tickets->tanggal_diubah_aktivasi_agent ?>
                       </td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1936,15 +1939,15 @@
                       <td><?= $tickets->nama_konsumen_renovasi ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1961,15 +1964,15 @@
                       <td><?= $tickets->nama_konsumen_sewa ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -1985,15 +1988,15 @@
                       <td><?= $tickets->nama_konsumen_wedding ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2010,15 +2013,15 @@
                       <td><?= $tickets->nama_konsumen_franchise ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2035,15 +2038,15 @@
                       <td><?= $tickets->nama_konsumen_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2061,15 +2064,15 @@
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>">
                         <?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2084,15 +2087,15 @@
                       <td><?= $tickets->nama_konsumen_nst ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2108,15 +2111,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2131,15 +2134,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2154,15 +2157,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2177,15 +2180,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2200,15 +2203,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2223,15 +2226,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2246,15 +2249,15 @@
                       <td><?= $tickets->nama_konsumen_mycars ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2343,7 +2346,7 @@
             <a href="<?= base_url('ticket_register/form_aktivasi_agent') ?>">
               <div class="card">
                 <div class="card-header text-center">
-                  <img class="img-fluid" src="<?= base_url('assets2/img/aktivasi agent_blue.png') ?>" width="100" height="82" alt="">
+                  <img class="img-fluid" src="<?= base_url('assets2/img/Aktivasi Agent_Blue.png') ?>" width="100" height="82" alt="">
                 </div>
                 <div class="card-body text-center p-2 p-2">
                   Form Aktivasi Agent
@@ -2371,7 +2374,7 @@
             <a href="<?= base_url('ticket_register/form_mitra_kerjasama') ?>">
               <div class="card">
                 <div class="card-header text-center">
-                  <img class="img-fluid" src="<?= base_url('assets2/img/Aktivasi_Agent_Blue.png') ?>" width="100" height="82" alt="">
+                  <img class="img-fluid" src="<?= base_url('assets2/img/no-pict.png') ?>" width="100" height="82" alt="">
                 </div>
                 <div class="card-body text-center p-2 p-2">
                   Form Mitra Kerja sama
@@ -2383,7 +2386,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Table Status Request Support -->
     <div class="container-fluid">
       <div class="row mt-4 m-1">
@@ -2448,15 +2451,15 @@
                       <td><?= $tickets->nama_konsumen_mytalim ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mytalim ?>"><?= $tickets->tanggal_diubah_mytalim ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mytalim == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mytalim == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2473,15 +2476,15 @@
                       <td><?= $tickets->nama_konsumen_mysafar ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mysafar ?>"><?= $tickets->tanggal_diubah_mysafar ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mysafar == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mysafar == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2498,15 +2501,15 @@
                       <td><?= $tickets->nama_konsumen_myihram ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myihram ?>"><?= $tickets->tanggal_diubah_myihram ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myihram == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myihram == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2525,15 +2528,15 @@
                       <td data-order="<?= $tickets->date_modified_aktivasi_agent ?>">
                         <?= $tickets->tanggal_diubah_aktivasi_agent ?>
                       </td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_aktivasi_agent == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_aktivasi_agent == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2550,15 +2553,15 @@
                       <td><?= $tickets->nama_konsumen_renovasi ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_renovasi ?>"><?= $tickets->tanggal_diubah_renovasi ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_renovasi == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_renovasi == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2575,15 +2578,15 @@
                       <td><?= $tickets->nama_konsumen_sewa ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_sewa ?>"><?= $tickets->tanggal_diubah_sewa ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_sewa == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_sewa == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2600,15 +2603,15 @@
                       <td><?= $tickets->nama_konsumen_wedding ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_wedding ?>"><?= $tickets->tanggal_diubah_wedding ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_wedding == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_wedding == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2625,15 +2628,15 @@
                       <td><?= $tickets->nama_konsumen_franchise ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_franchise ?>"><?= $tickets->tanggal_diubah_franchise ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_franchise == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_franchise == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2650,15 +2653,15 @@
                       <td><?= $tickets->nama_konsumen_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_lainnya ?>"><?= $tickets->tanggal_diubah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2676,15 +2679,15 @@
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mitra_kerjasama ?>">
                         <?= $tickets->tanggal_diubah_mitra_kerjasama ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mitra_kerjasama == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mitra_kerjasama == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2699,15 +2702,15 @@
                       <td><?= $tickets->nama_konsumen_nst ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2723,15 +2726,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah ?>"><?= $tickets->tanggal_diubah_myfaedah ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2746,15 +2749,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_bangunan ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_bangunan ?>"><?= $tickets->tanggal_diubah_myfaedah_bangunan ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_bangunan == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_bangunan == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2769,15 +2772,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_elektronik ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_elektronik ?>"><?= $tickets->tanggal_diubah_myfaedah_elektronik ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_elektronik == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_elektronik == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2792,15 +2795,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_qurban ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_qurban ?>"><?= $tickets->tanggal_diubah_myfaedah_qurban ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_qurban == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_qurban == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2815,15 +2818,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_modal ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_modal ?>"><?= $tickets->tanggal_diubah_myfaedah_modal ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_modal == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_modal == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2838,15 +2841,15 @@
                       <td><?= $tickets->nama_konsumen_myfaedah_lainnya ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_myfaedah_lainnya ?>"><?= $tickets->tanggal_diubah_myfaedah_lainnya ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_myfaedah_lainnya == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_myfaedah_lainnya == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2861,15 +2864,15 @@
                       <td><?= $tickets->nama_konsumen_mycars ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_mycars ?>"><?= $tickets->tanggal_diubah_mycars ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_mycars == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 2) { ?>
                         <td><span class="badge badge-success approved">Reviewed</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_mycars == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>
@@ -2984,15 +2987,15 @@
                       <td><?= $tickets->nama_konsumen_nst ?></td>
                       <td><?= $tickets->produk ?></td>
                       <td data-order="<?= $tickets->date_modified_nst ?>"><?= $tickets->tanggal_diubah_nst ?></td>
-                      <?php if ($tickets->status == 0) { ?>
+                      <?php if ($tickets->id_approval_nst == 0) { ?>
                         <td><span class="badge badge-secondary pending">Pending</span></td>
-                      <?php } else if ($tickets->status == 1) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 1) { ?>
                         <td><span class="badge badge-danger rejected">Rejected</span></td>
-                      <?php } else if ($tickets->status == 2) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 2) { ?>
                         <td><span class="badge badge-success approved">Disetujui</span></td>
-                      <?php } else if ($tickets->status == 3) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 3) { ?>
                         <td><span class="badge badge-info completed">Completed</span></td>
-                      <?php } else if ($tickets->status == 4) { ?>
+                      <?php } else if ($tickets->id_approval_nst == 4) { ?>
                         <td><span class="badge badge-warning inprogress">In Progress</span></td>
                       <?php } ?>
                     </tr>

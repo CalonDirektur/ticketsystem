@@ -143,7 +143,7 @@
 
             </div>
             <div class="card-footer">
-              <button onclick="return confirm('Apakah data-data yang diisi sudah valid? \nMohon periksa kembali data yang diinput.')" class="btn btn-info text-center pull-right" name="submit_lead_management">Kirim Data!</button>
+              <button class="btn btn-info text-center pull-right" name="submit_lead_management">Kirim Data!</button>
             </div>
           </div>
 
