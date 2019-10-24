@@ -4,13 +4,14 @@
       Daftar Akun User
     </h4>
     <p><?= date('d F, Y'); ?></p>
+    <?= $this->session->flashdata('update_user_success') ?>
   </section>
 
   <!-- Main content -->
   <section class="content">
     <div class="row mt-4 m-1">
       <div class="col-lg-6">
-        <h4>Tabel Request Support</h4>
+
       </div>
       <div class="col-lg-6">
         <form action="#" method="get" class="form-inline my-2 my-lg-0 pull-right">
@@ -31,16 +32,18 @@
           <div class="card">
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table id="table-user" class="table table-striped table-bordered responsive status" width="100%">
+                <table id="table-user" class="table table-striped table-bordered display dt-responsive status-admin nowrap" width="100%">
                   <thead>
-                    <th class="all">Nama</th>
-                    <th class="all">Tanggal Daftar</th>
-                    <th class="none">NIK</th>
-                    <th class="none">Email</th>
-                    <th class="none">Level</th>
-                    <th class="all">Active</th>
-                    <th class="desktop">Cabang</th>
-                    <th class="all">Jabatan</th>
+                    <tr>
+                      <th class="all">Nama</th>
+                      <th class="all">Tanggal Daftar</th>
+                      <th class="none">NIK</th>
+                      <th class="none">Email</th>
+                      <th class="none">Level</th>
+                      <th class="all">Active</th>
+                      <th class="desktop">Cabang</th>
+                      <th class="all">Jabatan</th>
+                    </tr>
                   </thead>
                   <tbody>
                     <?php

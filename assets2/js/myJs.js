@@ -41,6 +41,11 @@ $(document).ready(function () {
 		localStorage.setItem("statusTiket", $(this).val());
 	});
 
+	$('#statusTiketAdminNst').change(function () {
+		tableAdmin.columns(7).search($(this).val()).draw();
+		//meyimpan tulisan dropdown sort by ticket
+		localStorage.setItem("statusTiket", $(this).val());
+	});
 	//mengambil tulisan dropdown sort by ticket
 	var statusTiket = localStorage.getItem("statusTiket");
 	if (statusTiket == "Pending") {

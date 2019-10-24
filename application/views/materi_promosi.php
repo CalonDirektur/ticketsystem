@@ -1,3 +1,4 @@
+<?= $this->session->flashdata('berhasil_delete_materi_promosi'); ?>
 <div class="content-wrapper">
     <div class="container">
         <h3>Daftar Materi Promosi</h3>
@@ -18,12 +19,12 @@
                     </div>
                 <?php } ?>
                 <?php
-                //Columns must be a factor of 12 (1,2,3,4,6,12)
+                //Columns must be a factor of 12 (1, 2, 3, 4, 6, 12)
                 $numOfCols = 3;
                 $rowCount = 0;
                 $bootstrapColWidth = 12 / $numOfCols;
                 ?>
-                <div class="row mt-4">
+                <div class="card-deck mt-4">
                     <?php foreach ($data->result() as $materi) { ?>
                         <div class="col-lg-<?= $bootstrapColWidth ?>">
                             <div class="card shadow-sm" style="width: 16rem">
@@ -37,6 +38,9 @@
                                             <p><?= $materi->ukuran ?></p>
                                         </div>
                                         <div class="col-6">
+                                            <?php if ($this->session->userdata('level') == 5) { ?>
+                                                <a onclick="return confirm('Apakah Anda yakin ingin menghapus item materi promosi ini?')" target="_blank" href="<?= base_url('Materi_Promosi/delete/') . $materi->id_materi_promosi ?>"><button class="btn btn-danger btn-rounded btn-icon shadow-sm"><i class="icon-delete"></i></button></a>&nbsp;
+                                            <?php } ?>
                                             <a target="_blank" href="<?= $materi->link ?>"><button class="btn btn-info btn-rounded btn-icon shadow-sm pull-right"><i class="icon-download"></i></button></a>
                                         </div>
                                     </div>
@@ -45,7 +49,7 @@
                         </div>
                     <?php
                         $rowCount++;
-                        if ($rowCount % $numOfCols == 0) echo '</div><div class="row mt-4">';
+                        if ($rowCount % $numOfCols == 0) echo '</div><div class="card-deck mt-4">';
                     }
                     ?>
                 </div>

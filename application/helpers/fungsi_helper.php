@@ -54,8 +54,8 @@ function check_access_level_superuser()
 {
     $ci = &get_instance();
     $user_session = $ci->session->userdata('level');
-    if ($user_session != 5) {
-        redirect('dashboard');
+    if ($user_session == 1 || $user_session == 6) {
+        redirect('status');
         // echo "<script>alert('Anda harus masuk sebagai Admin level 2')</script>";
     }
 }

@@ -77,11 +77,6 @@ class Status extends CI_Controller
             $id_cabang = '';
         }
 
-        // if ($this->fungsi->user_login()->level == 2) {
-        // 	$where = 'id_approval = 0';
-        // } else if ($this->fungsi->user_login()->level == 3) {
-        // 	$where = 'id_approval = 2';
-        // }
 
         check_not_login();
         //Total Status My'Talim
@@ -243,7 +238,57 @@ class Status extends CI_Controller
             $this->template->load('template2', 'request_support_list/lead_management_list', $data);
         }
 
+        if ($produk == "lead_interest_list") {
+            // Menampilkan data lead management untuk CMS
+            if ($this->fungsi->user_login()->level == 1) {
+                $data['data'] = $this->data_m->get('tb_lead_interest', 'list', $this->id_user);
+            }
+            // Menampilkan data lead management untuk Head Syariah/Manager
+            else if ($this->fungsi->user_login()->level == 6) {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                    FROM 
+                                                tb_lead_interest as A
+                                                INNER JOIN user as C ON C.id_user = A.id_user
+                                                INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+                                                WHERE A.id_cabang " . $this->id_cabang . "
+                                                ");
+            } else {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                        FROM 
+                                                    tb_lead_interest as A
+                                                    INNER JOIN user as C ON C.id_user = A.id_user
+                                                    INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+                                                    ");
+            }
+            $this->template->load('template2', 'request_support_list/lead_interest_list', $data);
+        }
+
         if ($produk == "nst_list") {
+            if ($this->fungsi->user_login()->id_cabang != 46) {
+                if ($this->fungsi->user_login()->level == 6) { // Jika Cabang Head/Manager, maka akan menampilkan ticket yang dicabangnya saja
+                    $id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
+                    $produk = "produk IS NOT NULL OR produk IS NULL";
+                } else { // Jika CMS, maka akan menampilkan pengjuan ticket yang CMS nya saja
+                    $id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
+                    $produk = "produk IS NOT NULL OR produk IS NULL";
+                }
+            } else {
+                if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5 || $this->fungsi->user_login()->level == 7) {
+                    if ($this->fungsi->user_login()->level == 4) {
+                        $produk = "produk = 'My Ihram' OR produk = 'My Safar' OR produk = 'My Talim' OR produk = 'My Hajat' OR produk = ''";
+                    } else if ($this->fungsi->user_login()->level == 5) {
+                        $produk = "produk IS NOT NULL OR produk IS NULL";
+                    } else if ($this->fungsi->user_login()->level == 7) {
+                        $produk = "produk = 'My Cars' OR produk = 'My Faedah' OR produk = ''";
+                    }
+                }
+                $id_cabang = '';
+            }
+
+            $data['total_pending'] = $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang AND ($produk)");
+            $data['total_inprogress'] = $this->data_m->count_data("tb_nst", "id_approval = 4 $id_cabang AND ($produk)");
+            $data['total_rejected'] = $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang AND ($produk)");
+            $data['total_completed'] = $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang AND ($produk)");
             // Menampilkan data lead management untuk CMS
             if ($this->fungsi->user_login()->level == 1) {
                 // $data['data'] = $this->data_m->get('tb_nst', 'list', $this->id_user);
@@ -295,13 +340,6 @@ class Status extends CI_Controller
                                                     INNER JOIN tb_cabang as D ON D.id_cabang = B.id_cabang
                                             ");
             }
-            // $data['data'] = $this->data_m->query("SELECT * 
-            //                                      FROM 
-            //                                     tb_nst as A
-            //                                     INNER JOIN tb_ticket as B
-            //                                     ON A.id_nst = B.id_nst 
-            //                                     WHERE A.id_cabang " . $this->id_cabang . "
-            //                                     ");
             $this->template->load('template2', 'request_support_list/nst_list', $data);
         }
     }
@@ -528,6 +566,27 @@ class Status extends CI_Controller
             //ketika detail status request support di klik maka mark as read notifikasinya            
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_lead_management', $data);
+        }
+        // Detail Lead Management 
+        if ($produk == 'lead_interest' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->query("SELECT *                                             
+                            FROM tb_lead_interest A
+                                                INNER JOIN tb_cabang as B ON B.id_cabang = A.id_cabang
+                                                INNER JOIN user as D ON D.id_user = A.id_user
+                                                WHERE A.id_lead_interest = $id
+            ")->row();
+
+            $data['cabang_tujuan'] = $this->data_m->get('tb_cabang');
+
+            $data['komentar'] = $this->comment_m->get_comment('tb_lead_interest', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_lead_interest = tb_lead_interest.id_lead_interest AND 
+                                                                tb_lead_interest.id_lead_interest = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya            
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'request_support_detail/detail_status_lead_interest', $data);
         }
 
         if ($produk == 'mitra_kerjasama' && $kategori != NULL && $id != NULL) {
