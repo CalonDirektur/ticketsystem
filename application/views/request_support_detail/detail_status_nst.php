@@ -91,7 +91,7 @@
 									<option value="My Faedah" <?= $data->produk == "My Faedah" ? "selected" : ""  ?>> My Faedah</option>
 									<option value="My CarS" <?= $data->produk == "My CarS" ? "selected" : ""  ?>> My CarS</option>
 								</select>
-								<input id="nama_produk" type="hidden" name="produk">
+								<input id="nama_produk" type="hidden" name="produk" value="<?= $data->produk ?>">
 							</div>
 
 							<!-- Tombol ini muncul khusus untuk user -->
@@ -101,7 +101,7 @@
 						</div>
 						<div class="card-footer">
 							<!-- Tombol Aksi ini akan muncul untuk Admin NST -->
-							<?php if (($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5)) { ?>
+							<?php if (($this->session->userdata('level') == 4 || $this->session->userdata('level') == 5 || $this->session->userdata('level') == 7)) { ?>
 								<a onclick="return confirm('Apakah Anda yakin MENYETUJUI request support ini?')" class="btn btn-info" href="<?= base_url('Aksi/complete/nst/id/' . $data->id_nst) ?>">Approve</a>
 								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
 									Reject

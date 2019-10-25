@@ -38,6 +38,7 @@
                                 foreach ($year->result() as $tahun) {
                                     ?>
                                     <option id="<?= $tahun->year ?>" value="<?= $tahun->year ?>-00-00"><?= $tahun->year ?></option>
+                                    <!-- <option id="" value="2018-00-00">2018</option> -->
                                 <?php } ?>
                             </select>
                             <h4 class="card-title">Leads</h4>
@@ -78,7 +79,7 @@
             </div>
         </div>
     </div>
-    <div class="owl-carousel">
+    <div class="owl-carousel stats-carousel">
         <div class="item">
             <div class="card card-body" style="height: 450px; min-height:450px">
                 <div class="d-flex justify-content-between">
@@ -231,7 +232,7 @@
         </div>
     </div>
 
-    <div class="owl-carousel mt-3">
+    <div class="owl-carousel stats-carousel mt-3">
         <div class="item">
             <div class="grid-margin stretch-card">
                 <div class="card card-body" style="height: 450px; min-height:450px">
@@ -338,4 +339,6 @@
             </div>
         </div>
     </div>
+
+    <div id="map" style="height:400px; width: 100%"></div>
 </div>

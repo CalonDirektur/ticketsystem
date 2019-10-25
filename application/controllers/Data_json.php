@@ -46,6 +46,22 @@ class Data_json extends CI_Controller
         }
     }
 
+    public function get_leads_id($leads_id)
+    {
+
+        $query = $this->data_m->query(
+            "SELECT * 
+            FROM 
+                tb_lead_management
+            INNER JOIN user ON user.id_user = tb_lead_management.id_user
+            INNER JOIN tb_cabang ON tb_cabang.id_cabang = tb_lead_management.id_cabang
+            WHERE tb_lead_management.lead_id = '$leads_id'
+        "
+        );
+
+        echo json_encode($query->row());
+    }
+
     public function get_vendor_myhajat()
     {
         // $data = $this->data_m->get('tb_vendor');
@@ -80,7 +96,8 @@ class Data_json extends CI_Controller
         // $data = $this->data_m->get('tb_vendor');
         $keyword = $_GET['term'];
 
-        $query = $this->data_m->query("SELECT *
+        $query = $this->data_m->query(
+            "SELECT *
         FROM 
             tb_vendor
         WHERE nama_vendor
@@ -90,7 +107,8 @@ class Data_json extends CI_Controller
         OR jenis_vendor = 'Penjual Perorangan'
         OR jenis_vendor = 'Modern Store/Supermarket')
         GROUP BY nama_vendor
-        ORDER BY nama_vendor ASC");
+        ORDER BY nama_vendor ASC"
+        );
 
         $output = [];
         if ($query->num_rows() > 0) {

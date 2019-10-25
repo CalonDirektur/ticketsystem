@@ -118,7 +118,7 @@
 							</div>
 							<div class="form-group">
 								<label for="">Informasi Tambahan</label>
-								<textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly> <?= $data->informasi_tambahan ?></textarea>
+								<textarea cols="40" rows="5" class="form-control enable" name="informasi_tambahan" id="informasi_tambahan" readonly><?= $data->informasi_tambahan ?></textarea>
 							</div>
 							<div id="status-ticket" class="pull-right">
 								<?php
@@ -169,12 +169,32 @@
 				</div>
 				<!-- Bagian Munculin lampiran -->
 				<div class="col-lg-6">
+					<div id="detail" class="card">
+						<div class="card-header text-center"><b>Rincian</b></div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-6 text-center">
+									<?= ($data->tanggal_dibuat != NULL ? '<p><b>Created on:</b><br> ' . $data->tanggal_dibuat . '</p>' : '') ?>
+									<?= ($data->tanggal_diubah != NULL ? '<p><b>Terakhir diubah:</b><br> ' . $data->tanggal_diubah . '</p>' : '')  ?>
+									<?= ($data->tanggal_disetujui != NULL ? '<p><b>Approved on:</b><br> ' . $data->tanggal_disetujui . '</p>' : '')  ?>
+									<?= ($data->tanggal_diselesaikan != NULL ? '<p><b>Completed on:</b><br> ' . $data->tanggal_diselesaikan . '</p>' : '')  ?>
+									<?php if ($data->id_approval == 1) {
+										echo ($data->tanggal_ditolak != NULL ? '<p><b>Rejected on:</b><br> ' . $data->tanggal_ditolak . '</p>' : '');
+									} ?>
+								</div>
+								<div class="col-lg-6 text-center">
+									<p><b>Requester:</b><br><?= $data->name ?></p>
+									<p><b>Cabang:</b><br><?= $data->nama_cabang ?></p>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Form Upload Lampiran -->
-					<div id="upload" class="card">
+					<div id="upload" class="card mt-4">
 						<div class="card-header">
 							<h3 class="card-title text-center">Lampiran (Attachment) <a class="btn btn-info float-right" href="<?= base_url('zip/createzip/tb_my_talim/id_mytalim/mytalim/' . $data->id_mytalim) ?>">Download All</a></h3>
 						</div>
-						<div class="card-body p-0" id="dynamic-field">
+						<div class="card-body p-0" id="dynamic-field" style="max-height: 400px; overflow-y: scroll; overflow-x: hidden">
 							<table class="table text-center" width="100%">
 								<thead>
 									<th width="50%">File Terlampir</th>
@@ -182,11 +202,11 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file1 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file1) ?>"><?= $data->upload_file1 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file1" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -198,11 +218,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file2 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file2) ?>"><?= $data->upload_file2 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file2" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -214,11 +234,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file3 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file3) ?>"><?= $data->upload_file3 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file3" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -230,11 +250,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file4 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file4) ?>"><?= $data->upload_file4 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file4" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -246,11 +266,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file5 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file5) ?>"><?= $data->upload_file5 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file5" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -262,11 +282,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file6 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file6) ?>"><?= $data->upload_file6 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file6" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -278,11 +298,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file7 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file7) ?>"><?= $data->upload_file7 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file7" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -294,11 +314,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file8 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file8) ?>"><?= $data->upload_file8 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file8" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -310,11 +330,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file9 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file9) ?>"><?= $data->upload_file9 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file9" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -326,11 +346,11 @@
 										</td>
 									</tr>
 									<tr>
-										<td>
+										<td class="p-0">
 											<?php if ($data->upload_file10 != NULL) { ?><a target="_blank" href="<?= base_url('uploads/mytalim/' . $data->upload_file10) ?>"><?= $data->upload_file10 ?></a><?php } ?>
 										</td>
-										<td>
-											<div class="form-group">
+										<td class="p-0">
+											<div class="form-group mb-2 mt-2">
 												<input type="file" name="upload_file10" class="file-upload-default">
 												<div class="input-group col-xs-12">
 													<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Data">
@@ -344,7 +364,6 @@
 								</tbody>
 							</table>
 						</div>
-
 						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
@@ -359,41 +378,42 @@
 							</div>
 						<?php } ?>
 					</div>
-				</div>
-			</div>
 		</form>
-		<?php if ($komentar->num_rows() == 0) { ?>
-			<!-- Post Komentar -->
-			<div class="row mt-4">
-				<div class="col-lg-12 col-md-12">
-					<form method="post" action="<?= base_url('comment/post_comment/id_mytalim') ?>">
-						<div class="card">
-							<div class="card-header with-border">
-								<label for="">Post Komentar</label>
-							</div>
-							<div class="card-body">
-								<div class="form-group">
-									<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
-									<input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
-									<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
-									<input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
-									<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
-								</div>
-							</div>
-							<div class="card-footer">
-								<button type="submit" class="btn btn-info pull-right" name="submit_komentar">Post Komentar</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		<?php } ?>
 
-		<!-- Menampilkan Komentar -->
-		<?php foreach ($komentar->result() as $komen) { ?>
-			<div class="row mt-4">
-				<div class="col-lg-12 col-md-12">
-					<div class="card card-widget">
+		<div id="show-komentar" class="card mt-4">
+			<div class="card-header text-center">
+				<b>Komentar</b>
+			</div>
+			<div class="card-body p-0 mt-0">
+				<?php if ($komentar->num_rows() == 0) { ?>
+					<!-- Post Komentar -->
+					<div class="row mt-4">
+						<div class="col-lg-12 col-md-12">
+							<form method="post" action="<?= base_url('comment/post_comment/id_mytalim') ?>">
+								<div class="card">
+									<div class="card-header with-border">
+										<label for="">Post Komentar</label>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<textarea class="form-control" name="post_comment" id="post_comment" cols="10" rows="2" placeholder="Masukkan Komentar Anda" required></textarea>
+											<input type="hidden" name="id_komentar" value="<?= $data->id_mytalim ?>">
+											<input type="hidden" name="id_user" value="<?= $this->fungsi->user_login()->id_user ?>">
+											<input type="hidden" name="id_ticket_komentar" value="<?= $data->id_ticket ?>">
+											<input type="hidden" name="redirect" value="<?= $this->uri->uri_string() ?>">
+										</div>
+									</div>
+									<div class="card-footer">
+										<button type="submit" class="btn btn-info pull-right" name="submit_komentar">Post Komentar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				<?php } ?>
+				<!-- Menampilkan Komentar -->
+				<?php foreach ($komentar->result() as $komen) { ?>
+					<div class="card">
 						<div class="card-header with-border">
 							<div class="user-block"><label for=""><span class="username"><?= $komen->name ?> (<?= $komen->nama_cabang ?>)</span></label><br>
 								<span class="description">Diposting: <?= $komen->date ?></span>
@@ -402,15 +422,14 @@
 						<div class="card-body">
 							<p><?= $komen->comment ?></p>
 						</div>
-
 						<!-- Reply card Comment -->
 						<div class="card-footer card-comments">
 							<?php
 								$this->db->select('*, DATE_FORMAT(date, "%d %M %Y %H:%i:%s") AS date');
 								$this->db->from('tb_comment, user, tb_cabang');
 								$this->db->where('parent_comment_id = ' . $komen->id . ' AND
-                              user.id_user = tb_comment.id_user AND
-                              user.id_cabang = tb_cabang.id_cabang');
+										  user.id_user = tb_comment.id_user AND
+										  user.id_cabang = tb_cabang.id_cabang');
 								$reply = $this->db->get();
 								?>
 							<?php foreach ($reply->result() as $balasan) { ?>
@@ -423,6 +442,7 @@
 										<?= $balasan->comment ?>
 									</div>
 								</div>
+								<hr>
 							<?php } ?>
 						</div>
 						<div class="card-footer">
@@ -438,9 +458,10 @@
 							</form>
 						</div>
 					</div>
-				</div>
+				<?php } ?>
 			</div>
-		<?php } ?>
-
-	</section>
+		</div>
+</div>
+</div>
+</section>
 </div>

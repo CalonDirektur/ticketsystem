@@ -51,4 +51,11 @@ class Materi_Promosi extends CI_Controller
             redirect('dashboard');
         }
     }
+
+    public function delete($id)
+    {
+        $this->data_m->delete('tb_materi_promosi', ['id_materi_promosi' => $id]);
+        $this->session->set_flashdata("berhasil_delete_materi_promosi", "<div class='alert alert-success'>Berhasil delete item materi promosi</div>");
+        redirect('Materi_Promosi');
+    }
 }

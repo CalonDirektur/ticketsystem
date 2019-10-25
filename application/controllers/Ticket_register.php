@@ -34,6 +34,21 @@ class Ticket_register extends CI_Controller
 		$this->template->load('template2', 'request_support_form/form_lead_management', $data);
 	}
 
+	//Memuat halaman form lead interest
+	public function form_lead_interest()
+	{
+
+		$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+		$id_user_tickets = '= ' . $this->fungsi->user_login()->id_cabang;
+		$approval_tickets = 'IS NOT NULL';
+
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+		$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
+		$data['get_tickets_head_syariah'] = $this->data_m->get_tickets_head_syariah($id_user_tickets, $approval_tickets);
+		$this->template->load('template2', 'request_support_form/form_lead_interest', $data);
+	}
+
 	//Memuat halaman form request support aktivasi agent	
 	public function form_aktivasi_agent()
 	{
@@ -543,8 +558,10 @@ class Ticket_register extends CI_Controller
 				'nama_konsumen' => $post['nama_konsumen'],
 				'jenis_konsumen' => $post['jenis_konsumen'],
 				'nama_travel' => $post['nama_travel_myihram'],
+
 				'date_created' => date('Y-m-d H:i:s'),
 				'date_modified' => date('Y-m-d H:i:s'),
+
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user'],
 				'id_approval' => 0
@@ -636,6 +653,52 @@ class Ticket_register extends CI_Controller
 			redirect('dashboard');
 		}
 
+		// FORMULIR LEAD Interest
+		if (isset($_POST['submit_lead_interest'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			// if ($this->form_validation->run() != FALSE) {
+
+			$data = [
+				// 'source' 				=> $post['source'],
+				'nama' 					=> $post['nama'],
+				'email' 				=> $post['email'],
+				'telepon'				=> $post['telepon'],
+				'sumber_lead'			=> $post['sumber_lead'],
+				'catatan' 				=> $post['catatan'],
+				'id_approval'			=> 0,
+				// 'kota'					=> $post['kota'],
+				// 'produk'				=> $post['produk'],
+
+				// 'sumber_lead' 			=> $post['sumber_lead'],
+
+				'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified'			=> date('Y-m-d H:i:s'),
+
+				'id_user' 				=> $post['id_user'],
+				'id_cabang' 			=> $post['cabang']
+			];
+
+			$id = $this->data_m->add('tb_lead_interest', $data);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan data lead interest.!</strong></div>');
+				redirect('status');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+			// } else {
+			// 	// Mengambil list cabang2 
+			// 	$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+			// 	$approval_tickets = 'IS NOT NULL';
+
+			// 	$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+			// 	$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
+			// 	$this->template->load('template2', 'request_support_form/form_lead_management', $data);
+			// }
+		}
 		// FORMULIR LEAD MANAGEMENT
 		if (isset($_POST['submit_lead_management'])) {
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
@@ -1809,6 +1872,51 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
+		}
+
+		if (isset($_POST['edit_lead_interest'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			// if ($this->form_validation->run() != FALSE) {
+
+			$data = [
+				// 'source' 				=> $post['source'],
+				'nama' 					=> $post['nama'],
+				'email' 				=> $post['email'],
+				'telepon'				=> $post['telepon'],
+				'sumber_lead'			=> $post['sumber_lead'],
+				// 'produk' 				=> $post['produk'],
+				'catatan' 				=> $post['catatan'],
+				'id_approval'			=> 0,
+				// 'kota'					=> $post['kota'],
+
+
+				// 'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified'			=> date('Y-m-d H:i:s'),
+
+				// 'id_user' 				=> $post['id_user'],
+				// 'id_cabang' 			=> $post['cabang']
+			];
+
+			$id = $this->data_m->update('tb_lead_interest', $data, ['id_lead_interest' => $post['id_lead_interest']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil mengubah data lead interest! <a href="' . base_url('status/detail/lead_interest/id/' . $post['id_lead_interest']) . '">ID #' . $post['id_lead_interest'] . '</a></strong></div>');
+				redirect('status');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
+			// } else {
+			// 	// Mengambil list cabang2 
+			// 	$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
+			// 	$approval_tickets = 'IS NOT NULL';
+
+			// 	$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+			// 	$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
+			// 	$this->template->load('template2', 'request_support_form/form_lead_management', $data);
+			// }
 		}
 
 		// EDIT FORM AKTIVASI AGENT //
