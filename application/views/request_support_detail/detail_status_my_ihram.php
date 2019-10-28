@@ -22,19 +22,19 @@
 								<div class="col-6 p-0 m-0">
 									<div id="status-ticket" class="pull-right">
 										<?php
-										if ($data->id_approval == 0) {
+										if ($data->status == 0) {
 											echo '<label class="badge badge-secondary">Pending</label>';
 										}
-										if ($data->id_approval == 1) {
+										if ($data->status == 1) {
 											echo '<label class="badge badge-danger">Rejected</label>';
 										}
-										if ($data->id_approval == 2) {
+										if ($data->status == 2) {
 											echo '<label class="badge badge-success">Reviewed</label>';
 										}
-										if ($data->id_approval == 3) {
+										if ($data->status == 3) {
 											echo '<label class="badge badge-info">Completed</label>';
 										}
-										if ($data->id_approval == 4) {
+										if ($data->status == 4) {
 											echo '<label class="badge badge-warning">In Process</label>';
 										}
 										?>
@@ -48,7 +48,7 @@
 									<?= ($data->tanggal_diubah != NULL ? '<p>Terakhir diubah ' . $data->tanggal_diubah . '</p>' : '')  ?>
 									<?= ($data->tanggal_disetujui != NULL ? '<p>Approved on ' . $data->tanggal_disetujui . '</p>' : '')  ?>
 									<?= ($data->tanggal_diselesaikan != NULL ? '<p>Completed on ' . $data->tanggal_diselesaikan . '</p>' : '')  ?>
-									<?php if ($data->id_approval == 1) {
+									<?php if ($data->status == 1) {
 										echo ($data->tanggal_ditolak != NULL ? '<p>Rejected on ' . $data->tanggal_ditolak . '</p>' : '');
 									} ?>
 								</div>
@@ -88,22 +88,22 @@
 							<div id="status-ticket" class="pull-right">
 								<label for="">Status:</label>
 								<?php
-								if ($data->id_approval == 0) {
+								if ($data->status == 0) {
 									echo '<label class="badge badge-secondary">Pending</label>';
 								}
-								if ($data->id_approval == 1) {
+								if ($data->status == 1) {
 									echo '<label class="badge badge-danger">Rejected</label>';
 								}
-								if ($data->id_approval == 2) {
+								if ($data->status == 2) {
 									echo '<label class="badge badge-success">Reviewed</label>';
 								}
-								if ($data->id_approval == 3) {
+								if ($data->status == 3) {
 									echo '<label class="badge badge-success">Selesai</label>';
 								}
 								?>
 							</div>
 							<!-- Tombol ini muncul khusus untuk user -->
-							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->status == 0 || $data->status == 1)) { ?>
 								<button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button>
 							<?php } ?>
 							<!-- Tombol ini muncul khusus untuk SUPERUSER -->
@@ -113,21 +113,21 @@
 						</div>
 						<div class="card-footer">
 							<!-- Tombol Aksi ini akan muncul untuk Admin 1 -->
-							<?php if ($this->session->userdata('level') == 2 && ($data->id_approval == 0 || $data->id_approval == 4)) { ?>
+							<?php if ($this->session->userdata('level') == 2 && ($data->status == 0 || $data->status == 4)) { ?>
 
-								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support?')" href="<?= base_url('Aksi/approve/myihram/id/' . $data->id_myihram) ?>">Approve</a>
-								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
+								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support?')" href="<?= base_url('Aksi/approve/' . $data->id_ticket) ?>">Approve</a>
+								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
 							<?php } ?>
-							<?php if ($this->session->userdata('level') == 3 && $data->id_approval == 2) { ?>
+							<?php if ($this->session->userdata('level') == 3 && $data->status == 2) { ?>
 
-								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Aksi/complete/myihram/id/' . $data->id_myihram) ?>">Approve</a>
-								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
+								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Aksi/complete/' . $data->id_ticket) ?>">Approve</a>
+								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
 							<?php } ?>
 							<!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
 							<?php if ($this->session->userdata('level') == 5) { ?>
 
-								<a class="btn btn-info mt-1" href="<?= base_url('Aksi/complete/myihram/id/' . $data->id_myihram) ?>">Complete</a>
-								<a class="btn btn-danger mt-1" href="<?= base_url('Aksi/reject/myihram/id/' . $data->id_myihram) ?>">Reject</a>
+								<a class="btn btn-info mt-1" href="<?= base_url('Aksi/complete/' . $data->id_ticket) ?>">Complete</a>
+								<a class="btn btn-danger mt-1" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
 							<?php } ?>
 						</div>
 					</div>
@@ -310,7 +310,7 @@
 								</tbody>
 							</table>
 						</div>
-						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->id_approval == 0 || $data->id_approval == 1)) { ?>
+						<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->status == 0 || $data->status == 1)) { ?>
 							<div class="card-footer text-center">
 								<!-- Tombol ini muncul khusus untuk user -->
 								<!-- <button type="button" id="ubah" class="btn btn-secondary">Ubah Data</button> -->

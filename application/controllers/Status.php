@@ -17,7 +17,6 @@ class Status extends CI_Controller
         $this->load->model('aksi_m');
         $this->load->model('comment_m');
 
-        $id_user = NULL;
         if ($this->fungsi->user_login()->id_cabang != 46) {
             $this->id_user = $this->fungsi->user_login()->id_user;
             $this->id_cabang = '= ' . $this->fungsi->user_login()->id_cabang;
@@ -41,137 +40,62 @@ class Status extends CI_Controller
     {
         // Jika bukan admin maka tampilkan data sesuai dengan cabang masing-masing
         if ($this->fungsi->user_login()->id_cabang != 46) {
-            $where = 'id_user = ' . $this->fungsi->user_login()->id_user;
-
-            if ($this->fungsi->user_login()->level == 6) { // Jika Cabang Head/Manager, maka akan menampilkan ticket yang dicabangnya saja
+            if ($this->fungsi->user_login()->level == 6) {
+                // Jika Cabang Head/Manager, maka akan menampilkan ticket yang dicabangnya
                 $id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
-            } else { // Jika CMS, maka akan menampilkan pengjuan ticket yang CMS nya saja
+            } else {
+                // Jika CMS, maka akan menampilkan pengjuan ticket yang CMS nya saja
                 $id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
             }
             $id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
             $id_cabang_tickets = '= ' . $this->fungsi->user_login()->id_cabang;
             $approval_tickets = 'IS NOT NULL';
         } else {
-            if ($this->fungsi->user_login()->level == 2) {
-                $where = 'id_approval IS NOT NULL';
-                $approval_tickets = 'IS NOT NULL';
-                $id_user_tickets = 'IS NOT NULL';
-                $id_cabang_tickets = 'IS NOT NULL';
-            } else if ($this->fungsi->user_login()->level == 3) {
-                $where = 'id_approval = 2';
-                $approval_tickets = 'IS NOT NULL';
-                $id_user_tickets = 'IS NOT NULL';
-                $id_cabang_tickets = 'IS NOT NULL';
-            } else if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5 || $this->fungsi->user_login()->level == 7) {
-                $where = 'id_approval IS NOT NULL ';
-                $approval_tickets = 'IS NOT NULL';
-                $id_user_tickets = 'IS NOT NULL';
-                $id_cabang_tickets = 'IS NOT NULL';
-
-                if ($this->fungsi->user_login()->level == 4) {
-                    $produk = "produk = 'My Ihram' OR produk = 'My Safar' OR produk = 'My Talim' OR produk = 'My Hajat' OR produk = ''";
-                } else if ($this->fungsi->user_login()->level == 7) {
-                    $produk = "produk = 'My Cars' OR produk = 'My Faedah' OR produk = ''";
-                }
-            }
             $id_cabang = '';
+
+            $approval_tickets = 'IS NOT NULL';
+            $id_user_tickets = 'IS NOT NULL';
+            $id_cabang_tickets = 'IS NOT NULL';
+
+            if ($this->fungsi->user_login()->level == 4) {
+                $produk = "produk = 'My Ihram' OR produk = 'My Safar' OR produk = 'My Talim' OR produk = 'My Hajat' OR produk = ''";
+            } else if ($this->fungsi->user_login()->level == 7) {
+                $produk = "produk = 'My Cars' OR produk = 'My Faedah' OR produk = ''";
+            }
         }
 
 
         check_not_login();
         //Total Status My'Talim
-        $total_pending_mytalim = $this->data_m->count_data("tb_my_talim", "id_approval = 0 $id_cabang");
-        $total_approved_mytalim = $this->data_m->count_data("tb_my_talim", "id_approval = 2 $id_cabang");
-        $total_rejected_mytalim = $this->data_m->count_data("tb_my_talim", "id_approval = 1 $id_cabang");
-        $total_completed_mytalim = $this->data_m->count_data("tb_my_talim", "id_approval = 3 $id_cabang");
 
-        //Total Status My Hajat
-        $total_pending_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 0 $id_cabang");
-        $total_approved_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 2 $id_cabang");
-        $total_rejected_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 1 $id_cabang");
-        $total_completed_myhajat = $this->data_m->count_data("tb_my_hajat_renovasi", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_hajat_sewa", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_hajat_wedding", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_hajat_franchise", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_hajat_lainnya", "id_approval = 3 $id_cabang");
-
-        //Total Status My'ihram
-        $total_pending_myihram = $this->data_m->count_data("tb_my_ihram", "id_approval = 0 $id_cabang");
-        $total_approved_myihram = $this->data_m->count_data("tb_my_ihram", "id_approval = 2 $id_cabang");
-        $total_rejected_myihram = $this->data_m->count_data("tb_my_ihram", "id_approval = 1 $id_cabang");
-        $total_completed_myihram = $this->data_m->count_data("tb_my_ihram", "id_approval = 3 $id_cabang");
-
-        //Total Status My Safar
-        $total_pending_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 0 $id_cabang");
-        $total_approved_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 2 $id_cabang");
-        $total_rejected_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 1 $id_cabang");
-        $total_completed_mysafar = $this->data_m->count_data("tb_my_safar", "id_approval = 3 $id_cabang");
-
-        //Total Status My faedah
-        $total_pending_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 0 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 0 $id_cabang");
-        $total_approved_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 2 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 2 $id_cabang");
-        $total_rejected_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 1 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 1 $id_cabang");
-        $total_completed_myfaedah = $this->data_m->count_data("tb_my_faedah", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_bangunan", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_elektronik", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_qurban", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_modal", "id_approval = 3 $id_cabang") + $this->data_m->count_data("tb_my_faedah_lainnya", "id_approval = 3 $id_cabang");
-
-        //Total Status My cars
-        $total_pending_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 0 $id_cabang");
-        $total_approved_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 2 $id_cabang");
-        $total_rejected_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 1 $id_cabang");
-        $total_completed_mycars = $this->data_m->count_data("tb_my_cars", "id_approval = 3 $id_cabang");
-
-        //Total Status My Safar
-        $total_pending_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 0 $id_cabang");
-        $total_approved_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 2 $id_cabang");
-        $total_rejected_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 1 $id_cabang");
-        $total_completed_mitra_kerjasama = $this->data_m->count_data("tb_mitra_kerjasama", "id_approval = 3 $id_cabang");
-
-        //Total Status Aktivasi Agent
-        $total_pending_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 0 $id_cabang");
-        $total_approved_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 2 $id_cabang");
-        $total_rejected_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 1 $id_cabang");
-        $total_completed_aktivasi_agent = $this->data_m->count_data("tb_aktivasi_agent", "id_approval = 3 $id_cabang");
-
-        //Total Status NST
-        $total_pending_nst = $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang");
-        $total_approved_nst = $this->data_m->count_data("tb_nst", "id_approval = 2 $id_cabang");
-        $total_rejected_nst = $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang");
-        $total_completed_nst = $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang");
-
-        //Total Status Lead Management
-        $total_pending_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 0 $id_cabang");
-        $total_approved_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 2 $id_cabang");
-        $total_rejected_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 1 $id_cabang");
-        $total_completed_lead_management = $this->data_m->count_data("tb_lead_management", "id_approval = 3 $id_cabang");
-
-        //Total Pending
+        //Angka total status tiekt untuk CMS dan Head/Manager Syariah
         if ($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) {
-            $total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
-            //Total Approved
-            $total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
-            //Total Rejected
-            $total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
-            //Total Completed
-            $total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
-        } else if ($this->session->userdata('level') == 5) {
-            $total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_nst + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
-            //Total Approved
-            $total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_nst + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
-            //Total Rejected
-            $total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_nst + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
-            //Total Completed
-            $total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_nst + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
-        } else if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 7) {
-            $total_pending = $total_pending_nst;
-            //Total Approved
-            $total_approved = $total_approved_nst;
-            //Total Rejected
-            $total_rejected = $total_rejected_nst;
-            //Total Completed
-            $total_completed = $total_completed_nst + $total_completed_lead_management;
+            $total_pending = $this->data_m->count_data("tb_ticket", "id_approval = 0 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_rejected = $this->data_m->count_data("tb_ticket", "id_approval = 1 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_approved = $this->data_m->count_data("tb_ticket", "id_approval = 2 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_completed = $this->data_m->count_data("tb_ticket", "id_approval = 3 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_inprogress = $this->data_m->count_data("tb_ticket", "id_approval = 4 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            //Angka total status tiekt untuk Admin HO
         } else if ($this->session->userdata('level') == 2 || $this->session->userdata('level') == 3) {
-            $total_pending = $total_pending_myhajat + $total_pending_mytalim + $total_pending_myihram + $total_pending_mysafar + $total_pending_aktivasi_agent + $total_pending_mitra_kerjasama + $total_pending_mycars + $total_pending_myfaedah;
-            //Total Approved
-            $total_approved = $total_approved_myhajat + $total_approved_mytalim + $total_approved_myihram + $total_approved_mysafar + $total_approved_aktivasi_agent + $total_approved_mitra_kerjasama + $total_approved_mycars + $total_approved_myfaedah;
-            //Total Rejected
-            $total_rejected = $total_rejected_myhajat + $total_rejected_mytalim + $total_rejected_myihram + $total_rejected_mysafar + $total_rejected_aktivasi_agent + $total_rejected_mitra_kerjasama + $total_rejected_mycars + $total_rejected_myfaedah;
-            //Total Completed
-            $total_completed = $total_completed_myhajat + $total_completed_mytalim + $total_completed_myihram + $total_completed_mysafar + $total_completed_aktivasi_agent + $total_completed_mitra_kerjasama + $total_completed_mycars + $total_completed_myfaedah;
+            $total_pending = $this->data_m->count_data("tb_ticket", "id_approval = 0 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_rejected = $this->data_m->count_data("tb_ticket", "id_approval = 1 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_approved = $this->data_m->count_data("tb_ticket", "id_approval = 2 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_completed = $this->data_m->count_data("tb_ticket", "id_approval = 3 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            $total_inprogress = $this->data_m->count_data("tb_ticket", "id_approval = 4 AND id_lead IS NULL AND id_nst IS NULL $id_cabang");
+            //Angka total status tiekt untuk Superuser
+        } else if ($this->session->userdata('level') == 5) {
+            $total_pending = $this->data_m->count_data("tb_ticket", "id_approval = 0 AND id_lead IS NULL $id_cabang");
+            $total_rejected = $this->data_m->count_data("tb_ticket", "id_approval = 1 AND id_lead IS NULL $id_cabang");
+            $total_approved = $this->data_m->count_data("tb_ticket", "id_approval = 2 AND id_lead IS NULL $id_cabang");
+            $total_completed = $this->data_m->count_data("tb_ticket", "id_approval = 3 AND id_lead IS NULL $id_cabang");
+            $total_inprogress = $this->data_m->count_data("tb_ticket", "id_approval = 4 AND id_lead IS NULL $id_cabang");
+            //Angka total status tiekt untuk Admin NST Ijarah dan Murabahah
+        } else if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 7) {
+            $total_pending = $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang AND ($produk)");
+            $total_rejected = $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang AND ($produk)");
+            $total_approved = $this->data_m->count_data("tb_nst", "id_approval = 2  $id_cabang AND ($produk)");
+            $total_completed = $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang AND ($produk)");
+            $total_inprogress = $this->data_m->count_data("tb_nst", "id_approval = 4 $id_cabang AND ($produk)");
         }
 
         $data = [
@@ -179,34 +103,20 @@ class Status extends CI_Controller
             'total_pending' => $total_pending,
             'total_approved' => $total_approved,
             'total_rejected' => $total_rejected,
-            'total_completed' => $total_completed
+            'total_completed' => $total_completed,
+            'total_inprogress' => $total_inprogress
         ];
 
-        // $data['mytalim_records'] 			= $this->data_m->get_product('tb_my_talim', 'tb_my_talim.' . $where, 'id_mytalim DESC');
-        // $data['myhajat_records']			= $this->data_m->get_myhajat($id_user_tickets, $approval_tickets);
-        // $data['myhajat_renovasi_records'] 	= $this->data_m->get_product('tb_my_hajat_renovasi', 'tb_my_hajat_renovasi.' . $where, 'id_renovasi DESC');
-        // $data['myhajat_sewa_records'] 		= $this->data_m->get_product('tb_my_hajat_sewa', 'tb_my_hajat_sewa.' . $where, 'id_sewa DESC');
-        // $data['myhajat_wedding_records'] 	= $this->data_m->get_product('tb_my_hajat_wedding', 'tb_my_hajat_wedding.' . $where, 'id_wedding DESC');
-        // $data['myhajat_franchise_records'] 	= $this->data_m->get_product('tb_my_hajat_franchise', 'tb_my_hajat_franchise.' . $where, 'id_franchise DESC');
-        // $data['myhajat_lainnya_records'] 	= $this->data_m->get_product('tb_my_hajat_lainnya', 'tb_my_hajat_lainnya.' . $where, 'id_myhajat_lainnya DESC');
-        // $data['myihram_records'] 			= $this->data_m->get_product('tb_my_ihram', 'tb_my_ihram.' . $where, 'id_myihram DESC');
-        // $data['mysafar_records'] 			= $this->data_m->get_product('tb_my_safar', 'tb_my_safar.' . $where, 'id_mysafar DESC');
-        // $data['aktivasi_agent_records'] 	= $this->data_m->get_product('tb_aktivasi_agent', 'tb_aktivasi_agent.' . $where, 'id_agent DESC');
-        // $data['nst_records'] 				= $this->data_m->get_product('tb_nst', 'tb_nst.' . $where, 'id_nst DESC');
-        // $data['lead_management_records'] 	= $this->data_m->get_product('tb_lead_management', 'tb_lead_management.' . $where, 'id_lead DESC');
-
-        $data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
-        if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 7) {
-            $data['ticket_records_nst'] = $this->data_m->get_tickets_nst($id_user_tickets, $approval_tickets, $produk);
+        //Menampilkan tiket request support
+        $data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets);
+        //Menampilkan tiket Admin NST
+        if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 7) {
+            $data['ticket_records_nst'] = $this->data_m->get_tickets_nst($id_user_tickets, $produk);
         }
-        $data['ticket_records_head_syariah'] = $this->data_m->get_tickets_head_syariah($id_cabang_tickets, $approval_tickets);
-
-        // $data['ticket_records_pending'] = $this->data_m->get_tickets($id_user_tickets, ' = 0');
-        // $data['ticket_records_rejected'] = $this->data_m->get_tickets($id_user_tickets, ' = 1');
-        // $data['ticket_records_approved'] = $this->data_m->get_tickets($id_user_tickets, ' = 2');
-        // $data['ticket_records_completed'] = $this->data_m->get_tickets($id_user_tickets, ' = 3');
-
-
+        //Menampilkan tiket untuk Manager/Head Cabang
+        if ($this->session->userdata('level') == 6) {
+            $data['ticket_records_head_syariah'] = $this->data_m->get_tickets_head_syariah($id_cabang_tickets);
+        }
 
         $this->template->load('template2', 'dashboard', $data);
     }
@@ -265,10 +175,12 @@ class Status extends CI_Controller
 
         if ($produk == "nst_list") {
             if ($this->fungsi->user_login()->id_cabang != 46) {
-                if ($this->fungsi->user_login()->level == 6) { // Jika Cabang Head/Manager, maka akan menampilkan ticket yang dicabangnya saja
+                if ($this->fungsi->user_login()->level == 6) {
+                    // Jika Cabang Head/Manager login, maka akan menampilkan ticket yang dicabangnya
                     $id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
                     $produk = "produk IS NOT NULL OR produk IS NULL";
-                } else { // Jika CMS, maka akan menampilkan pengjuan ticket yang CMS nya saja
+                } else {
+                    // Jika CMS login, maka akan menampilkan pengjuan ticket yang CMS nya saja
                     $id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
                     $produk = "produk IS NOT NULL OR produk IS NULL";
                 }
@@ -301,7 +213,7 @@ class Status extends CI_Controller
             WHERE A.id_user = " . $this->id_user . "
             ");
             } else if ($this->fungsi->user_login()->level == 4) {
-                // Menampilkan data lead management untuk Admin NST 1
+                // Menampilkan data lead management untuk Admin NST Ijarah
                 $data['data'] = $this->data_m->query("SELECT * 
                                                         FROM 
                                                     tb_nst as A
@@ -321,7 +233,7 @@ class Status extends CI_Controller
                                                 INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
                                                 WHERE A.id_cabang " . $this->id_cabang . " 
                                                 ");
-                // Menampilkan data lead management untuk Admin NST 2
+                // Menampilkan data lead management untuk Admin NST Murabahah
             } else if ($this->fungsi->user_login()->level == 7) {
                 $data['data'] = $this->data_m->query("SELECT * 
                                                         FROM 
@@ -363,8 +275,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_talim', 'id_mytalim', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_talim', ['id_mytalim' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_mytalim' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -382,8 +294,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_renovasi', 'id_renovasi', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_hajat_renovasi', ['id_renovasi' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_renovasi' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -402,8 +314,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_sewa', 'id_sewa', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_hajat_sewa', ['id_sewa' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_sewa' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -422,8 +334,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_wedding', 'id_wedding', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_hajat_wedding', ['id_wedding' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_wedding' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -442,8 +354,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_franchise', 'id_franchise', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_hajat_franchise', ['id_franchise' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_franchise' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -462,8 +374,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_hajat_lainnya', 'id_myhajat_lainnya', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_hajat_lainnya', ['id_myhajat_lainnya' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_myhajat_lainnya' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -482,8 +394,8 @@ class Status extends CI_Controller
 
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_ihram', 'id_myihram', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_ihram', ['id_myihram' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_myihram' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya            
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -501,8 +413,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_safar', 'id_mysafar', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_safar', ['id_mysafar' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_mysafar' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -519,8 +431,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_aktivasi_agent', 'id_agent', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_aktivasi_agent', ['id_agent' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_agent' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -537,8 +449,8 @@ class Status extends CI_Controller
 
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_nst', 'id_nst', $id);
-            if (($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 7) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_nst', ['id_nst' => $id]);
+            if (($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 7) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_nst' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -599,8 +511,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_mitra_kerjasama', 'id_mitra_kerjasama', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_mitra_kerjasama', ['id_mitra_kerjasama' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_mitra_kerjasama' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -617,8 +529,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah', 'id_myfaedah', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_faedah', ['id_myfaedah' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_myfaedah' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -635,8 +547,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_bangunan', 'id_bangunan', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_faedah_bangunan', ['id_bangunan' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_bangunan' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -653,8 +565,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_qurban', 'id_qurban', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_faedah_qurban', ['id_qurban' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_qurban' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -671,8 +583,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_elektronik', 'id_elektronik', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_faedah_elektronik', ['id_elektronik' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_elektronik' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -689,8 +601,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_modal', 'id_modal', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_faedah_modal', ['id_modal' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_modal' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -707,8 +619,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_faedah_lainnya', 'id_myfaedah_lainnya', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_faedah_lainnya', ['id_myfaedah_lainnya' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_myfaedah_lainnya' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
@@ -725,8 +637,8 @@ class Status extends CI_Controller
                                                                 user.id_cabang = tb_cabang.id_cabang');
             // Jika Admin NST membuka detail request support maka status tiket berubah menjadi in progress dan tanggal in progress tercatat
             $ticket = $this->data_m->get_ticket_by_id('tb_my_cars', 'id_mycars', $id);
-            if (($this->fungsi->user_login()->level == 2) && $ticket->id_approval == 0) {
-                $this->aksi_m->in_progress('tb_my_cars', ['id_mycars' => $id]);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_mycars' => $id]);
             }
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);

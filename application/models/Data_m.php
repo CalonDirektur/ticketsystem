@@ -111,10 +111,10 @@ class Data_m extends CI_Model
         return $query;
     }
 
-    public function get_tickets_nst($id_user, $id_approval, $produk)
+    public function get_tickets_nst($id_user, $produk)
     {
         $query = $this->db->query(
-            "SELECT *, 
+            "SELECT *, A.id_approval as status,
             A.id_ticket as id_ticket,
             F.nama_konsumen as nama_konsumen_nst,
             F.id_approval as id_approval_nst,
@@ -135,16 +135,12 @@ class Data_m extends CI_Model
             LEFT JOIN tb_cabang as CBG
             ON CBG.id_cabang = A.id_cabang
             
-            WHERE U.id_user $id_user AND $produk AND
-            (CASE 
-                WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
-            END
-            )
+            WHERE U.id_user $id_user AND $produk
             "
         );
         return $query;
     }
-    public function get_tickets($id_user, $id_approval)
+    public function get_tickets($id_user)
     {
         $query = $this->db->query(
             "SELECT *, A.id_approval as status,
@@ -169,26 +165,6 @@ class Data_m extends CI_Model
         JE.nama_konsumen as nama_konsumen_myfaedah_lainnya,
         K.nama_konsumen as nama_konsumen_mycars,
 
-        BA.id_approval as id_approval_renovasi,
-        BB.id_approval as id_approval_sewa,
-        BC.id_approval as id_approval_wedding,
-        BD.id_approval as id_approval_franchise,
-        BE.id_approval as id_approval_lainnya,
-        C.id_approval as id_approval_mytalim,
-        D.id_approval as id_approval_mysafar,
-        E.id_approval as id_approval_aktivasi_agent,
-        F.id_approval as id_approval_nst,
-        G.id_approval as id_approval_lead_management,
-        H.id_approval as id_approval_myihram,
-        I.id_approval as id_approval_mitra_kerjasama,
-        J.id_approval as id_approval_myfaedah,
-        JA.id_approval as id_approval_myfaedah_bangunan,
-        JB.id_approval as id_approval_myfaedah_elektronik,
-        JC.id_approval as id_approval_myfaedah_qurban,
-        JD.id_approval as id_approval_myfaedah_modal,
-        JE.id_approval as id_approval_myfaedah_lainnya,
-        K.id_approval as id_approval_mycars,
-
         BA.date_modified as date_modified_renovasi, DATE_FORMAT(BA.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_renovasi,
         BB.date_modified as date_modified_sewa, DATE_FORMAT(BB.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_sewa,
         BC.date_modified as date_modified_wedding, DATE_FORMAT(BC.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_wedding,
@@ -296,41 +272,18 @@ class Data_m extends CI_Model
         LEFT JOIN tb_cabang as CBG
         ON CBG.id_cabang = A.id_cabang
         
-        WHERE U.id_user $id_user  
-        AND
-        (CASE 
-            WHEN BA.id_approval IS NOT NULL THEN BA.id_approval $id_approval
-            WHEN BB.id_approval IS NOT NULL THEN BB.id_approval $id_approval
-            WHEN BC.id_approval IS NOT NULL THEN BC.id_approval $id_approval
-            WHEN BD.id_approval IS NOT NULL THEN BD.id_approval $id_approval
-            WHEN BE.id_approval IS NOT NULL THEN BE.id_approval $id_approval
-            WHEN C.id_approval IS NOT NULL THEN C.id_approval $id_approval
-            WHEN D.id_approval IS NOT NULL THEN D.id_approval $id_approval
-            WHEN E.id_approval IS NOT NULL THEN E.id_approval $id_approval
-            WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
-            WHEN G.id_approval IS NOT NULL THEN G.id_approval $id_approval
-            WHEN H.id_approval IS NOT NULL THEN H.id_approval $id_approval
-            WHEN I.id_approval IS NOT NULL THEN I.id_approval $id_approval
-            WHEN J.id_approval IS NOT NULL THEN J.id_approval $id_approval
-            WHEN JA.id_approval IS NOT NULL THEN JA.id_approval $id_approval
-            WHEN JB.id_approval IS NOT NULL THEN JB.id_approval $id_approval
-            WHEN JC.id_approval IS NOT NULL THEN JC.id_approval $id_approval
-            WHEN JD.id_approval IS NOT NULL THEN JD.id_approval $id_approval
-            WHEN JE.id_approval IS NOT NULL THEN JE.id_approval $id_approval
-            WHEN K.id_approval IS NOT NULL THEN K.id_approval $id_approval
-        END
-        )
+        WHERE U.id_user $id_user
         "
         );
         return $query;
     }
 
     //Menampilkan Semua data tiket semua user di satu cabang
-    public function get_tickets_head_syariah($id_cabang, $id_approval)
+    public function get_tickets_head_syariah($id_cabang)
     {
-        $query = $this->db->query("
-      SELECT *, 
-      A.id_ticket as id_ticket,
+        $query = $this->db->query(
+            "SELECT *, A.id_approval as status,
+        A.id_ticket as id_ticket,
         BA.nama_konsumen as nama_konsumen_renovasi,
         BB.nama_konsumen as nama_konsumen_sewa,
         BC.nama_konsumen as nama_konsumen_wedding,
@@ -351,26 +304,6 @@ class Data_m extends CI_Model
         JE.nama_konsumen as nama_konsumen_myfaedah_lainnya,
         K.nama_konsumen as nama_konsumen_mycars,
 
-        BA.id_approval as id_approval_renovasi,
-        BB.id_approval as id_approval_sewa,
-        BC.id_approval as id_approval_wedding,
-        BD.id_approval as id_approval_franchise,
-        BE.id_approval as id_approval_lainnya,
-        C.id_approval as id_approval_mytalim,
-        D.id_approval as id_approval_mysafar,
-        E.id_approval as id_approval_aktivasi_agent,
-        F.id_approval as id_approval_nst,
-        G.id_approval as id_approval_lead_management,
-        H.id_approval as id_approval_myihram,
-        I.id_approval as id_approval_mitra_kerjasama,
-        J.id_approval as id_approval_myfaedah,
-        JA.id_approval as id_approval_myfaedah_bangunan,
-        JB.id_approval as id_approval_myfaedah_elektronik,
-        JC.id_approval as id_approval_myfaedah_qurban,
-        JD.id_approval as id_approval_myfaedah_modal,
-        JE.id_approval as id_approval_myfaedah_lainnya,
-        K.id_approval as id_approval_mycars,
-
         BA.date_modified as date_modified_renovasi, DATE_FORMAT(BA.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_renovasi,
         BB.date_modified as date_modified_sewa, DATE_FORMAT(BB.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_sewa,
         BC.date_modified as date_modified_wedding, DATE_FORMAT(BC.date_modified, '%d %M %Y %H:%i:%s') AS tanggal_diubah_wedding,
@@ -478,36 +411,15 @@ class Data_m extends CI_Model
         LEFT JOIN tb_cabang as CBG
         ON CBG.id_cabang = A.id_cabang
         
-        WHERE U.id_cabang $id_cabang  AND
-        (CASE 
-        WHEN BA.id_approval IS NOT NULL THEN BA.id_approval $id_approval
-        WHEN BB.id_approval IS NOT NULL THEN BB.id_approval $id_approval
-        WHEN BC.id_approval IS NOT NULL THEN BC.id_approval $id_approval
-        WHEN BD.id_approval IS NOT NULL THEN BD.id_approval $id_approval
-        WHEN BE.id_approval IS NOT NULL THEN BE.id_approval $id_approval
-        WHEN C.id_approval IS NOT NULL THEN C.id_approval $id_approval
-        WHEN D.id_approval IS NOT NULL THEN D.id_approval $id_approval
-        WHEN E.id_approval IS NOT NULL THEN E.id_approval $id_approval
-        WHEN F.id_approval IS NOT NULL THEN F.id_approval $id_approval
-        WHEN G.id_approval IS NOT NULL THEN G.id_approval $id_approval
-        WHEN H.id_approval IS NOT NULL THEN H.id_approval $id_approval
-        WHEN I.id_approval IS NOT NULL THEN I.id_approval $id_approval
-        WHEN J.id_approval IS NOT NULL THEN J.id_approval $id_approval
-        WHEN JA.id_approval IS NOT NULL THEN JA.id_approval $id_approval
-        WHEN JB.id_approval IS NOT NULL THEN JB.id_approval $id_approval
-        WHEN JC.id_approval IS NOT NULL THEN JC.id_approval $id_approval
-        WHEN JD.id_approval IS NOT NULL THEN JD.id_approval $id_approval
-        WHEN JE.id_approval IS NOT NULL THEN JE.id_approval $id_approval
-        WHEN K.id_approval IS NOT NULL THEN K.id_approval $id_approval
-        END
-        )
-        ");
+        WHERE U.id_cabang $id_cabang
+        "
+        );
         return $query;
     }
 
     public function get_ticket_by_id($table, $col, $id)
     {
-        $this->db->select("*,
+        $this->db->select("*, A.id_approval as status,
                             DATE_FORMAT(date_created, '%d %M %Y %H:%i:%s') AS tanggal_dibuat,
                             DATE_FORMAT(date_approved, '%d %M %Y %H:%i:%s') AS tanggal_disetujui,
                             DATE_FORMAT(date_rejected, '%d %M %Y %H:%i:%s') AS tanggal_ditolak,

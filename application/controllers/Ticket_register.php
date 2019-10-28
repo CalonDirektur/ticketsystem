@@ -92,24 +92,6 @@ class Ticket_register extends CI_Controller
 
 		// PROSES SUBMIT FORM MY TALIM
 		if (isset($_POST['submit_mytalim'])) {
-			// $where = [
-			// 	'nama_konsumen' 		=> $post['nama_konsumen'],
-			// 	'jenis_konsumen' 		=> $post['jenis_konsumen'],
-			// 	'pendidikan' 			=> $post['pendidikan'],
-			// 	'nama_siswa' 			=> $post['nama_siswa'],
-			// 	'tahun_berdiri' 		=> $post['tahun_berdiri'],
-			// 	'akreditasi' 			=> $post['akreditasi'],
-			// 	'periode' 				=> $post['periode'],
-			// 	'tujuan_pembiayaan' 	=> $post['tujuan_pembiayaan'],
-			// 	'nilai_pembiayaan'		=> $post['nilai_pembiayaan_mytalim']
-			// ];
-
-			// $duplikat = $this->data_m->cek_duplikat('tb_my_talim', $where);
-			// $kolom = $duplikat->row();
-			// if ($duplikat->num_rows() > 0 && $kolom->selisih_tanggal <= 7 && $kolom->selisih_tanggal > 0) {
-			// 	$this->session->set_flashdata("duplikat_input", "sepertinya Anda sudah mengajukan request support seperti tiket <a href='" . base_url("status/detail/mytalim/id/$kolom->id_mytalim") . "'>disini</a><br>Mohon tunggu selama " . (7 - $kolom->selisih_tanggal) . " hari");
-			// 	redirect("/");
-			// }
 
 			$data = [
 				'nama_konsumen' 		=> $post['nama_konsumen'],
@@ -151,12 +133,13 @@ class Ticket_register extends CI_Controller
 			//variabel untuk mengambil id data yg baru diinsert
 			$id = $this->data_m->add('tb_my_talim', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_mytalim' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -226,6 +209,7 @@ class Ticket_register extends CI_Controller
 			$id = $this->data_m->add('tb_my_hajat_renovasi', $data);
 
 			$data_tiket = [
+				'id_approval' => 0,
 				'id_renovasi' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
@@ -233,8 +217,6 @@ class Ticket_register extends CI_Controller
 
 			//Memasukkan data my hajat renovasi ke dalam antrian tiket request support
 			$success = $this->data_m->add('tb_ticket', $data_tiket);
-
-
 
 			// Jika data berhasil disubmit/masuk ke database maka tampil pesan berhasil di bagian dashboard
 			if ($success && $id) {
@@ -299,14 +281,8 @@ class Ticket_register extends CI_Controller
 			//mmendapatkan id insert terakhir
 			$id = $this->data_m->add('tb_my_hajat_sewa', $data);
 
-			$data2 = [
-				'id_sewa' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_my_hajat', $data2);
-
 			$data_tiket = [
+				'id_approval' => 0,
 				'id_sewa' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
@@ -375,19 +351,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_hajat_wedding', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_wedding' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_my_hajat', $data2);
-
-			$data3 = [
-				'id_wedding' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_ticket', $data3);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -453,19 +423,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_hajat_franchise', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_franchise' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_my_hajat', $data2);
-
-			$data3 = [
-				'id_franchise' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_ticket', $data3);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -528,20 +492,14 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_hajat_lainnya', $data);
 
-			$data2 = [
-				'id_myhajat_lainnya' => $id,
-				'id_cabang' => $post['cabang'],
-				'id_user' => $post['id_user']
-			];
-			$this->data_m->add('tb_my_hajat', $data2);
-
-			$data3 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_myhajat_lainnya' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
 
-			$success = $this->data_m->add('tb_ticket', $data3);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($success && $id) {
 				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -586,12 +544,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_ihram', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_myihram' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data2);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -636,12 +595,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_safar', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_mysafar' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data2);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -730,12 +690,13 @@ class Ticket_register extends CI_Controller
 
 				$id = $this->data_m->add('tb_lead_management', $data);
 
-				$data3 = [
+				$data_tiket = [
+					'id_approval' => 0,
 					'id_lead' => $id,
 					'id_cabang' => $post['cabang'],
 					'id_user' => $post['id_user']
 				];
-				$this->data_m->add('tb_ticket', $data3);
+				$this->data_m->add('tb_ticket', $data_tiket);
 
 				if ($id) {
 					echo "Data berhasil disimpan";
@@ -789,12 +750,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_aktivasi_agent', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_agent' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data2);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -847,12 +809,13 @@ class Ticket_register extends CI_Controller
 
 				$id = $this->data_m->add('tb_nst', $data);
 
-				$data2 = [
+				$data_tiket = [
+					'id_approval' => 0,
 					'id_nst' => $id,
 					'id_cabang' => $post['cabang'],
 					'id_user' => $post['id_user']
 				];
-				$this->data_m->add('tb_ticket', $data2);
+				$this->data_m->add('tb_ticket', $data_tiket);
 
 				if ($id) {
 					echo "Data berhasil disimpan";
@@ -905,12 +868,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_mitra_kerjasama', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_mitra_kerjasama' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data2);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id) {
 				echo "Data berhasil disimpan";
@@ -966,12 +930,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_faedah', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_myfaedah' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
 			if ($id && $success) {
@@ -1039,12 +1004,13 @@ class Ticket_register extends CI_Controller
 			//variabel untuk mengambil ID insert
 			$id = $this->data_m->add('tb_my_faedah_bangunan', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_bangunan' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
 			if ($id && $success) {
@@ -1113,12 +1079,13 @@ class Ticket_register extends CI_Controller
 			//variabel untuk mengambil ID insert
 			$id = $this->data_m->add('tb_my_faedah_elektronik', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_elektronik' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
 			if ($id && $success) {
@@ -1181,12 +1148,13 @@ class Ticket_register extends CI_Controller
 			//variabel untuk mengambil ID insert
 			$id = $this->data_m->add('tb_my_faedah_qurban', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_qurban' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
 			if ($id && $success) {
@@ -1247,12 +1215,13 @@ class Ticket_register extends CI_Controller
 			//variabel untuk mengambil ID insert
 			$id = $this->data_m->add('tb_my_faedah_modal', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_modal' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
 			if ($id && $success) {
@@ -1311,12 +1280,13 @@ class Ticket_register extends CI_Controller
 			//variabel untuk mengambil ID insert
 			$id = $this->data_m->add('tb_my_faedah_lainnya', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_myfaedah_lainnya' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$success = $this->data_m->add('tb_ticket', $data2);
+			$success = $this->data_m->add('tb_ticket', $data_tiket);
 
 
 			if ($id && $success) {
@@ -1380,12 +1350,13 @@ class Ticket_register extends CI_Controller
 
 			$id = $this->data_m->add('tb_my_cars', $data);
 
-			$data2 = [
+			$data_tiket = [
+				'id_approval' => 0,
 				'id_mycars' => $id,
 				'id_cabang' => $post['cabang'],
 				'id_user' => $post['id_user']
 			];
-			$this->data_m->add('tb_ticket', $data2);
+			$this->data_m->add('tb_ticket', $data_tiket);
 
 			if ($id > 0) {
 				echo "Data berhasil disimpan";
@@ -1437,7 +1408,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_talim', $data, ['id_mytalim' => $post['id_mytalim']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1498,7 +1469,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_renovasi', $data, ['id_renovasi' => $post['id_renovasi']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1556,7 +1527,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_sewa', $data, ['id_sewa' => $post['id_sewa']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1615,7 +1586,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_wedding', $data, ['id_wedding' => $post['id_wedding']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1675,7 +1646,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_franchise', $data, ['id_franchise' => $post['id_franchise']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1731,7 +1702,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_hajat_lainnya', $data, ['id_myhajat_lainnya' => $post['id_myhajat_lainnya']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1770,7 +1741,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_ihram', $data, ['id_myihram' => $post['id_myihram']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1810,7 +1781,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_safar', $data, ['id_mysafar' => $post['id_mysafar']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1863,7 +1834,7 @@ class Ticket_register extends CI_Controller
 			];
 
 			$id = $this->data_m->update('tb_lead_management', $data, ['id_lead' => $post['id_lead']]);
-			// $this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			// $this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil Update data request support!</strong></div>');
 				// echo "Data berhasil disimpan";
@@ -1947,7 +1918,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_aktivasi_agent', $data, ['id_agent' => $post['id_agent']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -1991,7 +1962,7 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->update('tb_nst', $data, ['id_nst' => $post['id_nst']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2038,7 +2009,7 @@ class Ticket_register extends CI_Controller
 
 
 			$id = $this->data_m->update('tb_mitra_kerjasama', $data, ['id_mitra_kerjasama' => $post['id_mitra_kerjasama']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2093,7 +2064,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_faedah', $data, ['id_myfaedah' => $post['id_myfaedah']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2158,7 +2129,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_faedah_bangunan', $data, ['id_bangunan' => $post['id_bangunan']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2227,7 +2198,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_faedah_elektronik', $data, ['id_elektronik' => $post['id_elektronik']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2289,7 +2260,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_faedah_qurban', $data, ['id_qurban' => $post['id_qurban']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2349,7 +2320,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_faedah_modal', $data, ['id_modal' => $post['id_modal']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2407,7 +2378,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_faedah_lainnya', $data, ['id_myfaedah_lainnya' => $post['id_myfaedah_lainnya']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
@@ -2467,7 +2438,7 @@ class Ticket_register extends CI_Controller
 			}
 
 			$id = $this->data_m->update('tb_my_cars', $data, ['id_mycars' => $post['id_mycars']]);
-			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
 			if ($id) {
 				echo "Data berhasil disimpan";
 				$this->session->set_flashdata('success_update_support', '<div class="alert alert-success"><strong>Berhasil mengubah data request support!</strong> Mohon tunggu respon dari Admin HO. </div>');
