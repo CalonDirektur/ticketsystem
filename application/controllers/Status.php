@@ -91,11 +91,11 @@ class Status extends CI_Controller
             $total_inprogress = $this->data_m->count_data("tb_ticket", "id_approval = 4 AND id_lead IS NULL $id_cabang");
             //Angka total status tiekt untuk Admin NST Ijarah dan Murabahah
         } else if ($this->session->userdata('level') == 4 || $this->session->userdata('level') == 7) {
-            $total_pending = $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang AND ($produk)");
-            $total_rejected = $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang AND ($produk)");
-            $total_approved = $this->data_m->count_data("tb_nst", "id_approval = 2  $id_cabang AND ($produk)");
-            $total_completed = $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang AND ($produk)");
-            $total_inprogress = $this->data_m->count_data("tb_nst", "id_approval = 4 $id_cabang AND ($produk)");
+            $total_pending = $this->data_m->count_data("tb_ticket A", "A.id_approval = 0 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $total_rejected = $this->data_m->count_data("tb_ticket A", "A.id_approval = 1 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $total_approved = $this->data_m->count_data("tb_ticket A", "A.id_approval = 2 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $total_completed = $this->data_m->count_data("tb_ticket A", "A.id_approval = 3 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $total_inprogress = $this->data_m->count_data("tb_ticket A", "A.id_approval = 4 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
         }
 
         $data = [
@@ -121,7 +121,7 @@ class Status extends CI_Controller
         $this->template->load('template2', 'dashboard', $data);
     }
 
-    public function list($produk, $kategori = NULL, $id = NULL)
+    public function list($produk)
     {
         if ($produk == "lead_management_list") {
             // Menampilkan data lead management untuk CMS
@@ -177,30 +177,28 @@ class Status extends CI_Controller
             if ($this->fungsi->user_login()->id_cabang != 46) {
                 if ($this->fungsi->user_login()->level == 6) {
                     // Jika Cabang Head/Manager login, maka akan menampilkan ticket yang dicabangnya
-                    $id_cabang = 'AND id_cabang = ' . $this->fungsi->user_login()->id_cabang;
+                    $id_cabang = 'AND A.id_cabang = ' . $this->fungsi->user_login()->id_cabang;
                     $produk = "produk IS NOT NULL OR produk IS NULL";
                 } else {
                     // Jika CMS login, maka akan menampilkan pengjuan ticket yang CMS nya saja
-                    $id_cabang = 'AND id_user = ' . $this->fungsi->user_login()->id_user;
+                    $id_cabang = 'AND A.id_user = ' . $this->fungsi->user_login()->id_user;
                     $produk = "produk IS NOT NULL OR produk IS NULL";
                 }
             } else {
-                if ($this->fungsi->user_login()->level == 4 || $this->fungsi->user_login()->level == 5 || $this->fungsi->user_login()->level == 7) {
-                    if ($this->fungsi->user_login()->level == 4) {
-                        $produk = "produk = 'My Ihram' OR produk = 'My Safar' OR produk = 'My Talim' OR produk = 'My Hajat' OR produk = ''";
-                    } else if ($this->fungsi->user_login()->level == 5) {
-                        $produk = "produk IS NOT NULL OR produk IS NULL";
-                    } else if ($this->fungsi->user_login()->level == 7) {
-                        $produk = "produk = 'My Cars' OR produk = 'My Faedah' OR produk = ''";
-                    }
-                }
                 $id_cabang = '';
+                if ($this->fungsi->user_login()->level == 4) {
+                    $produk = "produk = 'My Ihram' OR produk = 'My Safar' OR produk = 'My Talim' OR produk = 'My Hajat' OR produk = ''";
+                } else if ($this->fungsi->user_login()->level == 5) {
+                    $produk = "produk IS NOT NULL OR produk IS NULL";
+                } else if ($this->fungsi->user_login()->level == 7) {
+                    $produk = "produk = 'My Cars' OR produk = 'My Faedah' OR produk = ''";
+                }
             }
 
-            $data['total_pending'] = $this->data_m->count_data("tb_nst", "id_approval = 0 $id_cabang AND ($produk)");
-            $data['total_inprogress'] = $this->data_m->count_data("tb_nst", "id_approval = 4 $id_cabang AND ($produk)");
-            $data['total_rejected'] = $this->data_m->count_data("tb_nst", "id_approval = 1 $id_cabang AND ($produk)");
-            $data['total_completed'] = $this->data_m->count_data("tb_nst", "id_approval = 3 $id_cabang AND ($produk)");
+            $data['total_pending'] = $this->data_m->count_data("tb_ticket A", "A.id_approval = 0 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $data['total_rejected'] = $this->data_m->count_data("tb_ticket A", "A.id_approval = 1 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $data['total_completed'] = $this->data_m->count_data("tb_ticket A", "A.id_approval = 3 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
+            $data['total_inprogress'] = $this->data_m->count_data("tb_ticket A", "A.id_approval = 4 $id_cabang AND ($produk)", "tb_nst B", "B.id_nst = A.id_nst");
             // Menampilkan data lead management untuk CMS
             if ($this->fungsi->user_login()->level == 1) {
                 // $data['data'] = $this->data_m->get('tb_nst', 'list', $this->id_user);
@@ -253,6 +251,33 @@ class Status extends CI_Controller
                                             ");
             }
             $this->template->load('template2', 'request_support_list/nst_list', $data);
+        }
+
+        if ($produk == "alokasi_dana_list") {
+            // Menampilkan data lead management untuk CMS
+            if ($this->fungsi->user_login()->level == 1) {
+                $data['data'] = $this->data_m->get('tb_alokasi_dana', 'list', $this->id_user);
+            }
+            // Menampilkan data lead management untuk Head Syariah/Manager
+            else if ($this->fungsi->user_login()->level == 6) {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                    FROM 
+                                                tb_alokasi_dana as A
+                                                INNER JOIN user as C ON C.id_user = A.id_user
+                                                INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+                                                INNER JOIN tb_ticket as E ON E.id_alokasi_dana = A.id_alokasi_dana
+                                                WHERE A.id_cabang " . $this->id_cabang . "
+                                                ");
+            } else {
+                $data['data'] = $this->data_m->query("SELECT * 
+                                                        FROM 
+                                                    tb_alokasi_dana as A
+                                                    INNER JOIN user as C ON C.id_user = A.id_user
+                                                    INNER JOIN tb_cabang as D ON D.id_cabang = A.id_cabang
+                                                    INNER JOIN tb_ticket as E ON E.id_alokasi_dana = A.id_alokasi_dana
+                                                    ");
+            }
+            $this->template->load('template2', 'request_support_list/alokasi_dana_list', $data);
         }
     }
 
@@ -438,6 +463,7 @@ class Status extends CI_Controller
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_aktivasi_agent', $data);
         }
+
         if ($produk == 'nst' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_nst', ['id_nst' => $id, 'id_approval' => 3])->row();
             $data['data'] = $this->data_m->get_ticket_by_id('tb_nst', 'id_nst', $id);
@@ -643,6 +669,22 @@ class Status extends CI_Controller
             //ketika detail status request support di klik maka mark as read notifikasinya
             $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
             $this->template->load('template2', 'request_support_detail/detail_status_my_cars', $data);
+        }
+
+        if ($produk == 'alokasi_dana' && $kategori != NULL && $id != NULL) {
+            // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
+            $data['data'] = $this->data_m->get_ticket_by_id('tb_alokasi_dana', 'id_alokasi_dana', $id);
+
+            $data['cabang_tujuan'] = $this->data_m->get('tb_cabang');
+
+            $data['komentar'] = $this->comment_m->get_comment('tb_alokasi_dana', 'parent_comment_id = 0 AND 
+                                                                tb_comment.id_alokasi_dana = tb_alokasi_dana.id_alokasi_dana AND 
+                                                                tb_alokasi_dana.id_alokasi_dana = ' . $id . ' AND
+                                                                tb_comment.id_user = user.id_user AND
+                                                                user.id_cabang = tb_cabang.id_cabang');
+            //ketika detail status request support di klik maka mark as read notifikasinya            
+            $this->data_m->update('tb_comment', ['has_read' => 1], ['id' => $id_komentar]);
+            $this->template->load('template2', 'request_support_detail/detail_status_alokasi_dana', $data);
         }
     }
 }

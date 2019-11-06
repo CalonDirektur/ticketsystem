@@ -65,9 +65,12 @@ class Data_m extends CI_Model
         return $query;
     }
 
-    public function count_data($table, $where)
+    public function count_data($table, $where, $join = NULL, $on = NULL)
     {
         $this->db->from($table);
+        if ($join != NULL) {
+            $this->db->join($join, $on, 'inner');
+        }
         $this->db->where($where);
         $query = $this->db->count_all_results();
         return $query;

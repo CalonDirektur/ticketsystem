@@ -139,20 +139,20 @@
               <!-- Tombol Aksi ini akan muncul untuk Admin 1 (Mba Lia) -->
               <?php if ($this->session->userdata('level') == 2 && ($data->status == 0 || $data->status == 4)) { ?>
 
-                <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support?')" href="<?= base_url('Aksi/approve/' . $data->id_myhajat_lainnya) ?>">Approve</a>
-                <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_myhajat_lainnya) ?>">Reject</a>
+                <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin menyetujui request support?')" href="<?= base_url('Aksi/approve/' . $data->id_ticket) ?>">Approve</a>
+                <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
               <?php } ?>
               <!-- Tombol Aksi ini muncul untuk Admin 2 (Mas Gede) -->
               <?php if ($this->session->userdata('level') == 3 && $data->status == 2) { ?>
 
-                <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Aksi/complete/' . $data->id_myhajat_lainnya) ?>">Approve</a>
-                <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_myhajat_lainnya) ?>">Reject</a>
+                <a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Aksi/complete/' . $data->id_ticket) ?>">Approve</a>
+                <a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
               <?php } ?>
               <!-- Tombol Aksi ini akan muncul untuk Admin Superuser -->
               <?php if ($this->session->userdata('level') == 5) { ?>
 
-                <a class="btn btn-info mt-1" href="<?= base_url('Aksi/complete/' . $data->id_myhajat_lainnya) ?>">Complete</a>
-                <a class="btn btn-danger mt-1" href="<?= base_url('Aksi/reject/' . $data->id_myhajat_lainnya) ?>">Reject</a>
+                <a class="btn btn-info mt-1" href="<?= base_url('Aksi/complete/' . $data->id_ticket) ?>">Complete</a>
+                <a class="btn btn-danger mt-1" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
               <?php } ?>
             </div>
           </div>

@@ -23,22 +23,6 @@ class Dashboard_m extends CI_Model
 
     public function monthly_product()
     {
-        // $this->db->select(
-        //     "COUNT(id_renovasi) + COUNT(id_sewa) + COUNT(id_wedding) + COUNT(id_franchise) + COUNT(id_myhajat_lainnya) as my_hajat,
-        //     COUNT(id_bangunan) + COUNT(id_elektronik) + COUNT(id_modal) + COUNT(id_qurban) + COUNT(id_myfaedah_lainnya) as my_faedah,
-        //     COUNT(id_mytalim) as my_talim,
-        //     COUNT(id_mysafar) as my_safar,
-        //     COUNT(id_myihram) as my_ihram,
-        //     COUNT(id_mycars) as my_cars,
-        //     COUNT(id_nst) as nst,
-        //     (DATE_FORMAT(tanggal_dibuat, '%b')) as bulan"
-        // );
-
-        // $this->db->from("tb_ticket");
-        // $this->db->where("tanggal_dibuat IS NOT NULL AND tanggal_dibuat != '0000-00-00'");
-        // $this->db->group_by("MONTH(DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d'))");
-
-        // $query = $this->db->get();
 
         $query = $this->db->query(
             "SELECT MONTHNAME(STR_TO_DATE(Months.m, '%m')) as bulan,
@@ -73,24 +57,6 @@ class Dashboard_m extends CI_Model
 
     public function ticket_weekly()
     {
-        // $query = $this->db->query(
-        //     "SELECT avg(perhari) as perhari
-        //     FROM (select DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d'), count(tanggal_dibuat) as perhari
-        //     FROM tb_ticket
-        //     WHERE id_lead IS NULL AND id_agent IS NULL AND id_mitra_kerjasama IS NULL 
-        //     GROUP BY DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d')
-        //     ) as asd
-        //     "
-        // );
-
-        // $query = $this->db->query(
-        //     "SELECT DATE_FORMAT(tanggal_dibuat, '%a') as hari, COUNT(*) as jumlah 
-        //     FROM tb_ticket 
-        //     WHERE YEARWEEK(DATE_FORMAT(tanggal_dibuat, '%Y-%m-%d')) = YEARWEEK(NOW()) 
-        //     AND id_lead IS NULL 
-        //     GROUP BY DAY(tanggal_dibuat)
-        //     "
-        // );
 
         $query = $this->db->query(
             "SELECT DATE_FORMAT(tanggal_dibuat, '%a') as hari, COUNT(*) as jumlah 
@@ -107,45 +73,6 @@ class Dashboard_m extends CI_Model
 
     public function total_ticket()
     {
-        // $query = $this->db->query(
-        //     "SELECT CURDATE() as currdate,
-        //     (
-        //     (SELECT COUNT(*) from tb_my_talim)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_hajat_renovasi)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_hajat_sewa)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_hajat_wedding)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_hajat_franchise)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_hajat_lainnya)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_faedah_bangunan)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_faedah_elektronik)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_faedah_modal)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_faedah_qurban)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_faedah_lainnya)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_cars)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_safar)
-        //     +
-        //     (SELECT COUNT(*) from tb_my_ihram)
-        //     +
-        //     (SELECT COUNT(*) from tb_nst)
-        //     +
-        //     (SELECT COUNT(*) from tb_aktivasi_agent)
-        //     +
-        //     (SELECT COUNT(*) from tb_mitra_kerjasama)
-        //     ) as total_ticket
-        //     "
-        // );
         $query = $this->db->query(
             "SELECT COUNT(*) as total_ticket 
             FROM tb_ticket 
@@ -359,51 +286,9 @@ class Dashboard_m extends CI_Model
     public function status_ticket($id_approval, $nst = FALSE)
     {
         if (!$nst) {
-            $query = $this->db->query(
-                "SELECT CURDATE() as currdate,
-            (
-            (SELECT COUNT(*) from tb_my_talim WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_hajat_renovasi WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_hajat_sewa WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_hajat_wedding WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_hajat_franchise WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_hajat_lainnya WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_faedah_bangunan WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_faedah_elektronik WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_faedah_modal WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_faedah_qurban WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_faedah_lainnya WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_cars WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_safar WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_my_ihram WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_aktivasi_agent WHERE id_approval = $id_approval)
-            +
-            (SELECT COUNT(*) from tb_mitra_kerjasama WHERE id_approval = $id_approval)
-            ) as today_ticket
-            "
-            );
+            $query = $this->db->query("SELECT COUNT(*) as today_ticket from tb_ticket WHERE id_approval = $id_approval AND id_lead IS NULL");
         } else {
-            $query = $this->db->query(
-                "SELECT CURDATE() as currdate,
-                (
-            (SELECT COUNT(*) from tb_nst WHERE id_approval = $id_approval)
-            ) as today_ticket
-            "
-            );
+            $query = $this->db->query("SELECT COUNT(*) as today_ticket from tb_ticket WHERE id_approval = $id_approval AND id_lead IS NULL AND id_nst IS NOT NULL");
         }
 
         $count = $query->row();

@@ -80,6 +80,15 @@ class Ticket_register extends CI_Controller
 		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
 		$this->template->load('template2', 'request_support_form/form_mitra_kerjasama', $data);
 	}
+
+	//Memuat halaman form lead interest
+	public function form_alokasi_dana()
+	{
+		// Mengambil list cabang2 
+		$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
+		$this->template->load('template2', 'request_support_form/form_alokasi_dana', $data);
+	}
+
 	///////////////////// PROSES LOGIC ///////////////////////////////////////////////
 
 
@@ -1298,6 +1307,8 @@ class Ticket_register extends CI_Controller
 			}
 		}
 
+
+
 		/////////////////////// END KATEGORI FORMULIR MY FAEDAH ////////////////////////////////
 
 
@@ -1365,6 +1376,58 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
+		}
+
+		if (isset($_POST['submit_alokasi_dana'])) {
+			$data = [
+				'nama_konsumen' 		=> $post['nama_konsumen'],
+				'nomor_kontrak' 		=> $post['nomor_kontrak'],
+				'angsuran'				=> $post['angsuran'],
+				'dana'					=> $post['dana'],
+				'bank_tujuan'			=> $post['bank_tujuan'],
+				'catatan' 				=> $post['catatan'],
+				'id_approval'			=> 0,
+
+
+				'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified'			=> date('Y-m-d H:i:s'),
+
+				'id_user' 				=> $post['id_user'],
+				'id_cabang' 			=> $post['id_cabang']
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/alokasi_dana';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('lampiran')) {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+			} else {
+				$data['lampiran'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->add('tb_alokasi_dana', $data);
+
+			$data_tiket = [
+				'id_approval' => 0,
+				'id_alokasi_dana' => $id,
+				'id_cabang' => $post['id_cabang'],
+				'id_user' => $post['id_user']
+			];
+			$this->data_m->add('tb_ticket', $data_tiket);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil menambahkan data alokasi dana.!</strong></div>');
+				redirect('status');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 	}
 
@@ -1848,8 +1911,6 @@ class Ticket_register extends CI_Controller
 		if (isset($_POST['edit_lead_interest'])) {
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-			// if ($this->form_validation->run() != FALSE) {
-
 			$data = [
 				// 'source' 				=> $post['source'],
 				'nama' 					=> $post['nama'],
@@ -1879,15 +1940,6 @@ class Ticket_register extends CI_Controller
 				echo "Data gagal disimpan";
 			}
 			redirect('dashboard');
-			// } else {
-			// 	// Mengambil list cabang2 
-			// 	$id_user_tickets = '= ' . $this->fungsi->user_login()->id_user;
-			// 	$approval_tickets = 'IS NOT NULL';
-
-			// 	$data['pertanyaan'] = $this->data_m->get('tb_cabang')->result();
-			// 	$data['ticket_records'] = $this->data_m->get_tickets($id_user_tickets, $approval_tickets);
-			// 	$this->template->load('template2', 'request_support_form/form_lead_management', $data);
-			// }
 		}
 
 		// EDIT FORM AKTIVASI AGENT //
@@ -2447,6 +2499,53 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
+		}
+
+		if (isset($_POST['edit_alokasi_dana'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			$data = [
+				'nama_konsumen' 		=> $post['nama_konsumen'],
+				'nomor_kontrak' 		=> $post['nomor_kontrak'],
+				'angsuran'				=> $post['angsuran'],
+				'dana'					=> $post['dana'],
+				'bank_tujuan'			=> $post['bank_tujuan'],
+				'catatan' 				=> $post['catatan'],
+				'id_approval'			=> 0,
+
+
+				// 'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified'			=> date('Y-m-d H:i:s')
+
+				// 'id_user' 				=> $post['id_user'],
+				// 'id_cabang' 			=> $post['id_cabang']
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/alokasi_dana';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('lampiran')) {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+			} else {
+				$data['lampiran'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->update('tb_alokasi_dana', $data, ['id_alokasi_dana' => $post['id_alokasi_dana']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s'), 'id_approval' => 0], ['id_ticket' => $post['id_ticket']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil mengubah data Alokasi Dana! <a href="' . base_url('status/detail/alokasi_dana/id/' . $post['id_alokasi_dana']) . '">ID #' . $post['id_lead_interest'] . '</a></strong></div>');
+				redirect('status');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 
 		//////////////////////////////// EDIT FROM UNTUK SUPERUSER //////////////////////////////
@@ -3500,6 +3599,53 @@ class Ticket_register extends CI_Controller
 			} else {
 				echo "Data gagal disimpan";
 			}
+		}
+
+		if (isset($_POST['edit_alokasi_dana_superuser'])) {
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			$data = [
+				'nama_konsumen' 		=> $post['nama_konsumen'],
+				'nomor_kontrak' 		=> $post['nomor_kontrak'],
+				'angsuran'				=> $post['angsuran'],
+				'dana'					=> $post['dana'],
+				'bank_tujuan'			=> $post['bank_tujuan'],
+				'catatan' 				=> $post['catatan'],
+				// 'id_approval'			=> 0,
+
+
+				// 'date_created' 			=> date('Y-m-d H:i:s'),
+				'date_modified'			=> date('Y-m-d H:i:s')
+
+				// 'id_user' 				=> $post['id_user'],
+				// 'id_cabang' 			=> $post['id_cabang']
+			];
+
+			//Konfigurasi Upload
+			$config['upload_path']         = './uploads/alokasi_dana';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('lampiran')) {
+				$this->session->set_flashdata("upload_error", "<div class='alert alert-danger'>" . $this->upload->display_errors() . "</div>");
+			} else {
+				$data['lampiran'] = $this->upload->data('file_name');
+			}
+
+			$id = $this->data_m->update('tb_alokasi_dana', $data, ['id_alokasi_dana' => $post['id_alokasi_dana']]);
+			$this->data_m->update('tb_ticket', ['date_pending' => date('Y-m-d H:i:s')], ['id_ticket' => $post['id_ticket']]);
+
+			if ($id) {
+				echo "Data berhasil disimpan";
+				$this->session->set_flashdata('success_request_support', '<div class="alert alert-success"><strong>Berhasil mengubah data Alokasi Dana! <a href="' . base_url('status/detail/lead_interest/id/' . $post['id_lead_interest']) . '">ID #' . $post['id_lead_interest'] . '</a></strong></div>');
+				redirect('status');
+			} else {
+				echo "Data gagal disimpan";
+			}
+			redirect('dashboard');
 		}
 	}
 }

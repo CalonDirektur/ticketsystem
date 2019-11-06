@@ -455,6 +455,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_interest_list') ?>">Lead Interest</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/alokasi_dana_list') ?>">Alokasi Dana</a></li>
                   </ul>
                 </div>
               </li>
@@ -472,6 +473,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_aktivasi_agent') ?>">Aktivasi Agent</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_nst') ?>">NST</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_mitra_kerjasama') ?>">Mitra Kerja sama</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= site_url('ticket_register/form_alokasi_dana') ?>">Alokasi Dana</a></li>
                   </ul>
                 </div>
               </li>
@@ -508,6 +510,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_interest_list') ?>">Lead Interest</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/alokasi_dana_list') ?>">Alokasi Dana</a></li>
                   </ul>
                 </div>
               </li>
@@ -530,6 +533,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status') ?>">Daftar Tiket</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_management_list') ?>">Lead Management</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/lead_interest_list') ?>">Lead Interest</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/alokasi_dana_list') ?>">Alokasi Dana</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/nst_list') ?>">NST</a></li>
                   </ul>
                 </div>
