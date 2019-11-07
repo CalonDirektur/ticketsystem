@@ -167,7 +167,11 @@ class Auth extends CI_Controller
 				];
 				$this->session->set_userdata($params);
 				if ($this->session->userdata('level') != 5) {
-					echo "<script>window.location='" . site_url("status") . "'</script>";
+					if ($this->session->userdata('level') == 8) {
+						echo "<script>window.location='" . site_url("status/list/alokasi_dana_list") . "'</script>";
+					} else {
+						echo "<script>window.location='" . site_url("status") . "'</script>";
+					}
 				} else {
 					echo "<script>window.location='" . site_url("dashboard") . "'</script>";
 				}

@@ -571,6 +571,20 @@
                 </div>
               </li>
             <?php } ?>
+            <?php if ($this->session->userdata('level') == 8) { ?>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#datatabel" aria-expanded="false" aria-controls="datatabel">
+                  <i class="icon-box menu-icon"></i>
+                  <span class="menu-title">Data Tabel</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="datatabel">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('status/list/alokasi_dana_list') ?>">Alokasi Dana</a></li>
+                  </ul>
+                </div>
+              </li>
+            <?php } ?>
             <li class="nav-item">
               <a class="nav-link" href="<?= site_url('Auth/profile') ?>">
                 <i class="icon-head menu-icon"></i>

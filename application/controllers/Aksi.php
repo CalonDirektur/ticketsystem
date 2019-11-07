@@ -15,14 +15,22 @@ class Aksi extends CI_Controller
     {
         $this->Aksi_m->approve(['id_ticket' => $id]);
         $this->session->set_flashdata('berhasil_approve', '<div class="alert alert-success" role="alert"> Berhasil Approve request support ID Ticket #' . $id . '</div>');
-        redirect('status');
+        if ($this->session->userdata('level') == 8) {
+            redirect('status/list/alokasi_dana_list');
+        } else {
+            redirect('status');
+        }
     }
 
     public function reject($id)
     {
         $this->Aksi_m->reject(['id_ticket' => $id]);
         $this->session->set_flashdata('berhasil_reject', '<div class="alert alert-success" role="alert"> Berhasil Reject request support ID Ticket #' . $id . '</div>');
-        redirect('status');
+        if ($this->session->userdata('level') == 8) {
+            redirect('status/list/alokasi_dana_list');
+        } else {
+            redirect('status');
+        }
     }
 
     public function reject_nst()
@@ -42,6 +50,10 @@ class Aksi extends CI_Controller
     {
         $this->Aksi_m->complete(['id_ticket' => $id]);
         $this->session->set_flashdata('berhasil_complete', '<div class="alert alert-success" role="alert"> Berhasil Menyelesaikan request support ID Ticket #' . $id . '</div>');
-        redirect('status');
+        if ($this->session->userdata('level') == 8) {
+            redirect('status/list/alokasi_dana_list');
+        } else {
+            redirect('status');
+        }
     }
 }

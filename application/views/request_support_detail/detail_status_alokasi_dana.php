@@ -132,7 +132,7 @@
 						</div>
 						<div class="form-group">
 							<!-- Tombol ubah data muncul khusus untuk user -->
-							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6)) { ?>
+							<?php if (($this->session->userdata('level') == 1 || $this->session->userdata('level') == 6) && ($data->status == 0 || $data->status == 1)) { ?>
 								<button type="button" id="ubah" class="btn btn-secondary ml-4">Ubah Data</button>
 							<?php } ?>
 							<!-- Tombol ubah data muncul khusus untuk ADMIN NST dan SUPERUSER -->
@@ -146,7 +146,10 @@
 								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYETUJUI request support ini?')" href="<?= base_url('Aksi/approve/' . $data->id_ticket) ?>">Approve</a>
 								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
 							<?php } ?>
-
+							<?php if (($this->session->userdata('level') == 5 || $this->session->userdata('level') == 8) && ($data->status == 1 || $data->status == 2)) { ?>
+								<a class="btn btn-info" onclick="return confirm('Apakah Anda yakin MENYELESAIKAN request support ini?')" href="<?= base_url('Aksi/complete/' . $data->id_ticket) ?>">Complete</a>
+								<a class="btn btn-danger" onclick="return confirm('Apakah Anda yakin MENOLAK request support ini?')" href="<?= base_url('Aksi/reject/' . $data->id_ticket) ?>">Reject</a>
+							<?php } ?>
 							<button type="submit" id="edit_alokasi_dana" class="btn btn-info enable pull-right" name="edit_alokasi_dana" disabled>Update Data!</button>
 						</div>
 					</div>

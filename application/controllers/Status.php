@@ -674,6 +674,10 @@ class Status extends CI_Controller
         if ($produk == 'alokasi_dana' && $kategori != NULL && $id != NULL) {
             // $data['data'] = $this->data_m->get_by_id('tb_lead_management', ['id_lead' => $id, 'id_approval' => 0])->row();
             $data['data'] = $this->data_m->get_ticket_by_id('tb_alokasi_dana', 'id_alokasi_dana', $id);
+            $ticket = $this->data_m->get_ticket_by_id('tb_alokasi_dana', 'id_alokasi_dana', $id);
+            if (($this->fungsi->user_login()->level == 2) && $ticket->status == 0) {
+                $this->aksi_m->in_progress(['id_alokasi_dana' => $id]);
+            }
 
             $data['cabang_tujuan'] = $this->data_m->get('tb_cabang');
 
